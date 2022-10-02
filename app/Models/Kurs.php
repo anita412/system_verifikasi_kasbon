@@ -11,6 +11,11 @@ class Kurs extends Model
 
     public function kasbon()
     {
-        return $this->hasMany(User::class, 'id_kurs', 'id');
+        return $this->hasMany(Kasbon::class, 'id_kurs', 'id');
+    }
+
+    public function nonkasbon()
+    {
+        return $this->hasMany(Nonkasbon::class, 'id_kurs', 'id');
     }
 }

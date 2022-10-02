@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PhpOption\None;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -48,5 +49,26 @@ class User extends Authenticatable
     public function unit()
     {
         return $this->belongsTo(Unit::class, 'id_unit', 'id');
+    }
+
+    public function kasbon()
+    {
+        return $this->hasMany(Kasbon::class, 'id_verifikator_kasbon', 'id');
+        return $this->hasMany(Kasbon::class, 'id_user', 'id');
+        return $this->hasMany(Nonkasbon::class, 'id_verifikator_ptj', 'id');
+    }
+
+    public function nonkasbon()
+    {
+        return $this->hasMany(Nonkasbon::class, 'id_verifikator_kasbon', 'id');
+        return $this->hasMany(Kasbon::class, 'id_user', 'id');
+        return $this->hasMany(Nonkasbon::class, 'id_verifikator_ptj', 'id');
+    }
+
+    public function pertanggungan()
+    {
+        return $this->hasMany(Nonkasbon::class, 'id_verifikator_kasbon', 'id');
+        return $this->hasMany(Kasbon::class, 'id_user', 'id');
+        return $this->hasMany(Nonkasbon::class, 'id_verifikator_ptj', 'id');
     }
 }

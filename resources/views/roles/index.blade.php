@@ -30,7 +30,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Permissions</th>
+                                        <th style="width:70%">Permissions</th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                     </thead>

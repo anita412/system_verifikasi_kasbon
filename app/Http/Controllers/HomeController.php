@@ -26,4 +26,9 @@ class HomeController extends Controller
         $title = 'Home';
         return view('home', compact('title'));
     }
+    public function dashboard()
+    {
+        $title = 'Dashboard';
+        return view('dashboard', compact('title'));
+    }
 }

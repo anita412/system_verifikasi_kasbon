@@ -30,7 +30,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         return view('users.index', [
-            'user' => User::orderBy('id', 'DESC')->paginate(5),
+            'user' => User::orderBy('id', 'DESC')->paginate(),
             'unit' => Unit::all(),
             'title' => 'Index',
         ])->with('i', ($request->input('page', 1) - 1) * 5);
@@ -143,60 +143,5 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
-    }
-    public function list()
-    {
-        $var_nama = 'List';
-        return view('users.list-kasbon', compact('var_nama'));
-    }
-    // public function ajuan()
-    // {
-    //     $var_nama = 'Ajuan Kasbon';
-    //     return view('User.ajuan-kasbon', compact('var_nama'));
-    // }
-    // public function rencana()
-    // {
-    //     $var_nama = 'Rencana';
-    //     return view('User.entry-rencana', compact('var_nama'));
-    // }
-    public function rencana1()
-    {
-        $var_nama = 'Rencana1';
-        return view('users.entry-rencana1', compact('var_nama'));
-    }
-    public function rencana2()
-    {
-        $var_nama = 'Rencana2';
-        return view('users.entry-rencana2', compact('var_nama'));
-    }
-    public function rencana3()
-    {
-        $var_nama = 'Rencana3';
-        return view('users.entry-rencana3', compact('var_nama'));
-    }
-    public function nonkasbon()
-    {
-        $var_nama = 'Non Kasbon';
-        return view('users.entry-nonkasbon', compact('var_nama'));
-    }
-    public function bayarbeli()
-    {
-        $var_nama = 'Bayar Beli';
-        return view('users.entry-bayarbeli', compact('var_nama'));
-    }
-    public function pertanggungan1()
-    {
-        $var_nama = 'Entry Pertanggungan1';
-        return view('users.entry-pertanggungan1', compact('var_nama'));
-    }
-    public function pertanggungan2()
-    {
-        $var_nama = 'Entry Pertanggungan2';
-        return view('users.entry-pertanggungan2', compact('var_nama'));
-    }
-    public function sppd()
-    {
-        $var_nama = 'Entry sppd';
-        return view('users.entry-sppd', compact('var_nama'));
     }
 }

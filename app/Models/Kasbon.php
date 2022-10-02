@@ -9,18 +9,16 @@ class Kasbon extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'tglmasuk', 'jammasuk', 'jeniskasbon', 'doksebelumnya', 'kodekasbon', 'username'
-    ];
+    protected $guarded = [];
 
     public function kurs()
     {
-        return $this->belongsTo(Unit::class, 'id_kurs', 'id');
+        return $this->belongsTo(Kurs::class, 'id_kurs', 'id');
     }
 
     public function jenis()
     {
-        return $this->belongsTo(Unit::class, 'id_jenis', 'id');
+        return $this->belongsTo(Jenis::class, 'id_jenis', 'id');
     }
     public function unit()
     {
@@ -29,5 +27,44 @@ class Kasbon extends Model
     public function pph()
     {
         return $this->belongsTo(Pph::class, 'id_pph', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_verifikator', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+    public function kodekasbon()
+    {
+        return $this->belongsTo(KodeKasbon::class, 'id_kodekasbon', 'id');
+    }
+
+    // public function verifikator()
+    // {
+    //     return $this->hasOne(Verifikator::class, 'id_kasbon', 'id');
+    // }
+    // public function kelengkapan()
+    // {
+    //     return $this->hasOne(Kelengkapan::class, 'id_pph', 'id');
+    // }
+    public function keterangan()
+    {
+        return $this->hasMany(Keterangan::class, 'nokasbon', 'nokasbon');
+    }
+
+    public function pertanggungan()
+    {
+        return $this->hasOne(Pertanggungan::class, 'nokasbon', 'nokasbon');
+        return $this->hasOne(Pertanggungan::class, 'id_kasbon', 'id');
+    }
+
+    public function kelengkapan()
+    {
+        return $this->hasOne(Kelengkapan::class, 'id_kasbon', 'id');
+        return $this->belongsTo(Kelengkapan::class, 'id_kelengkapan', 'id');
+    }
+
+    public function nonkasbon()
+    {
+        return $this->hasMany(Keterangan::class, 'nonkasbon', 'nonkasbon');
     }
 }

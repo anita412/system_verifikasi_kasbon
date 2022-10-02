@@ -15,7 +15,7 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <title>IMST</title>
+  <title>IMST | {{$title}}</title>
 <head>
   
 

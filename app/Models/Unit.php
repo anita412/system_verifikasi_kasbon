@@ -16,6 +16,16 @@ class Unit extends Model
 
     public function kasbon()
     {
-        return $this->hasMany(User::class, 'id_unit', 'id');
+        return $this->hasMany(Kasbon::class, 'id_unit', 'id');
+    }
+
+    public function pertanggungan()
+    {
+        return $this->hasMany(Pertanggungan::class, 'id_unit', 'id');
+    }
+
+    public function nonkasbon()
+    {
+        return $this->hasMany(Nonkasbon::class, 'id_unit', 'id');
     }
 }
