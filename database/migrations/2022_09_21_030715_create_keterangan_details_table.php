@@ -15,10 +15,10 @@ class CreateKeteranganDetailsTable extends Migration
     {
         Schema::create('keterangan_details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger('id_keterangan')->nullable();
             $table->string('kekurangan');
             $table->date('tgl_kelengkapan');
+            $table->timestamps();
 
             $table->foreign('id_keterangan')->references('id')->on('keterangans')->onDelete('cascade');
         });

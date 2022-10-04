@@ -5,10 +5,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KasbonController;
-use App\Http\Controllers\VerifikatorController;
+use App\Http\Controllers\NonkasbonController;
+use App\Http\Controllers\VerifikasiKasbonController;
 use App\Http\Controllers\PertanggunganController;
-use App\Http\Controllers\NonKasbonController;
-use App\Http\Controllers\VerifikasiAtasanController;
+use App\Http\Controllers\VerifikasiKasbonAtasanController;
+use App\Http\Controllers\VerifikasiKasbonAtasan2Controller;
+use App\Http\Controllers\VerifikasiPertanggunganController;
+use App\Http\Controllers\VerifikasiAtasanPertanggunganController;
+use App\Http\Controllers\VerifikasiAtasan2PertanggunganController;
 use App\Http\Controllers\PDFController;
 
 /*
@@ -34,26 +38,48 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('kasbons', KasbonController::class);
-    Route::resource('verifikator', VerifikatorController::class);
-    Route::resource('verifikasi-atasan', VerifikasiAtasanController::class);
-    Route::resource('pertanggungan', PertanggunganController::class);
+    Route::resource('kasbon', KasbonController::class);
     Route::resource('nonkasbon', NonkasbonController::class);
+    Route::resource('vkb', VerifikasiKasbonController::class);
+    Route::resource('vkb-atasan', VerifikasiKasbonAtasanController::class);
+    Route::resource('vkb-atasan-2', VerifikasiKasbonAtasan2Controller::class);
+    Route::resource('vkp', VerifikasiPertanggunganController::class);
+    Route::resource('vkp-atasan', VerifikasiAtasanPertanggunganController::class);
+    Route::resource('vkp-atasan-2', VerifikasiAtasan2PertanggunganController::class);
+    Route::resource('pertanggungan', PertanggunganController::class);
 });
 
-Route::controller(VerifikatorController::class)->group(function () {
-    Route::get('/kelengkapan/{kelengkapan}', [VerifikatorController::class, 'kelengkapan'])->name('kelengkapan');
-    Route::get('/kelengkapan_edit/{kasbon}', [VerifikatorController::class, 'kelengkapan_edit'])->name('kelengkapan_edit');
+Route::controller(VerifikasiKasbonController::class)->group(function () {
+    Route::get('/vkb/cek_kasbon/{kasbon}', [VerifikasiKasbonController::class, 'cek_kasbon'])->name('vkb.cek_kasbon');
+    Route::get('/vkb/cek_kasbon_edit/{kasbon}', [VerifikasiKasbonController::class, 'cek_kasbon_edit'])->name('vkb.cek_kasbon_edit');
 });
 
-Route::controller(VerifikasiAtasanController::class)->group(function () {
-    Route::get('cek_kelengkapan/{kelengkapan}', [VerifikasiAtasanController::class, 'cek_kelengkapan'])->name('cek_kelengkapan');
-    Route::get('keterangan/{kelengkapan}', [VerifikasiAtasanController::class, 'keterangan'])->name('keterangan');
+Route::controller(VerifikasiKasbonAtasan2Controller::class)->group(function () {
+    Route::get('/vkb-atasan-2/cek_kasbon/{kasbon}', [VerifikasiKasbonAtasan2Controller::class, 'cek_kasbon'])->name('vkb-atasan-2.cek_kasbon');
+    Route::get('/vkb-atasan-2/cek_kasbon_edit/{kasbon}', [VerifikasiKasbonAtasan2Controller::class, 'cek_kasbon_edit'])->name('vkb-atasan-2.cek_kasbon_edit');
 });
 
-Route::get('/pertanggungan/insert/{kasbons}', [PertanggunganController::class, 'insert'])->name('pertanggungan.insert');
-Route::post('/pertanggungan/storee', [PertanggunganController::class, 'storee'])->name('pertanggungan.storee');
+Route::controller(VerifikasiPertanggunganController::class)->group(function () {
+    Route::get('vkp/cek_pertanggungan/{pertanggungan}', [VerifikasiPertanggunganController::class, 'cek_pertanggungan'])->name('vkp.cek_pertanggungan');
+    Route::get('vkp/cek_pertanggungan_edit/{pertanggungan}', [VerifikasiPertanggunganController::class, 'cek_pertanggungan_edit'])->name('vkp.cek_pertanggungan_edit');
+});
 
-Route::get('/kasbons/generatePDF/{kasbons}', [KasbonController::class, 'generatePDF'])->name('kasbons.generatePDF');
+Route::controller(VerifikasiKasbonAtasanController::class)->group(function () {
+    Route::get('/vkb-atasan/cek_kasbon/{kasbon}', [VerifikasiKasbonAtasanController::class, 'cek_kasbon'])->name('vkb-atasan.cek_kasbon');
+    Route::get('/vkb-atasan/cek_kasbon_edit/{kasbon}', [VerifikasiKasbonAtasanController::class, 'cek_kasbon_edit'])->name('vkb-atasan.cek_kasbon_edit');
+});
 
-Route::post('/info/{kasbon}', [VerifikatorController::class, 'submitData'])->name('verifikator.submitData');
+Route::controller(VerifikasiAtasanPertanggunganController::class)->group(function () {
+    Route::get('/vkp-atasan/cek_pertanggungan/{pertanggungan}', [VerifikasiAtasanPertanggunganController::class, 'cek_pertanggungan'])->name('vkp-atasan.cek_pertanggungan');
+    Route::get('/vkp-atasan/cek_pertanggungan_edit/{pertanggungan}', [VerifikasiAtasanPertanggunganController::class, 'cek_pertanggungan_edit'])->name('vkp-atasan.cek_pertanggungan_edit');
+});
+
+Route::controller(VerifikasiAtasan2PertanggunganController::class)->group(function () {
+    Route::get('/vkp-atasan-2/cek_pertanggungan/{pertanggungan}', [VerifikasiAtasan2PertanggunganController::class, 'cek_pertanggungan'])->name('vkp-atasan-2.cek_pertanggungan');
+    Route::get('/vkp-atasan-2/cek_pertanggungan_edit/{pertanggungan}', [VerifikasiAtasan2PertanggunganController::class, 'cek_pertanggungan_edit'])->name('vkp-atasan-2.cek_pertanggungan_edit');
+});
+
+Route::controller(PertanggunganController::class)->group(function () {
+    Route::get('/pertanggungan/insert/{kasbons}', [PertanggunganController::class, 'insert'])->name('pertanggungan.insert');
+    Route::get('/pertanggungan/generatePDF/{pertanggungan}', [PertanggunganController::class, 'generatePDF'])->name('pertanggungan.generatePDF');
+});

@@ -15,8 +15,7 @@ class CreateDImporsTable extends Migration
     {
         Schema::create('d_impors', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nokasbon')->unique()->nullable();
+
             $table->string('di_pib')->nullable();
             $table->string('di_bl')->nullable();
             $table->string('di_com')->nullable();
@@ -24,7 +23,7 @@ class CreateDImporsTable extends Migration
             $table->string('di_invoicecustom')->nullable();
             $table->string('di_sjncustom')->nullable();
 
-            $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

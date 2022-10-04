@@ -15,12 +15,9 @@ class CreateKeterangansTable extends Migration
     {
         Schema::create('keterangans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nokasbon')->nullable();
             $table->string('catatan')->nullable();
-            $table->date('tgl_kekurangan')->nullable();
 
-            $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

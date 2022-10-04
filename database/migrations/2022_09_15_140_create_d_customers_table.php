@@ -15,16 +15,13 @@ class CreateDCustomersTable extends Migration
     {
         Schema::create('d_customers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nokasbon')->unique()->nullable();
             $table->string('dc_memointernal')->nullable();
             $table->string('dc_spph')->nullable();
             $table->string('dc_ko')->nullable();
             $table->string('dc_loi')->nullable();
             $table->string('dc_invoicecustom')->nullable();
             $table->string('dc_sjncustom')->nullable();
-
-            $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

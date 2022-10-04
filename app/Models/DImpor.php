@@ -15,9 +15,4 @@ class DImpor extends Model
     {
         return $this->belongsTo(Kelengkapan::class, 'id_di', 'id');
     }
-
-    public function kasbon()
-    {
-        return $this->belongsTo(Kasbon::class, 'nokasbon', 'nokasbon');
-    }
 }

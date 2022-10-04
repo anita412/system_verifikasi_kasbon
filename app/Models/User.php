@@ -61,7 +61,7 @@ class User extends Authenticatable
     public function nonkasbon()
     {
         return $this->hasMany(Nonkasbon::class, 'id_verifikator_kasbon', 'id');
-        return $this->hasMany(Kasbon::class, 'id_user', 'id');
+        return $this->hasMany(Nonkasbon::class, 'id_user', 'id');
         return $this->hasMany(Nonkasbon::class, 'id_verifikator_ptj', 'id');
     }
 
@@ -70,5 +70,19 @@ class User extends Authenticatable
         return $this->hasMany(Nonkasbon::class, 'id_verifikator_kasbon', 'id');
         return $this->hasMany(Kasbon::class, 'id_user', 'id');
         return $this->hasMany(Nonkasbon::class, 'id_verifikator_ptj', 'id');
+    }
+
+    public function verifikasi_kasbon()
+    {
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_1', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_2', 'id');
+    }
+
+    public function verifikasi_pertanggungan()
+    {
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_1', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_2', 'id');
     }
 }

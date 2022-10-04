@@ -26,12 +26,11 @@ class Nonkasbon extends Model
 
     public function verifikasinonkasbon()
     {
-        return $this->hasOne(VerifikasiNonKasbon::class, 'no_nonkasbon', 'no_nonkasbon');
+        return $this->hasone(VerifikasiNonKasbon::class, 'id_nonkasbon', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_verifikator', 'id');
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

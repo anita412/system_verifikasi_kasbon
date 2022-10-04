@@ -14,9 +14,4 @@ class DCustomer extends Model
     {
         return $this->belongsTo(Kelengkapan::class, 'id_dc', 'id');
     }
-
-    public function kasbon()
-    {
-        return $this->belongsTo(Kasbon::class, 'nokasbon', 'nokasbon');
-    }
 }

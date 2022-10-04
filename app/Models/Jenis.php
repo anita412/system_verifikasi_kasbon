@@ -11,6 +11,6 @@ class Jenis extends Model
 
     public function kasbon()
     {
-        return $this->hasMany(User::class, 'id_jenis', 'id');
+        return $this->hasMany(Kasbon::class, 'id_jenis', 'id');
     }
 }

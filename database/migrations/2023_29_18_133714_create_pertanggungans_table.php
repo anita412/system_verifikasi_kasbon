@@ -41,14 +41,11 @@ class CreatePertanggungansTable extends Migration
             $table->string('novkbselisihptj')->nullable();
             $table->string('nilaiselisihptj')->nullable();
             $table->float('selisihptjakhir')->nullable();
-            $table->unsignedBigInteger('id_verifikator_kasbon')->nullable();
-            $table->unsignedBigInteger('id_verifikator_ptj')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kodekasbon')->references('id')->on('kode_kasbons')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_verifikator_kasbon')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_verifikator_ptj')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_unit')->references('id')->on('units')->onDelete('cascade');
             $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
             $table->foreign('id_kasbon')->references('id')->on('kasbons')->onDelete('cascade');

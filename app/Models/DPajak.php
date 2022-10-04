@@ -15,9 +15,4 @@ class DPajak extends Model
     {
         return $this->belongsTo(Kelengkapan::class, 'id_dp', 'id');
     }
-
-    public function kasbon()
-    {
-        return $this->belongsTo(Kasbon::class, 'nokasbon', 'nokasbon');
-    }
 }

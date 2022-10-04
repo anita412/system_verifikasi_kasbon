@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nonkasbon;
-use App\Http\Requests\StoreNonkasbonRequest;
 use App\Http\Requests\UpdateNonkasbonRequest;
 use App\Models\Kasbon;
 use App\Models\Kurs;
 use App\Models\Jenis;
 use App\Models\Pph;
+use App\Models\VerifikasiNonKasbon;
 use App\Models\Unit;
 use App\Models\Dvendor;
 use App\Models\DCustomer;
@@ -17,6 +17,9 @@ use App\Models\DImpor;
 use App\Models\DPajak;
 use App\Models\Kelengkapan;
 use App\Models\KodeKasbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
@@ -28,6 +31,14 @@ class NonkasbonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('permission:nonkasbon-list|nonkasbon-create|nonkasbon-edit|nonkasbon-delete|nonkasbon-verifikasi', ['only' => ['index', 'show']]);
+        $this->middleware('permission:nonkasbon-create', ['only' => ['create', 'store', 'store1']]);
+        $this->middleware('permission:nonkasbon-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:nonkasbon-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:nonkasbon-verifikasi', ['only' => ['verifikasi']]);
+    }
     public function index()
     {
         $title = 'Nonkasbon';
@@ -52,21 +63,21 @@ class NonkasbonController extends Controller
         $now = Carbon::now();
         $jamnow = Carbon::now()->format('H:i:s');;
         $thnBulan = Carbon::now()->format('Y-m-d');
-        $cek = Kasbon::count();
+        $cek = NonKasbon::count();
         $tglmasuk = Carbon::now()->format('Y-m-d');
-        $terakhir = Kasbon::query()->latest('id')->first();
+        $terakhir = NonKasbon::query()->latest('id')->first();
         if ($cek == 0) {
             $urut = 100001;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
+            $nomer = 'NKB' . $thnBulan . '-' . $urut;
             $n0mer = 'D' . $urut;
         } else {
-            $ambil = Kasbon::all()->last();
+            $ambil = NonKasbon::all()->last();
             $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
+            $nomer = 'NKB' . $thnBulan . '-' . $urut;
             $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
             $n0mer = 'D' . $uru_t;
         }
-        return view('nonkasbon.create', compact('title', 'nonkasbon','nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon'));
+        return view('nonkasbon.create', compact('title', 'nonkasbon', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon'));
     }
 
     /**
@@ -75,7 +86,7 @@ class NonkasbonController extends Controller
      * @param  \App\Http\Requests\StoreNonkasbonRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNonkasbonRequest $request)
+    public function store(Request $request)
     {
         request()->validate([
             // 'tglmasuk' => 'required',
@@ -84,50 +95,53 @@ class NonkasbonController extends Controller
             // 'novkbselisihptj' => 'required',
             // 'nilaiselisihptj' => 'required',
         ]);
-        $id = $request->id;
-        $nonkasbon = Nonkasbon::find($id);
+        DB::transaction(function () use ($request) {
+            $id = $request->id;
+            $nonkasbon = Nonkasbon::find($id);
 
-        $now = Carbon::now();
-        $thnBulan = $now->year . $now->month . $now->day;
-        $cek = Kasbon::count();
-        $terakhir = Kasbon::query()->latest('id')->first();
-        if ($cek == 0) {
-            $urut = 100001;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
-            $n0mer = 'D' . $urut;
-        } else {
-            $ambil = Kasbon::all()->last();
-            $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
-            $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
-            $n0mer = 'D' . $uru_t;
-        }
+            $now = Carbon::now();
+            $thnBulan = $now->year . $now->month . $now->day;
+            $cek = NonKasbon::count();
 
-        $dueDate = now()->addDays(30);
+            if ($cek == 0) {
+                $urut = 100001;
+                $nomer = 'NKB' . $thnBulan . '-' . $urut;
+                $terakhir = '0';
+            } else {
+                $ambil = NonKasbon::all()->last();
+                $urut = (int)substr($ambil->no_nonkasbon, -1) + 1;
+                $nomer = 'NKB' . $thnBulan . '-' . $urut;
+                $uru_t = (int)substr($ambil->no_nonkasbon, -1) + 1;
+                $terakhir = NonKasbon::query()->latest('id')->first();
+            }
 
-        $nonkasbon = new nonkasbon;
-        $nonkasbon->doksebelumnya = $request->doksebelumnya;
-        $nonkasbon->tglmasuk = $kasbon->tglmasuk;
-        $nonkasbon->jammasuk = $kasbon->jammasuk;
-        $nonkasbon->user = $kasbon->user;
-        $nonkasbon->user = $kasbon->username;
-        $nonkasbon->nip = $kasbon->nip;
-        $nonkasbon->unit = $kasbon->unit;
-        $nonkasbon->kodekasbon = $kasbon->kodekasbon;
-        $nonkasbon->jenis_nonkasbon  = $kasbon->jenis_nonkasbon;
-        $nonkasbon->kurs = $kasbon->kurs;
-        $nonkasbon->namavendor  = $kasbon->namavendor;
-        $nonkasbon->noinvoice  = $kasbon->noinvoice;
-        $nonkasbon->tujuanpembayaran = $kasbon->tujuanpembayaran;
-        
+            $dueDate = now()->addDays(30);
 
-        if ($nonkasbon->save()) {
-            return redirect()->route('nonkasbon.index')
-                ->with('success', 'Non Kasbon created successfully.');
-        } else {
-            return redirect()->route('nonkasbon.index')
-                ->with('success', 'Product not created successfully.');
-        }
+            $nonkasbonID = NonKasbon::insertGetId([
+                'no_nonkasbon' => $nomer,
+                'id_user' => $request->id_user,
+                'tglmasuk' => $request->tglmasuk,
+                'jammasuk' => $request->jammasuk,
+                'doksebelumnya' => $terakhir,
+                'id_user' => Auth::user()->id,
+                'id_unit' => Auth::user()->id_unit,
+                'id_kodekasbon' => $request->id_kodekasbon,
+                'id_jenis_nonkasbon' => $request->id_jenis,
+                'id_kurs' => $request->id_kurs,
+                'namavendor'  => $request->namavendor,
+                'noinvoice'  => $request->noinvoice,
+                'tujuanpembayaran' => $request->tujuanpembayaran
+            ]);
+
+            VerifikasiNonKasbon::insertGetId([
+                'id_nonkasbon' => $nonkasbonID,
+                'vnk_a_1' => 'Dalam Proses',
+                'status' => 'Dalam Proses',
+            ]);
+        });
+
+        return redirect()->route('nonkasbon.index')
+            ->with('success', 'Non Kasbon created successfully.');
     }
 
     /**
@@ -147,7 +161,7 @@ class NonkasbonController extends Controller
      * @param  \App\Models\Nonkasbon  $nonkasbon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nonkasbon $nonkasbon)
+    public function edit(Nonkasbon $nonkasbon, $id)
     {
         $nonkasbon = NonKasbon::find($id);
         $title = 'Non Kasbon';

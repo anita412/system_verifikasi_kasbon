@@ -28,7 +28,7 @@ class CreateKelengkapansTable extends Migration
 
             $table->foreign('id_kasbon')->references('id')->on('kasbons')->onDelete('cascade');
             $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
-            $table->foreign('id_dv')->references('id')->on('dvendors')->onDelete('cascade');
+            $table->foreign('id_dv')->references('id')->on('d_vendors')->onDelete('cascade');
             $table->foreign('id_dc')->references('id')->on('d_customers')->onDelete('cascade');
             $table->foreign('id_di')->references('id')->on('d_impors')->onDelete('cascade');
             $table->foreign('id_dp')->references('id')->on('d_pajaks')->onDelete('cascade');

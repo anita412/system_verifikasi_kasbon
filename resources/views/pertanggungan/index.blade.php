@@ -40,9 +40,10 @@
                                     <th>User</th>
                                     <th>Kasbon</th>
                                     <th>No VKB Kasbon</th>
-                                    <th>Tgl Bayar ke User</th>
                                     <th>Nilai PTJ</th>
                                     <th>Selisih PTJ</th>
+                                    <th>Jatuh Tempo</th>
+                                    <th>Status</th>
                                     <th style="width:0%">Action</th>
                                 </tr>
                                 </thead>
@@ -50,19 +51,42 @@
 
                                 <tbody>
                                     @foreach ($pertanggungan as $pertanggungan)
+                                    @if($pertanggungan->kasbon->id_user == Auth::user()->id)
                                 <tr>
                                     <td>{{$pertanggungan->nokasbon}}</td>
                                     <td>{{$pertanggungan->user}}</td>
                                     <td>{{$pertanggungan->jeniskasbon}}</td>
                                     <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->tglbayarkeuser}}</td>
                                     <td>{{$pertanggungan->nilaiptj}}</td>
                                     <td>{{$pertanggungan->nilaiselisihptj}}</td>
-                                    <td class="text-end">
-                                        <a href=""><i class="las la-pen text-secondary font-16"></i></a>
-                                        <button type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="las la-trash text-secondary font-16"></i></button>
+                                    <td>{{$pertanggungan->tgltempo}}</td>
+                                    <td>
+                                        @if($pertanggungan->verifikasipertanggungan->status == "Dalam Proses")
+                                        <label class="badge rounded-pill bg-primary">Dalam Proses</label>
+                                    @elseif($pertanggungan->verifikasipertanggungan->status == "Revisi")
+                                        <label class="badge rounded-pill bg-warning">Revisi</label>
+                                    @elseif($pertanggungan->verifikasipertanggungan->status == "Ditolak")
+                                        <label class="badge rounded-pill bg-danger">Ditolak</label>
+                                    @elseif($pertanggungan->verifikasipertanggungan->status == "Terverifikasi")
+                                        <label class="badge rounded-pill bg-success">Terverifikasi</label>
+                                    @endif
                                     </td>
-                                    @endforeach
+                                    <td>
+                                        @if($pertanggungan->verifikasipertanggungan->status == "Dalam Proses")
+                                        <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                        @elseif($pertanggungan->verifikasipertanggungan->status == "Revisi")
+                                        <a href="{{ route('pertanggungan.edit',$pertanggungan->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                        @elseif($pertanggungan->verifikasipertanggungan->status == "Ditolak")
+                                        <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                        <button type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="las la-trash text-secondary font-16"></i></button>
+                                        @elseif($pertanggungan->verifikasipertanggungan->status == "Terverifikasi")
+                                        <a href="{{ route('pertanggungan.generatePDF',$pertanggungan->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
+                                        <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                        @endif
+                                </td>
+                                @endif
+                                @endforeach
                                 </tr>
                                 </tbody>
                             </table>

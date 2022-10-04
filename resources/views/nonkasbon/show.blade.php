@@ -8,7 +8,7 @@
                 <h2> Show Kasbon</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('kasbons.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('nonkasbons.index') }}"> Back</a>
             </div>
         </div>
     </div>

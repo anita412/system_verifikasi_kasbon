@@ -32,27 +32,52 @@
                     <a href="{{ route('roles.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Role</span></a>
                 </li>
                 @endcan
-                @can('kasbon-list')
-                <li>
-                    <a href="{{ route('kasbons.index') }}"><i class="dripicons-article align-self-center menu-icon"></i><span>Kasbon</span></a>
-                </li>
-                @endcan
-                @can('verifikator-list')
-                <li>
-                    <a href="{{ route('verifikator.index') }}"><i class="dripicons-archive align-self-center menu-icon"></i><span>Verifikator</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('verifikasi-atasan.index') }}"><i class="dripicons-archive align-self-center menu-icon"></i><span>Verifikasi</span></a>
-                </li>
-                @endcan
-                @can('pertanggungan-list')
-                <li>
-                    <a href="{{ route('pertanggungan.index') }}"><i class="dripicons-document-new align-self-center menu-icon"></i><span>Pertanggungan</span></a>
-                </li>
-                @endcan
                 @can('nonkasbon-list')
                 <li>
-                    <a href="{{ route('nonkasbon.index') }}"><i class="dripicons-document-new align-self-center menu-icon"></i><span>Non Kasbon</span></a>
+                    <a href="{{ route('nonkasbon.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>NonKasbon</span></a>
+                </li>
+                @endcan
+                @can('kasbon-list')
+                <li>
+                    <a href="javascript: void(0);"> <i  class="align-self-center ti-receipt"></i><span>Kasbon</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('kasbon.index') }}"><i class="ti-control-record"></i>Rencana / Realisasi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('pertanggungan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                    </ul>
+                </li>
+                @endcan
+                @can('vkb-atasan-list')
+                <li>
+                    <a href="javascript: void(0);"> <i  class="align-self-center menu-icon ti-check-box"></i><span>Verifikasi Atasan - 1</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-atasan-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                    </ul> 
+                </li>
+                @endcan
+                @can('vkb-list')
+                <li>
+                    <a href="javascript: void(0);"> <i class="align-self-center menu-icon ti-check-box"></i><span>Verifikasi</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                    </ul> 
+                </li>
+                @endcan
+                
+                @can('vkb-atasan-2-list')
+                <li>
+                    <a href="javascript: void(0);"> <i class="align-self-center menu-icon ti-check-box" ></i><span>Verifikasi Atasan - 2</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-2.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-atasan-2-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-2.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                    </ul> 
                 </li>
                 @endcan
             </ul>

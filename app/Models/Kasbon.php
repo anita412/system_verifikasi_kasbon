@@ -28,6 +28,7 @@ class Kasbon extends Model
     {
         return $this->belongsTo(Pph::class, 'id_pph', 'id');
     }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_verifikator', 'id');
@@ -38,17 +39,14 @@ class Kasbon extends Model
         return $this->belongsTo(KodeKasbon::class, 'id_kodekasbon', 'id');
     }
 
-    // public function verifikator()
-    // {
-    //     return $this->hasOne(Verifikator::class, 'id_kasbon', 'id');
-    // }
-    // public function kelengkapan()
-    // {
-    //     return $this->hasOne(Kelengkapan::class, 'id_pph', 'id');
-    // }
     public function keterangan()
     {
         return $this->hasMany(Keterangan::class, 'nokasbon', 'nokasbon');
+    }
+
+    public function verifikasikasbon()
+    {
+        return $this->hasone(VerifikasiKasbon::class, 'id_kasbon', 'id');
     }
 
     public function pertanggungan()
@@ -63,8 +61,8 @@ class Kasbon extends Model
         return $this->belongsTo(Kelengkapan::class, 'id_kelengkapan', 'id');
     }
 
-    public function nonkasbon()
+    public function keterangan_kasbon()
     {
-        return $this->hasMany(Keterangan::class, 'nonkasbon', 'nonkasbon');
+        return $this->hasMany(Keterangan_detail::class, 'id_kasbon', 'id');
     }
 }

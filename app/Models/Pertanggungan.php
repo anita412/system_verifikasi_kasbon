@@ -30,8 +30,18 @@ class Pertanggungan extends Model
         return $this->belongsTo(User::class, 'id_verifikator_ptj', 'id');
     }
 
-    public function kdekasbon()
+    public function kodekasbon()
     {
         return $this->belongsTo(Kasbon::class, 'id_kodekasbon', 'id');
+    }
+
+    public function verifikasipertanggungan()
+    {
+        return $this->hasone(VerifikasiPertanggungan::class, 'id_pertanggungan', 'id');
+    }
+
+    public function keterangan_pertanggungan()
+    {
+        return $this->hasMany(KeteranganPertanggungan::class, 'id_pertanggungan', 'id');
     }
 }

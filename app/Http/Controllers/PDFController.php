@@ -19,10 +19,4 @@ class PDFController extends Controller
         $kelengkapan = Kelengkapan::find($id);
         return view('pdf.print-kasbon', compact('kelengkapan'));
     }
-
-    // public function show($id)
-    // {
-    //     $kelengkapan = Kelengkapan::find($id);
-    //     return view('pdf.print-nonkasbon', compact('kelengkapan'));
-    // }
 }

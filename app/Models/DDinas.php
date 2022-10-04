@@ -15,9 +15,4 @@ class DDinas extends Model
     {
         return $this->belongsTo(Kelengkapan::class, 'id_dd', 'id');
     }
-
-    public function kasbon()
-    {
-        return $this->belongsTo(Kasbon::class, 'nokasbon', 'nokasbon');
-    }
 }

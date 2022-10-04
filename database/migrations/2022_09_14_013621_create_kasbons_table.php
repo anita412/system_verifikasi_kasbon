@@ -29,7 +29,6 @@ class CreateKasbonsTable extends Migration
             $table->unsignedBigInteger('id_kurs')->nullable();
             $table->string('proyek')->nullable();
             $table->text('uraianpengguna')->nullable();
-            $table->timestamps();
             $table->integer('iddpp')->nullable();
             $table->integer('idppn')->nullable();
             $table->unsignedBigInteger('id_pph')->nullable();
@@ -47,10 +46,8 @@ class CreateKasbonsTable extends Migration
             $table->date('barang_datang')->nullable();
             $table->string('nopi')->nullable();
             $table->string('formatkasbon')->nullable();
-            $table->string('status')->nullable();
-            $table->string('cekdokumen')->nullable();
-            $table->unsignedBigInteger('id_verifikator_kasbon')->nullable();
-            $table->unsignedBigInteger('id_verifikator_ptj')->nullable();
+
+            $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_kodekasbon')->references('id')->on('kode_kasbons')->onDelete('cascade');
@@ -58,8 +55,6 @@ class CreateKasbonsTable extends Migration
             $table->foreign('id_jenis')->references('id')->on('jenis')->onDelete('cascade');
             $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
             $table->foreign('id_pph')->references('id')->on('pphs')->onDelete('cascade');
-            $table->foreign('id_verifikator_kasbon')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_verifikator_ptj')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

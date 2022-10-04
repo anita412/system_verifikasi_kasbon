@@ -38,11 +38,11 @@
           <div class="tm_invoice_head ">
             <div class="tm_invoice_left">
               <p  style="font-size: 11px " ><b class="tm_primary_color" >
-                NAMA USER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{$kelengkapan->kasbon->username}}<br>
-                NOMINAL KASBON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;Rp. {{$kelengkapan->kasbon->total}} <br>
-				NOMINAL REALISASI	&nbsp;&nbsp;&nbsp;:&nbsp; <br>
-                SELISIH REALISASI	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; <br>
-				{{$kelengkapan->kasbon->jeniskasbon}}
+                NAMA USER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{$pertanggungan->kasbon->username}}<br>
+                NOMINAL KASBON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;Rp. {{$pertanggungan->kasbon->total}} <br>
+				NOMINAL REALISASI	&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->nilaiptj}}<br>
+                SELISIH REALISASI	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->selisihptj}}<br>
+				{{$pertanggungan->kasbon->jeniskasbon}}
 				</b>
               </p>
             </div>
@@ -50,8 +50,8 @@
              <p style="font-size: 11px">
 				<b class="tm_primary_color" style="text-transform:uppercase;">
 					<br><br><br>
-                NO KASBON {{$kelengkapan->kasbon->nokasbon}}<br>
-                PROYEK {{$kelengkapan->kasbon->proyek}}<br>
+                NO KASBON {{$pertanggungan->kasbon->nokasbon}}<br>
+                PROYEK {{$pertanggungan->kasbon->proyek}}<br>
 				</b>
               </p>
             </div>
@@ -77,18 +77,18 @@
                     <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">1</b></td>
 						<td style="width: 30%;" class="tm_border_top ">INVOICE</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_invoice}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_invoice}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">1</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">PIB </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_pib}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_pib}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">2</b></td>
 						<td style="width: 30%;" class="tm_border_top ">KWITANSI</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_kwitansi}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_kwitansi}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">2</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">BILL OF LADING / AWB </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_bl}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_bl}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">3</b></td>
@@ -96,36 +96,36 @@
 						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top"></td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">3</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">COM </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_com}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_com}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">4</b></td>
 						<td style="width: 30%;" class=" ">PO VENDOR</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_povendor}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_povendor}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">4</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">COO </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_coo}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_coo}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">5</b></td>
 						<td style="width: 30%;" class="tm_border_top ">SJN VENDOR</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_sjnvendor}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_sjnvendor}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">5</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">INVOICE CUSTOM </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_invoicecustom}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_invoicecustom}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">6</b></td>
 						<td style="width: 30%;" class="tm_border_top ">PACKING LIST</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_packcinglist}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_packcinglist}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">6</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">INVOICE FREIGHT  </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dimpor->di_sjncustom}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dimpor->di_sjncustom}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">7</b></td>
 						<td style="width: 30%;" class="tm_border_top ">TEST REPORT</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_testreport}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_testreport}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">No</b></td>
 						<td style="width: 30%;text-align: center" class="tm_border_top tm_gray_bg"><b class="tm_primary_color">DOKUMEN PAJAK</b></td>
 						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">KET</b></td>
@@ -133,18 +133,18 @@
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">8</b></td>
 						<td style="width: 30%;" class="tm_border_top ">BAPP / BAST</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_bapp}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_bapp}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">1</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">KESESUAIAN FAKTUR </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dpajak->dp_kesesuaianfaktur}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dpajak->dp_kesesuaianfaktur}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">9</b></td>
 						<td style="width: 30%;" class="tm_border_top ">LPPB</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dvendor->dv_lppb}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dvendor->dv_lppb}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">2</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">PAJAK PENGHASILAN </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dpajak->dp_pajakpenghasilan}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dpajak->dp_pajakpenghasilan}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">10</b></td>
@@ -152,7 +152,7 @@
 						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top"></td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">3</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">SURAT NON PKP / SKB</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->dpajak->dp_suratnonpkp}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dpajak->dp_suratnonpkp}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">No</b></td>
@@ -165,47 +165,47 @@
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">1</b></td>
 						<td style="width: 30%;" class="tm_border_top ">MEMO INTERNAL/ NOTULEN RAPAT</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_memointernal}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_memointernal}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">1</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">INVOICE/TIKET TRANSPORT</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->ddinas->dd_tickettransport}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">2</b></td>
 						<td style="width: 30%;" class="tm_border_top ">SPPH </td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_spph}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_spph}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">2</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">NOTA MAKAN</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->ddinas->dd_notamakan}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">3</b></td>
 						<td style="width: 30%;" class="tm_border_top ">KO (KONFIRMASI ORDER)</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_ko}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_ko}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">3</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">BOARDING PASS</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->ddinas->dd_boardingpass}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">4</b></td>
 						<td style="width: 30%;" class="tm_border_top ">LOI</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_loi}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_loi}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">4</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">NOTA PENGINAPAN / HOTEL</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->ddinas->dd_notapenginapan	}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan	}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">5</b></td>
 						<td style="width: 30%;" class="tm_border_top ">PO CUSTOMER</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_invoicecustom}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_invoicecustom}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">5</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">SPPD</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$kelengkapan->ddinas->dd_sppd}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top">{{$pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd}}</td>
 					 </tr>
 					 <tr>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">6</b></td>
 						<td style="width: 30%;" class="tm_border_top ">SJN CUSTOMER</td>
-						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kelengkapan->dcustomer->dc_sjncustom}}</td>
+						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$pertanggungan->kasbon->kelengkapan->dcustomer->dc_sjncustom}}</td>
 						<td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">6</b></td>
 						<td style="width: 30%;r" class="tm_border_top ">SURAT TUGAS DINAS</td>
 						<td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top"></td>
@@ -217,7 +217,7 @@
           </div>
 		  <p class="tm_primary_color tm_mb1 tm_bold" style="font-size: 12px;">Catatan :</p>
           <div class="tm_gray_bg tm_text_center tm_f18 tm_primary_color tm_grand_total">
-          <p class="tm_m0" style="text-align: left;font-size:12px;">{{$kelengkapan->keterangan->catatan}}</p>
+          <p class="tm_m0" style="text-align: left;font-size:12px;">{{$pertanggungan->kasbon->kelengkapan->keterangan->catatan}}</p>
           </div>
           <div class="tm_mb0">
             <p class="tm_primary_color tm_mb1 tm_bold" style="font-size: 12px;">KEKURANGAN DOKUMEN :</p>
@@ -252,8 +252,8 @@
               </div>
               <div>
 				<ul class="tm_m0" style="font-size: 12px;">
-              <p>Masuk Tanggal :</p>
-			  <p>Jam :</p>
+              <p>Masuk Tanggal : {{$pertanggungan->kasbon->tglmasuk}}</p>
+			  <p>Jam : {{$pertanggungan->kasbon->jammasuk}}</p>
 				</ul>
               </div>
             </div>

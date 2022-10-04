@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Kasbon;
 use App\Models\Kurs;
 use App\Models\Jenis;
 use App\Models\Pph;
-use App\Models\Unit;
-use App\Models\Dvendor;
-use App\Models\DCustomer;
-use App\Models\DDinas;
-use App\Models\DImpor;
-use App\Models\DPajak;
 use App\Models\Kelengkapan;
 use App\Models\KodeKasbon;
 use App\Models\Keterangan;
 use App\Models\Keterangan_detail;
+use App\Models\Pertanggungan;
+use App\Models\NamaVendor;
+use App\Models\VerifikasiKasbon;
+use App\Models\KeteranganKasbon;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
@@ -45,20 +44,18 @@ class KasbonController extends Controller
      */
     public function generatePDF($id)
     {
-        $kelengkapan = Kelengkapan::find($id);
-        $kd = $kelengkapan->keterangan->id;
+        $pertanggungan = Pertanggungan::find($id);
+        $kd = $pertanggungan->kasbon->kelengkapan->keterangan->id;
         $keterangan = Keterangan_detail::where('id_keterangan', $kd)->get();
         $detail = Keterangan_detail::where('id_keterangan', $kd)->get();
-        return view('pdf.print-kasbon', compact('kelengkapan', 'detail', 'keterangan'));
+        return view('pdf.print-kasbon', compact('pertanggungan', 'detail', 'keterangan'));
     }
 
     public function index()
     {
-        $jenis = Jenis::all();
         $title = 'Kasbon';
-        $kasbons = Kasbon::latest()->paginate();
-        return view('kasbons.index', compact('kasbons', 'title', 'jenis'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $kasbon = Kasbon::latest()->paginate();
+        return view('kasbon.index', compact('kasbon', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -72,9 +69,10 @@ class KasbonController extends Controller
         $pph = Pph::all();
         $kurs = Kurs::all();
         $jenis = Jenis::all();
+        $namavendor = NamaVendor::all();
         $kodekasbon = KodeKasbon::all();
         $now = Carbon::now();
-        $jamnow = Carbon::now()->format('H:i:s');;
+        $jamnow = Carbon::now()->format('H:i:s');
         $thnBulan = Carbon::now()->format('Y-m-d');
         $cek = Kasbon::count();
         $tglmasuk = Carbon::now()->format('Y-m-d');
@@ -91,7 +89,7 @@ class KasbonController extends Controller
             $n0mer = 'D' . $uru_t;
         }
         $title = 'Input Kasbon';
-        return view('kasbons.create', compact('title', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon'));
+        return view('kasbon.create', compact('title', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon', 'namavendor'));
     }
 
     /**
@@ -122,68 +120,71 @@ class KasbonController extends Controller
             'harga_jual' => 'required',
             'barang_datang' => 'required',
             'nopi' => 'required',
+
         ]);
 
-        $now = Carbon::now();
-        $thnBulan = $now->year . $now->month . $now->day;
-        $cek = Kasbon::count();
-        $terakhir = Kasbon::query()->latest('id')->first();
-        if ($cek == 0) {
-            $urut = 100001;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
-            $n0mer = 'D' . $urut;
-        } else {
-            $ambil = Kasbon::all()->last();
-            $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
-            $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
-            $n0mer = 'D' . $uru_t;
-        }
+        DB::transaction(function () use ($request) {
+            $now = Carbon::now();
+            $thnBulan = $now->year . $now->month . $now->day;
+            $cek = Kasbon::count();
+            $terakhir = Kasbon::query()->latest('id')->first();
+            if ($cek == 0) {
+                $urut = 100001;
+                $nomer = 'KSB' . $thnBulan . '-' . $urut;
+                $n0mer = 'D' . $urut;
+            } else {
+                $ambil = Kasbon::all()->last();
+                $urut = (int)substr($ambil->nokasbon, -1) + 1;
+                $nomer = 'KSB' . $thnBulan . '-' . $urut;
+                $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
+                $n0mer = 'D' . $uru_t;
+            }
 
-        $dueDate = now()->addDays(30);
+            $dueDate = now()->addDays(30);
 
-        $kasbon = new Kasbon;
-        $kasbon->tglmasuk = $request->tglmasuk;
-        $kasbon->jammasuk = $request->jammasuk;
-        $kasbon->id_kurs = $request->id_kurs;
-        $kasbon->proyek = $request->proyek;
-        $kasbon->jeniskasbon = $request->jeniskasbon;
-        $kasbon->username = Auth::user()->name;
-        $kasbon->nip = Auth::user()->nip;
-        $kasbon->id_unit = Auth::user()->id_unit;
-        $kasbon->id_user = Auth::user()->id;
-        $kasbon->doksebelumnya = $terakhir->nokasbon;
-        $kasbon->nokasbon = $nomer;
-        $kasbon->id_kodekasbon = $request->id_kodekasbon;
-        $kasbon->uraianpengguna = $request->uraianpengguna;
-        $kasbon->iddpp = $request->iddpp;
-        $kasbon->idppn = $request->idppn;
-        $kasbon->id_jenis = $request->id_jenis;
-        $kasbon->id_pph = $request->id_pph;
-        $kasbon->idpph = $request->idpph;
-        $kasbon->total = $request->iddpp + $request->idppn + $request->idpph;
-        $kasbon->namavendor = $request->namavendor;
-        $kasbon->haritempo = $request->haritempo;
-        $kasbon->tgltempo = now()->addDays(30);
-        $kasbon->noinvoice = $request->noinvoice;
-        $kasbon->spph = $request->spph;
-        $kasbon->po_vendor = $request->po_vendor;
-        $kasbon->po_customer = $request->po_customer;
-        $kasbon->sjn = $request->sjn;
-        $kasbon->harga_jual = $request->harga_jual;
-        $kasbon->barang_datang = $request->barang_datang;
-        $kasbon->nopi = $request->nopi;
-        $kasbon->formatkasbon = $nomer . ';' . $request->jeniskasbon . ' AN ' . Auth::user()->name . ';' . $request->uraianpengguna . ';' . $request->po_customer . ';' . $request->proyek;
-        $kasbon->status = 'Dalam Proses';
-        $kasbon->cekdokumen = '0';
+            $kasbonID = Kasbon::insertGetId([
+                'tglmasuk' => $request->tglmasuk,
+                'jammasuk' => $request->jammasuk,
+                'id_kurs' => $request->id_kurs,
+                'proyek' => $request->proyek,
+                'jeniskasbon' => $request->jeniskasbon,
+                'username' => Auth::user()->name,
+                'nip' => Auth::user()->nip,
+                'id_unit' => Auth::user()->id_unit,
+                'id_user' => Auth::user()->id,
+                'doksebelumnya' => $terakhir->nokasbon,
+                'nokasbon' => $nomer,
+                'id_kodekasbon' => $request->kodekasbon,
+                'uraianpengguna' => $request->uraianpengguna,
+                'iddpp' => $request->iddpp,
+                'idppn' => $request->idppn,
+                'id_jenis' => $request->id_jenis,
+                'id_pph' => $request->id_pph,
+                'idpph' => $request->idpph,
+                'total' => $request->iddpp + $request->idppn + $request->idpph,
+                'namavendor' => $request->namavendor,
+                'haritempo' => $request->haritempo,
+                'tgltempo' => now()->addDays(30),
+                'noinvoice' => $request->noinvoice,
+                'spph' => $request->spph,
+                'po_vendor' => $request->po_vendor,
+                'po_customer' => $request->po_customer,
+                'sjn' => $request->sjn,
+                'harga_jual' => $request->harga_jual,
+                'barang_datang' => $request->barang_datang,
+                'nopi' => $request->nopi,
+                'formatkasbon' => $nomer . ';' . $request->jeniskasbon . ' AN ' . Auth::user()->name . ';' . $request->uraianpengguna . ';' . $request->po_customer . ';' . $request->proyek,
+                'created_at' => $now
+            ]);
 
-        if ($kasbon->save()) {
-            return redirect()->route('kasbons.index')
-                ->with('success', 'Kasbon created successfully.');
-        } else {
-            return redirect()->route('kasbons.index')
-                ->with('success', 'Product not created successfully.');
-        }
+            VerifikasiKasbon::insertGetId([
+                'id_kasbon' => $kasbonID,
+                'vkb_a_1' => 'Dalam Proses',
+                'status' => 'Dalam Proses',
+            ]);
+        });
+
+        return redirect()->route('kasbon.index')->with('success', 'Kasbon created successfully.');
     }
 
 
@@ -204,7 +205,7 @@ class KasbonController extends Controller
             $kurs = Kurs::all();
             $jenis = Jenis::all();
             $title = 'Detail';
-            return view('kasbons.show', compact('title', 'kasbon', 'pph', 'kurs', 'jenis',  'kelengkapan', 'keterangan', 'detail'));
+            return view('kasbon.show', compact('title', 'kasbon', 'pph', 'kurs', 'jenis',  'kelengkapan', 'keterangan', 'detail'));
         } else {
             $keterangan = Keterangan::all();
             $kasbon = Kasbon::find($id);
@@ -212,12 +213,12 @@ class KasbonController extends Controller
             $kurs = Kurs::all();
             $jenis = Jenis::all();
             $title = 'Detail';
-            return view('kasbons.show', compact('title', 'kasbon', 'pph', 'kurs', 'jenis',  'kelengkapan', 'keterangan'));
+            return view('kasbon.show', compact('title', 'kasbon', 'pph', 'kurs', 'jenis',  'kelengkapan', 'keterangan'));
         }
     }
-    public function verifikasi(Kasbon $kasbons)
+    public function verifikasi(Kasbon $kasbon)
     {
-        return view('kasbons.verifikasi', compact('kasbons'));
+        return view('kasbon.verifikasi', compact('kasbon'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -227,16 +228,14 @@ class KasbonController extends Controller
      */
     public function edit($id)
     {
-        $kelengkapan = Kelengkapan::find($id);
-        $kd = $kelengkapan->keterangan->id;
-        $detail = Keterangan_detail::where('id_keterangan', $kd)->get();
-        $keterangan = Keterangan::all();
         $kasbon = Kasbon::find($id);
+        $detail = KeteranganKasbon::where('id_kasbon', $id)->get();
         $pph = Pph::all();
+        $namavendor = namavendor::all();
         $kurs = Kurs::all();
         $jenis = Jenis::all();
         $title = 'Detail';
-        return view('kasbons.edit', compact('title', 'kasbon', 'pph', 'kurs', 'jenis',  'kelengkapan', 'keterangan', 'detail'));
+        return view('kasbon.edit', compact('title', 'kasbon', 'pph', 'kurs', 'jenis', 'detail', 'namavendor'));
     }
 
     /**
@@ -249,41 +248,45 @@ class KasbonController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([]);
+        DB::transaction(function () use ($request, $id) {
+            $kasbon = Kasbon::find($id);
+            $kasbon->id_kurs = $request->id_kurs;
+            $kasbon->proyek = $request->proyek;
+            $kasbon->username = Auth::user()->name;
+            $kasbon->nip = Auth::user()->nip;
+            $kasbon->id_unit = Auth::user()->id_unit;
+            $kasbon->id_user = Auth::user()->id;
+            $kasbon->uraianpengguna = $request->uraianpengguna;
+            $kasbon->iddpp = $request->iddpp;
+            $kasbon->idppn = $request->idppn;
+            $kasbon->id_jenis = $request->id_jenis;
+            $kasbon->id_pph = $request->id_pph;
+            $kasbon->idpph = $request->idpph;
+            $kasbon->total = $request->iddpp + $request->idppn + $request->idpph;
+            $kasbon->namavendor = $request->namavendor;
+            $kasbon->haritempo = $request->haritempo;
+            $kasbon->tgltempo = now()->addDays(30);
+            $kasbon->noinvoice = $request->noinvoice;
+            $kasbon->spph = $request->spph;
+            $kasbon->po_vendor = $request->po_vendor;
+            $kasbon->po_customer = $request->po_customer;
+            $kasbon->sjn = $request->sjn;
+            $kasbon->harga_jual = $request->harga_jual;
+            $kasbon->barang_datang = $request->barang_datang;
+            $kasbon->nopi = $request->nopi;
+            $kasbon->formatkasbon = $kasbon->nokasbon . ';' . $kasbon->jeniskasbon . ' AN ' . Auth::user()->name . ';' . $request->uraianpengguna . ';' . $request->po_customer . ';' . $request->proyek;
 
-        $kasbon = Kasbon::find($id);
-        $kasbon->id_kurs = $request->id_kurs;
-        $kasbon->proyek = $request->proyek;
-        $kasbon->jeniskasbon = $request->jeniskasbon;
-        $kasbon->username = Auth::user()->name;
-        $kasbon->nip = Auth::user()->nip;
-        $kasbon->id_unit = Auth::user()->id_unit;
-        $kasbon->id_user = Auth::user()->id;
-        $kasbon->id_kodekasbon = $request->id_kodekasbon;
-        $kasbon->uraianpengguna = $request->uraianpengguna;
-        $kasbon->iddpp = $request->iddpp;
-        $kasbon->idppn = $request->idppn;
-        $kasbon->id_jenis = $request->id_jenis;
-        $kasbon->id_pph = $request->id_pph;
-        $kasbon->idpph = $request->idpph;
-        $kasbon->total = $request->iddpp + $request->idppn + $request->idpph;
-        $kasbon->namavendor = $request->namavendor;
-        $kasbon->haritempo = $request->haritempo;
-        $kasbon->tgltempo = now()->addDays(30);
-        $kasbon->noinvoice = $request->noinvoice;
-        $kasbon->spph = $request->spph;
-        $kasbon->po_vendor = $request->po_vendor;
-        $kasbon->po_customer = $request->po_customer;
-        $kasbon->sjn = $request->sjn;
-        $kasbon->harga_jual = $request->harga_jual;
-        $kasbon->barang_datang = $request->barang_datang;
-        $kasbon->nopi = $request->nopi;
-        $kasbon->formatkasbon = $kasbon->nokasbon . ';' . $request->jeniskasbon . ' AN ' . Auth::user()->name . ';' . $request->uraianpengguna . ';' . $request->po_customer . ';' . $request->proyek;
-        $kasbon->status = 'Dalam Proses';
-        $kasbon->cekdokumen = '0';
 
-        $kasbon->update($request->all());
+            $kasbon->update($request->all());
 
-        return redirect()->route('kasbons.index')
+            $idvkb = $kasbon->verifikasikasbon->id;
+            $vkb = VerifikasiKasbon::find($idvkb);
+            $vkb->update([
+                'vkb_a_1' => 'Dalam Proses',
+                'status' => 'Dalam Proses',
+            ]);
+        });
+        return redirect()->route('kasbon.index')
             ->with('success', 'Kasbon updated successfully');
     }
 
@@ -296,7 +299,7 @@ class KasbonController extends Controller
     public function destroy($id)
     {
         Kasbon::find($id)->delete();
-        return redirect()->route('kasbons.index')
+        return redirect()->route('kasbon.index')
             ->with('success', 'Kasbon deleted successfully');
     }
 }

@@ -20,7 +20,11 @@
             <div class="form-group row">
                 <label for="txtEmailAddressBilling" class="col-lg-4 col-form-label">No. Dokumen Sebelumnya</label>
                 <div class="col-lg-8">
-                    <input class="form-control" type="text" value="{{$terakhir->nokasbon}}" aria-label="Disabled input example" name="doksebelumnya" disabled readonly>
+                    @if(isset($terakhir))
+                    <input class="form-control" type="text" value="{{$terakhir->no_nonkasbon}}" aria-label="Disabled input example" name="doksebelumnya" disabled readonly>
+                @else
+                <input class="form-control" type="text" value="" aria-label="Disabled input example" name="doksebelumnya" disabled readonly>
+                @endif
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -55,17 +59,17 @@
         </div><!--end col--> 
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Non Kasbon</label>
+                <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Kasbon</label>
                 <div class="col-lg-8">
-                    <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jenis_nonkasbon">
-                        <option value="" disabled selected hidden>Pilih Non Kasbon</option>
-                        @foreach ($jenis_nonkasbon as $jenis_nonkasbon)
-                        <option  value="{{$jenis_nonkasbon->id}}">{{$jenis_nonkasbon->name}}</option>
+                    <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jenis">
+                        <option value="" disabled selected hidden>Pilih Kasbon</option>
+                        @foreach ($jenis as $jenis)
+                        <option  value="{{$jenis->id}}">{{$jenis->name}}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>
-        </div>
+            </div><!--end form-group-->
+        </div><!--end col--> 
         <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
@@ -81,14 +85,9 @@
         </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Nama Vendor</label>
+                <label for="txtNameCard" class="col-lg-4 col-form-label">Nama Vendor</label>
                 <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="id_vendor" required parsley>
-                        <option value="" disabled selected hidden>Pilih Nama Vendor</option>
-                        @foreach ($namavendor as $namavendor)
-                        <option  value="{{$namavendor->id}}">{{$namavendor->name}}</option>
-                        @endforeach
-                    </select>
+                    <input  required parsley type="text" class="form-control" name ="namavendor">
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Nonkasbon;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -22,8 +23,10 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class,
             KodeKasbonSeeder::class,
+            NamaVendorSeeder::class,
             KasbonSeeder::class,
             NonkasbonSeeder::class,
+            VerifikasiKasbonSeeder::class,
         ]);
     }
 }

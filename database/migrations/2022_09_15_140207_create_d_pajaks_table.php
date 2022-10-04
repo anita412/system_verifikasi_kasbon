@@ -15,13 +15,10 @@ class CreateDPajaksTable extends Migration
     {
         Schema::create('d_pajaks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nokasbon')->unique()->nullable();
             $table->string('dp_kesesuaianfaktur')->nullable();
             $table->string('dp_pajakpenghasilan')->nullable();
             $table->string('dp_suratnonpkp')->nullable();
-
-            $table->foreign('nokasbon')->references('nokasbon')->on('kasbons')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

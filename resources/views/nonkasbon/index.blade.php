@@ -37,30 +37,26 @@
                                 <thead>
                                 <tr>
                                     <th>Tanggal Masuk</th>
-                                    <th>Jam Masuk</th>
-                                    <th>No. Dokumen Sebelumnya</th>
                                     <th>User</th>
-                                    <th>Unit</th>
-                                    <th>Kode Kasbon</th>
-                                    <th>Jenis Kasbon</th>
-                                    <th>Kurs</th>
-                                    <th>Nama Vendor</th>
-                                    <th>No. Invoice</th>
-                                    <th>Tujuan pembayaran</th>
+                                    <th>No Kasbon</th>
+                                    <th>Tujuan Pembayaran</th>
+                                    <th>Status</th>
                                     <th style="width:0%">Action</th>
                                 </tr>
                                 </thead>
 
-
                                 <tbody>
                                 @foreach ($nonkasbon as $nonkasbon)
                                 <tr>
-                                    <td>{{$nonkasbon->id}}</td>
+                                    <td>{{$nonkasbon->tglmasuk}}</td>
+                                    <td>{{$nonkasbon->user->name}}</td>
                                     <td>{{$nonkasbon->no_nonkasbon}}</td>
-                                    <td>{{$nonkasbon->id_user}}</td>
-                                    <td>{{$nonkasbon->id_unit}}</td>
-                                    <td>{{$nonkasbon->id_kodekasbon}}</td>
-                                    <td>{{$nonkasbon->id_kurs}}</td>
+                                    <td>{{$nonkasbon->tujuanpembayaran}}</td>
+                                    @if(isset($kasbon->verifikasinonkasbon->status))
+                                    <td>{{$nonkasbon->verifikasinonkasbon->status}}</td>
+                                    @else
+                                    <td></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                                 </tbody>
