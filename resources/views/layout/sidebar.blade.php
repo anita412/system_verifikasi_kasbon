@@ -36,6 +36,15 @@
                 <li>
                     <a href="{{ route('nonkasbon.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>NonKasbon</span></a>
                 </li>
+                <li>
+                    <a href="{{ route('vnk-atasan.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Verifikasi Atasan NonKasbon</span></a>
+                </li>
+                <li>
+                    <a href="{{ route('vnk.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span> Verifikasi NonKasbon</span></a>
+                </li>
+                <li>
+                    <a href="{{ route('vnk-atasan-2.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Verifikasi Atasan 2 NK</span></a>
+                </li>
                 @endcan
                 @can('kasbon-list')
                 <li>

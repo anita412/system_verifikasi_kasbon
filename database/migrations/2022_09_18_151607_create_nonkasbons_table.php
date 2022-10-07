@@ -20,11 +20,10 @@ class CreateNonkasbonsTable extends Migration
             $table->date('tglmasuk')->nullable();
             $table->time('jammasuk')->nullable();
             $table->string('doksebelumnya')->nullable();
-            $table->string('user')->nullable();
             $table->unsignedBigInteger('id_unit')->nullable();
-            $table->unsignedBigInteger('id_kodekasbon')->nullable();
-            $table->string('id_jenis_nonkasbon')->nullable();
-            $table->unsignedBigInteger('id_kurs')->nullable();
+            $table->string('kodekasbon')->nullable();
+            $table->string('jenis')->nullable();
+            $table->unsignedBigInteger('kurs')->nullable();
             $table->string('namavendor')->nullable();
             $table->string('noinvoice')->nullable();
             $table->string('tujuanpembayaran')->nullable();
@@ -32,8 +31,8 @@ class CreateNonkasbonsTable extends Migration
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_unit')->references('id')->on('units')->onDelete('cascade');
-            $table->foreign('id_kodekasbon')->references('id')->on('kode_kasbons')->onDelete('cascade');
-            $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
+            // $table->foreign('id_kodekasbon')->references('id')->on('kode_kasbons')->onDelete('cascade');
+            $table->foreign('kurs')->references('id')->on('kurs')->onDelete('cascade');
         });
     }
 

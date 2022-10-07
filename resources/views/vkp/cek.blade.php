@@ -381,7 +381,7 @@
      <div class="row mt-3">
         <div class="col-sm-12 text-end">
             <a href="{{route('vkb.index')}}" class="btn btn-danger">Cancel</a>  
-            <a href="#" type="button" onclick="form2()" class="btn btn-primary px-4">Next</a>      
+            <a href="#" type="button" onclick="form1()" class="btn btn-primary px-4">Next</a>      
         </div>
     </div>
 </div>

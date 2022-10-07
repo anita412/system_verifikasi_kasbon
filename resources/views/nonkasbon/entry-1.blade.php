@@ -1,4 +1,5 @@
 <div class="row" id="form-entry-1">
+   
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
@@ -48,12 +49,17 @@
             <div class="form-group row">
                 <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Kasbon</label>
                 <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="id_kodekasbon" required parsley>
-                        <option value="" disabled selected hidden>Pilih Kode Kasbon</option>
+                    <select class="form-control" id="tagskk" name="kodekasbon">
+                        <option value="" disabled selected hidden>Pilih kodekasbon</option>
                         @foreach ($kodekasbon as $kodekasbon)
-                        <option  value="{{$kodekasbon->id}}">{{$kodekasbon->name}}</option>
+                        <option  value="{{$kodekasbon->name}}">{{$kodekasbon->name}}</option>
                         @endforeach
-                    </select>
+                      </select>
+                      <script>
+                      $("#tagskk").select2({
+                        tags: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col--> 
@@ -61,12 +67,17 @@
             <div class="form-group row">
                 <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Kasbon</label>
                 <div class="col-lg-8">
-                    <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jenis">
-                        <option value="" disabled selected hidden>Pilih Kasbon</option>
+                    <select class="form-control" id="tagsj" name="jenis">
+                        <option value="" disabled selected hidden>Pilih Jenis</option>
                         @foreach ($jenis as $jenis)
-                        <option  value="{{$jenis->id}}">{{$jenis->name}}</option>
+                        <option  value="{{$jenis->name}}">{{$jenis->name}}</option>
                         @endforeach
-                    </select>
+                      </select>
+                      <script>
+                      $("#tagsj").select2({
+                        tags: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col--> 
@@ -74,12 +85,17 @@
             <div class="form-group row">
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="id_kurs" required parsley>
+                    <select class="form-control" id="tagsk" name="kurs">
                         <option value="" disabled selected hidden>Pilih Kurs</option>
                         @foreach ($kurs as $kurs)
                         <option  value="{{$kurs->id}}">{{$kurs->name}}</option>
                         @endforeach
-                    </select>
+                      </select>
+                      <script>
+                      $("#tagsk").select2({
+                        tags: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -87,7 +103,17 @@
             <div class="form-group row">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Nama Vendor</label>
                 <div class="col-lg-8">
-                    <input  required parsley type="text" class="form-control" name ="namavendor">
+                    <select class="form-control" id="tags" name="namavendor">
+                        <option value="" disabled selected hidden>Pilih Nama Vendor</option>
+                        @foreach ($namavendor as $namavendor)
+                        <option  value="{{$namavendor->name}}">{{$namavendor->name}}</option>
+                        @endforeach
+                      </select>
+                      <script>
+                      $("#tags").select2({
+                        tags: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -116,7 +142,7 @@
         </div><!--end col-->
         <div class="row mt-3">
             <div class="col-sm-12 text-end">
-                <a href="#" type="button" onclick="form1()" class="btn btn-danger px-4">Previous</a> 
+                <a href="{{route('nonkasbon.index')}}" type="button" class="btn btn-danger px-4">Back</a> 
                 <button type="submit" class="btn btn-primary px-4">Simpan</button>      
             </div>
         </div>

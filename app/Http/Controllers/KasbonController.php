@@ -247,7 +247,6 @@ class KasbonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        request()->validate([]);
         DB::transaction(function () use ($request, $id) {
             $kasbon = Kasbon::find($id);
             $kasbon->id_kurs = $request->id_kurs;
@@ -286,8 +285,7 @@ class KasbonController extends Controller
                 'status' => 'Dalam Proses',
             ]);
         });
-        return redirect()->route('kasbon.index')
-            ->with('success', 'Kasbon updated successfully');
+        return redirect()->route('kasbon.index')->with('success', 'Kasbon updated successfully');
     }
 
     /**

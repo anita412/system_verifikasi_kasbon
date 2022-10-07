@@ -1,15 +1,15 @@
 
 <div class="row" id="form-entry-1">
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtLastNameBilling" class="col-lg-4 col-form-label">No Kasbon</label>
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label for="txtLastNameBilling" class="col-lg-4 col-form-label">No Kasbon</label>
                 <div class="col-lg-8">
                     <input class="form-control" name="nokasbon" type="text" value="{{$kasbon->nokasbon}}" disabled>
                 </div>
-            </div>
         </div>
     </div>
+</div>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">

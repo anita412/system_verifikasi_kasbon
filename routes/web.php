@@ -13,6 +13,9 @@ use App\Http\Controllers\VerifikasiKasbonAtasan2Controller;
 use App\Http\Controllers\VerifikasiPertanggunganController;
 use App\Http\Controllers\VerifikasiAtasanPertanggunganController;
 use App\Http\Controllers\VerifikasiAtasan2PertanggunganController;
+use App\Http\Controllers\VerifikasiNonKasbonController;
+use App\Http\Controllers\VerifikasiNonKasbonAtasanController;
+use App\Http\Controllers\VerifikasiNonKasbonAtasan2Controller;
 use App\Http\Controllers\PDFController;
 
 /*
@@ -40,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
     Route::resource('kasbon', KasbonController::class);
     Route::resource('nonkasbon', NonkasbonController::class);
+    Route::resource('vnk', VerifikasiNonkasbonController::class);
+    Route::resource('vnk-atasan', VerifikasiNonkasbonAtasanController::class);
+    Route::resource('vnk-atasan-2', VerifikasiNonkasbonAtasan2Controller::class);
     Route::resource('vkb', VerifikasiKasbonController::class);
     Route::resource('vkb-atasan', VerifikasiKasbonAtasanController::class);
     Route::resource('vkb-atasan-2', VerifikasiKasbonAtasan2Controller::class);
@@ -69,6 +75,20 @@ Route::controller(VerifikasiKasbonAtasanController::class)->group(function () {
     Route::get('/vkb-atasan/cek_kasbon_edit/{kasbon}', [VerifikasiKasbonAtasanController::class, 'cek_kasbon_edit'])->name('vkb-atasan.cek_kasbon_edit');
 });
 
+Route::controller(VerifikasiNonKasbonAtasanController::class)->group(function () {
+    Route::get('/vnk-atasan/cek_nonkasbon/{nonkasbon}', [VerifikasiNonKasbonAtasanController::class, 'cek_nonkasbon'])->name('vnk-atasan.cek_nonkasbon');
+    Route::get('/vnk-atasan/cek_nonkasbon_edit/{nonkasbon}', [VerifikasiNonKasbonAtasanController::class, 'cek_nonkasbon_edit'])->name('vnk-atasan.cek_nonkasbon_edit');
+});
+
+Route::controller(VerifikasiNonKasbonAtasan2Controller::class)->group(function () {
+    Route::get('/vnk-atasan-2/cek_nonkasbon/{nonkasbon}', [VerifikasiNonKasbonAtasan2Controller::class, 'cek_nonkasbon'])->name('vnk-atasan-2.cek_nonkasbon');
+    Route::get('/vnk-atasan-2/cek_nonkasbon_edit/{nonkasbon}', [VerifikasiNonKasbonAtasan2Controller::class, 'cek_nonkasbon_edit'])->name('vnk-atasan-2.cek_nonkasbon_edit');
+});
+Route::controller(VerifikasiNonKasbonController::class)->group(function () {
+    Route::get('/vnk/cek_nonkasbon/{nonkasbon}', [VerifikasiNonKasbonController::class, 'cek_nonkasbon'])->name('vnk.cek_nonkasbon');
+    Route::get('/vnk/cek_nonkasbon_edit/{nonkasbon}', [VerifikasiNonKasbonController::class, 'cek_nonkasbon_edit'])->name('vnk.cek_nonkasbon_edit');
+});
+
 Route::controller(VerifikasiAtasanPertanggunganController::class)->group(function () {
     Route::get('/vkp-atasan/cek_pertanggungan/{pertanggungan}', [VerifikasiAtasanPertanggunganController::class, 'cek_pertanggungan'])->name('vkp-atasan.cek_pertanggungan');
     Route::get('/vkp-atasan/cek_pertanggungan_edit/{pertanggungan}', [VerifikasiAtasanPertanggunganController::class, 'cek_pertanggungan_edit'])->name('vkp-atasan.cek_pertanggungan_edit');
@@ -82,4 +102,8 @@ Route::controller(VerifikasiAtasan2PertanggunganController::class)->group(functi
 Route::controller(PertanggunganController::class)->group(function () {
     Route::get('/pertanggungan/insert/{kasbons}', [PertanggunganController::class, 'insert'])->name('pertanggungan.insert');
     Route::get('/pertanggungan/generatePDF/{pertanggungan}', [PertanggunganController::class, 'generatePDF'])->name('pertanggungan.generatePDF');
+});
+
+Route::controller(NonkasbonController::class)->group(function () {
+    Route::get('/nonkasbon/generatePDF/{nonkasbon}', [NonkasbonController::class, 'generatePDF'])->name('nonkasbon.generatePDF');
 });

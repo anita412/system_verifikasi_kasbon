@@ -40,6 +40,7 @@ class VerifikasiKasbonController extends Controller
         return view('vkb.index', compact('kasbon', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

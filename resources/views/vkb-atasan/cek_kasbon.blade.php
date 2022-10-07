@@ -40,7 +40,6 @@
                                 {{ csrf_field() }}
                                 @include('vkb-atasan.cek')
                                 @include('vkb-atasan.keterangan')
-                            </form>
                             </form>   
                         </div><!--end card-body-->
                     </div><!--end card-->

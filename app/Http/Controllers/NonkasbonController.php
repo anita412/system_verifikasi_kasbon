@@ -4,23 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Nonkasbon;
 use App\Http\Requests\UpdateNonkasbonRequest;
-use App\Models\Kasbon;
 use App\Models\Kurs;
+use App\Models\NamaVendor;
 use App\Models\Jenis;
 use App\Models\Pph;
 use App\Models\VerifikasiNonKasbon;
-use App\Models\Unit;
-use App\Models\Dvendor;
-use App\Models\DCustomer;
-use App\Models\DDinas;
-use App\Models\DImpor;
-use App\Models\DPajak;
-use App\Models\Kelengkapan;
+use App\Models\KeteranganNonKasbon;
 use App\Models\KodeKasbon;
+use App\Models\DokumenNKD;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
 use Carbon\Carbon;
+use DB;
 use DateInterval;
 use DateTime;
 
@@ -58,6 +53,7 @@ class NonkasbonController extends Controller
         $dueDate = now()->addDays(30)->format('Y-m-d');
         $pph = Pph::all();
         $kurs = Kurs::all();
+        $namavendor = NamaVendor::all();
         $jenis = Jenis::all();
         $kodekasbon = KodeKasbon::all();
         $now = Carbon::now();
@@ -77,7 +73,7 @@ class NonkasbonController extends Controller
             $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
             $n0mer = 'D' . $uru_t;
         }
-        return view('nonkasbon.create', compact('title', 'nonkasbon', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon'));
+        return view('nonkasbon.create', compact('title', 'nonkasbon', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon', 'namavendor'));
     }
 
     /**
@@ -112,7 +108,8 @@ class NonkasbonController extends Controller
                 $urut = (int)substr($ambil->no_nonkasbon, -1) + 1;
                 $nomer = 'NKB' . $thnBulan . '-' . $urut;
                 $uru_t = (int)substr($ambil->no_nonkasbon, -1) + 1;
-                $terakhir = NonKasbon::query()->latest('id')->first();
+                $terakhirt = NonKasbon::query()->latest('id')->first();
+                $terakhir = $terakhirt->no_nonkasbon;
             }
 
             $dueDate = now()->addDays(30);
@@ -125,12 +122,14 @@ class NonkasbonController extends Controller
                 'doksebelumnya' => $terakhir,
                 'id_user' => Auth::user()->id,
                 'id_unit' => Auth::user()->id_unit,
-                'id_kodekasbon' => $request->id_kodekasbon,
-                'id_jenis_nonkasbon' => $request->id_jenis,
-                'id_kurs' => $request->id_kurs,
+                'kodekasbon' => $request->kodekasbon,
+                'jenis' => $request->jenis,
+                'kurs' => $request->kurs,
                 'namavendor'  => $request->namavendor,
                 'noinvoice'  => $request->noinvoice,
-                'tujuanpembayaran' => $request->tujuanpembayaran
+                'tujuanpembayaran' => $request->tujuanpembayaran,
+                'created_at' => $now,
+                'updated_at' =>  $now
             ]);
 
             VerifikasiNonKasbon::insertGetId([
@@ -150,10 +149,7 @@ class NonkasbonController extends Controller
      * @param  \App\Models\Nonkasbon  $nonkasbon
      * @return \Illuminate\Http\Response
      */
-    public function show(Nonkasbon $nonkasbon)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -161,13 +157,27 @@ class NonkasbonController extends Controller
      * @param  \App\Models\Nonkasbon  $nonkasbon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nonkasbon $nonkasbon, $id)
+    public function edit($id)
     {
+        $pph = Pph::all();
+        $kurs = Kurs::all();
+        $namavendor = NamaVendor::all();
+        $jenis = Jenis::all();
+        $kodekasbon = KodeKasbon::all();
         $nonkasbon = NonKasbon::find($id);
+        $detail = KeteranganNonKasbon::where('id_nonkasbon', $id)->get();
         $title = 'Non Kasbon';
-        return view('nonkasbon.edit', compact('title', 'kasbon'));
+        return view('nonkasbon.edit', compact('title', 'nonkasbon', 'detail', 'pph', 'kurs', 'namavendor', 'jenis', 'kodekasbon'));
     }
 
+    public function show($id)
+    {
+
+        $nonkasbon = nonkasbon::find($id);
+
+        $title = 'Detail';
+        return view('nonkasbon.show', compact('title', 'nonkasbon'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -175,11 +185,42 @@ class NonkasbonController extends Controller
      * @param  \App\Models\Nonkasbon  $nonkasbon
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateNonkasbonRequest $request, Nonkasbon $nonkasbon)
+    public function update(Request $request, $id)
     {
-        //
+        DB::transaction(function () use ($request, $id) {
+            $jammasuk = Carbon::now()->format('H:i:s');;
+            $tglmasuk = Carbon::now()->format('Y-m-d');
+            $now = Carbon::now();
+            $nonkasbon = Nonkasbon::find($id);
+            $nonkasbon->update([
+                'tglmasuk' => $tglmasuk,
+                'jammasuk' => $jammasuk,
+                'kodekasbon' => $request->kodekasbon,
+                'jenis' => $request->jenis,
+                'kurs' => $request->kurs,
+                'namavendor'  => $request->namavendor,
+                'noinvoice'  => $request->noinvoice,
+                'tujuanpembayaran' => $request->tujuanpembayaran,
+                'updated_at' =>  $now,
+            ]);
+
+
+            $idvnk = $nonkasbon->verifikasinonkasbon->id;
+            $vnk = VerifikasinonKasbon::find($idvnk);
+            $vnk->update([
+                'vnk_a_1' => 'Dalam Proses',
+                'status' => 'Dalam Proses',
+            ]);
+        });
+        return redirect()->route('nonkasbon.index')->with('success', 'Non Kasbon updated successfully');
     }
 
+    public function generatePDF($id)
+    {
+        $nonkasbon = Nonkasbon::find($id);
+        $detail = DokumenNKD::where('id_dnk', $nonkasbon->dokumennk->id)->get();
+        return view('pdf.print-nonkasbon', compact('nonkasbon', 'detail'));
+    }
     /**
      * Remove the specified resource from storage.
      *

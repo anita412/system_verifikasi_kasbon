@@ -63,6 +63,18 @@ class PermissionTableSeeder extends Seeder
             'nonkasbon-create',
             'nonkasbon-edit',
             'nonkasbon-delete',
+            'nkb-list',
+            'nkb-create',
+            'nkb-edit',
+            'nkb-delete',
+            'nkb-atasan-list',
+            'nkb-atasan-create',
+            'nkb-atasan-edit',
+            'nkb-atasan-delete',
+            'nkb-atasan-2-list',
+            'nkb-atasan-2-create',
+            'nkb-atasan-2-edit',
+            'nkb-atasan-2-delete',
         ];
 
         foreach ($permissions as $permission) {

@@ -64,7 +64,6 @@
 
 @endsection
 
-@include('kasbon.script')
 
 @section('script')
 <script src="{{ URL::asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
