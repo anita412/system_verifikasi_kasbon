@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSPPDSTable extends Migration
+class CreateRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSPPDSTable extends Migration
      */
     public function up()
     {
-        Schema::create('sppd', function (Blueprint $table) {
+        Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->string('no_sppd')->unique();
-            $table->string('doksebelumnya')->nullable();
-            $table->date('tglmasuk')->nullable();
-            $table->float('jumlah')->nullable();
+            $table->string('name')->nullable();
+            $table->float('harga')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSPPDSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_p_p_d_s');
+        Schema::dropIfExists('rates');
     }
 }

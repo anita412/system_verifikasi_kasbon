@@ -45,14 +45,14 @@
 
                                 <tbody>
                                 @foreach ($nonkasbon as $nonkasbon)
-                                @if(isset($nonkasbon->verifikasinonkasbon->vnk))
+                                @if(isset($nonkasbon->verifikasinonkasbon->id_vnk))
                                 <tr>
                                     <td hidden>{{$nonkasbon->created_at}}</td>
                                     <td>{{$nonkasbon->tglmasuk}}</td>
                                     <td>{{$nonkasbon->user->name}}</td>
                                     <td>{{$nonkasbon->no_nonkasbon}}</td>
                                     <td>{{$nonkasbon->tujuanpembayaran}}</td>
-                                    <td>
+                                    <td>@if(isset($nonkasbon->verifikasinonkasbon->vnk))
                                     @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
                                             <label class="badge rounded-pill bg-primary">Dalam Proses</label>
                                         @elseif($nonkasbon->verifikasinonkasbon->vnk == "Revisi")
@@ -63,7 +63,7 @@
                                             <label class="badge rounded-pill bg-success">Menunggu Verifikasi</label>
                                         @endif</td>
                                     <td class="text-end">
-                                        @if(isset($nonkasbon->verifikasinonkasbon->id_vnk))
+                                       
                                             @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
                                             <a href={{ route('vnk.cek_nonkasbon_edit',$nonkasbon->id) }} class="btn btn-outline-primary btn-sm"><i class="mdi mdi-send me-2"></i>Cek nonkasbon</a> 
                                             @elseif($nonkasbon->verifikasinonkasbon->vnk == "Terverifikasi")
@@ -94,7 +94,8 @@
                     </div>
                 </div> <!-- end col -->
             </div>
-                 
+           
+         
 @endsection
 @section('script')
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>

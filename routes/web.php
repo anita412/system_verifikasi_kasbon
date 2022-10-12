@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SPPDController;
 use App\Http\Controllers\KasbonController;
 use App\Http\Controllers\NonkasbonController;
 use App\Http\Controllers\VerifikasiKasbonController;
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('vkp-atasan', VerifikasiAtasanPertanggunganController::class);
     Route::resource('vkp-atasan-2', VerifikasiAtasan2PertanggunganController::class);
     Route::resource('pertanggungan', PertanggunganController::class);
+    Route::resource('sppd', SPPDController::class);
 });
 
 Route::controller(VerifikasiKasbonController::class)->group(function () {

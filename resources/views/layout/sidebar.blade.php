@@ -89,6 +89,11 @@
                     </ul> 
                 </li>
                 @endcan
+                @can('sppd-list')
+                <li>
+                    <a href="{{ route('sppd.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>SPPD</span></a>
+                </li>
+                @endcan
             </ul>
         </div>
     </div>

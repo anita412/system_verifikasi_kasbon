@@ -15,7 +15,24 @@ class CreateSPPDDetailsTable extends Migration
     {
         Schema::create('sppd_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_sppd')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('nip')->nullable();
+            $table->string('departemen')->nullable();
+            $table->string('instansi')->nullable();
+            $table->string('nokontrak')->nullable();
+            $table->string('kasbondinas')->nullable();
+            $table->date('tglberangkat')->nullable();
+            $table->date('tglpulang')->nullable();
+            $table->integer('hari')->nullable();
+            $table->unsignedBigInteger('id_kurs')->nullable();
+            $table->unsignedBigInteger('id_rate')->nullable();
+            $table->float('uanglumpsum')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_sppd')->references('id')->on('sppd')->onDelete('cascade');
+            $table->foreign('id_rate')->references('id')->on('rates')->onDelete('cascade');
+            $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
         });
     }
 

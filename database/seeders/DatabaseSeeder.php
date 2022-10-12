@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             KasbonSeeder::class,
             NonkasbonSeeder::class,
             VerifikasiKasbonSeeder::class,
+            RateSeeder::class,
         ]);
     }
 }
