@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Buttons example</h4>
+                            <h4 class="card-title" style="display: inline;">Pertanggungan</h4>
                             {{-- <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary"  href="{{route('pertanggungan.create')}}" role="button"><i class="fas fa-plus me-2"></i>New Pertanggungan</a>
                             </div> --}}
@@ -79,16 +79,40 @@
                                         <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @elseif($pertanggungan->verifikasipertanggungan->status == "Ditolak")
                                         <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                                        <button type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="las la-trash text-secondary font-16"></i></button>
+                                        <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$pertanggungan->id}}" data-action="{{ route('pertanggungan.destroy', $pertanggungan->id) }}"><i class="las la-trash font-16"></i></a>
                                         @elseif($pertanggungan->verifikasipertanggungan->status == "Terverifikasi")
                                         <a href="{{ route('pertanggungan.generatePDF',$pertanggungan->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
                                         <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @endif
                                 </td>
                                 @endif
-                                @endforeach
                                 </tr>
+                                <div class="modal fade" id="exampleModalDanger_{{$pertanggungan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div><!--end modal-header-->
+                                            <div class="modal-body">
+                                                    <div class="col-lg-12" style="text-align: center;">
+                                                        <h4>Are You Sure Want To Delete ?</h4> 
+                                                    </div><!--end col-->                                                 
+                                            </div><!--end modal-body-->
+                                            <div class="modal-footer">  
+                                                <form action="{{ route('pertanggungan.destroy',$pertanggungan->id) }}" method="POST" style="display: inline">
+                                                
+                                                    @method('delete')
+                                                    {{ csrf_field() }}                                                  
+                                                    <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
+                                                </form>  
+                                                <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                            </div><!--end modal-footer-->
+                                        </div><!--end modal-content-->
+                                    </div><!--end modal-dialog-->
+                                </div><!--end modal-->
+                                @endforeach
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>

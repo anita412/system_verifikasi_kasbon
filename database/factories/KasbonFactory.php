@@ -11,10 +11,14 @@ class KasbonFactory extends Factory
      *
      * @return array
      */
+
     public function definition()
     {
         return [
-            //
+            'nokasbon' => $this->randomDigit,
+            'tglmasuk' => $this->dateTimeThisMonth(),
+            'total' => $this->randomDigit,
+            'noinvoice' => $this->randomDigit,
         ];
     }
 }

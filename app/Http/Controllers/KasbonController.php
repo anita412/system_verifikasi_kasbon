@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KasbonExport;
 use DB;
 use App\Models\Kasbon;
 use App\Models\Kurs;
@@ -20,6 +21,7 @@ use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class KasbonController extends Controller
@@ -31,7 +33,7 @@ class KasbonController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:kasbon-list|kasbon-create|kasbon-edit|kasbon-delete|kasbon-verifikasi', ['only' => ['index', 'show']]);
+        $this->middleware('permission:kasbon-list|kasbon-create|kasbon-edit|kasbon-delete|kasbon-verifikasi', ['only' => ['index', 'show', 'kasbonexport']]);
         $this->middleware('permission:kasbon-create', ['only' => ['create', 'store', 'store1']]);
         $this->middleware('permission:kasbon-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:kasbon-delete', ['only' => ['destroy']]);
@@ -148,7 +150,6 @@ class KasbonController extends Controller
                 'id_kurs' => $request->id_kurs,
                 'proyek' => $request->proyek,
                 'jeniskasbon' => $request->jeniskasbon,
-                'username' => Auth::user()->name,
                 'nip' => Auth::user()->nip,
                 'id_unit' => Auth::user()->id_unit,
                 'id_user' => Auth::user()->id,
@@ -251,7 +252,6 @@ class KasbonController extends Controller
             $kasbon = Kasbon::find($id);
             $kasbon->id_kurs = $request->id_kurs;
             $kasbon->proyek = $request->proyek;
-            $kasbon->username = Auth::user()->name;
             $kasbon->nip = Auth::user()->nip;
             $kasbon->id_unit = Auth::user()->id_unit;
             $kasbon->id_user = Auth::user()->id;
@@ -299,5 +299,10 @@ class KasbonController extends Controller
         Kasbon::find($id)->delete();
         return redirect()->route('kasbon.index')
             ->with('success', 'Kasbon deleted successfully');
+    }
+
+    public function kasbonexport()
+    {
+        return Excel::download(new KasbonExport, 'kasbon.xlsx');
     }
 }

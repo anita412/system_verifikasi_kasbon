@@ -93,16 +93,21 @@
             <div class="form-group row">
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="id_kurs" required parsley>
+                    <select class="form-control" id="kurs" name="kurs">
                         <option value="" disabled selected hidden>Pilih Kurs</option>
-                        @foreach ($kurs as $kurs)
-                        @if(old('kurs', $kasbon->id_kurs) == $kurs->id)
-                        <option value="{{$kurs->id}}" selected>{{$kurs->name}}</option>
+                        @foreach ($kurs as $rate)
+                        @if(old('kurs', $kasbon->id_kurs) == $rate->id)
+                        <option value="{{$rate->id}}" selected>{{$rate->symbol}} - {{$rate->code}}</option>
                         @else
-                        <option  value="{{$kurs->id}}" >{{$kurs->name}}</option>
+                        <option  value="{{$rate->id}}" >{{$rate->symbol}} - {{$rate->code}}</option>
                         @endif
                         @endforeach
-                    </select>
+                      </select>
+                      <script>
+                      $("#kurs").select2({
+                        kurs: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->

@@ -26,12 +26,12 @@ class CreateSPPDDetailsTable extends Migration
             $table->date('tglpulang')->nullable();
             $table->integer('hari')->nullable();
             $table->unsignedBigInteger('id_kurs')->nullable();
-            $table->unsignedBigInteger('id_rate')->nullable();
+            $table->integer('id_rate')->nullable();
             $table->float('uanglumpsum')->nullable();
             $table->timestamps();
 
             $table->foreign('id_sppd')->references('id')->on('sppd')->onDelete('cascade');
-            $table->foreign('id_rate')->references('id')->on('rates')->onDelete('cascade');
+            $table->foreign('id_rate')->references('harga')->on('rates')->onDelete('cascade');
             $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
         });
     }

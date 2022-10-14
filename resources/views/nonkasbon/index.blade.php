@@ -10,9 +10,9 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') nonkasbon @endslot
+            @slot('li_2') Nonkasbon @endslot
             @slot('li_3') List @endslot
-            @slot('title') List nonkasbon @endslot
+            @slot('title') List Nonkasbon @endslot
         @endcomponent
 
         @if (session()->has('success'))
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">                    
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Buttons example</h4>
+                            <h4 class="card-title" style="display: inline;">Non Kasbon</h4>
                              <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary" href="{{route('nonkasbon.create')}}" role="button"><i class="fas fa-plus me-2"></i>New Non Kasbon</a>
                             </div> 
@@ -72,7 +72,7 @@
                                         <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @elseif($nonkasbon->verifikasinonkasbon->status == "Ditolak")
                                         <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                                        <button type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="las la-trash text-secondary font-16"></i></button>
+                                        <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$nonkasbon->id}}" data-action="{{ route('nonkasbon.destroy', $nonkasbon->id) }}"><i class="las la-trash font-16"></i></a>
                                         @elseif($nonkasbon->verifikasinonkasbon->status == "Terverifikasi")
                                         <a href="{{ route('nonkasbon.generatePDF',$nonkasbon->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
                                         <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
@@ -80,8 +80,32 @@
                                     </td>
                                 </tr>
                                 @endif
+                                <div class="modal fade" id="exampleModalDanger_{{$nonkasbon->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div><!--end modal-header-->
+                                            <div class="modal-body">
+                                                    <div class="col-lg-12" style="text-align: center;">
+                                                        <h4>Are You Sure Want To Delete ?</h4> 
+                                                    </div><!--end col-->                                                 
+                                            </div><!--end modal-body-->
+                                            <div class="modal-footer">  
+                                                <form action="{{ route('nonkasbon.destroy',$nonkasbon->id) }}" method="POST" style="display: inline">
+                                                
+                                                    @method('delete')
+                                                    {{ csrf_field() }}                                                  
+                                                    <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
+                                                </form>  
+                                                <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                            </div><!--end modal-footer-->
+                                        </div><!--end modal-content-->
+                                    </div><!--end modal-dialog-->
+                                </div><!--end modal-->
                                 @endforeach
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>

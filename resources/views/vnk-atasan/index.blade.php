@@ -10,9 +10,9 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') nonkasbon @endslot
+            @slot('li_2') Verifikasi Nonkasbon @endslot
             @slot('li_3') List @endslot
-            @slot('title') List nonkasbon @endslot
+            @slot('title') List Nonkasbon @endslot
         @endcomponent
 
         @if (session()->has('success'))

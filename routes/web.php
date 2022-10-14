@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SPPDController;
 use App\Http\Controllers\KasbonController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\NonkasbonController;
 use App\Http\Controllers\VerifikasiKasbonController;
 use App\Http\Controllers\PertanggunganController;
@@ -42,6 +43,7 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('units', UnitController::class);
     Route::resource('kasbon', KasbonController::class);
     Route::resource('nonkasbon', NonkasbonController::class);
     Route::resource('vnk', VerifikasiNonkasbonController::class);
@@ -55,6 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('vkp-atasan-2', VerifikasiAtasan2PertanggunganController::class);
     Route::resource('pertanggungan', PertanggunganController::class);
     Route::resource('sppd', SPPDController::class);
+});
+
+Route::controller(KasbonController::class)->group(function () {
+    Route::get('kasbonexport', [KasbonController::class, 'kasbonexport'])->name('kasbonexport');
 });
 
 Route::controller(VerifikasiKasbonController::class)->group(function () {

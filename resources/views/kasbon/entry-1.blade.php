@@ -96,12 +96,17 @@
             <div class="form-group row">
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="id_kurs" required parsley>
+                    <select id="kags" class="form-control" aria-label="Floating label select example" name="id_kurs" required parsley>
                         <option value="" disabled selected hidden>Pilih Kurs</option>
                         @foreach ($kurs as $kurs)
-                        <option  value="{{$kurs->id}}">{{$kurs->name}}</option>
+                        <option  value="{{$kurs->id}}">{{$kurs->code}} - {{$kurs->name}}</option>
                         @endforeach
                     </select>
+                    <script>
+                        $("#kags").select2({
+                          kags: true
+                        });
+                      </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->

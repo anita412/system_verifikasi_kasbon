@@ -10,9 +10,9 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') nonkasbon @endslot
+            @slot('li_2') SPPD @endslot
             @slot('li_3') List @endslot
-            @slot('title') List nonkasbon @endslot
+            @slot('title') List SPPD @endslot
         @endcomponent
 
         @if (session()->has('success'))
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">                    
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Buttons example</h4>
+                            <h4 class="card-title" style="display: inline;">SPPD</h4>
                              <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary" href="{{route('sppd.create')}}" role="button"><i class="fas fa-plus me-2"></i>New SPPD</a>
                             </div> 
@@ -37,29 +37,23 @@
                                 <thead>
                                 <tr>
                                     <th>Tanggal Masuk</th>
-                                    <th>User</th>
-                                    <th>No Kasbon</th>
-                                    <th>Tujuan Pembayaran</th>
-                                    <th>Status</th>
+                                    <th>No SPPD</th>
+                                    <th>Jumlah</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                
+                                @foreach ($sppd as $sppds)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                   
-                                    </td>
-                                    <td class="text-end">
-                                       
-                                    </td>
+                                    <td>{{$sppds->tglmasuk}}</td>
+                                    <td>{{$sppds->no_sppd}}</td>
+                                    <td>{{$sppds->jumlah}}</td>
+                                    <td class="text-end"> 
+                                        <a href="{{route('sppd.show',$sppds->id)}}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                        <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="mdi mdi-trash-can-outline"></i></button></td>
                                 </tr>
-                               
+                                @endforeach 
                                 </tbody>
                             </table>
                         </div>

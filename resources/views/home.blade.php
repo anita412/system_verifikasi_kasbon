@@ -13,7 +13,7 @@
             @slot('title') Analytics @endslot
         @endcomponent
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-9">
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-3">
@@ -89,7 +89,7 @@
                         </div><!--end card-->
                     </div> <!--end col-->
                 </div><!--end row-->
-            </div><!--end col-->
+            </div><!--end col--> --}}
        
 
         <div class="row">

@@ -9,10 +9,10 @@
 
     @section('content')
         @component('components.breadcrumb')
-            @slot('li_1') Dastone @endslot
-            @slot('li_2') Tables @endslot
-            @slot('li_3') Datatables @endslot
-            @slot('title') Datatables @endslot
+            @slot('li_1') IMST @endslot
+            @slot('li_2') User @endslot
+            @slot('li_3') List @endslot
+            @slot('title') List User @endslot
         @endcomponent
 
         @if (session()->has('success'))
@@ -26,13 +26,13 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Default Datatable</h4>
+                            <h4 class="card-title" style="display: inline;">User</h4>
                             <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary"  href="{{ route('users.create') }}" role="button"><i class="fas fa-plus me-2"></i>New User</a>
                             </div>
                         </div><!--end card-header-->
                         <div class="card-body">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -65,23 +65,42 @@
                                         @endif</td>
                                         <td class="text-end">
                                             <a href="{{ route('users.edit',$user->id) }}"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <form action="{{ route('users.destroy',$user->id) }}" method="POST" style="display: inline">
-                                              @method('delete')
-                                              {{ csrf_field() }}
-                                            <button type="submit" style="border: none; background: none;"><i class="las la-trash text-secondary font-16"></i></button>
-                                          </form>  
+                                            <a type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$user->id}}" data-action="{{ route('users.destroy', $user->id) }}"><i class="las la-trash text-secondary font-16"></i></a>
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
-                            </table>
-
+                            
+                            <div class="modal fade" id="exampleModalDanger_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div><!--end modal-header-->
+                                        <div class="modal-body">
+                                                <div class="col-lg-12" style="text-align: center;">
+                                                    <h4>Are You Sure Want To Delete ?</h4> 
+                                                </div><!--end col-->                                                 
+                                        </div><!--end modal-body-->
+                                        <div class="modal-footer">  
+                                            <form action="{{ route('users.destroy',$user->id) }}" method="POST" style="display: inline">
+                                            
+                                                @method('delete')
+                                                {{ csrf_field() }}                                                  
+                                                <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
+                                            </form>  
+                                            <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                        </div><!--end modal-footer-->
+                                    </div><!--end modal-content-->
+                                </div><!--end modal-dialog-->
+                            </div><!--end modal-->
+                            @endforeach
+                        </table>
                         </div>
                     </div>
                 </div> <!-- end col -->
             </div>
 
-
+            
 @endsection
 @section('script')
     <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>

@@ -70,7 +70,7 @@ class SPPDController extends Controller
             $thnBulan = Carbon::now()->format('Y-m-d');
             $cek = sppd::count();
             $tglmasuk = Carbon::now()->format('Y-m-d');
-            $terakhir = sppd::query()->latest('id')->first();
+
             if ($cek == 0) {
                 $urut = 100001;
                 $nomer = 'SPPD' . $thnBulan . '-' . $urut;
@@ -82,10 +82,11 @@ class SPPDController extends Controller
                 $nomer = 'SPPD' . $thnBulan . '-' . $urut;
                 $uru_t = (int)substr($ambil->no_sppd, -1) + 1;
                 $n0mer = 'D' . $uru_t;
+                $terakhir = $ambil->no_sppd;
             }
             $sppdID = SPPD::insertGetId([
                 'no_sppd' => $nomer,
-                'doksebelumnya' => $terakhir->id,
+                'doksebelumnya' => $terakhir,
                 'tglmasuk' => $request->Input('tglmasuk'),
                 'jumlah' => $request->Input('total')
 
@@ -93,7 +94,7 @@ class SPPDController extends Controller
 
             foreach ($request->nama as $key => $nama) {
                 $harga = $request->input('rate');
-                $rates = Rate::where('harga', $harga)->value('id');
+                // $rates = Rate::where('harga', $harga)->value('id');
                 // $rates = json_encode($ratex, true);
                 $data = new SPPDDetail();
                 $nip = $request->input('nip');
@@ -117,7 +118,7 @@ class SPPDController extends Controller
                 $data->tglpulang = $tglpulang[$key];
                 $data->hari = $hari[$key];
                 $data->id_kurs = $kurs[$key];
-                $data->id_rate = json_encode($rates, true)[$key];
+                $data->id_rate = $harga[$key];
                 $data->uanglumpsum = $lumpsum[$key];
 
                 $data->save();
@@ -125,5 +126,15 @@ class SPPDController extends Controller
         });
 
         return redirect()->route('sppd.index')->with('success', 'Non Kasbon created successfully.');
+    }
+
+    public function show($id)
+    {
+        $rate = Rate::all();
+        $kurs = Kurs::all();
+        $sppd = SPPD::find($id);
+        $detail = SPPDDetail::where('id_sppd', $sppd->id)->get();
+        $title = 'SPPD | Show';
+        return view('sppd.show', compact('title', 'sppd', 'detail', 'rate', 'kurs'));
     }
 }

@@ -5,21 +5,19 @@
 @section('content')
 
 <body class="account-body accountbg">
-
-
     <div class="container">
         <div class="row vh-100 d-flex justify-content-center">
             <div class="col-12 align-self-center">
                 <div class="row">
                     <div class="col-lg-5 mx-auto">
                         <div class="card">
-                            <div class="card-body p-0 auth-header-box">
+                            <div class="card-body p-0 auth-header-box" style="background-color: white">
                                 <div class="text-center p-3">
-                                    <a href="index" class="logo logo-admin">
-                                        <img src="{{ URL::asset('assets/images/logo-sm-dark.png') }}" height="50" alt="logo" class="auth-logo">
+                                    <a class="logo logo-admin">
+                                        <img src="{{ URL::asset('assets/images/brand-logo/imst.png') }}" height="50" alt="logo" class="auth-logo">
                                     </a>
-                                    <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Lets Get Started Dastone</h4>
-                                    <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>
+                                    <h4 class="mt-3 mb-1 fw-semibold font-18" style="color: black">Silahkan Masuk Terlebih Dulu</h4>
+                                    <p class="text-muted  mb-0">Sign in to continue.</p>
                                 </div>
                             </div>
                             <div class="card-body p-0">
@@ -65,13 +63,13 @@
 
                                             <div class="form-group row my-3">
                                                 <div class="col-sm-6">
-                                                    <div class="custom-control custom-switch switch-success">
+                                                    {{-- <div class="custom-control custom-switch switch-success">
                                                         <input class="form-check-input" type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="remember"> Remember me </label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <!--end col-->
-                                                <div class="col-sm-6 text-end">
+                                                {{-- <div class="col-sm-6 text-end">
                                                     @if (Route::has('password.request'))
                                                     <a href="{{ route('password.request') }}" class="text-muted font-13">
                                                         <i class="dripicons-lock"></i>
@@ -79,7 +77,7 @@
                                                     </a>
                                                     
                                                     @endif
-                                                </div>
+                                                </div> --}}
                                                 <!--end col-->
                                             </div>
                                             <!--end form-group-->
@@ -94,7 +92,7 @@
                                         </form>
                                         <!--end form-->
                                         <div class="m-3 text-center text-muted">
-                                            <p class="mb-0">Do not have an account ? <a href="" class="text-primary ms-2">Free Register</a></p>
+                                            {{-- <p class="mb-0">Do not have an account ? <a href="" class="text-primary ms-2">Free Register</a></p> --}}
                                         </div>
                                     </div>
                                     <div class="tab-pane px-3 pt-3" id="Register_Tab" role="tabpanel">

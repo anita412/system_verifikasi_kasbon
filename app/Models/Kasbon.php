@@ -11,6 +11,7 @@ class Kasbon extends Model
 
     protected $guarded = [];
 
+
     public function kurs()
     {
         return $this->belongsTo(Kurs::class, 'id_kurs', 'id');
@@ -31,7 +32,6 @@ class Kasbon extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_verifikator', 'id');
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
     public function kodekasbon()

@@ -10,7 +10,7 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Pertanggungan @endslot
+            @slot('li_2') Verifikasi Pertanggungan @endslot
             @slot('li_3') List @endslot
             @slot('title') List Pertanggungan @endslot
         @endcomponent
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Buttons example</h4>
+                            <h4 class="card-title" style="display: inline;">Pertanggungan</h4>
                             {{-- <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary"  href="{{route('pertanggungan.create')}}" role="button"><i class="fas fa-plus me-2"></i>New Pertanggungan</a>
                             </div> --}}

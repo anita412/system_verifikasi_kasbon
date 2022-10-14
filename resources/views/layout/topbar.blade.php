@@ -2,7 +2,7 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-end mb-0">
-            <li class="dropdown hide-phone">
+            {{-- <li class="dropdown hide-phone">
                 <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
                     <i data-feather="search" class="topbar-icon"></i>
@@ -16,10 +16,10 @@
                             <button type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </li>
 
-            <li class="dropdown notification-list">
+            {{-- <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
                     <i data-feather="bell" class="align-self-center topbar-icon"></i>
@@ -29,8 +29,8 @@
 
                     <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
                         Notifications <span class="badge bg-primary rounded-pill">2</span>
-                    </h6>
-                    <div class="notification-menu" data-simplebar>
+                    </h6> --}}
+                    {{-- <div class="notification-menu" data-simplebar>
                         <!-- item-->
                         <a href="#" class="dropdown-item py-3">
                             <small class="float-end text-muted ps-2">2 min ago</small>
@@ -96,13 +96,13 @@
                                 </div><!--end media-body-->
                             </div><!--end media-->
                         </a><!--end-item-->
-                    </div>
+                    </div> --}}
                     <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                    {{-- <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
                         View all <i class="fi-arrow-right"></i>
                     </a>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"

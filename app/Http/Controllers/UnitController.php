@@ -1,11 +1,9 @@
-
 <?php
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Unit;
-use App\Http\Requests\StoreUnitRequest;
-use App\Http\Requests\UpdateUnitRequest;
 
 class UnitController extends Controller
 {
@@ -14,9 +12,20 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    function __construct()
     {
-        //
+        $this->middleware('permission:unit-list|unit-create|unit-edit|unit-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:unit-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:unit-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:unit-delete', ['only' => ['destroy']]);
+    }
+
+    public function index(Request $request)
+    {
+        $title = 'Unit';
+        $unit = Unit::latest()->paginate();
+        return view('units.index', compact('unit', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -26,62 +35,94 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        $units = Unit::all();
+        $title = 'Input';
+        return view('units.create', compact('units', 'title'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUnitRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUnitRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        
+        $unit = Unit::create(['name' => $request->input('name')]);
+
+        return redirect()->route('units.index')
+            ->with('success', 'unit created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Unit  $unit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show($id)
     {
-        //
+        $unit = unit::find($id);
+        return view('units.show', compact('unit'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Unit  $unit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit($id)
     {
-        //
+        $unit = unit::find($id);
+        // $roles = Role::pluck('name', 'name')->all();
+        $units = Unit::all();
+        // $unitRole = $unit->roles->pluck('name', 'name')->all();
+        $title = 'Edit';
+
+        return view('units.edit', compact('unit', 'title', 'units'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUnitRequest  $request
-     * @param  \App\Models\Unit  $unit
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUnitRequest $request, Unit $unit)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'roles' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $unit = unit::find($id);
+        $unit->update($input);
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $unit->assignRole($request->input('roles'));
+
+        return redirect()->route('units.index')
+            ->with('success', 'unit updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Unit  $unit
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
-        //
+        unit::find($id)->delete();
+        return redirect()->route('units.index')
+            ->with('success', 'unit deleted successfully');
     }
 }

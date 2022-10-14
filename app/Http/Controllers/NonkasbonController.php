@@ -227,8 +227,10 @@ class NonkasbonController extends Controller
      * @param  \App\Models\Nonkasbon  $nonkasbon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nonkasbon $nonkasbon)
+    public function destroy($id)
     {
-        //
+        Nonkasbon::find($id)->delete();
+        return redirect()->route('nonkasbon.index')
+            ->with('success', 'Nonkasbon deleted successfully');
     }
 }

@@ -27,23 +27,14 @@
                     <a href="{{ route('users.index') }}"><i class="dripicons-user-group align-self-center menu-icon"></i><span>User</span></a>
                 </li>
                 @endcan
+                @can('unit-list')
+                <li>
+                    <a href="{{ route('units.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Unit</span></a>
+                </li>
+                @endcan
                 @can('role-list')
                 <li>
                     <a href="{{ route('roles.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Role</span></a>
-                </li>
-                @endcan
-                @can('nonkasbon-list')
-                <li>
-                    <a href="{{ route('nonkasbon.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>NonKasbon</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('vnk-atasan.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Verifikasi Atasan NonKasbon</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('vnk.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span> Verifikasi NonKasbon</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('vnk-atasan-2.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Verifikasi Atasan 2 NK</span></a>
                 </li>
                 @endcan
                 @can('kasbon-list')
@@ -52,6 +43,9 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('kasbon.index') }}"><i class="ti-control-record"></i>Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('pertanggungan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @can('nonkasbon-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('nonkasbon.index') }}"><i class="ti-control-record"></i>Non Kasbon</a></li> 
+                        @endcan
                     </ul>
                 </li>
                 @endcan
@@ -63,6 +57,9 @@
                         @can('vkp-atasan-list')
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
                         @endcan
+                        @can('nkb-atasan-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan.index') }}"><i class="ti-control-record"></i>Verifikasi Atasan NonKasbon</a></li> 
+                        @endcan
                     </ul> 
                 </li>
                 @endcan
@@ -73,6 +70,9 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         @can('vkp-list')
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                        @can('nkb-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
                         @endcan
                     </ul> 
                 </li>
@@ -86,12 +86,15 @@
                         @can('vkp-atasan-2-list')
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-2.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
                         @endcan
+                        @can('nkb-atasan-2-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        @endcan
                     </ul> 
                 </li>
                 @endcan
                 @can('sppd-list')
                 <li>
-                    <a href="{{ route('sppd.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>SPPD</span></a>
+                    <a href="{{ route('sppd.index') }}"><i class="align-self-center ti-receipt"></i><span>SPPD</span></a>
                 </li>
                 @endcan
             </ul>

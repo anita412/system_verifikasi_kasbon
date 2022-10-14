@@ -10,7 +10,7 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Kasbon @endslot
+            @slot('li_2') Verifikasi Kasbon @endslot
             @slot('li_3') List @endslot
             @slot('title') List Kasbon @endslot
         @endcomponent
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">Buttons example</h4>
+                            <h4 class="card-title" style="display: inline;">Kasbon</h4>
                             <div class="mt-1 float-end">
                                 <a class=" btn btn-sm btn-soft-primary"  href="{{ route('kasbon.create') }}" role="button"><i class="fas fa-plus me-2"></i>New Kasbon</a>
                             </div>

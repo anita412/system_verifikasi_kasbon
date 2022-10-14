@@ -312,8 +312,10 @@ class PertanggunganController extends Controller
      * @param  \App\Models\Pertanggungan  $pertanggungan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pertanggungan $pertanggungan)
+    public function destroy($id)
     {
-        //
+        Pertanggungan::find($id)->delete();
+        return redirect()->route('pertanggungan.index')
+            ->with('success', 'Pertanggungan deleted successfully');
     }
 }

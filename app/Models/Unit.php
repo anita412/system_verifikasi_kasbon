@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     public function user()
     {
         return $this->hasMany(User::class, 'id_unit', 'id');

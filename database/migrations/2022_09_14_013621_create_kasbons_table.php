@@ -21,7 +21,7 @@ class CreateKasbonsTable extends Migration
             $table->string('jeniskasbon')->nullable();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->string('nip')->nullable();
-            $table->string('username')->nullable();
+            // $table->string('username')->nullable();
             $table->unsignedBigInteger('id_unit')->nullable();
             $table->string('doksebelumnya')->nullable();
             $table->unsignedBigInteger('id_kodekasbon')->nullable();

@@ -10,7 +10,7 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Kasbon @endslot
+            @slot('li_2') Verifikasi Kasbon @endslot
             @slot('li_3') List @endslot
             @slot('title') List Kasbon @endslot
         @endcomponent
