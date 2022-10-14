@@ -97,6 +97,9 @@
                     <a href="{{ route('sppd.index') }}"><i class="align-self-center ti-receipt"></i><span>SPPD</span></a>
                 </li>
                 @endcan
+                <li>
+                    <a href="{{ route('msp.index') }}"><i class="align-self-center ti-receipt"></i><span>Monitoring SP</span></a>
+                </li>
             </ul>
         </div>
     </div>

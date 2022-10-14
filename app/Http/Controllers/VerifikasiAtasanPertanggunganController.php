@@ -50,7 +50,7 @@ class VerifikasiAtasanPertanggunganController extends Controller
         $id = $request->id;
         $pertanggungan = Pertanggungan::find($id);
         $now = Carbon::now();
-        DB::transaction(function () use ($pertanggungan, $request, $id) {
+        DB::transaction(function () use ($pertanggungan, $request, $id, $now) {
 
             foreach ($request->kekurangan as $key => $kekurangan) {
                 $data = new KeteranganPertanggungan();
@@ -67,7 +67,7 @@ class VerifikasiAtasanPertanggunganController extends Controller
                 $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
                 $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
             }
-
+            $pertanggungan->verifikasipertanggungan->updated_at = $now;
             $pertanggungan->verifikasipertanggungan->id_vkp_a_1 = Auth::user()->id;
             $pertanggungan->verifikasipertanggungan->save();
         });

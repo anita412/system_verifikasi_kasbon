@@ -8,6 +8,7 @@ use App\Models\NonKasbon;
 use App\Models\VerifikasiNonKasbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use DB;
 
 class VerifikasiNonKasbonController extends Controller
@@ -64,7 +65,7 @@ class VerifikasiNonKasbonController extends Controller
 
         DB::transaction(function () use ($request, $id) {
             $nonkasbon = nonkasbon::find($id);
-
+            $now = Carbon::now();
             if ($nonkasbon->verifikasinonkasbon->vnk = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->vnk_a_2 = 'Dalam Proses';
                 $nonkasbon->verifikasinonkasbon->status = 'Dalam Proses';
@@ -75,7 +76,8 @@ class VerifikasiNonKasbonController extends Controller
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id
+                'id_vnk' => Auth::user()->id,
+                'updated_at' =>  $now
             ]);
 
             $doknkID = DokumenNK::insertGetId([
@@ -100,7 +102,7 @@ class VerifikasiNonKasbonController extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $nonkasbon = nonkasbon::find($id);
             if ($nonkasbon->verifikasinonkasbon->vnk = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->vnk_a_2 = 'Dalam Proses';
@@ -112,7 +114,8 @@ class VerifikasiNonKasbonController extends Controller
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id
+                'id_vnk' => Auth::user()->id,
+                'updated_at' =>  $now
             ]);
 
             $iddnk = $nonkasbon->dokumennk->id;

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Laralink">
   <!-- Site Title -->
-  <title>Bus Booking Invoice</title>
+  <title>PT.  INKA MULTI SOLUSI TRADING</title>
   <link href="{{ URL::asset('assets/css/stylepdf.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
@@ -40,26 +40,26 @@
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Nama Pemohon</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->user->name}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->user->name}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">No</b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">: </b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->no_nonkasbon}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->no_nonkasbon}}</b></td>
               </tr>
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Nominal</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">Rp. {{$nonkasbon->dokumennk->total}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">Rp. {{$nonkasbon->dokumennk->total}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color"></b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color"></b></td>
               </tr>
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Tanggal Pengajuan</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->tglmasuk}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->tglmasuk}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Pukul</b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">: </b></td>
-                <td style="width: 50%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->jammasuk}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->jammasuk}}</b></td>
               </tr>
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Tujuan Pembayaran</b></td>
@@ -104,41 +104,55 @@
           <div class="tm_gray_bg tm_text_center tm_f18 tm_primary_color tm_grand_total">
           <p class="tm_m0" style="text-align: left;font-size:12px;"></p>
           </div>
-          <div class="tm_mb0">
-            <p class="tm_primary_color tm_mb1 tm_bold" style="font-size: 12px;">KEKURANGAN DOKUMEN :</p>
-			
-            <div class="tm_grid_row tm_col_2">
-              <div class="tm_border_none_sm">
-                <ul class="tm_m0" style="font-size: 12px;">
-                  <p style="margin-bottom: 1px;"> </p>
-                </ul>
-              </div>
-              <div>
-                <ul class="tm_m0" style="font-size: 12px;">
-					<p style="margin-bottom: 1px;font-size: 12px;">DILENGKAPI TANGGAL </p>
-				</ul>
-              </div>
-            </div>
-          </div>
-          <hr class="tm_mb2">
 		  <div class="tm_mb0">
-            <p class="tm_primary_color tm_mb1 tm_bold" style="font-size: 12px;">Diverifikasi</p>
-            <div class="tm_grid_row tm_col_2">
-              <div class=" tm_border_none_sm">
-                <ul class="tm_m0" style="font-size: 12px;">
-					<br><br><br>
-					<hr style="width: 30%;" class="tm_mb0">
-				<p>Staff Keuangan</p>
-                </ul>
-              </div>
-              <div>
-				<ul class="tm_m0" style="font-size: 12px;">
-              <p>Masuk Tanggal : </p>
-			  <p>Jam : </p>
-				</ul>
-              </div>
-            </div>
-        </div>
+
+        <div class="tm_invoice_seperator"></div>
+        <div class="tm_table tm_style1 tm_mb5">
+          <div class="tm_round_border">
+            <div class="tm_table_responsive">
+              <table>
+                <tbody>
+        <tr>
+          <td class="tm_border_top_0 tm_border_bottom" colspan="6" style="text-align: center"><b class="tm_primary_color">OTORISASI</b></td>
+        </tr>
+                  <tr>
+          <td style="width: 5%;" class="tm_border_top_0 tm_border_right "><b class="tm_primary_color">No</b></td>
+                    <td style="text-align: center" ><b class="tm_primary_color">NAMA</b></td>
+                    <td style="text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">NIP</b></td>
+                    <td style="text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">JABATAN</b></td>
+                    <td style="text-align: center"  class="tm_border_left tm_border_right_0 tm_border_top_0"><b class="tm_primary_color">TANDA TANGAN</b></td>
+                  </tr>
+                  <tr>
+                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px;height:50%" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
+                    </tr>
+                </tbody>
+      
+              </table>
 		<div class="tm_invoice_btns tm_hide_print">
 			<button onclick="window.print()" class="tm_invoice_btn tm_color1">
 			  <span class="tm_btn_icon">

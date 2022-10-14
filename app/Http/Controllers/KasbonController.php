@@ -165,7 +165,7 @@ class KasbonController extends Controller
                 'total' => $request->iddpp + $request->idppn + $request->idpph,
                 'namavendor' => $request->namavendor,
                 'haritempo' => $request->haritempo,
-                'tgltempo' => now()->addDays(30),
+                'tgltempo' => now()->addDays($request->haritempo),
                 'noinvoice' => $request->noinvoice,
                 'spph' => $request->spph,
                 'po_vendor' => $request->po_vendor,

@@ -39,7 +39,7 @@
                                     <div class="form-group row">
                                         <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                                         <div class="col-lg-8">
-                                            <input -type="text" class="form-control" value="{{$kasbon->username}}" id="username" name="username" disabled>
+                                            <input -type="text" class="form-control" value="{{$kasbon->user->name}}" id="username" name="username" disabled>
                                         </div>
                                     </div><!--end form-group-->
                                 </div><!--end col-->
@@ -283,7 +283,7 @@
                              </div>
                              <div class="row mt-3">
                                 <div class="col-sm-12 text-end">
-                                    <a href="{{route('vkb-atasan.index')}}" class="btn btn-danger">Cancel</a>  
+                                    <a href="{{route('vkb-atasan.index')}}" class="btn btn-danger">Back</a>  
                                     <a href="#" type="button" onclick="form2()" class="btn btn-primary px-4">Next</a>      
                                 </div>
                             </div>

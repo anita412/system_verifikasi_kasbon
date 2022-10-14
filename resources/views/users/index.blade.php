@@ -60,6 +60,10 @@
                                           <span class="badge badge-soft-purple">{{ $v }}</span>
                                           @elseif($v == "Verifikator")
                                           <span class="badge badge-soft-warning">{{ $v }}</span>
+                                          @elseif($v == "Atasan Verifikator")
+                                          <span class="badge badge-soft-warning">{{ $v }}</span>
+                                          @elseif($v == "Atasan User")
+                                          <span class="badge badge-soft-warning">{{ $v }}</span>
                                           @endif
                                           @endforeach
                                         @endif</td>
@@ -68,32 +72,33 @@
                                             <a type="submit" style="border: none; background: none;" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$user->id}}" data-action="{{ route('users.destroy', $user->id) }}"><i class="las la-trash text-secondary font-16"></i></a>
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="exampleModalDanger_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-danger">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div><!--end modal-header-->
+                                                <div class="modal-body">
+                                                        <div class="col-lg-12" style="text-align: center;">
+                                                            <h4>Are You Sure Want To Delete ?</h4> 
+                                                        </div><!--end col-->                                                 
+                                                </div><!--end modal-body-->
+                                                <div class="modal-footer">  
+                                                    <form action="{{ route('users.destroy',$user->id) }}" method="POST" style="display: inline">
+                                                    
+                                                        @method('delete')
+                                                        {{ csrf_field() }}                                                  
+                                                        <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
+                                                    </form>  
+                                                    <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                                </div><!--end modal-footer-->
+                                            </div><!--end modal-content-->
+                                        </div><!--end modal-dialog-->
+                                    </div><!--end modal-->
+                                    @endforeach
                                 </tbody>
                             
-                            <div class="modal fade" id="exampleModalDanger_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-danger">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div><!--end modal-header-->
-                                        <div class="modal-body">
-                                                <div class="col-lg-12" style="text-align: center;">
-                                                    <h4>Are You Sure Want To Delete ?</h4> 
-                                                </div><!--end col-->                                                 
-                                        </div><!--end modal-body-->
-                                        <div class="modal-footer">  
-                                            <form action="{{ route('users.destroy',$user->id) }}" method="POST" style="display: inline">
-                                            
-                                                @method('delete')
-                                                {{ csrf_field() }}                                                  
-                                                <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
-                                            </form>  
-                                            <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
-                                        </div><!--end modal-footer-->
-                                    </div><!--end modal-content-->
-                                </div><!--end modal-dialog-->
-                            </div><!--end modal-->
-                            @endforeach
+                           
                         </table>
                         </div>
                     </div>

@@ -50,7 +50,7 @@ class VerifikasiNonKasbonAtasanController extends Controller
         $nonkasbon = nonkasbon::find($id);
         $now = Carbon::now();
         DB::transaction(function () use ($nonkasbon, $request, $id) {
-
+            $now = Carbon::now();
             foreach ($request->kekurangan as $key => $kekurangan) {
                 $data = new KeteranganNonKasbon();
                 $data->id_nonkasbon = $id;
@@ -68,6 +68,7 @@ class VerifikasiNonKasbonAtasanController extends Controller
             }
 
             $nonkasbon->verifikasinonkasbon->id_vnk_a_1 = Auth::user()->id;
+            $nonkasbon->verifikasinonkasbon->updated_at = $now;
             $nonkasbon->verifikasinonkasbon->save();
         });
 
@@ -78,7 +79,7 @@ class VerifikasiNonKasbonAtasanController extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $nonkasbon = nonkasbon::find($id);
             if ($nonkasbon->verifikasinonkasbon->vnk_a_1 = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->vnk = 'Dalam Proses';
@@ -90,7 +91,8 @@ class VerifikasiNonKasbonAtasanController extends Controller
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk_a_1' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk_a_1' => Auth::user()->id
+                'id_vnk_a_1' => Auth::user()->id,
+                'updated_at' =>  $now
             ]);
 
             Keterangannonkasbon::where('id_nonkasbon', $id)->delete();

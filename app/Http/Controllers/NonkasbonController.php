@@ -136,6 +136,8 @@ class NonkasbonController extends Controller
                 'id_nonkasbon' => $nonkasbonID,
                 'vnk_a_1' => 'Dalam Proses',
                 'status' => 'Dalam Proses',
+                'created_at' => $now,
+                'updated_at' =>  $now
             ]);
         });
 
@@ -210,6 +212,7 @@ class NonkasbonController extends Controller
             $vnk->update([
                 'vnk_a_1' => 'Dalam Proses',
                 'status' => 'Dalam Proses',
+                'updated_at' =>  $now
             ]);
         });
         return redirect()->route('nonkasbon.index')->with('success', 'Non Kasbon updated successfully');

@@ -9,7 +9,7 @@
                                             <div class="col-lg-8">
                                                 <div class="input-group">                                            
                                                     <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                <input class="form-control" name="tglmasuk" type="date" value="{{$kasbon->tglmasuk}}" id="example-date-input" disabled>
+                                                <input class="form-control" name="tglmasuk" value="{{$kasbon->tglmasuk->format('d/m/Y')}}" id="example-date-input" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                                     <div class="form-group row">
                                         <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                                         <div class="col-lg-8">
-                                            <input -type="text" class="form-control" value="{{$kasbon->username}}" id="username" name="username" disabled>
+                                            <input -type="text" class="form-control" value="{{$kasbon->user->name}}" id="username" name="username" disabled>
                                         </div>
                                     </div><!--end form-group-->
                                 </div><!--end col-->
@@ -283,7 +283,7 @@
                              </div>
                              <div class="row mt-3">
                                 <div class="col-sm-12 text-end">
-                                    <a href="{{route('vkb.index')}}" class="btn btn-danger">Cancel</a>  
+                                    <a href="{{route('vkb-atasan-2.index')}}" class="btn btn-danger">Back</a>  
                                     <a href="#" type="button" onclick="form1()" class="btn btn-primary px-4">Next</a>      
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ class Nonkasbon extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $dates = ['tglmasuk'];
     public function kodekasbon()
     {
         return $this->belongsTo(KodeKasbon::class, 'id_kodekasbon', 'id');

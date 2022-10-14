@@ -19,7 +19,6 @@ class CreatePertanggungansTable extends Migration
             $table->unsignedBigInteger('id_user')->nullable();
             $table->unsignedBigInteger('id_kasbon')->nullable();
             $table->unsignedBigInteger('id_kodekasbon')->nullable();
-            $table->string('user')->nullable();
             $table->string('nip')->nullable();
             $table->unsignedBigInteger('id_unit')->nullable();
             $table->string('jeniskasbon')->nullable();

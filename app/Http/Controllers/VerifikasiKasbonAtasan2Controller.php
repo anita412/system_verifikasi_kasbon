@@ -19,6 +19,7 @@ use App\Models\Keterangan;
 use App\Models\KeteranganKasbon;
 use App\Models\Keterangan_detail;
 use App\Models\KodeKasbon;
+use App\Models\MonitoringSP;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +28,10 @@ class VerifikasiKasbonAtasan2Controller extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:vkb-list|vkb-create|vkb-edit|vkb-delete|vkb-kelengkapan', ['only' => ['index', 'store']]);
-        $this->middleware('permission:vkb-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:vkb-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:vkb-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:vkb-atasan-2-list|vkb-atasan-2-create|vkb-atasan-2-edit|vkb-atasan-2-delete|vkb-atasan-2-kelengkapan', ['only' => ['index', 'store']]);
+        $this->middleware('permission:vkb-atasan-2-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:vkb-atasan-2-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:vkb-atasan-2-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
@@ -106,7 +107,7 @@ class VerifikasiKasbonAtasan2Controller extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $kasbon = Kasbon::find($id);
 
             Keterangankasbon::where('id_kasbon', $id)->delete();
@@ -131,6 +132,16 @@ class VerifikasiKasbonAtasan2Controller extends Controller
                 $kasbon->verifikasikasbon->vkb = $request->Input('status');
                 $kasbon->verifikasikasbon->status = $request->Input('status');
             }
+
+            if ($request->Input('status') == 'Terverifikasi') {
+                MonitoringSP::insertGetId([
+                    'id_kasbon' => $id,
+                    'ptj' => 'Belum',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            }
+
             $kasbon->verifikasikasbon->id_vkb_a_2 = Auth::user()->id;
             $kasbon->verifikasikasbon->update();
         });
@@ -264,7 +275,7 @@ class VerifikasiKasbonAtasan2Controller extends Controller
             }
             $now = Carbon::now();
             $kelengkapan->kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
-            $kelengkapan->kasbon->verifikasikasbon->created_at = $now;
+            $kelengkapan->kasbon->verifikasikasbon->updated_at = $now;
             $kelengkapan->kasbon->verifikasikasbon->id_vkb_a_2 = Auth::user()->id;
             $kelengkapan->kasbon->verifikasikasbon->save();
         });

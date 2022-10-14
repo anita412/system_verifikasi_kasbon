@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DokumenNK;
 use App\Models\DokumenNKD;
 use App\Models\NonKasbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -59,7 +60,7 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
 
         DB::transaction(function () use ($request, $id) {
             $nonkasbon = nonkasbon::find($id);
-
+            $now = Carbon::now();
             if ($nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->status = 'Terverifikasi';
                 $nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status');
@@ -69,7 +70,8 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk_a_2' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id
+                'id_vnk' => Auth::user()->id,
+                'updated_at' =>  $now
             ]);
 
             $doknkID = DokumenNK::insertGetId([
@@ -94,7 +96,7 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $nonkasbon = nonkasbon::find($id);
             if ($nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->status = $request->Input('status');
@@ -105,7 +107,8 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk_a_2' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id
+                'id_vnk' => Auth::user()->id,
+                'updated_at' =>  $now
             ]);
 
             $iddnk = $nonkasbon->dokumennk->id;

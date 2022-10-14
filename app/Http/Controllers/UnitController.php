@@ -79,9 +79,7 @@ class UnitController extends Controller
     public function edit($id)
     {
         $unit = unit::find($id);
-        // $roles = Role::pluck('name', 'name')->all();
         $units = Unit::all();
-        // $unitRole = $unit->roles->pluck('name', 'name')->all();
         $title = 'Edit';
 
         return view('units.edit', compact('unit', 'title', 'units'));

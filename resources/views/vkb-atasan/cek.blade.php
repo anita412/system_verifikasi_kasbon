@@ -39,7 +39,7 @@
                                     <div class="form-group row">
                                         <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                                         <div class="col-lg-8">
-                                            <input -type="text" class="form-control" value="{{$kasbon->username}}" id="username" name="username" disabled>
+                                            <input -type="text" class="form-control" value="{{$kasbon->user->name}}" id="username" name="username" disabled>
                                         </div>
                                     </div><!--end form-group-->
                                 </div><!--end col-->

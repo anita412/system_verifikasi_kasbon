@@ -143,7 +143,7 @@ class VerifikasiPertanggunganController extends Controller
             }
 
             $now = Carbon::now();
-            $pertanggungan->verifikasipertanggungan->created_at = $now;
+            $pertanggungan->verifikasipertanggungan->updated_at = $now;
             $pertanggungan->verifikasipertanggungan->id_vkp = Auth::user()->id;
             $pertanggungan->verifikasipertanggungan->save();
         });

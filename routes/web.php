@@ -18,6 +18,7 @@ use App\Http\Controllers\VerifikasiAtasan2PertanggunganController;
 use App\Http\Controllers\VerifikasiNonKasbonController;
 use App\Http\Controllers\VerifikasiNonKasbonAtasanController;
 use App\Http\Controllers\VerifikasiNonKasbonAtasan2Controller;
+use App\Http\Controllers\MonitoringSpController;
 use App\Http\Controllers\PDFController;
 
 /*
@@ -114,4 +115,8 @@ Route::controller(PertanggunganController::class)->group(function () {
 
 Route::controller(NonkasbonController::class)->group(function () {
     Route::get('/nonkasbon/generatePDF/{nonkasbon}', [NonkasbonController::class, 'generatePDF'])->name('nonkasbon.generatePDF');
+});
+
+Route::controller(MonitoringSpController::class)->group(function () {
+    Route::get('/msp/index', [MonitoringSpController::class, 'index'])->name('msp.index');
 });

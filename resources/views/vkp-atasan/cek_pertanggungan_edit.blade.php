@@ -34,11 +34,11 @@
                     <h4 class="card-title" id="2-form-entry">Keterangan</h4>
                 </div><!--end card-header-->
                 <div class="card-body bootstrap-select-1">
-                    {!! Form::model($kasbon, ['method' => 'PATCH','route' => ['vkb-atasan.update', $kasbon->id],'class' => 'form-parsley']) !!}
+                    {!! Form::model($kasbon, ['method' => 'PATCH','route' => ['vkp-atasan.update', $kasbon->id],'class' => 'form-parsley']) !!}
                         <input value="{{$kasbon->id}}" class="text-muted mb-0" name="id" hidden>
                         {{ csrf_field() }}
-                        @include('vkb-atasan.edit-cek')
-                        @include('vkb-atasan.edit-keterangan')
+                        @include('vkp-atasan.edit-cek')
+                        @include('vkp-atasan.edit-keterangan')
                        {!! Form::close() !!} 
                 </div><!--end card-body-->
             </div><!--end card-->

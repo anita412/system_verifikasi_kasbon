@@ -43,13 +43,13 @@
                             {!! Form::model($pertanggungan, ['method' => 'PATCH','route' => ['vkp-atasan-2.update', $pertanggungan->id],'class' => 'form-parsley']) !!}
                                 <input value="{{$pertanggungan->id}}" class="text-muted mb-0" name="id" hidden>
                                 {{ csrf_field() }}
-                                @include('vkp.edit-cek')
-                                @include('vkp.edit-dokumen-vendor')
-                                @include('vkp.edit-dokumen-customer')
-                                @include('vkp.edit-dokumen-impor')
-                                @include('vkp.edit-dokumen-pajak')
-                                @include('vkp.edit-dokumen-dinas')
-                                @include('vkp.edit-keterangan')
+                                @include('vkp-atasan-2.edit-cek')
+                                @include('vkp-atasan-2.edit-dokumen-vendor')
+                                @include('vkp-atasan-2.edit-dokumen-customer')
+                                @include('vkp-atasan-2.edit-dokumen-impor')
+                                @include('vkp-atasan-2.edit-dokumen-pajak')
+                                @include('vkp-atasan-2.edit-dokumen-dinas')
+                                @include('vkp-atasan-2.edit-keterangan')
                                 {!! Form::close() !!} 
                         </div><!--end card-body-->
                     </div><!--end card-->

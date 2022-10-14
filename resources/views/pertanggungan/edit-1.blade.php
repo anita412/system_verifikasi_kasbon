@@ -12,7 +12,7 @@
             <div class="form-group row">
                 <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="user">User</label>
                 <div class="col-lg-8">
-                    <input class="form-control" type="text" value="{{$pertanggungan->kasbon->username}}" arial-label="Disable input example" disabled readonly>
+                    <input class="form-control" type="text" value="{{$pertanggungan->kasbon->user->name}}" arial-label="Disable input example" disabled readonly>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->

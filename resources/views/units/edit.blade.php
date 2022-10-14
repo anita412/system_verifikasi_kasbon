@@ -30,15 +30,8 @@
                         {{ csrf_field() }}
                         <div class="row mt-3">
                             <div class="form-floating mb-3 col-lg-4">
-                                <input required parsley-type="text" class="form-control" id="floatingInput"  name='unit' placeholder="Nama Unit" value="{{old('unit')}}">
+                                <input required parsley-type="text" class="form-control" id="floatingInput"  name='unit' placeholder="Nama Unit" value="{{old('name', $unit->name)}}">
                                 <label for="floatingInput" data-parsley-minlength="6">Unit</label>
-                                <!-- @foreach ($units as $units)
-                                        @if(old('unit', $unit->id_unit) == $units->id)
-                                        <option value="{{$units->id}}" selected>{{$units->name}}</option>
-                                        @else
-                                        <option  value="{{$units->id}}" >{{$units->name}}</option> -->
-                                        <!-- @endif
-                                @endforeach -->
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

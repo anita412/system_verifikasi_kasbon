@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Laralink">
   <!-- Site Title -->
-  <title>Bus Booking Invoice</title>
+  <title>PT.  INKA MULTI SOLUSI TRADING</title>
   <link href="{{ URL::asset('assets/css/stylepdf.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
@@ -38,7 +38,7 @@
           <div class="tm_invoice_head ">
             <div class="tm_invoice_left">
               <p  style="font-size: 11px " ><b class="tm_primary_color" >
-                NAMA USER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{$pertanggungan->kasbon->username}}<br>
+                NAMA USER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{$pertanggungan->kasbon->user->name}}<br>
                 NOMINAL KASBON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;Rp. {{$pertanggungan->kasbon->total}} <br>
 				NOMINAL REALISASI	&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->nilaiptj}}<br>
                 SELISIH REALISASI	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->selisihptj}}<br>
@@ -252,7 +252,7 @@
               </div>
               <div>
 				<ul class="tm_m0" style="font-size: 12px;">
-              <p>Masuk Tanggal : {{$pertanggungan->kasbon->tglmasuk}}</p>
+              <p>Masuk Tanggal : {{$pertanggungan->kasbon->tglmasuk->format('d-m-Y')}}</p>
 			  <p>Jam : {{$pertanggungan->kasbon->jammasuk}}</p>
 				</ul>
               </div>

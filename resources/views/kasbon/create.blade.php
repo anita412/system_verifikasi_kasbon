@@ -96,4 +96,15 @@
         }
        
     </script>
+    <script>
+        $(function() {
+      $('#input1,#input2,#input3').on('input', function() {
+        $('#Voltes5').val(
+          $('#input1,#input2,#input3').map(function() {
+            return $(this).val();
+          }).get().join(';') /* added space */
+        );
+      });
+    });
+    </script>    
 @endsection

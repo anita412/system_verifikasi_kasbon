@@ -34,7 +34,7 @@
                                                 <label for="floatingInput" data-parsley-minlength="6">Nama</label>
                                             </div>
                                             <div class="form-floating mb-3 col-lg-4">
-                                                <input required parsley-type="text" data-parsley-minlength="6" class="form-control" id="floatingInput"  name='email'  placeholder="name@example.com" value="{{old('username')}}">
+                                                <input required parsley-type="text" data-parsley-minlength="6" class="form-control" id="floatingInput"  name='email'  placeholder="name@example.com" value="{{old('email')}}">
                                                 <label for="floatingInput">Username</label>
                                             </div>
                                             <div class="form-floating mb-3 col-lg-4">

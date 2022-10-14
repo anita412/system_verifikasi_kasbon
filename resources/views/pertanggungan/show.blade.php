@@ -41,7 +41,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="input-group">                                            
                                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                    <input class="form-control" name="tglmasuk" type="date" value="{{$pertanggungan->kasbon->tglmasuk}}" id="example-date-input" disabled>
+                                                    <input class="form-control" name="tglmasuk"value="{{$pertanggungan->kasbon->tglmasuk->format('d-m-Y')}}" id="example-date-input" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="form-group row">
                                             <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" value="{{$pertanggungan->kasbon->username}}" id="username" name="username" disabled>
+                                                <input type="text" class="form-control" value="{{$pertanggungan->kasbon->user->name}}" id="username" name="username" disabled>
                                             </div>
                                         </div><!--end form-group-->
                                     </div><!--end col-->
@@ -265,7 +265,7 @@
                                                     <div class="col-lg-4">
                                                         <div class="input-group">                                            
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo}}" disabled>    
+                                                        <input type="text" class="form-control"  id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo}}" disabled>    
                                                         </div>
                                                     </div>
                                                     </div><!--end form-group-->
@@ -368,7 +368,7 @@
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
                                                                 <span class="input-group-text">Rp.</span>
-                                                            <input class="form-control" type="date" class="form-control" value="{{number_format($pertanggungan->selisihptj)}}" disabled>
+                                                            <input class="form-control"  class="form-control" value="{{number_format($pertanggungan->selisihptj)}}" disabled>
                                                             </div>  
                                                         </div>
                                                     </div><!--end form-group-->

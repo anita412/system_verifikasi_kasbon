@@ -11,7 +11,7 @@ class Kasbon extends Model
 
     protected $guarded = [];
 
-
+    protected $dates = ['tglmasuk'];
     public function kurs()
     {
         return $this->belongsTo(Kurs::class, 'id_kurs', 'id');
@@ -48,7 +48,10 @@ class Kasbon extends Model
     {
         return $this->hasone(VerifikasiKasbon::class, 'id_kasbon', 'id');
     }
-
+    public function monitoringsp()
+    {
+        return $this->hasone(MonitoringSP::class, 'id_kasbon', 'id');
+    }
     public function pertanggungan()
     {
         return $this->hasOne(Pertanggungan::class, 'nokasbon', 'nokasbon');

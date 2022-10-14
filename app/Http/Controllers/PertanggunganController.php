@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Carbon\Carbon;
 use App\Models\Pertanggungan;
 use App\Http\Requests\StorePertanggunganRequest;
 use App\Http\Requests\UpdatePertanggunganRequest;
@@ -80,7 +81,7 @@ class PertanggunganController extends Controller
 
             $id = $request->id;
             $kasbon = Kasbon::find($id);
-
+            $now = Carbon::now();
             $pertanggunganID = Pertanggungan::insertGetId([
                 'tglptj' => $request->tglptj,
                 'selisihptjakhir' => $request->selisihptjakhir,
@@ -92,7 +93,6 @@ class PertanggunganController extends Controller
                 'id_kasbon' => $kasbon->id,
                 'id_kodekasbon' => $kasbon->id_kodekasbon,
                 'uraianpengguna' => $kasbon->uraianpengguna,
-                'user' => $kasbon->username,
                 'nip' => $kasbon->nip,
                 'id_unit' => $kasbon->id_unit,
                 'jeniskasbon' => $kasbon->jeniskasbon,
@@ -108,13 +108,17 @@ class PertanggunganController extends Controller
                 'novkbkasbon'  => $kasbon->nopi,
                 'tglbayarkeuser'  => $request->tglbayarkeuser,
                 'nilaiptj'  => $request->nilaiptj,
-                'selisihptj'  => $request->nilaiptj - $kasbon->total
+                'selisihptj'  => $request->nilaiptj - $kasbon->total,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
 
             VerifikasiPertanggungan::insertGetId([
                 'id_pertanggungan' => $pertanggunganID,
                 'vkp_a_1' => 'Dalam Proses',
                 'status' => 'Dalam Proses',
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         });
         return redirect()->route('pertanggungan.index')->with('success', 'Kasbon created successfully.');
@@ -264,7 +268,7 @@ class PertanggunganController extends Controller
         $pertanggungan = Pertanggungan::find($id);
 
         DB::transaction(function () use ($request, $id, $pertanggungan) {
-
+            $now = Carbon::now();
             $pertanggungan->tglptj = $request->tglptj;
             $pertanggungan->selisihptjakhir = $request->selisihptjakhir;
             $pertanggungan->novkbselisihptj = $request->novkbselisihptj;
@@ -275,7 +279,6 @@ class PertanggunganController extends Controller
             $pertanggungan->id_kasbon = $pertanggungan->kasbon->id;
             $pertanggungan->id_kodekasbon = $pertanggungan->kasbon->id_kodekasbon;
             $pertanggungan->uraianpengguna = $pertanggungan->kasbon->uraianpengguna;
-            $pertanggungan->user = $pertanggungan->kasbon->username;
             $pertanggungan->nip = $pertanggungan->kasbon->nip;
             $pertanggungan->id_unit = $pertanggungan->kasbon->id_unit;
             $pertanggungan->jeniskasbon = $pertanggungan->kasbon->jeniskasbon;
@@ -292,6 +295,7 @@ class PertanggunganController extends Controller
             $pertanggungan->tglbayarkeuser  = $request->tglbayarkeuser;
             $pertanggungan->nilaiptj  = $request->nilaiptj;
             $pertanggungan->selisihptj  = $request->nilaiptj - $pertanggungan->kasbon->total;
+            $pertanggungan->updated_at = $now;
 
             $pertanggungan->update($request->all());
 

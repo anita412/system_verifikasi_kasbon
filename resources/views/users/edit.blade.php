@@ -5,8 +5,8 @@
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
             @slot('li_2') User @endslot
-            @slot('li_3') Edit @endslot
-            @slot('title') Edit User @endslot
+            @slot('li_3') Input @endslot
+            @slot('title') Input User @endslot
         @endcomponent
         @if (count($errors) > 0)
   <div class="alert alert-danger">
@@ -22,7 +22,7 @@
                             <div class="col-lg-6 mx-auto">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Edit User</h4>
+                                        <h4 class="card-title">Tambah User</h4>
                                         {{-- <p class="text-muted mb-0">Create beautifully simple form labels that float over your input fields.</p> --}}
                                     </div><!--end card-header-->
                                     <div class="card-body">

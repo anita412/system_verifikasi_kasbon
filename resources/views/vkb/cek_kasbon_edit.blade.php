@@ -42,12 +42,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title" id="0-form-entry">Show {{$kasbon->nokasbon}}</h4>
-                            <h4 class="card-title" id="1-form-entry">Dokumen Vendor</h4>
-                            <h4 class="card-title" id="2-form-entry">Dokumen Customer</h4>
-                            <h4 class="card-title" id="3-form-entry">Dokumen Impor</h4>
-                            <h4 class="card-title" id="4-form-entry">Dokumen Pajak</h4>
-                            <h4 class="card-title" id="5-form-entry">Dokumen Dinas</h4>
-                            <h4 class="card-title" id="6-form-entry">Keterangan</h4>
+                            <h4 class="card-title" id="1-form-entry">Cek Kasbon</h4>
                         </div><!--end card-header-->
                         
                         <div class="card-body bootstrap-select-1">
