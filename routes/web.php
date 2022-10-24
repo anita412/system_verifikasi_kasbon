@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::controller(KasbonController::class)->group(function () {
     Route::get('kasbonexport', [KasbonController::class, 'kasbonexport'])->name('kasbonexport');
+    Route::get('/kasbon/printsp1/{kasbon}', [KasbonController::class, 'printsp1'])->name('kasbon.printsp1');
+    Route::get('/kasbon/printsp2/{kasbon}', [KasbonController::class, 'printsp2'])->name('kasbon.printsp2');
+    Route::get('/kasbon/printsp3/{kasbon}', [KasbonController::class, 'printsp3'])->name('kasbon.printsp3');
 });
 
 Route::controller(VerifikasiKasbonController::class)->group(function () {

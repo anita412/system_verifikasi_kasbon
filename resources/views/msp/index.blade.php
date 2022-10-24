@@ -10,9 +10,9 @@
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Kasbon @endslot
-            @slot('li_3') List @endslot
-            @slot('title') List Kasbon @endslot
+            @slot('li_2') SP @endslot
+            @slot('li_3') Monitoring @endslot
+            @slot('title') Monitoring SP @endslot
         @endcomponent
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show border-0 b-round" role="alert">
@@ -35,10 +35,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title" style="display: inline;">Kasbon</h4>
-                <div class="mt-1 float-end">
-                    <a class=" btn btn-sm btn-soft-primary"  href="{{ route('kasbon.create') }}" role="button"><i class="fas fa-plus me-2"></i>New Kasbon</a>
-                </div>
+                <h4 class="card-title" style="display: inline;">Monitoring SP</h4>
+               
                 <p class="text-muted mb-0">
                 </p>
             </div><!--end card-header-->
@@ -107,6 +105,7 @@
                     <tbody>
                         @foreach ($kasbon as $kasbon)
                         @if(isset($kasbon->verifikasikasbon->status))
+                        @if(isset($kasbon->monitoringsp->ptj))
                         @if($kasbon->verifikasikasbon->status == "Terverifikasi")
                     <tr>
                         <td>{{$kasbon->nokasbon}}</td>
@@ -114,19 +113,14 @@
                         <td>{{$kasbon->user->name}}</td>
                         <td style="width: 10%">{{$kasbon->formatkasbon}}</td>
                         <td>Rp. {{number_format($kasbon->total)}}</td>
-                        <td>
-                            @if(isset($kasbon->pertanggungan->id))
-                            <label for="">Sudah</label>
-                            @else
-                            <label for="">Belum</label>
-                            @endif
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$kasbon->monitoringsp->ptj}}</td>
+                        <td>{{$kasbon->monitoringsp->sp1}}</td>
+                        <td>{{$kasbon->monitoringsp->sp2}}</td>
+                        <td>{{$kasbon->monitoringsp->sp3}}</td>
+                        <td>{{$kasbon->monitoringsp->mts}}</td>
+                        <td>{{$kasbon->monitoringsp->pbsdm}}</td>
+                        <td style="text-align: center"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        
                     </tr>
                     <div class="modal fade" id="exampleModalDanger_{{$kasbon->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -151,6 +145,7 @@
                             </div><!--end modal-content-->
                         </div><!--end modal-dialog-->
                     </div><!--end modal-->
+                    @endif
                     @endif
                     @endif
                     @endforeach
@@ -207,7 +202,7 @@
     
   //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
    var $dTable = $('#datatable2').DataTable({
-    order: [[1, 'desc']],
+    order: [[0, 'desc']],
     columnDefs: [
             {
                 "targets": [6],

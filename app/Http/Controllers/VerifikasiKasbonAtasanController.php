@@ -152,7 +152,7 @@ class VerifikasiKasbonAtasanController extends Controller
 
         $title = 'Detail';
 
-        return view('vkb-atasan.cek_kasbon', compact('title', 'kasbon'));
+        return view('vkb-atasan.lembar-kasbon', compact('title', 'kasbon'));
     }
 
     public function cek_kasbon_edit($id)
@@ -162,7 +162,7 @@ class VerifikasiKasbonAtasanController extends Controller
 
         $title = 'Detail';
 
-        return view('vkb-atasan.cek_kasbon_edit', compact('title', 'kasbon', 'detail'));
+        return view('vkb-atasan.lembar-kasbon', compact('title', 'kasbon', 'detail'));
     }
 
     public function store(Request $request)

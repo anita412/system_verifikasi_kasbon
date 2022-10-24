@@ -16,7 +16,7 @@
                                     <a class="logo logo-admin">
                                         <img src="{{ URL::asset('assets/images/brand-logo/imst.png') }}" height="50" alt="logo" class="auth-logo">
                                     </a>
-                                    <h4 class="mt-3 mb-1 fw-semibold font-18" style="color: black">Silahkan Masuk Terlebih Dulu</h4>
+                                    <h4 class="mt-3 mb-1 fw-semibold font-18" style="color: black">Selamat Datang</h4>
                                     <p class="text-muted  mb-0">Sign in to continue.</p>
                                 </div>
                             </div>

@@ -110,6 +110,78 @@ class VerifikasiKasbonController extends Controller
 
             $kasbon = Kasbon::find($id);
 
+            $vendorID = Dvendor::insertGetId([
+
+                'dv_invoice' => $request->Input('dv_invoice'),
+                'dv_kwitansi' => $request->Input('dv_kwitansi'),
+                'dv_povendor' => $request->Input('dv_povendor'),
+                'dv_sjnvendor' => $request->Input('dv_sjnvendor'),
+                'dv_packcinglist' => $request->Input('dv_packinglist'),
+                'dv_testreport' => $request->Input('dv_testreport'),
+                'dv_bapp' => $request->Input('dv_bapp'),
+                'dv_lppb' => $request->Input('dv_lppb'),
+            ]);
+
+            $customerID = DCustomer::insertGetId([
+
+                'dc_memointernal' => $request->Input('dc_memointernal'),
+                'dc_spph' => $request->Input('dc_spph'),
+                'dc_ko' => $request->Input('dc_ko'),
+                'dc_loi' => $request->Input('dc_loi'),
+                'dc_invoicecustom' => $request->Input('dc_invoicecustom'),
+                'dc_sjncustom' => $request->Input('dc_sjncustom'),
+            ]);
+
+            $imporID = DImpor::insertGetId([
+
+                'di_pib' => $request->Input('di_pib'),
+                'di_bl' => $request->Input('di_bl'),
+                'di_com' => $request->Input('di_com'),
+                'di_coo' => $request->Input('di_coo'),
+                'di_invoicecustom' => $request->Input('di_invoicecustom'),
+                'di_sjncustom' => $request->Input('di_sjncustom'),
+            ]);
+
+            $pajakID = DPajak::insertGetId([
+
+                'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
+                'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
+                'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
+            ]);
+
+            $dinasID = DDinas::insertGetId([
+
+                'dd_tickettransport' => $request->Input('dd_tickettransport'),
+                'dd_notamakan' => $request->Input('dd_notamakan'),
+                'dd_boardingpass' => $request->Input('dd_boardingpass'),
+                'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
+                'dd_sppd' => $request->Input('dd_sppd'),
+            ]);
+
+            $keteranganID = Keterangan::insertGetId([
+                'catatan' => $request->Input('catatan'),
+            ]);
+
+            foreach ($request->kekurangan as $key => $kekurangan) {
+                $data = new Keterangan_detail();
+                $tgl_kelengkapan = $request->input('tgl_kelengkapan');
+                $data->id_keterangan = $keteranganID;
+                $data->kekurangan = $kekurangan;
+                $data->tgl_kelengkapan = $tgl_kelengkapan[$key];
+                $data->save();
+            }
+
+            Kelengkapan::insertGetId([
+                'id_dv' => $vendorID,
+                'id_dc' => $customerID,
+                'id_kasbon' => $kasbon->id,
+                'nokasbon' => $kasbon->nokasbon,
+                'id_di' => $imporID,
+                'id_dp' => $pajakID,
+                'id_dd' => $dinasID,
+                'id_kt' => $keteranganID,
+            ]);
+
             Keterangankasbon::where('id_kasbon', $id)->delete();
             $data = $request->all();
             if ($request->kekurangan) {

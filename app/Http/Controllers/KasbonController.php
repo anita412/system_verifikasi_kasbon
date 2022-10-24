@@ -44,6 +44,21 @@ class KasbonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function cetakdata(Request $request)
+    {
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
+
+        if ($tglawal and $tglakhir) {
+            $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
+        } else {
+            $kasbon = Kasbon::all();
+        }
+
+        return view('kasbon.cetak', compact('kasbon'));
+    }
+
     public function generatePDF($id)
     {
         $pertanggungan = Pertanggungan::find($id);
@@ -53,11 +68,33 @@ class KasbonController extends Controller
         return view('pdf.print-kasbon', compact('pertanggungan', 'detail', 'keterangan'));
     }
 
+
+    public function printsp1($id)
+    {
+        $kasbon = Kasbon::find($id);
+
+        return view('pdf.print-sp1', compact('kasbon',  'kasbon'));
+    }
+
+    public function printsp2($id)
+    {
+        $kasbon = Kasbon::find($id);
+
+        return view('pdf.print-sp2', compact('kasbon',  'kasbon'));
+    }
+
+    public function printsp3($id)
+    {
+        $kasbon = Kasbon::find($id);
+
+        return view('pdf.print-sp3', compact('kasbon',  'kasbon'));
+    }
     public function index()
     {
+        $now = Carbon::now()->format('Y-m-d');
         $title = 'Kasbon';
         $kasbon = Kasbon::latest()->paginate();
-        return view('kasbon.index', compact('kasbon', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('kasbon.index', compact('kasbon', 'title', 'now'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -83,6 +120,7 @@ class KasbonController extends Controller
             $urut = 100001;
             $nomer = 'KSB' . $thnBulan . '-' . $urut;
             $n0mer = 'D' . $urut;
+            $terakhir = 'KSB20221013-0';
         } else {
             $ambil = Kasbon::all()->last();
             $urut = (int)substr($ambil->nokasbon, -1) + 1;
@@ -264,7 +302,7 @@ class KasbonController extends Controller
             $kasbon->total = $request->iddpp + $request->idppn + $request->idpph;
             $kasbon->namavendor = $request->namavendor;
             $kasbon->haritempo = $request->haritempo;
-            $kasbon->tgltempo = now()->addDays(30);
+            $kasbon->tgltempo = now()->addDays($request->haritempo);
             $kasbon->noinvoice = $request->noinvoice;
             $kasbon->spph = $request->spph;
             $kasbon->po_vendor = $request->po_vendor;
@@ -301,8 +339,18 @@ class KasbonController extends Controller
             ->with('success', 'Kasbon deleted successfully');
     }
 
-    public function kasbonexport()
+    public function kasbonexport(Request $request)
     {
-        return Excel::download(new KasbonExport, 'kasbon.xlsx');
+
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
+
+        if ($tglawal and $tglakhir) {
+            $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
+        } else {
+            $kasbon = Kasbon::all();
+        }
+        return Excel::download(new KasbonExport($kasbon), 'kasbon.xlsx');
+        // return view('kasbon.cetak', compact('kasbon'));
     }
 }

@@ -11,7 +11,8 @@ class Kasbon extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['tglmasuk'];
+    protected $dates = ['tgltempo', 'tglmasuk', 'barang_datang'];
+
     public function kurs()
     {
         return $this->belongsTo(Kurs::class, 'id_kurs', 'id');

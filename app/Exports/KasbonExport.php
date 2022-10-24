@@ -28,7 +28,7 @@ class KasbonExport implements FromCollection, WithMapping, WithHeadings, SkipsEm
             $kasbon->doksebelumnya,
             $kasbon->kodekasbon->name,
             $kasbon->jenis->name,
-            $kasbon->kurs->name,
+            $kasbon->kurs->code,
             $kasbon->proyek,
             $kasbon->uraianpengguna,
             $kasbon->iddpp,

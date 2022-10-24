@@ -38,24 +38,14 @@
                             @endforeach
                     </div>                                     
                 </div><!--end card-body-->   --}}
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title" id="0-form-entry">Show {{$kasbon->nokasbon}}</h4>
-                            <h4 class="card-title" id="1-form-entry">Cek Kasbon</h4>
-                        </div><!--end card-header-->
-                        
-                        <div class="card-body bootstrap-select-1">
+                
                             {!! Form::model($kasbon, ['method' => 'PATCH','route' => ['vkb.update', $kasbon->id],'class' => 'form-parsley']) !!}
                                 <input value="{{$kasbon->id}}" class="text-muted mb-0" name="id" hidden>
                                 {{ csrf_field() }}
                                @include('vkb.edit-cek')
                                @include('vkb.edit-keterangan')
                                {!! Form::close() !!} 
-                        </div><!--end card-body-->
-                    </div><!--end card-->
-                </div><!--end col-->
-            </div>
+                
 
 @endsection
 

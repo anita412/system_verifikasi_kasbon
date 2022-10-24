@@ -59,7 +59,7 @@
                             <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>No Kasbon</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Kasbon</th>
                                     <th>Nominal Kasbon</th>
@@ -178,7 +178,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[1, 'desc']],
+       order: [[0, 'desc']],
        columnDefs: [
                {
                    "targets": [6],

@@ -18,6 +18,7 @@ use App\Models\Keterangan;
 use App\Models\Keterangan_detail;
 use App\Models\KeteranganPertanggungan;
 use App\Models\VerifikasiPertanggungan;
+use App\Models\MonitoringSP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,6 +111,18 @@ class PertanggunganController extends Controller
                 'nilaiptj'  => $request->nilaiptj,
                 'selisihptj'  => $request->nilaiptj - $kasbon->total,
                 'created_at' => $now,
+                'updated_at' => $now,
+            ]);
+
+            $idmsp = $kasbon->monitoringsp->id;
+            $msp = MonitoringSP::find($idmsp);
+            $msp->update([
+                'ptj' => 'Sudah',
+                'sp1' => 'Close',
+                'sp2' => 'Close',
+                'sp3' => 'Close',
+                'mts' => 'Close',
+                'pbsdm' => 'Close',
                 'updated_at' => $now,
             ]);
 

@@ -18,7 +18,7 @@
                                     <a href="index" class="logo logo-admin">
                                         <img src="{{ URL::asset('assets/images/logo-sm-dark.png') }}" height="50" alt="logo" class="auth-logo">
                                     </a>
-                                    <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Lets Get Started Dastone</h4>
+                                    <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Lets Get Started IMST</h4>
                                     <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>
                                 </div>
                             </div>

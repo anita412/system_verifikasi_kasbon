@@ -197,7 +197,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[0, 'desc']],
+       order: [[1, 'desc']],
        columnDefs: [
                {
                    "targets": [8],

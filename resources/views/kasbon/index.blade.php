@@ -49,10 +49,32 @@
                 </p>
             </div><!--end card-header-->
                 <div class="card-body">
-                   
+                    {{-- @foreach ($kasbon as $kasbonss)
+                    @if($kasbonss->id_user == Auth::user()->id)
+                    @if(isset($kasbonss->monitoringsp->id))
+                    @if($kasbonss->monitoringsp->tgl_sp1 == $now)
+                    <strong>SP 1 Untuk</strong> {{$kasbonss->nokasbon}} <br>
+                    @elseif($kasbonss->monitoringsp->tgl_sp2 == $now)
+                    <label class="badge rounded-pill bg-danger">SP2</label>
+                    @elseif($kasbonss->monitoringsp->tgl_sp3 == $now)
+                    <label class="badge rounded-pill bg-danger">SP3</label>
+                    @elseif($kasbonss->monitoringsp->tgl_mts == $now)
+                    <label class="badge rounded-pill bg-danger">MTS</label>
+                    @elseif($kasbonss->monitoringsp->tgl_pbsdm == $now)
+                    <label class="badge rounded-pill bg-danger">PBSDM</label>
+                    @endif
+                    @else
+                    @if($kasbonss->tgltempo->format('Y-m-d') == $now)
+                    <strong>Silahkan Ajukan Pertanggungan Untuk</strong> {{$kasbonss->nokasbon}} <br>
+                    @else
+                    @endif
+                    @endif
+                    @endif
+                    @endforeach
+                    <br> --}}
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <a href="{{ route('kasbonexport') }}" class="btn btn-sm btn-outline-primary">
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModalDefault" class="btn btn-sm btn-outline-primary">
                                 <i data-feather="download" class="align-self-center icon-xs"></i>
                             </a>
                         </div>
@@ -96,51 +118,50 @@
                         <th>Jenis</th>
                         <th>Status</th>
                         <th style="width:0%">Action</th>
+                        <th  style="text-align: center">Pemberitahuan</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kasbon as $kasbon)
-                        @if($kasbon->id_user == Auth::user()->id)
+                        @foreach ($kasbon as $kasbons)
+                        @if($kasbons->id_user == Auth::user()->id)
                     <tr>
-                        <td>{{$kasbon->nokasbon}}</td>
-                        <td>{{$kasbon->tglmasuk->format('d/m/Y')}}</td>
-                        <td>{{$kasbon->jeniskasbon}}</td>
-                        <td>Rp. {{number_format($kasbon->total)}}</td>
-                        <td>{{$kasbon->noinvoice}}</td>
-                        <td>{{$kasbon->jenis->name}}</td>
+                        <td>{{$kasbons->nokasbon}}</td>
+                        <td>{{$kasbons->tglmasuk->format('d/m/Y')}}</td>
+                        <td>{{$kasbons->jeniskasbon}}</td>
+                        <td>Rp. {{number_format($kasbons->total)}}</td>
+                        <td>{{$kasbons->noinvoice}}</td>
+                        <td>{{$kasbons->jenis->name}}</td>
                         <td>
-                            @if(isset($kasbon->verifikasikasbon->id))
-                            @if($kasbon->verifikasikasbon->status == "Dalam Proses")
+                            @if(isset($kasbons->verifikasikasbon->id))
+                            @if($kasbons->verifikasikasbon->status == "Dalam Proses")
                                 <label class="badge rounded-pill bg-primary">Dalam Proses</label>
-                            @elseif($kasbon->verifikasikasbon->status == "Revisi")
+                            @elseif($kasbons->verifikasikasbon->status == "Revisi")
                                 <label class="badge rounded-pill bg-warning">Revisi</label>
-                            @elseif($kasbon->verifikasikasbon->status == "Ditolak")
+                            @elseif($kasbons->verifikasikasbon->status == "Ditolak")
                                 <label class="badge rounded-pill bg-danger">Ditolak</label>
-                            @elseif($kasbon->verifikasikasbon->status == "Terverifikasi")
+                            @elseif($kasbons->verifikasikasbon->status == "Terverifikasi")
                                 <label class="badge rounded-pill bg-success">Terverifikasi</label>
                             @endif
                             @endif
                         </td>
-                        
-                        
                         <td class="text-end">
-                            @if(isset($kasbon->verifikasikasbon->id))
-                            @if($kasbon->verifikasikasbon->status == "Dalam Proses")
-                            <a href="{{ route('kasbon.show',$kasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @elseif($kasbon->verifikasikasbon->status == "Revisi")
-                            <a href="{{ route('kasbon.edit',$kasbon->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
-                            <a href="{{ route('kasbon.show',$kasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @elseif($kasbon->verifikasikasbon->status == "Ditolak")
-                            <a href="{{ route('kasbon.show',$kasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$kasbon->id}}" data-action="{{ route('kasbon.destroy', $kasbon->id) }}"><i class="las la-trash font-16"></i></a>
-                            @elseif($kasbon->verifikasikasbon->status == "Terverifikasi")
-                            @if(isset($kasbon->verifikasikasbon->vkb_a_2))
-                            @if(isset($kasbon->pertanggungan->id))
-                            <a href="{{ route('pertanggungan.show',$kasbon->pertanggungan->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-send"></i></a> 
-                            <a href="{{ route('kasbon.show',$kasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                            @if(isset($kasbons->verifikasikasbon->id))
+                            @if($kasbons->verifikasikasbon->status == "Dalam Proses")
+                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                            @elseif($kasbons->verifikasikasbon->status == "Revisi")
+                            <a href="{{ route('kasbon.edit',$kasbons->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
+                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                            @elseif($kasbons->verifikasikasbon->status == "Ditolak")
+                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                            <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$kasbons->id}}" data-action="{{ route('kasbon.destroy', $kasbons->id) }}"><i class="las la-trash font-16"></i></a>
+                            @elseif($kasbons->verifikasikasbon->status == "Terverifikasi")
+                            @if(isset($kasbons->verifikasikasbon->vkb_a_2))
+                            @if(isset($kasbons->pertanggungan->id))
+                            <a href="{{ route('pertanggungan.show',$kasbons->pertanggungan->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-information-outline"></i></a> 
+                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                             @else
-                            <a href="{{ route('pertanggungan.insert',$kasbon->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Ajukan Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-send"></i></a> 
-                            <a href="{{ route('kasbon.show',$kasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                            <a href="{{ route('pertanggungan.insert',$kasbons->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Ajukan Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-send"></i></a> 
+                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                             @endif
                             @endif
                             @endif
@@ -171,9 +192,32 @@
                             @endif --}}
                             @endif
                         </td>
-                        @endif
+                        <td style="text-align: center">
+                            @if(isset($kasbons->monitoringsp->id))
+                              
+                            @if($kasbons->monitoringsp->tgl_sp1 < $now && $kasbons->monitoringsp->tgl_sp2 > $now)
+                            <a href="{{ route('kasbon.printsp1',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP1</a>
+                            @elseif($kasbons->monitoringsp->tgl_sp2 < $now && $kasbons->monitoringsp->tgl_sp3 > $now)
+                            {{-- @elseif($kasbons->monitoringsp->tgl_sp2 == $now) --}}
+                            <a href="{{ route('kasbon.printsp2',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP2</a>
+                            @elseif($kasbons->monitoringsp->tgl_sp3 > $now)
+                            {{-- @elseif($kasbons->monitoringsp->tgl_sp3 == $now) --}}
+                            <a href="{{ route('kasbon.printsp3',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP3</a>
+                            @elseif($kasbons->monitoringsp->tgl_mts == $now)
+                            <label class="badge rounded-pill bg-danger">MTS</label>
+                            @elseif($kasbons->monitoringsp->tgl_pbsdm == $now)
+                            <label class="badge rounded-pill bg-danger">PBSDM</label>
+                            @endif
+                            @else
+                            @if($kasbons->tgltempo->format('Y-m-d') == $now)
+                            <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
+                            @else
+                            -
+                            @endif
+                            @endif
+                    </td>
                     </tr>
-                    <div class="modal fade" id="exampleModalDanger_{{$kasbon->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalDanger_{{$kasbons->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header bg-danger">
@@ -185,7 +229,7 @@
                                         </div><!--end col-->                                                 
                                 </div><!--end modal-body-->
                                 <div class="modal-footer">  
-                                    <form action="{{ route('kasbon.destroy',$kasbon->id) }}" method="POST" style="display: inline">
+                                    <form action="{{ route('kasbon.destroy',$kasbons->id) }}" method="POST" style="display: inline">
                                     
                                         @method('delete')
                                         {{ csrf_field() }}                                                  
@@ -196,6 +240,7 @@
                             </div><!--end modal-content-->
                         </div><!--end modal-dialog-->
                     </div><!--end modal-->
+                    @endif
                     @endforeach
                     </tbody>
                    
@@ -203,6 +248,37 @@
             </div>
         </div>
     </div> <!-- end col -->
+
+    <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Default Modal</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div><!--end modal-header-->
+                <form method="GET" action="{{route('kasbonexport')}}" target="_blank">
+                    {{ csrf_field() }}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="my-3">Start Date</label>
+                            <input type="date" name="tglawal" class="form-control" >
+                        </div><!--end col-->
+                        <div class="col-md-6">
+                            <label class="my-3">End Date</label>
+                            <input type="date" name="tglakhir" class="form-control">
+                        </div><!--end col-->
+                    </div><!--end row-->                                       
+                </div><!--end modal-body-->
+          
+                <div class="modal-footer">                                                    
+                    <button type="submit" class="btn btn-soft-primary btn-sm">Download</button>
+                    <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div><!--end modal-footer-->
+            </form>
+            </div><!--end modal-content-->
+        </div><!--end modal-dialog-->
+    </div><!--end modal-->
        
 
 @endsection

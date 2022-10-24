@@ -93,7 +93,7 @@
             <div class="form-group row">
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <select class="form-control" id="kurs" name="kurs">
+                    <select class="form-control" id="kurs" name="id_kurs">
                         <option value="" disabled selected hidden>Pilih Kurs</option>
                         @foreach ($kurs as $rate)
                         @if(old('kurs', $kasbon->id_kurs) == $rate->id)

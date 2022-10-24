@@ -361,7 +361,7 @@ html {
   font-weight: 400;
   line-height: 1.6em;
   overflow-x: hidden;
-  background-color: #f5f6fa;
+  background-color: #ffffff;
 }
 
 h1,
@@ -1003,6 +1003,7 @@ ul {
 
 .tm_invoice_in {
   position: relative;
+  margin: 0;
   z-index: 100;
 }
 
