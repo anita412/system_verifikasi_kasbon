@@ -67,6 +67,13 @@ class VerifikasiNonKasbonAtasanController extends Controller
                 $nonkasbon->verifikasinonkasbon->status = $request->Input('status');
             }
 
+            KeterangannonKasbon::insertGetId([
+                'id_nonkasbon' => $id,
+                'keterangan' => $request->Input('keterangan'),
+                'created_at' => $now,
+                'updated_at' => $now
+            ]);
+
             $nonkasbon->verifikasinonkasbon->id_vnk_a_1 = Auth::user()->id;
             $nonkasbon->verifikasinonkasbon->updated_at = $now;
             $nonkasbon->verifikasinonkasbon->save();
@@ -95,17 +102,24 @@ class VerifikasiNonKasbonAtasanController extends Controller
                 'updated_at' =>  $now
             ]);
 
-            Keterangannonkasbon::where('id_nonkasbon', $id)->delete();
-            $data = $request->all();
-            if ($request->kekurangan) {
-                foreach ($data['kekurangan'] as $item => $value) {
-                    $data2 = array(
-                        'id_nonkasbon' => $id,
-                        'keterangan' => $data['kekurangan'][$item],
-                    );
-                    Keterangannonkasbon::create($data2);
-                }
-            }
+            // Keterangannonkasbon::where('id_nonkasbon', $id)->delete();
+            // $data = $request->all();
+            // if ($request->kekurangan) {
+            //     foreach ($data['kekurangan'] as $item => $value) {
+            //         $data2 = array(
+            //             'id_nonkasbon' => $id,
+            //             'keterangan' => $data['kekurangan'][$item],
+            //         );
+            //         Keterangannonkasbon::create($data2);
+            //     }
+            // }
+
+            $idketerangan = $nonkasbon->keterangannonkasbon->id;
+            $keterangan = KeterangannonKasbon::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
+            ]);
         });
         return redirect()->route('vnk-atasan.index')->with('success', 'User updated successfully');
     }

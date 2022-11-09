@@ -5,11 +5,9 @@
 <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/huebee/huebee.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 @endsection
 
     @section('content')
@@ -89,7 +87,7 @@
                                     <td>{{$pertanggungan->nilaiselisihptj}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Dalam Proses")
-                                        <label class="badge rounded-pill bg-primary">{{$pertanggungan->verifikasipertanggungan->vkp_a_1}}</label>
+                                        <label class="badge rounded-pill bg-primary">Belum Proses</label>
                                         @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Terverifikasi")
                                         @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Terverifikasi" and $pertanggungan->verifikasipertanggungan->vkp_a_2 == "Terverifikasi")
                                         <label class="badge rounded-pill bg-success">Terverifikasi</label>
@@ -103,15 +101,28 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Dalam Proses")
-                                        <a href={{ route('vkp-atasan.cek_pertanggungan',$pertanggungan->id) }} class="btn btn-outline-primary btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Dokumen</a>
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Revisi")
-                                        <a href={{ route('vkp-atasan.cek_pertanggungan',$pertanggungan->id) }} class="btn btn-outline-warning btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Dokumen</a>
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Terverifikasi")
-                                         <a href={{ route('vkp-atasan.cek_pertanggungan',$pertanggungan->id) }} class="btn btn-outline-success btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Dokumen</a>
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Ditolak")
-                                         <a href={{ route('vkp-atasan.cek_pertanggungan',$pertanggungan->id) }} class="btn btn-outline-danger btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Dokumen</a>
-                                    @endif
+                                        @if(isset($pertanggungan->verifikasipertanggungan->id_vkp_a_1))
+                                        @include('vkp-atasan.modal-cek-edit')
+                                        @include('vkp-atasan.modal-cek-lihat')
+                                            @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Dalam Proses")
+                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Terverifikasi")
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Ditolak")
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Revisi")
+                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
+                                            @endif
+                                        @else
+                                        @include('vkp-atasan.modal-cek')
+                                            @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Dalam Proses")
+                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Ditolak")
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Revisi")
+                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            @endif
+                                        @endif
                                     </td>
                                     @endforeach
                                 </tr>
@@ -147,28 +158,155 @@
 
 @endsection
 @section('script')
+<script src="{{ URL::asset('assets/js/jquery.core.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/jquery.validation.init.js') }}"></script>
+<script src="{{ URL::asset('assets/js-pdf/jspdf.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js-pdf/html2canvas.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js-pdf/main.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/huebee/huebee.pkgd.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.forms-advanced.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+<script>
+    +function($) {
+    'use strict';
+
+    var modals = $('.modal.multi-step');
+
+    modals.each(function(idx, modal) {
+        var $modal = $(modal);
+        var $bodies = $modal.find('div.modal-body');
+        var total_num_steps = $bodies.length;
+        var $progress = $modal.find('.m-progress');
+        var $progress_bar = $modal.find('.m-progress-bar');
+        var $progress_stats = $modal.find('.m-progress-stats');
+        var $progress_current = $modal.find('.m-progress-current');
+        var $progress_total = $modal.find('.m-progress-total');
+        var $progress_complete  = $modal.find('.m-progress-complete');
+        var reset_on_close = $modal.attr('reset-on-close') === 'true';
+
+        function reset() {
+            $modal.find('.step').hide();
+            $modal.find('[data-step]').hide();
+        }
+
+        function completeSteps() {
+            $progress_stats.hide();
+            $progress_complete.show();
+            $modal.find('.progress-text').animate({
+                top: '-2em'
+            });
+            $modal.find('.complete-indicator').animate({
+                top: '-2em'
+            });
+            $progress_bar.addClass('completed');
+        }
+
+        function getPercentComplete(current_step, total_steps) {
+            return Math.min(current_step / total_steps * 100, 100) + '%';
+        }
+
+        function updateProgress(current, total) {
+            $progress_bar.animate({
+                width: getPercentComplete(current, total)
+            });
+            if (current - 1 >= total_num_steps) {
+                completeSteps();
+            } else {
+                $progress_current.text(current);
+            }
+
+            $progress.find('[data-progress]').each(function() {
+                var dp = $(this);
+                if (dp.data().progress <= current - 1) {
+                    dp.addClass('completed');
+                } else {
+                    dp.removeClass('completed');
+                }
+            });
+        }
+
+        function goToStep(step) {
+            reset();
+            var to_show = $modal.find('.step-' + step);
+            if (to_show.length === 0) {
+                // at the last step, nothing else to show
+                return;
+            }
+            to_show.show();
+            var current = parseInt(step, 10);
+            updateProgress(current, total_num_steps);
+            findFirstFocusableInput(to_show).focus();
+        }
+
+        function findFirstFocusableInput(parent) {
+            var candidates = [parent.find('input'), parent.find('select'),
+                              parent.find('textarea'),parent.find('button')],
+                winner = parent;
+            $.each(candidates, function() {
+                if (this.length > 0) {
+                    winner = this[0];
+                    return false;
+                }
+            });
+            return $(winner);
+        }
+
+        function bindEventsToModal($modal) {
+            var data_steps = [];
+            $('[data-step]').each(function() {
+                var step = $(this).data().step;
+                if (step && $.inArray(step, data_steps) === -1) {
+                    data_steps.push(step);
+                }
+            });
+
+            $.each(data_steps, function(i, v) {
+                window.addEventListener('next.m.' + v, function (evt) {
+                    goToStep(evt.detail.step);
+                }, false);
+            });
+        }
+
+        function initialize() {
+            reset();
+            updateProgress(1, total_num_steps);
+            $modal.find('.step-1').show();
+            $progress_complete.hide();
+            $progress_total.text(total_num_steps);
+            bindEventsToModal($modal, total_num_steps);
+            $modal.data({
+                total_num_steps: $bodies.length,
+            });
+            if (reset_on_close){
+                //Bootstrap 2.3.2
+                $modal.on('hidden', function () {
+                    reset();
+                    $modal.find('.step-1').show();
+                })
+                //Bootstrap 3
+                $modal.on('hidden.bs.modal', function () {
+                    reset();
+                    $modal.find('.step-1').show();
+                })
+            }
+        }
+
+        initialize();
+    })
+}(jQuery);
+</script>
+<script>
+    sendEvent = function(sel, step) {
+        var sel_event = new CustomEvent('next.m.' + step, {detail: {step: step}});
+        window.dispatchEvent(sel_event);
+    }
+    </script>
 <script type="text/javascript"> 
     var start_date;
       var end_date;
@@ -193,7 +331,7 @@
      // fungsi untuk converting format tanggal dd/mm/yyyy menjadi format tanggal javascript menggunakan zona aktubrowser
      function parseDateValue(rawDate) {
          var dateArray= rawDate.split("/");
-         var parsedDate= new Date(dateArray[1], parseInt(dateArray[1])-1, dateArray[0]);  // -1 because months are from 0 to 11   
+         var parsedDate= new Date(dateArray[0], parseInt(dateArray[1])-1, dateArray[0]);  // -1 because months are from 0 to 11   
          return parsedDate;
      }    
    
@@ -201,10 +339,10 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[1, 'desc']],
+       order: [[0, 'desc']],
        columnDefs: [
                {
-                   "targets": [8],
+                   "targets": [6],
                    "visible": true
                }
            ],
@@ -230,8 +368,8 @@
          var status = $(this).val();
          $('.status-dropdown').val(status)
          console.log(status)
-         //dataTable.column(8).search('\\s' + status + '\\s', true, false, true).draw();
-         $dTable.column(8).search(status).draw();
+         //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+         $dTable.column(6).search(status).draw();
        })  
    
       document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

@@ -48,6 +48,7 @@ class PertanggunganController extends Controller
         return view('pdf.print-kasbon', compact('pertanggungan', 'detail', 'keterangan'));
     }
 
+
     public function index()
     {
         $title = 'Pertanggungan';
@@ -123,6 +124,11 @@ class PertanggunganController extends Controller
                 'sp3' => 'Close',
                 'mts' => 'Close',
                 'pbsdm' => 'Close',
+                'tgl_sp1' => $request->tgl_sp1,
+                'tgl_sp2' => $request->tgl_sp2,
+                'tgl_sp3' => $request->tgl_sp3,
+                'tgl_mts' => $request->tgl_mts,
+                'tgl_pbsdm' => $request->tgl_pbsdm,
                 'updated_at' => $now,
             ]);
 

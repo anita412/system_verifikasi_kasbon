@@ -1,16 +1,4 @@
-
-    
-    <style>
-        .left {
-            text-align: left;
-         
-        }
-        .left {
-            text-align: left;
-        }
-        
-    </style>
-    <div class="modal fade bd-example-modal-lg multi-step" id="exampleModalDanger_{{$kasbon->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg multi-step" id="modalcek_{{$kasbon->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
@@ -21,120 +9,206 @@
                     
                 </div>
                 <div class="modal-body step-1" data-step="1" >
-                    <table style="margin-left:auto;margin-right:auto;">
-                        <tbody>
-                          <tr>
-                              <td class="tm_border_top_0 tm_border_bottom" colspan="11" style="text-align: center"><b class="tm_primary_color">LEMBAR VERIFIKASI</b></td>
-                          </tr>
-                          <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">TANGGAL MASUK</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->tglmasuk->format('d-m-Y')}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">KASBON</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">RENCANA</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">JAM MASUK</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->jammasuk}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">DOK SEBELUMNYA</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->doksebelumnya}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">USER</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->user->name}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">NIP</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->user->nip}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">KODE KASBON</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->kodekasbon->name}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">JENIS KASBON</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->jenis->name}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">KURS</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->kurs->code}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PROYEK</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->proyek}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">URAIAN PENGGUNAAN</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->uraianpengguna}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">NILAI/DPP</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->iddpp}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PPN</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->idppn}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PPH</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->pph->name}} Rp. {{$kasbon->idpph}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">NOMINAL KASBON</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">Rp. {{$kasbon->total}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">TGL JATUH TEMPO</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->tgltempo->format('d-m-Y')}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">No INVOICE</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->noinvoice}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">SPPH/KOI/LOI</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->spph}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PO VENDOR</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->po_vendor}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PO CUSTOMER</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->po_customer}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">SJN</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->sjn}}</b></td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">HARGA JUAL</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->harga_jual}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">PERKIRAAN BRG DTG</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->barang_datang}}</b></td>
-                            <td style="width:0%" class="tm_border_top tm_gray_bg"><b class="tm_primary_color"></b></td>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg"><b class="tm_primary_color">NO. PI (FOCUS)</b></td>
-                            <td  class="tm_border_left tm_border_top tm_gray_bg"><b class="tm_primary_color">:</b></td>
-                            <td class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$kasbon->nopi}}</b></td>
-                           </tr>
-                      </table>
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive shopping-cart">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                     <p class=" align-middle mb-0 product-name">Tanggal Masuk</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Kasbon</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->jeniskasbon}} </td>    
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->jammasuk}}</td>                                                      
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Dok Sebelumnya</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->doksebelumnya}}</td>     
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">User</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->user->name}}</td>   
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">NIP</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->user->nip}}</td>                                                      
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                     <p class=" align-middle mb-0 product-name">Kode Kasbon</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->kodekasbon->name}}</td>    
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Jenis Kasbon</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->jeniskasbon}}</td>   
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">Kurs</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->kurs->code}}</td>                                                       
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Proyek</p>
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->proyek}}</td>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Uraian</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->uraianpengguna}}</td>  
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">Nilai/DPP</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>Rp. {{$kasbon->iddpp}}</td>     
+                                            </tr>  
+                                            <tr>
+                                                <td>
+                                                     <p class=" align-middle mb-0 product-name">PPN</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>Rp. {{$kasbon->ppn}}</td>  
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">PPH</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>({{$kasbon->pph->name}}) Rp. {{$kasbon->idpph}}</td>    
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->total}}</td>                                                      
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Tgl JTT</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">No Invoice</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->noinvoice}}</td>   
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">SPPH/KOI/LOI</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->spph}}</td>                                                      
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                     <p class=" align-middle mb-0 product-name">PO Vendor</p> 
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->po_vendor}}</td>    
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">PO Customer</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->po_customer}}</td>   
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">SJN</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->sjn}}</td>                                                       
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Harga Jual</p>
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>{{$kasbon->harga_jual}}</td>
+                                                <td>
+                                                    <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
+                                               </td>
+                                               <td>
+                                                   :
+                                               </td>
+                                               <td>{{$kasbon->barang_datang->format('d-m-Y')}}</td>  
+                                               <td>
+                                                <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
+                                           </td>
+                                           <td>
+                                               :
+                                           </td>
+                                           <td>{{$kasbon->nopi}}</td>     
+                                            </tr>                        
+                                        </tbody>
+                                    </table>
+                                </div><!--end re-table-->
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!--end col-->
                      
                 </div>
 
-                {!! Form::model($kasbon, ['method' => 'PATCH','route' => ['vkb.update', $kasbon->id],'class' => 'form-parsley form-control']) !!}
+                <form  action="{{ route('vkb.store', $kasbon->id) }}" method="post" class="form-parsley" >
                 <input value="{{$kasbon->id}}" class="text-muted mb-0" name="id" hidden>
                                 {{ csrf_field() }}
                 <div class="modal-body step-2" data-step="3">
@@ -149,7 +223,7 @@
                                                 <div class="col-md-2">
                                                     <label class="form-label">INVOICE</label>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="dv_invoice" id="dv_invoice1" value="ASLI" required>
+                                                        <input class="form-check-input" type="radio" name="dv_invoice" id="dv_invoice1" value="ASLI" >
                                                         <label class="form-check-label" for="dv_invoice1">
                                                             ASLI
                                                         </label>
@@ -683,103 +757,73 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ASLI" required>
                                                     <label class="form-check-label" for="dd_tickettransport1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="COPY">
+                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="TIDAK" >
                                                     <label class="form-check-label" for="dd_tickettransport2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="-" >
-                                                    <label class="form-check-label" for="dd_tickettransport2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">NOTA MAKAN</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan1" value="ASLI" required>
+                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan1" value="ADA" required>
                                                     <label class="form-check-label" for="dd_notamakan1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="COPY">
+                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="TIDAK">
                                                     <label class="form-check-label" for="dd_notamakan2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="-" >
-                                                    <label class="form-check-label" for="dd_notamakan2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">BOARDING PASS</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass1" value="ASLI" required>
+                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass1" value="ADA" required>
                                                     <label class="form-check-label" for="dd_boardingpass1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="COPY">
+                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="TIDAK" >
                                                     <label class="form-check-label" for="dd_boardingpass2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="-" >
-                                                    <label class="form-check-label" for="dd_boardingpass2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">NOTA PENGINAPAN</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan1" value="ASLI" required>
+                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan1" value="ADA" required>
                                                     <label class="form-check-label" for="dd_notapenginapan1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="COPY">
+                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="TIDAK">
                                                     <label class="form-check-label" for="dd_notapenginapan2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="-" >
-                                                    <label class="form-check-label" for="dd_notapenginapan2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">SPPD</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd1" value="ASLI" required>
+                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd1" value="ADA" required>
                                                     <label class="form-check-label" for="dd_sppd1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="COPY">
+                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="TIDAK" >
                                                     <label class="form-check-label" for="dd_sppd2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="-" >
-                                                    <label class="form-check-label" for="dd_sppd2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
@@ -857,7 +901,7 @@
 
                 <div class="modal-body step-3" data-step="2" >
                     <div class="row" style="margin-left:auto;margin-right:auto;">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="mt-3">
                                 <label class="form-label">Status</label>
                                 <select name="status" class="form-select" required>
@@ -866,6 +910,12 @@
                                     <option value="Terverifikasi">Terverifikasi</option>
                                     <option value="Ditolak">Tolak Ajuan</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mt-3">
+                                <label class="form-label">Catatan</label>
+                               <textarea class="form-control" name="catatan"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
@@ -907,7 +957,7 @@
                     <button type="submit" class="btn btn-primary step step-3" data-step="3" >Simpan</button>
                     <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 3)">Next</button>
                 </div>
-                {!! Form::close() !!} 
+                </form>
             </div>
         </div>
     </div><!--end modal-->

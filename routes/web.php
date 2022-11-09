@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SPPDController;
 use App\Http\Controllers\KasbonController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\NonkasbonController;
 use App\Http\Controllers\VerifikasiKasbonController;
@@ -39,7 +40,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);

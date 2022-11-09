@@ -27,7 +27,7 @@
                         <input id="txtNameCard"  type="number" class="form-control" name="haritempo" value="{{$kasbon->haritempo}}" disabled>
                     </div>
                     <div class="col-lg-4">
-                        <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo}}" disabled>    
+                        <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo->format('Y-m-d')}}" disabled>    
                     </div>
                 </div><!--end form-group-->
             </div><!--end col-->
@@ -54,7 +54,7 @@
             <div class="form-group row">
                 <label for="txtCompanyShipping" class="col-lg-4 col-form-label" >Tgl Pertanggung Jawaban</label>
                 <div class="col-lg-8">
-                    <input id="form-control" class="form-control" type="date" value="2022-09-10" id="example-date-input" name="tglptj">
+                    <input id="form-control" class="form-control" type="date" id="example-date-input" name="tglptj">
                 </div>
             </div>
         </div>
@@ -108,7 +108,11 @@
         </div>
     </div>
 </div><!-- end row -->
-
+<input type="date" name="tgl_sp1"  value="" hidden>    
+<input type="date" name="tgl_sp2" value=""   hidden>  
+<input type="date" name="tgl_sp3"  value="" hidden>  
+<input type="date" name="tgl_mts"  value="" hidden>  
+<input type="date" name="tgl_pbsdm" value=""  hidden>  
 <script>
     function add_number() {
       var first_number = parseFloat(document.getElementById("nilaiptj").value);

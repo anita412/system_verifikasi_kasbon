@@ -52,12 +52,12 @@ class VerifikasiAtasanPertanggunganController extends Controller
         $now = Carbon::now();
         DB::transaction(function () use ($pertanggungan, $request, $id, $now) {
 
-            foreach ($request->kekurangan as $key => $kekurangan) {
-                $data = new KeteranganPertanggungan();
-                $data->id_pertanggungan = $id;
-                $data->keterangan = $kekurangan;
-                $data->save();
-            }
+            KeteranganPertanggungan::insertGetId([
+                'id_pertanggungan' => $id,
+                'keterangan' => $request->Input('keterangan'),
+                'created_at' => $now,
+                'updated_at' => $now
+            ]);
 
             if ($pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status') == 'Terverifikasi') {
                 $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
@@ -72,6 +72,40 @@ class VerifikasiAtasanPertanggunganController extends Controller
             $pertanggungan->verifikasipertanggungan->save();
         });
 
+        return redirect()->route('vkp-atasan.index')
+            ->with('success', 'Pertanggungan berhasil diverifikasi');
+    }
+
+    public function update(Request $request, $id)
+    {
+        DB::transaction(function () use ($request, $id) {
+            $now = Carbon::now();
+            $pertanggungan = Pertanggungan::find($id);
+            if ($pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status') == 'Terverifikasi') {
+                $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
+                $pertanggungan->verifikasipertanggungan->vkp = 'Dalam Proses';
+                $pertanggungan->verifikasipertanggungan->status = 'Dalam Proses';
+            } else {
+                $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
+                $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
+            }
+            $pertanggungan->verifikasipertanggungan->updated_at = $now;
+            $pertanggungan->verifikasipertanggungan->id_vkp_a_1 = Auth::user()->id;
+            $pertanggungan->verifikasipertanggungan->save();
+
+            $pertanggungan->verifikasipertanggungan->update([
+                'vkp_a_1' => $request->Input('status'),
+                'status' => $request->Input('status'),
+                'id_vkp_a_1' => Auth::user()->id
+            ]);
+
+            $idketerangan =  $pertanggungan->verifikasipertanggungan->id;
+            $keterangan = KeteranganPertanggungan::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
+            ]);
+        });
         return redirect()->route('vkp-atasan.index')
             ->with('success', 'Pertanggungan berhasil diverifikasi');
     }

@@ -31,7 +31,7 @@
             <div class="col-sm-12">
                 <div class="card form-wizard-wrapper">
                     <div class="card-header">
-                        <h4 class="card-title">Form Entry Non nonkasbon</h4>
+                        <h4 class="card-title">{{$nonkasbon->no_nonkasbon}}</h4>
                     </div><!--end card-header-->
                     <div class="card-body">
                         <div class="row">
@@ -39,7 +39,7 @@
                                 <div class="form-group row">
                                     <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Tanggal Masuk</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" name="tglmasuk" type="date" value="{{$nonkasbon->tglmasuk}}" id="example-date-input" disabled>
+                                        <input class="form-control" name="tglmasuk" type="date" value="{{$nonkasbon->tglmasuk->format('Y-m-d')}}" id="example-date-input" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <div class="form-group row">
                                     <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode nonkasbon</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" type="text" value="{{$nonkasbon->kodekasbon->name}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
+                                        <input class="form-control" type="text" value="{{$nonkasbon->kodekasbon}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col--> 
@@ -93,7 +93,7 @@
                                 <div class="form-group row">
                                     <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis nonkasbon</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" type="text" value="{{$nonkasbon->id_jenis_nonkasbon}}" disabled readonly>
+                                        <input class="form-control" type="text" value="{{$nonkasbon->jenis}}" disabled readonly>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
@@ -111,7 +111,7 @@
                                 <div class="form-group row">
                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Nama Vendor</label>
                                     <div class="col-lg-8">
-                                        <input  required parsley type="text" class="form-control" name ="namavendor" value="{{$nonkasbon->namavendor}}">
+                                        <input  required parsley type="text" class="form-control" name ="namavendor" value="{{$nonkasbon->namavendor}}" disabled>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
@@ -119,7 +119,7 @@
                                 <div class="form-group row">
                                     <label for="txtNameCard" class="col-lg-4 col-form-label">No. Invoice</label>
                                     <div class="col-lg-8">
-                                        <input required parsley id="txtNameCard" name="noinvoice" type="text" class="form-control input-noi" data-parsley-minlength="10" value="{{$nonkasbon->noinvoice}}"> 
+                                        <input required parsley id="txtNameCard" name="noinvoice" type="text" class="form-control input-noi" data-parsley-minlength="10" value="{{$nonkasbon->noinvoice}}" disabled> 
                                         {{-- <script>
                                             var cleave = new Cleave('.input-noi', {
                                             delimiters: ['/'],
@@ -134,7 +134,7 @@
                                 <div class="form-group row">
                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Tujuan Pembayaran</label>
                                     <div class="col-lg-8">
-                                        <input  required parsley type="text" class="form-control" name ="tujuanpembayaran" value="{{$nonkasbon->tujuanpembayaran}}">
+                                        <input  required parsley type="text" class="form-control" name ="tujuanpembayaran" value="{{$nonkasbon->tujuanpembayaran}}" disabled>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
@@ -146,8 +146,7 @@
                                 
     <div class="row">
         <div class="col-sm-12 text-end mt-2" style="margin-top: -2rem">
-            <a href="{{route('nonkasbon.index')}}" class="btn btn-danger">Cancel</a>    
-            <button type="submit" class="btn btn-primary px-4">Simpan</button>
+            <a href="{{route('nonkasbon.index')}}" class="btn btn-danger">Back</a>    
         </div>
     </div> 
     </div>

@@ -110,17 +110,12 @@ class VerifikasiKasbonAtasan2Controller extends Controller
             $now = Carbon::now();
             $kasbon = Kasbon::find($id);
 
-            Keterangankasbon::where('id_kasbon', $id)->delete();
-            $data = $request->all();
-            if ($request->kekurangan) {
-                foreach ($data['kekurangan'] as $item => $value) {
-                    $data2 = array(
-                        'id_kasbon' => $id,
-                        'keterangan' => $data['kekurangan'][$item],
-                    );
-                    Keterangankasbon::create($data2);
-                }
-            }
+            $idketerangan = $kasbon->keterangankasbon->id;
+            $keterangan = KeteranganKasbon::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
+            ]);
 
 
             if ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Revisi') {
@@ -137,6 +132,15 @@ class VerifikasiKasbonAtasan2Controller extends Controller
                 MonitoringSP::insertGetId([
                     'id_kasbon' => $id,
                     'ptj' => 'Belum',
+                    'sp1' => 'Belum',
+                    'sp2' => 'Belum',
+                    'sp3' => 'Belum',
+                    'mts' => 'Belum',
+                    'pbsdm' => 'Belum',
+                    'ptj' => 'Belum',
+                    'tgl_sp1' => $kasbon->tgltempo->addDays(7),
+                    // 'tgl_sp2' => $kasbon->tgltempo->addDays(21),
+                    // 'tgl_sp3' => $kasbon->tgltempo->addDays(44),
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);

@@ -34,10 +34,10 @@ class Nonkasbon extends Model
     {
         return $this->hasone(DokumenNK::class, 'id_nonkasbon', 'id');
     }
-    public function dokumennkd()
-    {
-        return $this->hasone(DokumenNKD::class, 'id_nonkasbon', 'id');
-    }
+    // public function dokumennkd()
+    // {
+    //     return $this->hasone(DokumenNKD::class, 'id_nonkasbon', 'id');
+    // }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');

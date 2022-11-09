@@ -13,7 +13,7 @@ class DokumenNK extends Model
 
     public function dokumennkd()
     {
-        return $this->hasone(DokumenNKD::class, 'id_dnk', 'id');
+        return $this->hasmany(DokumenNKD::class, 'id_dnk', 'id');
     }
 
     public function nonkasbon()

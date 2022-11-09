@@ -22,6 +22,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Romans\Filter\IntToRoman;
 use PDF;
 
 class KasbonController extends Controller
@@ -56,7 +57,8 @@ class KasbonController extends Controller
             $kasbon = Kasbon::all();
         }
 
-        return view('kasbon.cetak', compact('kasbon'));
+        return Excel::download(new KasbonExport($kasbon), 'kasbon.xlsx');
+        // return view('kasbon.cetak', compact('kasbon'));
     }
 
     public function generatePDF($id)
@@ -104,27 +106,30 @@ class KasbonController extends Controller
      */
     public function create()
     {
-        $dueDate = now()->addDays(30)->format('Y-m-d');
+        $filter = new IntToRoman();
+        $dueDate = now()->addDays(7)->format('Y-m-d');
         $pph = Pph::all();
         $kurs = Kurs::all();
         $jenis = Jenis::all();
         $namavendor = NamaVendor::all();
         $kodekasbon = KodeKasbon::all();
         $now = Carbon::now();
-        $jamnow = Carbon::now()->format('H:i:s');
-        $thnBulan = Carbon::now()->format('Y-m-d');
+        $jamnow = Carbon::now()->setTimezone('Asia/Jakarta')->format('H:i:s');
+        $thnBulan = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $result = $filter->filter($bulan);
         $cek = Kasbon::count();
         $tglmasuk = Carbon::now()->format('Y-m-d');
         $terakhir = Kasbon::query()->latest('id')->first();
         if ($cek == 0) {
             $urut = 100001;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
+            $nomer = 'PPK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
             $n0mer = 'D' . $urut;
-            $terakhir = 'KSB20221013-0';
+            $terakhir = 'PPK/0/X/2022';
         } else {
             $ambil = Kasbon::all()->last();
             $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'KSB' . $thnBulan . '-' . $urut;
+            $nomer = 'PPK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
             $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
             $n0mer = 'D' . $uru_t;
         }
@@ -141,25 +146,25 @@ class KasbonController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'jeniskasbon' => 'required',
-            'id_jenis' => 'required',
-            'id_kurs' => 'required',
-            'proyek' => 'required',
-            'uraianpengguna' => 'required',
-            'iddpp' => 'required',
-            'idppn' => 'required',
-            'id_pph' => 'required',
-            'idpph' => 'required',
-            'namavendor' => 'required',
-            'haritempo' => 'required',
-            'noinvoice' => 'required',
-            'spph' => 'required',
-            'po_vendor' => 'required',
-            'po_customer' => 'required',
-            'sjn' => 'required',
-            'harga_jual' => 'required',
-            'barang_datang' => 'required',
-            'nopi' => 'required',
+            // 'jeniskasbon' => 'required',
+            // 'id_jenis' => 'required',
+            // 'id_kurs' => 'required',
+            // 'proyek' => 'required',
+            // 'uraianpengguna' => 'required',
+            // 'iddpp' => 'required',
+            // 'idppn' => 'required',
+            // 'id_pph' => 'required',
+            // 'idpph' => 'required',
+            // 'namavendor' => 'required',
+            // 'haritempo' => 'required',
+            // 'noinvoice' => 'required',
+            // 'spph' => 'required',
+            // 'po_vendor' => 'required',
+            // 'po_customer' => 'required',
+            // 'sjn' => 'required',
+            // 'harga_jual' => 'required',
+            // 'barang_datang' => 'required',
+            // 'nopi' => 'required',
 
         ]);
 

@@ -3,11 +3,10 @@
         <div class="brand">
             <a href="index" class="logo">
                 <span>
-                    <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">
+                    <img src="{{ URL::asset('assets/images/brand-logo/imst.png') }}" height="40" alt="logo" class="auth-logo">
                 </span>
                 <span>
-                    <img src="{{ URL::asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-light">
-                    <img src="{{ URL::asset('assets/images/imst.png') }}" alt="logo-large" class="logo-lg imst">
+               
                 </span>
             </a>
         </div>
@@ -27,6 +26,11 @@
                     <a href="{{ route('users.index') }}"><i class="dripicons-user-group align-self-center menu-icon"></i><span>User</span></a>
                 </li>
                 @endcan
+                @can('unit-list')
+                <li>
+                    <a href="{{ route('units.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Unit</span></a>
+                </li>
+                @endcan
                 @can('role-list')
                 <li>
                     <a href="{{ route('roles.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Role</span></a>
@@ -44,6 +48,20 @@
                     </ul>
                 </li>
                 @endcan
+                @can('vkb-atasan-list')
+                <li>
+                    <a href="javascript: void(0);"> <i  class="align-self-center menu-icon ti-check-box"></i><span>Verifikasi Atasan - 1</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-atasan-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                        @can('nkb-atasan-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan.index') }}"><i class="ti-control-record"></i>Verifikasi Atasan NonKasbon</a></li> 
+                        @endcan
+                    </ul> 
+                </li>
+                @endcan
                 @can('vkb-list')
                 <li>
                     <a href="javascript: void(0);"> <i class="align-self-center menu-icon ti-check-box"></i><span>Verifikasi</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -58,12 +76,29 @@
                     </ul> 
                 </li>
                 @endcan
+                
+                @can('vkb-atasan-2-list')
+                <li>
+                    <a href="javascript: void(0);"> <i class="align-self-center menu-icon ti-check-box" ></i><span>Verifikasi Atasan - 2</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-2.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-atasan-2-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-2.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                        @can('nkb-atasan-2-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        @endcan
+                    </ul> 
+                </li>
+                @endcan
                 @can('sppd-list')
                 <li>
                     <a href="{{ route('sppd.index') }}"><i class="align-self-center ti-receipt"></i><span>SPPD</span></a>
                 </li>
                 @endcan
-                
+                <li>
+                    <a href="{{ route('msp.index') }}"><i class="align-self-center ti-receipt"></i><span>Monitoring SP</span></a>
+                </li>
             </ul>
         </div>
     </div>

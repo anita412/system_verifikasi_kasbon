@@ -101,19 +101,29 @@
                                         @endif
                                     </td>
                                     <td>
-                                            @if($kasbon->verifikasikasbon->vkb == "Dalam Proses")
-                                            <a href={{ route('vkb.cek_kasbon_edit',$kasbon->id) }} class="btn btn-outline-primary btn-sm"><i class="mdi mdi-send me-2"></i>Cek Kasbon</a> 
-                                            @elseif($kasbon->verifikasikasbon->vkb == "Terverifikasi")
-                                            @include('vkb.modal-cek')
-                                            <a type="submit"  class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$kasbon->id}}" data-action="{{ route('kasbon.destroy', $kasbon->id) }}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
+                                        @if(isset($kasbon->verifikasikasbon->id_vkb))
+                                        @include('vkb.modal-cek-edit')
+                                        @include('vkb.modal-cek-lihat')
+                                        @if($kasbon->verifikasikasbon->vkb == "Dalam Proses")
+                                        <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$kasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>                                    
+                                        @endif
+                                            @if($kasbon->verifikasikasbon->vkb == "Terverifikasi")
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$kasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
                                             @elseif($kasbon->verifikasikasbon->vkb == "Ditolak")
-                                            <a href={{ route('vkb.cek_kasbon_edit',$kasbon->id) }} class="btn btn-outline-danger btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$kasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
                                             @elseif($kasbon->verifikasikasbon->vkb == "Revisi")
-                                            <a href={{ route('vkb.cek_kasbon_edit',$kasbon->id) }} class="btn btn-outline-warning btn-sm"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
+                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$kasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a> 
                                             @endif
+                                            @else
+                                            @include('vkb.modal-cek')
+                                            @if($kasbon->verifikasikasbon->vkb == "Dalam Proses")
+                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$kasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>                                    
+                                            @endif
+                                        @endif
                                     </td>
                                 </tr>
-                                
+                              
+                               
                                 @endif
                                 @endif
                                 @endforeach 

@@ -20,7 +20,9 @@ class VerifikasiNonKasbonController extends Controller
      */
     public function index()
     {
+
         $nonkasbon = nonkasbon::all();
+
         $title = 'Kasbon';
         return view('vnk.index', compact('nonkasbon', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

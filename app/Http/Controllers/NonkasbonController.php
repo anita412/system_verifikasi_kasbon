@@ -102,7 +102,7 @@ class NonkasbonController extends Controller
             if ($cek == 0) {
                 $urut = 100001;
                 $nomer = 'NKB' . $thnBulan . '-' . $urut;
-                $terakhir = '0';
+                $terakhir = 'NKB20221013-0';
             } else {
                 $ambil = NonKasbon::all()->last();
                 $urut = (int)substr($ambil->no_nonkasbon, -1) + 1;

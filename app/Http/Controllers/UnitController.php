@@ -36,9 +36,8 @@ class UnitController extends Controller
     public function create()
     {
         $units = Unit::all();
-        $roles = Role::pluck('name', 'name')->all();
         $title = 'Input';
-        return view('units.create', compact('roles', 'units', 'title'));
+        return view('units.create', compact('units', 'title'));
     }
 
     /**
@@ -51,18 +50,9 @@ class UnitController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|unique:units,email',
-            'password' => 'required',
-            'nip' => 'required',
-            'id_unit' => 'required',
-            'roles' => 'required'
         ]);
-
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $unit = unit::create($input);
-        $unit->assignRole($request->input('roles'));
+        
+        $unit = Unit::create(['name' => $request->input('name')]);
 
         return redirect()->route('units.index')
             ->with('success', 'unit created successfully');
@@ -89,12 +79,10 @@ class UnitController extends Controller
     public function edit($id)
     {
         $unit = unit::find($id);
-        $roles = Role::pluck('name', 'name')->all();
         $units = Unit::all();
-        $unitRole = $unit->roles->pluck('name', 'name')->all();
         $title = 'Edit';
 
-        return view('units.edit', compact('unit', 'roles', 'unitRole', 'title', 'units'));
+        return view('units.edit', compact('unit', 'title', 'units'));
     }
 
     /**
@@ -108,7 +96,6 @@ class UnitController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|unique:units,email,' . $id,
             'roles' => 'required'
         ]);
 

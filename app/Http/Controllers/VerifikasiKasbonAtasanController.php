@@ -72,7 +72,6 @@ class VerifikasiKasbonAtasanController extends Controller
         $kasbon = Kasbon::find($id);
         $kb = $kasbon->id;
         $kelengkapan = Kelengkapan::where('id_kasbon', $kb)->get();
-
         $kodekasbon = KodeKasbon::all();
         $pph = Pph::all();
         $kurs = Kurs::all();
@@ -87,7 +86,6 @@ class VerifikasiKasbonAtasanController extends Controller
         $kasbon = Kasbon::find($id);
         $kb = $kasbon->id;
         $kelengkapan = Kelengkapan::where('id_kasbon', $kb)->get();
-
         $kodekasbon = KodeKasbon::all();
         $pph = Pph::all();
         $kurs = Kurs::all();
@@ -106,7 +104,7 @@ class VerifikasiKasbonAtasanController extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $kasbon = Kasbon::find($id);
             if ($kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status') == 'Terverifikasi') {
                 $kasbon->verifikasikasbon->vkb = 'Dalam Proses';
@@ -120,17 +118,25 @@ class VerifikasiKasbonAtasanController extends Controller
                 'id_vkb_a_1' => Auth::user()->id
             ]);
 
-            Keterangankasbon::where('id_kasbon', $id)->delete();
-            $data = $request->all();
-            if ($request->kekurangan) {
-                foreach ($data['kekurangan'] as $item => $value) {
-                    $data2 = array(
-                        'id_kasbon' => $id,
-                        'keterangan' => $data['kekurangan'][$item],
-                    );
-                    Keterangankasbon::create($data2);
-                }
-            }
+            $idketerangan = $kasbon->keterangankasbon->id;
+            $keterangan = KeteranganKasbon::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
+            ]);
+
+            // Keterangankasbon::where('id_kasbon', $id)->delete();
+            // $data = $request->all();
+            // if ($request->kekurangan) {
+            //     foreach ($data['kekurangan'] as $item => $value) {
+            //         $data2 = array(
+            //             'id_kasbon' => $id,
+            //             'keterangan' => $data['kekurangan'][$item],
+            //         );
+            //         Keterangankasbon::create($data2);
+            //     }
+            // }
+
         });
         return redirect()->route('vkb-atasan.index')->with('success', 'User updated successfully');
     }
@@ -170,14 +176,21 @@ class VerifikasiKasbonAtasanController extends Controller
         $id = $request->id;
         $kasbon = Kasbon::find($id);
         $now = Carbon::now();
-        DB::transaction(function () use ($kasbon, $request, $id) {
+        DB::transaction(function () use ($kasbon, $request, $id, $now) {
 
-            foreach ($request->kekurangan as $key => $kekurangan) {
-                $data = new KeteranganKasbon();
-                $data->id_kasbon = $id;
-                $data->keterangan = $kekurangan;
-                $data->save();
-            }
+            // foreach ($request->kekurangan as $key => $kekurangan) {
+            //     $data = new KeteranganKasbon();
+            //     $data->id_kasbon = $id;
+            //     $data->keterangan = $kekurangan;
+            //     $data->save();
+            // }
+
+            KeteranganKasbon::insertGetId([
+                'id_kasbon' => $id,
+                'keterangan' => $request->Input('keterangan'),
+                'created_at' => $now,
+                'updated_at' => $now
+            ]);
 
             if ($kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status') == 'Terverifikasi') {
                 $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');

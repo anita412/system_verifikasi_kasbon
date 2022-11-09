@@ -65,8 +65,8 @@ class Kasbon extends Model
         return $this->belongsTo(Kelengkapan::class, 'id_kelengkapan', 'id');
     }
 
-    public function keterangan_kasbon()
+    public function keterangankasbon()
     {
-        return $this->hasMany(Keterangan_detail::class, 'id_kasbon', 'id');
+        return $this->hasOne(KeteranganKasbon::class, 'id_kasbon', 'id');
     }
 }

@@ -9,6 +9,7 @@
                     <th>Quantity</th>
                     <th style="width: 0%" class="text-center"></th>
                 </tr>
+                
                 @foreach ($detail as $details)
                 <tr class="item">
                     <td><input name="dokumen[]" class="form-control" value="{{$details->dokumen}}" required parsley/></td></td>

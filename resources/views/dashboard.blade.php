@@ -7,10 +7,9 @@
 
     @section('content')
         @component('components.breadcrumb')
-            @slot('li_1') Dastone @endslot
+            @slot('li_1') IMST @endslot
             @slot('li_2') Dashboard @endslot
-            @slot('li_3') Sales @endslot
-            @slot('title') Sales @endslot
+            @slot('title') IMST Dashboard @endslot
         @endcomponent
 
         <div class="row">
@@ -19,27 +18,25 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="card-title">Revenu Status</h4>
+                                <h4 class="card-title" id="jkasbon">Jumlah Kasbon</h4>
+                                <h4 class="card-title" id="jnkasbon">Jumlah NonKasbon</h4>
+                                <h4 class="card-title" id="jpertanggungan">Jumlah Pertanggungan</h4>
                             </div><!--end col-->
                             <div class="col-auto">
                                 <div class="dropdown">
-                                    <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        This Month<i class="las la-angle-down ms-1"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="#">Today</a>
-                                        <a class="dropdown-item" href="#">Last Week</a>
-                                        <a class="dropdown-item" href="#">Last Month</a>
-                                        <a class="dropdown-item" href="#">This Year</a>
-                                    </div>
+                                    <select class="form-select" aria-label="Default select example" id="pilihan">
+                                        <option value="okasbon" selected>Kasbon</option>
+                                        <option value="ononkasbon">Nonkasbon</option>
+                                        <option value="opertanggungan">Pertanggungan</option>
+                                    </select>
                                 </div>
                             </div><!--end col-->
                         </div>  <!--end row-->
                     </div><!--end card-header-->
                     <div class="card-body">
-                        <div class="">
-                            <div id="Revenu_Status" class="apex-charts"></div>
-                        </div>
+                            <div id="kasbon" class="apex-charts"></div>
+                            <div id="nonkasbon" class="apex-charts" ></div>
+                            <div id="pertanggungan" class="apex-charts" ></div>
                     </div><!--end card-body-->
                 </div><!--end card-->
                 <div class="row">
@@ -124,7 +121,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="card-title">Earning Reports</h4>
+                                <h4 class="card-title">Kasbon</h4>
                             </div><!--end col-->
                             <div class="col-auto">
                                 <div class="dropdown">
@@ -160,7 +157,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h4 class="card-title">Earnings Reports</h4>
+                                <h4 class="card-title">Kasbon</h4>
                             </div><!--end col-->
                         </div>  <!--end row-->
                     </div><!--end card-header-->
@@ -169,51 +166,39 @@
                             <table class="table mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="border-top-0">Date</th>
-                                        <th class="border-top-0">Item Count</th>
-                                        <th class="border-top-0">Text</th>
-                                        <th class="border-top-0">Earnings</th>
+                                        <th class="border-top-0">Tgl Masuk</th>
+                                        <th class="border-top-0">No Kasbon</th>
+                                        <th class="border-top-0">Nominal</th>
+                                        <th class="border-top-0">Status</th>
                                     </tr><!--end tr-->
                                 </thead>
                                 <tbody>
+                                    @foreach ($kasbons as $ksb)
                                     <tr>
-                                        <td>01 January</td>
-                                        <td>50</td>
-                                        <td class="text-danger">-$70</td>
-                                        <td>$15,000</td>
+                                        <td>{{$ksb->tglmasuk}}</td>
+                                        <td>{{$ksb->nokasbon}}</td>
+                                        <td>Rp. {{number_format($ksb->total)}}</td>
+                                        <td>
+                                            @if(isset($ksb->verifikasikasbon->id))
+                                            @if($ksb->verifikasikasbon->status == "Dalam Proses")
+                                                <label class="badge rounded-pill bg-primary">Dalam Proses</label>
+                                            @elseif($ksb->verifikasikasbon->status == "Revisi")
+                                                <label class="badge rounded-pill bg-warning">Revisi</label>
+                                            @elseif($ksb->verifikasikasbon->status == "Ditolak")
+                                                <label class="badge rounded-pill bg-danger">Ditolak</label>
+                                            @elseif($ksb->verifikasikasbon->status == "Terverifikasi")
+                                                <label class="badge rounded-pill bg-success">Terverifikasi</label>
+                                            @endif
+                                            @endif
+                                        </td>
                                     </tr><!--end tr-->
+                                    @endforeach
                                     <tr>
-                                        <td>02 January</td>
-                                        <td>25</td>
-                                        <td>-</td>
-                                        <td>$9,500</td>
-
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>03 January</td>
-                                        <td>65</td>
-                                        <td class="text-danger">-$115</td>
-                                        <td>$35,000</td>
-
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>04 January</td>
-                                        <td>20</td>
-                                        <td>-</td>
-                                        <td>$8,500</td>
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>05 January</td>
-                                        <td>40</td>
-                                        <td class="text-danger">-$60</td>
-                                        <td>$12,000</td>
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>06 January</td>
-                                        <td>45</td>
-                                        <td class="text-danger">-$65</td>
-                                        <td>$13,500</td>
-                                    </tr><!--end tr-->
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td> <a href="">View More</a></td>
+                                    </tr>
                                 </tbody>
                             </table> <!--end table-->
                         </div><!--end /div-->
@@ -325,6 +310,53 @@
 
 @endsection
 @section('script')
+
+<script>
+    var year = <?php echo $year; ?>;
+    var kasbon = <?php echo $kasbon; ?>;
+    var nonkasbon = <?php echo $nonkasbon; ?>;
+    var pertanggungan = <?php echo $pertanggungan; ?>;
+</script>
+<script>
+    $(document).ready(function () {
+        $("#nonkasbon").attr("hidden", "hidden"),
+        $("#pertanggungan").attr("hidden", "hidden"),
+        $("#jpertanggungan").attr("hidden", "hidden"),
+        $("#jnkasbon").attr("hidden", "hidden"),
+    toggleFields(); 
+    $("#pilihan").change(function () {
+        toggleFields();
+    });
+
+});
+
+function toggleFields() {
+    if ($("#pilihan").val() === "ononkasbon")
+        $("#nonkasbon").removeAttr("hidden"),
+        $("#jnkasbon").removeAttr("hidden"),
+        $("#pertanggungan").attr("hidden", "hidden"),
+        $("#jpertanggungan").attr("hidden", "hidden"),
+        $("#jkasbon").attr("hidden", "hidden"),
+        $("#kasbon").attr("hidden", "hidden");
+
+    if ($("#pilihan").val() === "okasbon")
+    $("#jkasbon").removeAttr("hidden"),
+    $("#jpertanggungan").attr("hidden", "hidden"),
+    $("#jnkasbon").attr("hidden", "hidden"),
+    $("#kasbon").removeAttr("hidden"),
+    $("#pertanggungan").attr("hidden", "hidden"),
+    $("#nonkasbon").attr("hidden", "hidden");
+
+    if ($("#pilihan").val() === "opertanggungan")
+    $("#jpertanggungan").removeAttr("hidden"),
+    $("#jkasbon").attr("hidden", "hidden"),
+    $("#jnkasbon").attr("hidden", "hidden"),
+    $("#pertanggungan").removeAttr("hidden"),
+    $("#nonkasbon").attr("hidden", "hidden"),
+    $("#kasbon").attr("hidden", "hidden");
+}
+
+</script>
         <script src="{{ URL::asset('assets/plugins/apex-charts/apexcharts.min.js') }}"></script>
         <script src="{{ URL::asset('assets/js/pages/jquery.sales_dashboard.init.js') }}"></script>
         <script src="{{ URL::asset('assets/js/app.js') }}"></script>

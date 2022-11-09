@@ -110,8 +110,9 @@ class VerifikasiKasbonController extends Controller
 
             $kasbon = Kasbon::find($id);
 
-            $vendorID = Dvendor::insertGetId([
-
+            $idvendor = $kasbon->kelengkapan->dvendor->id;
+            $vendor = Dvendor::find($idvendor);
+            $vendor->update([
                 'dv_invoice' => $request->Input('dv_invoice'),
                 'dv_kwitansi' => $request->Input('dv_kwitansi'),
                 'dv_povendor' => $request->Input('dv_povendor'),
@@ -122,8 +123,9 @@ class VerifikasiKasbonController extends Controller
                 'dv_lppb' => $request->Input('dv_lppb'),
             ]);
 
-            $customerID = DCustomer::insertGetId([
-
+            $idcustomer = $kasbon->kelengkapan->dcustomer->id;
+            $customer = DCustomer::find($idcustomer);
+            $customer->update([
                 'dc_memointernal' => $request->Input('dc_memointernal'),
                 'dc_spph' => $request->Input('dc_spph'),
                 'dc_ko' => $request->Input('dc_ko'),
@@ -132,8 +134,19 @@ class VerifikasiKasbonController extends Controller
                 'dc_sjncustom' => $request->Input('dc_sjncustom'),
             ]);
 
-            $imporID = DImpor::insertGetId([
+            $iddinas = $kasbon->kelengkapan->ddinas->id;
+            $dinas = DDinas::find($iddinas);
+            $dinas->update([
+                'dd_tickettransport' => $request->Input('dd_tickettransport'),
+                'dd_notamakan' => $request->Input('dd_notamakan'),
+                'dd_boardingpass' => $request->Input('dd_boardingpass'),
+                'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
+                'dd_sppd' => $request->Input('dd_sppd'),
+            ]);
 
+            $idimpor = $kasbon->kelengkapan->dimpor->id;
+            $impor = DImpor::find($idimpor);
+            $impor->update([
                 'di_pib' => $request->Input('di_pib'),
                 'di_bl' => $request->Input('di_bl'),
                 'di_com' => $request->Input('di_com'),
@@ -142,45 +155,34 @@ class VerifikasiKasbonController extends Controller
                 'di_sjncustom' => $request->Input('di_sjncustom'),
             ]);
 
-            $pajakID = DPajak::insertGetId([
-
+            $idpajak = $kasbon->kelengkapan->dpajak->id;
+            $pajak = DPajak::find($idpajak);
+            $pajak->update([
                 'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
                 'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
                 'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
             ]);
 
-            $dinasID = DDinas::insertGetId([
-
-                'dd_tickettransport' => $request->Input('dd_tickettransport'),
-                'dd_notamakan' => $request->Input('dd_notamakan'),
-                'dd_boardingpass' => $request->Input('dd_boardingpass'),
-                'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
-                'dd_sppd' => $request->Input('dd_sppd'),
-            ]);
-
-            $keteranganID = Keterangan::insertGetId([
+            $idketerangan = $kasbon->kelengkapan->keterangan->id;
+            $keterangan = Keterangan::find($idketerangan);
+            $keterangan->update([
                 'catatan' => $request->Input('catatan'),
             ]);
 
-            foreach ($request->kekurangan as $key => $kekurangan) {
-                $data = new Keterangan_detail();
-                $tgl_kelengkapan = $request->input('tgl_kelengkapan');
-                $data->id_keterangan = $keteranganID;
-                $data->kekurangan = $kekurangan;
-                $data->tgl_kelengkapan = $tgl_kelengkapan[$key];
-                $data->save();
-            }
 
-            Kelengkapan::insertGetId([
-                'id_dv' => $vendorID,
-                'id_dc' => $customerID,
-                'id_kasbon' => $kasbon->id,
-                'nokasbon' => $kasbon->nokasbon,
-                'id_di' => $imporID,
-                'id_dp' => $pajakID,
-                'id_dd' => $dinasID,
-                'id_kt' => $keteranganID,
-            ]);
+            $kd = $kasbon->kelengkapan->keterangan->id;
+            Keterangan_detail::where('id_keterangan', $kd)->delete();
+            $data = $request->all();
+            if ($request->kekurangan) {
+                foreach ($data['kekurangan'] as $item => $value) {
+                    $data2 = array(
+                        'id_keterangan' => $kd,
+                        'kekurangan' => $data['kekurangan'][$item],
+                        'tgl_kelengkapan' => $data['tgl_kelengkapan'][$item],
+                    );
+                    Keterangan_detail::create($data2);
+                }
+            }
 
             Keterangankasbon::where('id_kasbon', $id)->delete();
             $data = $request->all();
@@ -247,7 +249,7 @@ class VerifikasiKasbonController extends Controller
         DB::transaction(function () use ($kasbon, $request, $id) {
 
             $vendorID = Dvendor::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'dv_invoice' => $request->Input('dv_invoice'),
                 'dv_kwitansi' => $request->Input('dv_kwitansi'),
                 'dv_povendor' => $request->Input('dv_povendor'),
@@ -259,7 +261,7 @@ class VerifikasiKasbonController extends Controller
             ]);
 
             $customerID = DCustomer::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'dc_memointernal' => $request->Input('dc_memointernal'),
                 'dc_spph' => $request->Input('dc_spph'),
                 'dc_ko' => $request->Input('dc_ko'),
@@ -269,7 +271,7 @@ class VerifikasiKasbonController extends Controller
             ]);
 
             $imporID = DImpor::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'di_pib' => $request->Input('di_pib'),
                 'di_bl' => $request->Input('di_bl'),
                 'di_com' => $request->Input('di_com'),
@@ -279,14 +281,14 @@ class VerifikasiKasbonController extends Controller
             ]);
 
             $pajakID = DPajak::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
                 'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
                 'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
             ]);
 
             $dinasID = DDinas::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'dd_tickettransport' => $request->Input('dd_tickettransport'),
                 'dd_notamakan' => $request->Input('dd_notamakan'),
                 'dd_boardingpass' => $request->Input('dd_boardingpass'),
@@ -295,7 +297,7 @@ class VerifikasiKasbonController extends Controller
             ]);
 
             $keteranganID = Keterangan::insertGetId([
-                'nokasbon' => $kasbon->nokasbon,
+
                 'catatan' => $request->Input('catatan'),
             ]);
 

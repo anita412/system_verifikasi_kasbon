@@ -16,6 +16,7 @@ use App\Models\DPajak;
 use App\Models\Kelengkapan;
 use App\Models\Keterangan;
 use App\Models\Keterangan_detail;
+use App\Models\KeteranganPertanggungan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,83 +53,90 @@ class VerifikasiAtasan2PertanggunganController extends Controller
     public function update(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-
+            $now = Carbon::now();
             $pertanggungan = pertanggungan::find($id);
 
 
-            $idvendor = $pertanggungan->kasbon->kelengkapan->dvendor->id;
-            $vendor = Dvendor::find($idvendor);
-            $vendor->update([
-                'dv_invoice' => $request->Input('dv_invoice'),
-                'dv_kwitansi' => $request->Input('dv_kwitansi'),
-                'dv_povendor' => $request->Input('dv_povendor'),
-                'dv_sjnvendor' => $request->Input('dv_sjnvendor'),
-                'dv_packcinglist' => $request->Input('dv_packinglist'),
-                'dv_testreport' => $request->Input('dv_testreport'),
-                'dv_bapp' => $request->Input('dv_bapp'),
-                'dv_lppb' => $request->Input('dv_lppb'),
-            ]);
+            // $idvendor = $pertanggungan->kasbon->kelengkapan->dvendor->id;
+            // $vendor = Dvendor::find($idvendor);
+            // $vendor->update([
+            //     'dv_invoice' => $request->Input('dv_invoice'),
+            //     'dv_kwitansi' => $request->Input('dv_kwitansi'),
+            //     'dv_povendor' => $request->Input('dv_povendor'),
+            //     'dv_sjnvendor' => $request->Input('dv_sjnvendor'),
+            //     'dv_packcinglist' => $request->Input('dv_packinglist'),
+            //     'dv_testreport' => $request->Input('dv_testreport'),
+            //     'dv_bapp' => $request->Input('dv_bapp'),
+            //     'dv_lppb' => $request->Input('dv_lppb'),
+            // ]);
 
-            $idcustomer = $pertanggungan->kasbon->kelengkapan->dcustomer->id;
-            $customer = DCustomer::find($idcustomer);
-            $customer->update([
-                'dc_memointernal' => $request->Input('dc_memointernal'),
-                'dc_spph' => $request->Input('dc_spph'),
-                'dc_ko' => $request->Input('dc_ko'),
-                'dc_loi' => $request->Input('dc_loi'),
-                'dc_invoicecustom' => $request->Input('dc_invoicecustom'),
-                'dc_sjncustom' => $request->Input('dc_sjncustom'),
-            ]);
+            // $idcustomer = $pertanggungan->kasbon->kelengkapan->dcustomer->id;
+            // $customer = DCustomer::find($idcustomer);
+            // $customer->update([
+            //     'dc_memointernal' => $request->Input('dc_memointernal'),
+            //     'dc_spph' => $request->Input('dc_spph'),
+            //     'dc_ko' => $request->Input('dc_ko'),
+            //     'dc_loi' => $request->Input('dc_loi'),
+            //     'dc_invoicecustom' => $request->Input('dc_invoicecustom'),
+            //     'dc_sjncustom' => $request->Input('dc_sjncustom'),
+            // ]);
 
-            $iddinas = $pertanggungan->kasbon->kelengkapan->ddinas->id;
-            $dinas = DDinas::find($iddinas);
-            $dinas->update([
-                'dd_tickettransport' => $request->Input('dd_tickettransport'),
-                'dd_notamakan' => $request->Input('dd_notamakan'),
-                'dd_boardingpass' => $request->Input('dd_boardingpass'),
-                'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
-                'dd_sppd' => $request->Input('dd_sppd'),
-            ]);
+            // $iddinas = $pertanggungan->kasbon->kelengkapan->ddinas->id;
+            // $dinas = DDinas::find($iddinas);
+            // $dinas->update([
+            //     'dd_tickettransport' => $request->Input('dd_tickettransport'),
+            //     'dd_notamakan' => $request->Input('dd_notamakan'),
+            //     'dd_boardingpass' => $request->Input('dd_boardingpass'),
+            //     'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
+            //     'dd_sppd' => $request->Input('dd_sppd'),
+            // ]);
 
-            $idimpor = $pertanggungan->kasbon->kelengkapan->dimpor->id;
-            $impor = DImpor::find($idimpor);
-            $impor->update([
-                'di_pib' => $request->Input('di_pib'),
-                'di_bl' => $request->Input('di_bl'),
-                'di_com' => $request->Input('di_com'),
-                'di_coo' => $request->Input('di_coo'),
-                'di_invoicecustom' => $request->Input('di_invoicecustom'),
-                'di_sjncustom' => $request->Input('di_sjncustom'),
-            ]);
+            // $idimpor = $pertanggungan->kasbon->kelengkapan->dimpor->id;
+            // $impor = DImpor::find($idimpor);
+            // $impor->update([
+            //     'di_pib' => $request->Input('di_pib'),
+            //     'di_bl' => $request->Input('di_bl'),
+            //     'di_com' => $request->Input('di_com'),
+            //     'di_coo' => $request->Input('di_coo'),
+            //     'di_invoicecustom' => $request->Input('di_invoicecustom'),
+            //     'di_sjncustom' => $request->Input('di_sjncustom'),
+            // ]);
 
-            $idpajak = $pertanggungan->kasbon->kelengkapan->dpajak->id;
-            $pajak = DPajak::find($idpajak);
-            $pajak->update([
-                'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
-                'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
-                'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
-            ]);
+            // $idpajak = $pertanggungan->kasbon->kelengkapan->dpajak->id;
+            // $pajak = DPajak::find($idpajak);
+            // $pajak->update([
+            //     'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
+            //     'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
+            //     'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
+            // ]);
 
-            $idketerangan = $pertanggungan->kasbon->kelengkapan->keterangan->id;
-            $keterangan = Keterangan::find($idketerangan);
+            // $idketerangan = $pertanggungan->kasbon->kelengkapan->keterangan->id;
+            // $keterangan = Keterangan::find($idketerangan);
+            // $keterangan->update([
+            //     'catatan' => $request->Input('catatan'),
+            // ]);
+
+
+            // $kd = $pertanggungan->kasbon->kelengkapan->keterangan->id;
+            // Keterangan_detail::where('id_keterangan', $kd)->delete();
+            // $data = $request->all();
+            // if ($request->kekurangan) {
+            //     foreach ($data['kekurangan'] as $item => $value) {
+            //         $data2 = array(
+            //             'id_keterangan' => $kd,
+            //             'kekurangan' => $data['kekurangan'][$item],
+            //             'tgl_kelengkapan' => $data['tgl_kelengkapan'][$item],
+            //         );
+            //         Keterangan_detail::create($data2);
+            //     }
+            // }
+
+            $idketerangan =  $pertanggungan->verifikasipertanggungan->id;
+            $keterangan = KeteranganPertanggungan::find($idketerangan);
             $keterangan->update([
-                'catatan' => $request->Input('catatan'),
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
             ]);
-
-
-            $kd = $pertanggungan->kasbon->kelengkapan->keterangan->id;
-            Keterangan_detail::where('id_keterangan', $kd)->delete();
-            $data = $request->all();
-            if ($request->kekurangan) {
-                foreach ($data['kekurangan'] as $item => $value) {
-                    $data2 = array(
-                        'id_keterangan' => $kd,
-                        'kekurangan' => $data['kekurangan'][$item],
-                        'tgl_kelengkapan' => $data['tgl_kelengkapan'][$item],
-                    );
-                    Keterangan_detail::create($data2);
-                }
-            }
 
             if ($pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status') == 'Terverifikasi') {
                 $pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status');

@@ -85,7 +85,7 @@
                                 <div class="form-group row">
                                     <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Kasbon</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" type="text" value="{{$kasbon->kodekasbon->name}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
+                                        <input class="form-control" type="text" value="{{$kasbon->kodekasbon}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col--> 
@@ -95,16 +95,8 @@
                                 <div class="form-group row">
                                     <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Kasbon</label>
                                     <div class="col-lg-8">
-                                        <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jenis">
-                                            <option value="" disabled selected hidden>Pilih Kasbon</option>
-                                            @foreach ($jenis as $jenis)
-                                            @if(old('jenis', $kasbon->id_jenis) == $jenis->id)
-                                            <option value="{{$jenis->id}}" selected>{{$jenis->name}}</option>
-                                            @else
-                                            <option  value="{{$jenis->id}}" >{{$jenis->name}}</option>
-                                            @endif
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" value="{{$kasbon->jenis}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
+                                    </div>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->

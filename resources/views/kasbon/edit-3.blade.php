@@ -4,7 +4,17 @@
             <div class="form-group row">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Nama Vendor</label>
                 <div class="col-lg-8">
-                    <input  required parsley type="text" class="form-control" name ="namavendor" value="{{$kasbon->namavendor}}">
+                    <select class="select2 form-control" id="tags" name="namavendor">
+                        <option value="{{$kasbon->namavendor}}">{{$kasbon->namavendor}}</option>
+                        @foreach ($namavendor as $namavendor)
+                        <option  value="{{$namavendor->name}}">{{$namavendor->name}}</option>
+                        @endforeach
+                      </select>
+                      <script>
+                      $("#tags").select2({
+                        tags: true
+                      });
+                    </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -15,7 +25,7 @@
                     <input id="txtNameCard"  type="number" class="form-control" name="haritempo" value="{{$kasbon->haritempo}}">
                 </div>
                 <div class="col-lg-4">
-                    <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo}}">    
+                    <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo->format('Y-m-d')}}">    
                 </div>
                 </div><!--end form-group-->
             </div><!--end col-->
@@ -43,7 +53,7 @@
             <div class="form-group row">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Perkiraan Barang Datang</label>
                 <div class="col-lg-8">
-                    <input required parsley id="txtNameCard" name="barang_datang" type="date" class="form-control" required parsley value="{{$kasbon->barang_datang}}">
+                    <input required parsley id="txtNameCard" name="barang_datang" type="date" class="form-control" required parsley value="{{$kasbon->barang_datang->format('Y-m-d')}}" disabled>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -62,4 +72,5 @@
                     <button  type="submit"  class="btn btn-primary px-4">Simpan</button>      
                 </div>
             </div>
+          
     </div>

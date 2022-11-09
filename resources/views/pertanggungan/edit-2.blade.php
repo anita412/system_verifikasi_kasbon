@@ -31,7 +31,7 @@
                     <input id="txtNameCard" type="number" class="form-control" name="haritempo" value="{{$pertanggungan->kasbon->haritempo}}" disabled>
                 </div>
                 <div class="col-lg-4">
-                    <input required parsley-type="text" class="form-control" type="date" id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo}}" disabled>
+                    <input required parsley-type="text" class="form-control" type="date" id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo->format('Y-m-d')}}" disabled>
                 </div>
             </div>
             <!--end form-group-->
@@ -41,7 +41,7 @@
             <div class="form-group row">
                 <label for="txtCompanyShipping" class="col-lg-4 col-form-label">Tanggal Bayar Ke User</label>
                 <div class="col-lg-8">
-                    <input id="form-control" class="form-control" type="date" name="tglbayarkeuser" value="{{$pertanggungan->tglbayarkeuser}}" id="example-date-input">
+                    <input id="form-control" class="form-control" type="date" name="tglbayarkeuser" value="{{$pertanggungan->tglbayarkeuser->format('Y-m-d')}}" id="example-date-input">
                 </div>
             </div>
             <!--end form-group-->

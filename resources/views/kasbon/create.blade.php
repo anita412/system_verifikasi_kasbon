@@ -38,7 +38,7 @@
                             <h4 class="card-title" id="3-form-entry">Form Entry Rencana / Realisasi 3</h4>
                         </div><!--end card-header-->
                         <div class="card-body">
-                            <form action="{{ route('kasbon.store') }}" method="post" class="form-parsley">
+                            <form action="{{ route('kasbon.store') }}" name="myform" id="myform" method="post" class="myform form-parsley">
                                 {{ csrf_field() }}
                                @include('kasbon.entry-1')
                                @include('kasbon.entry-2')

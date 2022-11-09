@@ -1,6 +1,14 @@
 
 <div class="row" id="form-entry-1">
     <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label for="txtEmailAddressBilling" class="col-lg-4 col-form-label">No. Dokumen Sebelumnya</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" value="{{$kasbon->doksebelumnya}}" aria-label="Disabled input example" name="doksebelumnya" disabled>
+                </div>
+            </div><!--end form-group-->
+        </div><!--end col-->
     <div class="col-md-6">
         <div class="form-group row">
             <label for="txtLastNameBilling" class="col-lg-4 col-form-label">No Kasbon</label>
@@ -10,47 +18,54 @@
         </div>
     </div>
 </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Tanggal Masuk</label>
-                    <div class="col-lg-8">
-                        <div class="input-group">                                            
-                            <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                        <input class="form-control" name="tglmasuk"  value="{{$kasbon->tglmasuk->format('d-m-Y')}}" id="example-date-input" disabled>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row">
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Jam Masuk</label>
-            <div class="col-lg-8">
-                <div class="input-group">                                            
-                    <span class="input-group-text"><i class="ti ti-alarm-clock font-16"></i></span>
-                <input class="form-control" type="time" name="jammasuk" value="{{$kasbon->jammasuk}}" id="example-time-input" disabled>
-                </div>
+            <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Tanggal Masuk</label>
+            <div class="col-lg-4">
+                <input class="form-control" name="tglmasuk" type="date" value="{{$kasbon->tglmasuk->format('Y-m-d')}}" >
+            </div>
+            <div class="col-lg-4">
+                <input class="form-control" type="time" name="jammasuk"  value="{{$kasbon->jammasuk}}" >
             </div>
         </div><!--end form-group-->
-    </div><!--end col-->
     </div>
-    <div class="row">
+    <div class="col-md-6">
+        <div class="form-group row POC">
+            <label for="txtNameCard" class="col-lg-4 col-form-label">Jatuh Tempo</label>
+            <div class="col-lg-8">
+            <div class="input-group">
+                    <input required  type="number" class="form-control" name="haritempo" value="{{$kasbon->haritempo}}" data-parsley-errors-messages-disabled>
+                    <span class="input-group-text" id="basic-addon2">hari</span>
+                </div>
+            </div>
+            
+            {{-- <div class="col-lg-4">
+                <input required parsley-type="text" class="form-control"  type="date" value="{{$dueDate}}" id="example-date-input" name="tgltempo">    
+            </div> --}}
+            </div><!--end form-group-->
+        </div><!--end col-->
+</div>
+<div class="row">
     <div class="col-md-6">
         <div class="form-group row">
             <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Kasbon Rencana / Realisasi</label>
             <div class="col-lg-8">
-                <input class="form-control" type="text" value="{{$kasbon->jeniskasbon}}" >
+                <select required parsley class="form-select" aria-label="Default select example"  id="jeniskasbon"  name="jeniskasbon" >
+                    <option value="KASBON RENCANA" {{old('jeniskasbon', $kasbon->jeniskasbon) == 'KASBON RENCANA' ? 'selected': ''}}>Kasbon Rencana</option>
+                    <option value="KASBON REALISASI" {{old('jeniskasbon', $kasbon->jeniskasbon) == 'KASBON REALISASI' ? 'selected': ''}}>Kasbon Realisasi</option>
+                </select>
             </div>                
         </div><!--end form-group-->
     </div><!--end col-->
     <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
-                <div class="col-lg-8">
-                    <input required parsley-type="text" class="form-control" value="{{$kasbon->user->name}}" id="username" name="username" disabled>
-                </div>
-            </div><!--end form-group-->
-        </div><!--end col-->
+        <div class="form-group row">
+            <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
+            <div class="col-lg-8">
+                <input required parsley-type="text" class="form-control" value="{{$kasbon->user->name}}" id="username" name="username" disabled>
+            </div>
+        </div><!--end form-group-->
+    </div><!--end col-->
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -71,14 +86,7 @@
         </div><!--end col-->
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="txtEmailAddressBilling" class="col-lg-4 col-form-label">No. Dokumen Sebelumnya</label>
-            <div class="col-lg-8">
-                <input class="form-control" type="text" value="{{$kasbon->doksebelumnya}}" aria-label="Disabled input example" name="doksebelumnya" disabled>
-            </div>
-        </div><!--end form-group-->
-    </div><!--end col-->
+    
     <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Kasbon</label>
@@ -87,30 +95,6 @@
                 </div>
             </div><!--end form-group-->
         </div><!--end col--> 
-</div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
-                <div class="col-lg-8">
-                    <select class="form-control" id="kurs" name="id_kurs">
-                        <option value="" disabled selected hidden>Pilih Kurs</option>
-                        @foreach ($kurs as $rate)
-                        @if(old('kurs', $kasbon->id_kurs) == $rate->id)
-                        <option value="{{$rate->id}}" selected>{{$rate->symbol}} - {{$rate->code}}</option>
-                        @else
-                        <option  value="{{$rate->id}}" >{{$rate->symbol}} - {{$rate->code}}</option>
-                        @endif
-                        @endforeach
-                      </select>
-                      <script>
-                      $("#kurs").select2({
-                        kurs: true
-                      });
-                    </script>
-                </div>
-            </div><!--end form-group-->
-        </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtCityShipping" class="col-lg-4 col-form-label">Proyek</label>
@@ -119,13 +103,23 @@
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
-    </div>
+</div>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtAddress1Billing" class="col-lg-4 col-form-label">Uraian Penggunaan</label>
+                <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <textarea id="uraianpengguna" name="uraianpengguna" rows="4" class="form-control" required parsley value="">{{$kasbon->uraianpengguna}}</textarea>
+                    <select id="kags" class="select2 form-control" aria-label="Floating label select example" name="id_kurs" required parsley>
+                        <option value="{{$kasbon->kurs->id}}">{{$kasbon->kurs->code}} - {{$kasbon->kurs->name}}</option>
+                        @foreach ($kurs as $kurs)
+                        <option  value="{{$kurs->id}}">{{$kurs->code}} - {{$kurs->name}}</option>
+                        @endforeach
+                    </select>
+                    <script>
+                        $("#kags").select2({
+                          kags: true
+                        });
+                      </script>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -146,6 +140,17 @@
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label for="txtAddress1Billing" class="col-lg-4 col-form-label">Uraian Penggunaan</label>
+                <div class="col-lg-8">
+                    <textarea id="uraianpengguna" name="uraianpengguna" rows="4" class="form-control" required parsley value="">{{$kasbon->uraianpengguna}}</textarea>
+                </div>
+            </div><!--end form-group-->
+        </div><!--end col-->
+      
         
     </div>
     <div class="row">
@@ -155,3 +160,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+    toggleFields(); 
+    $("#jeniskasbon").change(function () {
+        toggleFields();
+    });
+
+});
+
+function toggleFields() {
+    if ($("#jeniskasbon").val() === "KASBON REALISASI")
+        $("#nopi").removeAttr("disabled"),
+        $("#harga_jual").removeAttr("disabled"),
+        $("#sjn").removeAttr("disabled");
+    else
+        $("#nopi").attr("disabled", "disabled"),
+        $("#sjn").attr("disabled", "disabled"),
+        $("#harga_jual").attr("disabled", "disabled");
+}
+
+</script>
