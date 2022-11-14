@@ -6,8 +6,7 @@
 <link href="{{ URL::asset('assets/plugins/huebee/huebee.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 @endsection
 
     @section('content')
@@ -54,6 +53,24 @@
                                     </div>
                                 </div>
                             </div><!--end row-->
+                            {{-- <table id="example" class="table table-borderless table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($kasbon as $kasbons)
+                                        <tr>
+                                            <td>{{ $kasbons->id }}</td>
+                                            <td>   <input class="update form-control" data-name="tglmasuk" ype="date" data-pk="{{ $kasbons->id }}" value="{{$kasbons->tglmasuk->format('Y-m-d')}}" >
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table> --}}
                             <table id="datatable2" class="table table-bordered mb-0 table-centered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr style="text-align: center">
@@ -169,7 +186,25 @@
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+<script type="text/javascript">
+    $.fn.editable.defaults.mode = 'inline';
+  
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{csrf_token()}}'
+        }
+    }); 
+  
+    $('.update').editable({
+           url: "{{ route('msp.update') }}",
+           type: 'date',
+           pk: 1,
+           name: 'name',
+           title: 'Enter name'
+    });
+</script>
 <script>
     +function($) {
     'use strict';

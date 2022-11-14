@@ -75,7 +75,7 @@
                                     @if($kasbon->verifikasikasbon->vkb == "Terverifikasi")
                                 <tr>
                                     <td>{{$kasbon->nokasbon}}</td>
-                                    <td>{{$kasbon->tglmasuk->format('d/m/Y')}}</td>
+                                    <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>
                                     <td>{{$kasbon->jeniskasbon}}</td>
                                     <td>Rp. {{number_format($kasbon->total)}}</td>
                                     <td>{{$kasbon->noinvoice}}</td>
@@ -306,7 +306,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[0, 'desc']],
+       order: [[1, 'desc']],
        columnDefs: [
                {
                    "targets": [6],

@@ -14,7 +14,7 @@
                     <div class="col-lg-8">
                         <div class="input-group">                                            
                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                        <input class="form-control" name="tglmasuk" type="date" value="{{$nonkasbon->tglmasuk}}" id="example-date-input" disabled>
+                        <input class="form-control" name="tglmasuk" type="date" value="{{$nonkasbon->tglmasuk->format('Y-m-d')}}" id="example-date-input">
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">No Invoice</label>
+                <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">NO INVOICE</label>
                 <div class="col-lg-8">
                     <input class="form-control" type="text" value="{{$nonkasbon->noinvoice}}" aria-label="Disabled input example"  name="noinvoice" >
                 </div>
@@ -108,7 +108,7 @@
         </div><!--end col--> 
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtCityShipping" class="col-lg-4 col-form-label">Tujuan Pembayaran</label>
+                <label for="txtCityShipping" class="col-lg-4 col-form-label">TUJUAN PEMBAYARAN</label>
                 <div class="col-lg-8">
                     <input type="text" class="form-control" value="{{$nonkasbon->tujuanpembayaran}}" name="tujuanpembayaran" required parsley>
                 </div>
@@ -121,9 +121,9 @@
                 <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">KURS</label>
                 <div class="col-lg-8">
                     <select class="form-control" id="tagsk" name="kurs">
-                        <option  selected >{{$nonkasbon->kurs}}</option>
+                        <option  value="{{$nonkasbon->kurs->id}}" selected >{{$nonkasbon->kurs->code}} - {{$nonkasbon->kurs->name}}</option>
                         @foreach ($kurs as $kurs)
-                        <option  value="{{$kurs->name}}">{{$kurs->name}}</option>
+                        <option  value="{{$kurs->id}}">{{$kurs->code}} - {{$kurs->name}}</option>
                         @endforeach
                       </select>
                       <script>

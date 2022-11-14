@@ -10,6 +10,9 @@ class MonitoringSP extends Model
     use HasFactory;
     public $table = "monitoringsp";
     protected $guarded = [];
+
+    protected $dates = ['tgl_kelengkapan'];
+
     public function kasbon()
     {
         return $this->belongsTo(Kasbon::class, 'id_kasbon', 'id');

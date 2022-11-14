@@ -15,7 +15,7 @@
             <div class="form-group row">
                 <label for="txtLastNameShipping" class="col-lg-4 col-form-label" >No VKB Kasbon</label>
                 <div class="col-lg-8">
-                    <input required parsley-type="text" class="form-control" value="{{$kasbon->nopi}}" name="novkbkasbon" disabled>    
+                    <input  parsley-type="text" class="form-control" value="{{$kasbon->nopi}}" name="novkbkasbon" disabled>    
                     <!-- <input id="txtLastNameShipping" name="txtLastNameShipping" type="text" class="form-control"> -->
                 </div>
             </div><!--end form-group-->

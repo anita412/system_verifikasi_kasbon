@@ -77,14 +77,14 @@
                                 <tbody>
                                     @foreach ($pertanggungan as $pertanggungan)
                                 <tr>
-                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('d/m/Y')}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
                                     <td>{{$pertanggungan->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
                                     <td>{{$pertanggungan->jeniskasbon}}</td>
                                     <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->tglbayarkeuser}}</td>
-                                    <td>{{$pertanggungan->nilaiptj}}</td>
-                                    <td>{{$pertanggungan->nilaiselisihptj}}</td>
+                                    <td>{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->vkp_a_1 == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Proses</label>
@@ -339,7 +339,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[0, 'desc']],
+       order: [[1, 'desc']],
        columnDefs: [
                {
                    "targets": [6],

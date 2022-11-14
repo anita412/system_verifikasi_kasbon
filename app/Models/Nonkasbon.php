@@ -43,8 +43,8 @@ class Nonkasbon extends Model
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
-    public function keterangan_nonkasbon()
+    public function keterangannonkasbon()
     {
-        return $this->hasMany(KeteranganNonKasbon::class, 'id_nonkasbon', 'id');
+        return $this->hasOne(KeteranganNonKasbon::class, 'id_nonkasbon', 'id');
     }
 }

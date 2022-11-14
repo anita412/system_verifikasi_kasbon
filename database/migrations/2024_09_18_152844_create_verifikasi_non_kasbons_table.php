@@ -23,12 +23,15 @@ class CreateVerifikasiNonKasbonsTable extends Migration
             $table->unsignedBigInteger('id_vnk')->nullable();
             $table->string('vnk_a_2')->nullable();
             $table->unsignedBigInteger('id_vnk_a_2')->nullable();
+            $table->string('vnk_a_3')->nullable();
+            $table->unsignedBigInteger('id_vnk_a_3')->nullable();
             $table->timestamps();
 
             $table->foreign('id_nonkasbon')->references('id')->on('nonkasbons')->onDelete('cascade');
             $table->foreign('id_vnk')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vnk_a_1')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vnk_a_2')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_vnk_a_3')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

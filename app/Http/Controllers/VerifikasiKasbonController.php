@@ -208,7 +208,7 @@ class VerifikasiKasbonController extends Controller
             $kasbon->verifikasikasbon->update();
         });
 
-        return redirect()->route('vkb.index')->with('success', 'User updated successfully');
+        return redirect()->route('vkb.index')->with('success', 'Kasbon updated successfully');
     }
 
     /**
@@ -306,7 +306,7 @@ class VerifikasiKasbonController extends Controller
                 $tgl_kelengkapan = $request->input('tgl_kelengkapan');
                 $data->id_keterangan = $keteranganID;
                 $data->kekurangan = $kekurangan;
-                $data->tgl_kelengkapan = $tgl_kelengkapan[$key];
+                // $data->tgl_kelengkapan = $tgl_kelengkapan[$key];
                 $data->save();
             }
 

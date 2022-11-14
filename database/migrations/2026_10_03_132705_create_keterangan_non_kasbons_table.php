@@ -16,7 +16,7 @@ class CreateKeteranganNonKasbonsTable extends Migration
         Schema::create('keterangan_non_kasbons', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_nonkasbon')->nullable();
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_nonkasbon')->references('id')->on('nonkasbons')->onDelete('cascade');

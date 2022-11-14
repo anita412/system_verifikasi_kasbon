@@ -29,6 +29,8 @@ class KasbonSeeder extends Seeder
                 'id_unit' => $faker->numberBetween(1, 3),
                 'nokasbon' => $faker->unique()->randomDigit,
                 'tglmasuk' => $faker->dateTimeThisMonth(),
+                'tgltempo' => $faker->dateTimeThisMonth(),
+                'barang_datang' => $faker->dateTimeThisMonth(),
                 'total' => $faker->randomDigit,
                 'noinvoice' => $faker->randomDigit,
             ]);
@@ -40,7 +42,7 @@ class KasbonSeeder extends Seeder
         //         'nip' => '1231432',
         //         'username' => 'jeanny',
         //         'id_unit' => '1',
-        //         'nokasbon' => 'KSB20220915-1',
+        //         'nokasbon' => 'PPK/1/XI/2022',
         //         'id_kodekasbon' => '1',
         //         'id_jenis' => '1',
         //         'id_kurs' => '1',

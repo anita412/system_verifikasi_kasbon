@@ -44,9 +44,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col text-center">
-                                        <span class="h4">$24,500</span>
-                                        <h6 class="text-uppercase text-muted mt-2 m-0">Weekly Sales</h6>
+                                    <div class="col text-center" id="totalksb">
+                                        <span class="h4">Rp. {{number_format($totalksb)}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Nominal Kasbon</h6>
+                                    </div><!--end col-->
+                                    <div class="col text-center" id="totalnksb">
+                                        <span class="h4">Rp. {{number_format($totalnksb)}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Nominal Non Kasbon</h6>
+                                    </div><!--end col-->
+                                    <div class="col text-center" id="totalptj">
+                                        <span class="h4">Rp. {{number_format($totalptj)}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Pertanggungan</h6>
                                     </div><!--end col-->
                                 </div> <!-- end row -->
                             </div><!--end card-body-->
@@ -56,9 +64,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col text-center">
-                                        <span class="h4">520</span>
-                                        <h6 class="text-uppercase text-muted mt-2 m-0">Orders Placed</h6>
+                                    <div class="col text-center" id="jmlksb">
+                                        <span class="h4">{{$jmlksb}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Jumlah Kasbon</h6>
+                                    </div><!--end col-->
+                                    <div class="col text-center" id="jmlnksb">
+                                        <span class="h4">{{$jmlnksb}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Jumlah Non Kasbon</h6>
+                                    </div><!--end col-->
+                                    <div class="col text-center" id="jmlptj">
+                                        <span class="h4">{{$jmlptj}}</span>
+                                        <h6 class="text-uppercase text-muted mt-2 m-0">Total Jumlah Pertanggungan</h6>
                                     </div><!--end col-->
                                 </div> <!-- end row -->
                             </div><!--end card-body-->
@@ -152,7 +168,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12" id="tblksb">
                 <div class="card">
                     <div class="card-header">
                         <div class="row align-items-center">
@@ -193,119 +209,19 @@
                                         </td>
                                     </tr><!--end tr-->
                                     @endforeach
-                                    <tr>
+                                    <tfoot>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td> <a href="">View More</a></td>
-                                    </tr>
+                                        <td> <a href="{{ route('kasbon.index') }}">View More <i data-feather="arrow-right-circle" class="icon-sm" style="width: 16px; height: 16px;"></i></a></td>
+                                    </tfoot>
                                 </tbody>
                             </table> <!--end table-->
                         </div><!--end /div-->
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h4 class="card-title">Most Populer Products</h4>
-                            </div><!--end col-->
-                        </div>  <!--end row-->
-                    </div><!--end card-header-->
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="border-top-0">Product</th>
-                                        <th class="border-top-0">Price</th>
-                                        <th class="border-top-0">Sell</th>
-                                        <th class="border-top-0">Status</th>
-                                        <th class="border-top-0">Action</th>
-                                    </tr><!--end tr-->
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="media">
-                                                <img src="{{ URL::asset('assets/images/products/01.png') }}" height="30" class="me-3 align-self-center rounded" alt="...">
-                                                <div class="media-body align-self-center">
-                                                    <h6 class="m-0">Dastone Camera EDM 5D(White)</h6>
-                                                    <a href="#" class="font-12 text-primary">ID: A3652</a>
-                                                </div><!--end media body-->
-                                            </div>
-                                        </td>
-                                        <td>$50 <del class="text-muted font-10">$70</del></td>
-                                        <td>450 <small class="text-muted">(550)</small></td>
-                                        <td><span class="badge badge-soft-warning px-2">Stock</span></td>
-                                        <td>
-                                            <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                        </td>
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>
-                                            <div class="media">
-                                                <img src="{{ URL::asset('assets/images/products/02.png') }}" height="30" class="me-3 align-self-center rounded" alt="...">
-                                                <div class="media-body align-self-center">
-                                                    <h6 class="m-0">Dastone Shoes Max-Zon</h6>
-                                                    <a href="#" class="font-12 text-primary">ID: A5002</a>
-                                                </div><!--end media body-->
-                                            </div>
-                                        </td>
-                                        <td>$99 <del class="text-muted font-10">$150</del></td>
-                                        <td>750 <small class="text-muted">(00)</small></td>
-                                        <td><span class="badge badge-soft-primary px-2">Out of Stock</span></td>
-                                        <td>
-                                            <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                        </td>
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>
-                                            <div class="media">
-                                                <img src="{{ URL::asset('assets/images/products/04.png') }}" height="30" class="me-3 align-self-center rounded" alt="...">
-                                                <div class="media-body align-self-center">
-                                                    <h6 class="m-0">Dastone Mask N99 [ISI]</h6>
-                                                    <a href="#" class="font-12 text-primary">ID: A6598</a>
-                                                </div><!--end media body-->
-                                            </div>
-                                        </td>
-                                        <td>$199 <del class="text-muted font-10">$250</del></td>
-                                        <td>280 <small class="text-muted">(220)</small></td>
-                                        <td><span class="badge badge-soft-warning px-2">Stock</span></td>
-                                        <td>
-                                            <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                        </td>
-                                    </tr><!--end tr-->
-                                    <tr>
-                                        <td>
-                                            <div class="media">
-                                                <img src="{{ URL::asset('assets/images/products/img-5.png') }}" height="30" class="me-3 align-self-center rounded" alt="...">
-                                                <div class="media-body align-self-center">
-                                                    <h6 class="m-0">Dastone Bag (Blue)</h6>
-                                                    <a href="#" class="font-12 text-primary">ID: A9547</a>
-                                                </div><!--end media body-->
-                                            </div>
-                                        </td>
-                                        <td>$40 <del class="text-muted font-10">$49</del></td>
-                                        <td>500 <small class="text-muted">(1000)</small></td>
-                                        <td><span class="badge badge-soft-primary px-2">Out of Stock</span></td>
-                                        <td>
-                                            <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
-                                        </td>
-                                    </tr><!--end tr-->
-
-                                </tbody>
-                            </table> <!--end table-->
-                        </div><!--end /div-->
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
+            
         </div>
 
 @endsection
@@ -323,6 +239,10 @@
         $("#pertanggungan").attr("hidden", "hidden"),
         $("#jpertanggungan").attr("hidden", "hidden"),
         $("#jnkasbon").attr("hidden", "hidden"),
+        $("#jmlnksb").attr("hidden", "hidden"),
+        $("#jmlptj").attr("hidden", "hidden"),
+        $("#totalnksb").attr("hidden", "hidden"),
+        $("#totalptj").attr("hidden", "hidden"),
     toggleFields(); 
     $("#pilihan").change(function () {
         toggleFields();
@@ -337,7 +257,14 @@ function toggleFields() {
         $("#pertanggungan").attr("hidden", "hidden"),
         $("#jpertanggungan").attr("hidden", "hidden"),
         $("#jkasbon").attr("hidden", "hidden"),
-        $("#kasbon").attr("hidden", "hidden");
+        $("#kasbon").attr("hidden", "hidden"),
+        $("#jmlnksb").removeAttr("hidden"),
+        $("#totalnksb").removeAttr("hidden"),
+        $("#jmlptj").attr("hidden", "hidden"),
+        $("#totalptj").attr("hidden", "hidden"),
+        $("#jmlksb").attr("hidden", "hidden"),
+        $("#totalksb").attr("hidden", "hidden"),
+        $("#tblksb").attr("hidden", "hidden");
 
     if ($("#pilihan").val() === "okasbon")
     $("#jkasbon").removeAttr("hidden"),
@@ -345,7 +272,14 @@ function toggleFields() {
     $("#jnkasbon").attr("hidden", "hidden"),
     $("#kasbon").removeAttr("hidden"),
     $("#pertanggungan").attr("hidden", "hidden"),
-    $("#nonkasbon").attr("hidden", "hidden");
+    $("#nonkasbon").attr("hidden", "hidden"),
+    $("#jmlnksb").attr("hidden", "hidden"),
+    $("#totalnksb").attr("hidden", "hidden"),
+    $("#jmlptj").attr("hidden", "hidden"),
+    $("#totalptj").attr("hidden", "hidden"),
+    $("#jmlksb").removeAttr("hidden"),
+    $("#totalksb").removeAttr("hidden"),
+    $("#tblksb").removeAttr("hidden");
 
     if ($("#pilihan").val() === "opertanggungan")
     $("#jpertanggungan").removeAttr("hidden"),
@@ -353,7 +287,14 @@ function toggleFields() {
     $("#jnkasbon").attr("hidden", "hidden"),
     $("#pertanggungan").removeAttr("hidden"),
     $("#nonkasbon").attr("hidden", "hidden"),
-    $("#kasbon").attr("hidden", "hidden");
+    $("#kasbon").attr("hidden", "hidden"),
+    $("#jmlnksb").attr("hidden", "hidden"),
+    $("#totalnksb").attr("hidden", "hidden"),
+    $("#jmlptj").removeAttr("hidden"),
+    $("#totalptj").removeAttr("hidden"),
+    $("#jmlksb").attr("hidden", "hidden"),
+    $("#totalksb").attr("hidden", "hidden"),
+    $("#tblksb").attr("hidden", "hidden");
 }
 
 </script>

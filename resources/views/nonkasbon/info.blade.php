@@ -9,8 +9,8 @@
         @component('components.breadcrumb')
             @slot('li_1') Dastone @endslot
             @slot('li_2') Forms @endslot
-            @slot('li_3') Wizard @endslot
-            @slot('title') Wizard @endslot
+            @slot('li_3') Non Kasbon @endslot
+            @slot('title') Entry @endslot
         @endcomponent
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

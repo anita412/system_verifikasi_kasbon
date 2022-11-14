@@ -23,12 +23,15 @@ class CreateVerifikasiPertanggungansTable extends Migration
             $table->unsignedBigInteger('id_vkp')->nullable();
             $table->string('vkp_a_2')->nullable();
             $table->unsignedBigInteger('id_vkp_a_2')->nullable();
+            $table->string('vkp_a_3')->nullable();
+            $table->unsignedBigInteger('id_vkp_a_3')->nullable();
             $table->timestamps();
 
             $table->foreign('id_pertanggungan')->references('id')->on('pertanggungans')->onDelete('cascade');
             $table->foreign('id_vkp')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vkp_a_1')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vkp_a_2')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_vkp_a_3')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -37,6 +37,7 @@
 }
     </style>
 
+
  <div class="row">
     <div class="col-12">
         <div class="card">
@@ -83,14 +84,14 @@
                         
                     </tr>
                     </thead>
-                     @role('Admin')
+              
                     <tbody>
                         @foreach ($kasbon as $kasbons)
                     <tr>
                         <td>{{$kasbons->nokasbon}}</td>
-                        <td>{{$kasbons->tglmasuk->format('d/m/Y')}}</td>
+                        <td>{{$kasbons->tglmasuk->format('m/d/Y')}}</td>
                         <td>{{$kasbons->jeniskasbon}}</td>
-                        <td>Rp. {{number_format($kasbons->total)}}</td>
+                        <td>{{$kasbons->kurs->symbol}} {{number_format($kasbons->total)}}</td>
                         <td>
                             @if(isset($kasbons->verifikasikasbon->id))
                             @if($kasbons->verifikasikasbon->status == "Dalam Proses")
@@ -106,29 +107,31 @@
                         </td>
                          <td style="text-align: center">
                             @if(isset($kasbons->monitoringsp->id))
-                                @if($kasbons->monitoringsp->tgl_sp1 < $now && $kasbons->monitoringsp->tgl_sp2 > $now)
+                                @if(isset($kasbons->pertanggungan->id))
+                                    Done
+                                @elseif($kasbons->tgltempo->format('Y-m-d') == $now)
+                                    <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
+                                @elseif($kasbons->monitoringsp->tgl_sp1 < $now && $kasbons->monitoringsp->tgl_sp2 > $now)
                                     <a href="{{ route('kasbon.printsp1',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP1</a>
                                 @elseif($kasbons->monitoringsp->tgl_sp2 < $now && $kasbons->monitoringsp->tgl_sp3 > $now)
                                     <a href="{{ route('kasbon.printsp2',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP2</a>
-                                @elseif($kasbons->monitoringsp->tgl_sp3 > $now)
+                                @elseif($kasbons->monitoringsp->tgl_sp3 < $now)
                                     <a href="{{ route('kasbon.printsp3',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP3</a>
                                 @elseif($kasbons->monitoringsp->tgl_mts == $now)
                                     <label class="badge rounded-pill bg-danger">MTS</label>
                                 @elseif($kasbons->monitoringsp->tgl_pbsdm == $now)
                                     <label class="badge rounded-pill bg-danger">PBSDM</label>
-                                @elseif(isset($kasbons->pertanggungan->id))
-                                    Done
                                 @else
                                     {{$kasbons->tgltempo->format('d/m/Y')}}
                                 @endif
                             @else
-                                @if($kasbons->verifikasikasbon->status == "Terverifikasi")
+                                {{-- @if($kasbons->verifikasikasbon->status == "Terverifikasi")
                                     @if($kasbons->tgltempo->format('Y-m-d') == $now)
                                         <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
                                     @endif
                                 @else
                                     -
-                                @endif
+                                @endif --}}
                             @endif
                     </td>
                         <td class="text-end">
@@ -181,109 +184,6 @@
                     </div><!--end modal-->
                     @endforeach
                     </tbody>
-
-                    @else
-
-                    <tbody>
-                        @foreach ($kasbon as $kasbons)
-                        @if($kasbons->id_user == Auth::user()->id)
-                    <tr>
-                        <td>{{$kasbons->nokasbon}}</td>
-                        <td>{{$kasbons->tglmasuk->format('d/m/Y')}}</td>
-                        <td>{{$kasbons->jeniskasbon}}</td>
-                        <td>Rp. {{number_format($kasbons->total)}}</td>
-                        <td>
-                            @if(isset($kasbons->verifikasikasbon->id))
-                            @if($kasbons->verifikasikasbon->status == "Dalam Proses")
-                                <label class="badge rounded-pill bg-primary">Dalam Proses</label>
-                            @elseif($kasbons->verifikasikasbon->status == "Revisi")
-                                <label class="badge rounded-pill bg-warning">Revisi</label>
-                            @elseif($kasbons->verifikasikasbon->status == "Ditolak")
-                                <label class="badge rounded-pill bg-danger">Ditolak</label>
-                            @elseif($kasbons->verifikasikasbon->status == "Terverifikasi")
-                                <label class="badge rounded-pill bg-success">Terverifikasi</label>
-                            @endif
-                            @endif
-                        </td>
-                        <td class="text-end">
-                            @if(isset($kasbons->verifikasikasbon->id))
-                            @if($kasbons->verifikasikasbon->status == "Dalam Proses")
-                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @elseif($kasbons->verifikasikasbon->status == "Revisi")
-                            <a href="{{ route('kasbon.edit',$kasbons->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
-                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @elseif($kasbons->verifikasikasbon->status == "Ditolak")
-                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$kasbons->id}}" data-action="{{ route('kasbon.destroy', $kasbons->id) }}"><i class="las la-trash font-16"></i></a>
-                            @elseif($kasbons->verifikasikasbon->status == "Terverifikasi")
-                            @if(isset($kasbons->verifikasikasbon->vkb_a_2))
-                            @if(isset($kasbons->pertanggungan->id))
-                            <a href="{{ route('pertanggungan.show',$kasbons->pertanggungan->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-information-outline"></i></a> 
-                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @else
-                            <a href="{{ route('pertanggungan.insert',$kasbons->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Ajukan Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-send"></i></a> 
-                            <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                            @endif
-                            @endif
-                            @endif
-                            @endif
-                        </td>
-                        <td style="text-align: center">
-                            @if(isset($kasbons->monitoringsp->id))
-                                @if($kasbons->monitoringsp->tgl_sp1 < $now && $kasbons->monitoringsp->tgl_sp2 > $now)
-                                    <a href="{{ route('kasbon.printsp1',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP1</a>
-                                @elseif($kasbons->monitoringsp->tgl_sp2 < $now && $kasbons->monitoringsp->tgl_sp3 > $now)
-                                {{-- @elseif($kasbons->monitoringsp->tgl_sp2 == $now) --}}
-                                    <a href="{{ route('kasbon.printsp2',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP2</a>
-                                @elseif($kasbons->monitoringsp->tgl_sp3 > $now)
-                                {{-- @elseif($kasbons->monitoringsp->tgl_sp3 == $now) --}}
-                                    <a href="{{ route('kasbon.printsp3',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP3</a>
-                                @elseif($kasbons->monitoringsp->tgl_mts == $now)
-                                    <label class="badge rounded-pill bg-danger">MTS</label>
-                                @elseif($kasbons->monitoringsp->tgl_pbsdm == $now)
-                                    <label class="badge rounded-pill bg-danger">PBSDM</label>
-                              @elseif(isset($kasbons->pertanggungan->id))
-                                    Done
-                                @else
-                                    {{$kasbons->tgltempo->format('d/m/Y')}}
-                                @endif
-                            @else
-                                @if($kasbons->tgltempo->format('Y-m-d') == $now)
-                                    <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
-                                @else
-                                -
-                                @endif
-                            @endif
-                    </td>
-                    </tr>
-                    <div class="modal fade" id="exampleModalDanger_{{$kasbons->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div><!--end modal-header-->
-                                <div class="modal-body">
-                                        <div class="col-lg-12" style="text-align: center;">
-                                            <h4>Are You Sure Want To Delete ?</h4> 
-                                        </div><!--end col-->                                                 
-                                </div><!--end modal-body-->
-                                <div class="modal-footer">  
-                                    <form action="{{ route('kasbon.destroy',$kasbons->id) }}" method="POST" style="display: inline">
-                                    
-                                        @method('delete')
-                                        {{ csrf_field() }}                                                  
-                                        <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
-                                    </form>  
-                                    <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
-                                </div><!--end modal-footer-->
-                            </div><!--end modal-content-->
-                        </div><!--end modal-dialog-->
-                    </div><!--end modal-->
-                    @endif
-                    @endforeach
-                    </tbody>
-                    @endrole
-                   
                 </table>
             </div>
         </div>
@@ -376,7 +276,7 @@
     order: [[1, 'desc']],
     columnDefs: [
             {
-                "targets": [6],
+                "targets": [4],
                 "visible": true
             }
         ],
@@ -402,8 +302,8 @@ $('.filter-checkbox').on('change', function(e){
       var status = $(this).val();
       $('.status-dropdown').val(status)
       console.log(status)
-      //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
-      $dTable.column(6).search(status).draw();
+      //dataTable.column(4).search('\\s' + status + '\\s', true, false, true).draw();
+      $dTable.column(4).search(status).draw();
     })  
 
    document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

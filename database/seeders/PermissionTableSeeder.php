@@ -43,6 +43,10 @@ class PermissionTableSeeder extends Seeder
             'vkb-atasan-2-create',
             'vkb-atasan-2-edit',
             'vkb-atasan-2-delete',
+            'vkb-atasan-3-list',
+            'vkb-atasan-3-create',
+            'vkb-atasan-3-edit',
+            'vkb-atasan-3-delete',
             'pertanggungan-list',
             'pertanggungan-create',
             'pertanggungan-edit',
@@ -59,6 +63,10 @@ class PermissionTableSeeder extends Seeder
             'vkp-atasan-2-create',
             'vkp-atasan-2-edit',
             'vkp-atasan-2-delete',
+            'vkp-atasan-3-list',
+            'vkp-atasan-3-create',
+            'vkp-atasan-3-edit',
+            'vkp-atasan-3-delete',
             'sppd-list',
             'sppd-create',
             'sppd-edit',
@@ -79,6 +87,10 @@ class PermissionTableSeeder extends Seeder
             'nkb-atasan-2-create',
             'nkb-atasan-2-edit',
             'nkb-atasan-2-delete',
+            'nkb-atasan-3-list',
+            'nkb-atasan-3-create',
+            'nkb-atasan-3-edit',
+            'nkb-atasan-3-delete',
         ];
 
         foreach ($permissions as $permission) {

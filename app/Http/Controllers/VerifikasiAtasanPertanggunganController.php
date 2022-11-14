@@ -72,8 +72,7 @@ class VerifikasiAtasanPertanggunganController extends Controller
             $pertanggungan->verifikasipertanggungan->save();
         });
 
-        return redirect()->route('vkp-atasan.index')
-            ->with('success', 'Pertanggungan berhasil diverifikasi');
+        return redirect()->route('vkp-atasan.index')->with('success', 'Pertanggungan updated successfully');
     }
 
     public function update(Request $request, $id)

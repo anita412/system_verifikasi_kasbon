@@ -77,6 +77,7 @@ class User extends Authenticatable
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_1', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_2', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_3', 'id');
     }
 
     public function verifikasi_pertanggungan()
@@ -84,5 +85,6 @@ class User extends Authenticatable
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_1', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_2', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_3', 'id');
     }
 }

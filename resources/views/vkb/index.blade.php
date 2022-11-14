@@ -80,9 +80,9 @@
                                     @if($kasbon->verifikasikasbon->vkb_a_1 == "Terverifikasi" or $kasbon->verifikasikasbon->vkb_a_2 == "Ditolak")
                                 <tr>
                                     <td>{{$kasbon->nokasbon}}</td>
-                                    <td>{{$kasbon->tglmasuk->format('d/m/Y')}}</td>
+                                    <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>
                                     <td>{{$kasbon->jeniskasbon}}</td>
-                                    <td>{{$kasbon->total}}</td>
+                                    <td>Rp. {{number_format($kasbon->total)}}</td>
                                     <td>{{$kasbon->noinvoice}}</td>
                                     <td>{{$kasbon->jenis->name}}</td>
                                     <td>
@@ -325,7 +325,7 @@ sendEvent = function(sel, step) {
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[0, 'desc']],
+       order: [[1, 'desc']],
        columnDefs: [
                {
                    "targets": [6],

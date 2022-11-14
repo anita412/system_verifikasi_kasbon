@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Kasbon {{$nonkasbon->np_nokasbon}}</h4>
+                    <h4 class="modal-title step-1" data-step="1">Non Kasbon {{$nonkasbon->nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,7 +33,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$nonkasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$nonkasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
                                                </td>
@@ -42,12 +42,12 @@
                                                </td>
                                                <td>{{$nonkasbon->jammasuk}}</td>    
                                                <td>
-                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
+                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$nonkasbon->jammasuk}}</td>                                                      
+                                           <td>{{$nonkasbon->tujuanpembayaran}}</td>                                                 
                                             </tr>
                                             <tr>
                                                 <td>
@@ -110,13 +110,7 @@
                                                    :
                                                </td>
                                                <td>{{$nonkasbon->noinvoice}}</td>  
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
-                                           </td>
-                                           <td>
-                                               :
-                                           </td>
-                                           <td>Rp. {{$nonkasbon->tujuanpembayaran}}</td>     
+                                                  
                                             </tr>  
                                                              
                                         </tbody>
@@ -125,23 +119,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                                 <div class="table-responsive shopping-cart">
                                     <table class="table  table-bordered table-sm t1">
                                         <tbody>
                                         <tr>
                                             <th style="width: 70%">Dokumen</th>
-                                            <th>Quantity</th>
-                                            <th style="width: 0%" class="text-center"></th>
+                                            <th>Nominal</th>
+                                            {{-- <th style="width: 0%" class="text-center"></th> --}}
                                         </tr>
                                         @foreach ($nonkasbon->dokumennk->dokumennkd as $item)
                                             
                                         
                                         <tr class="item">
                                             <td>{{$item->dokumen}}</td>
-                                            <td>{{$item->nominal}}</td>
-                                            <td class="text-end">
-                                                <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
+                                            <td>Rp. {{number_format($item->nominal)}}</td>
+                                            {{-- <td class="text-end"> --}}
+                                                {{-- <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td> --}}
                                             </tr>
                                             @endforeach
                                             </tbody>
@@ -150,20 +143,46 @@
                                                     <th class="text-center"><strong>TOTAL NOMINAL</strong></th>
                                                     <th>
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.  {{$nonkasbon->dokumennk->total}}</span>
+                                                            <span class="input-group-text">Rp.  {{number_format($nonkasbon->dokumennk->total)}}</span>
                                                        </th>
                                                     </div>
-                                                    <th></th>
+                                                    {{-- <th></th> --}}
                                                 </tr>
                                             </tfoot>
                                     </table>
                                 </div><!--end re-table-->
                             </div>
                         </div>
+                    {!! Form::model($nonkasbon, ['method' => 'PATCH','route' => ['vnk-atasan-2.update', $nonkasbon->id],'class' => 'form-parsley form-control']) !!}
+                <input value="{{$nonkasbon->id}}" class="text-muted mb-0" name="id" hidden>
+                                {{ csrf_field() }}
+                <div class="modal-body step-2" data-step="3">
+                    <div class="row" style="margin-left:auto;margin-right:auto;">
+                        <div class="col-md-6">
+                            <div class="">
+                                <label class="form-label">Status</label>
+                                <select name="status" class="form-select" required>
+                                    <option value=""  selected hidden>Pilih</option>
+                                    <option value="Revisi">Minta Revisi</option>
+                                    <option value="Terverifikasi">Terverifikasi</option>
+                                    <option value="Ditolak">Tolak Ajuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <label class="form-label">Catatan</label>
+                               <textarea class="form-control" name="keterangan" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                 
-                
+                 <div class="modal-footer">
+                    <button type="button"  class="btn btn-danger step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)">Back</button>
+                    <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-3', 2)">Next</button>
+                    <button type="button" class="btn btn-danger step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 2)">Back</button>
+                    <button type="submit" class="btn btn-primary step step-2" data-step="3" >Simpan</button>
+                </div>
                 {!! Form::close() !!} 
             </div>
         </div>

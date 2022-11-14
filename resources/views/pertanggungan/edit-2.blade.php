@@ -17,7 +17,7 @@
             <div class="form-group row">
                 <label for="txtLastNameShipping" class="col-lg-4 col-form-label">No VKB Kasbon</label>
                 <div class="col-lg-8">
-                    <input required parsley-type="text" class="form-control" value="{{$pertanggungan->kasbon->nopi}}" name="novkbkasbon" disabled>
+                    <input  parsley-type="text" class="form-control" value="{{$pertanggungan->kasbon->nopi}}" name="novkbkasbon" disabled>
                     <!-- <input id="txtLastNameShipping" name="txtLastNameShipping" type="text" class="form-control"> -->
                 </div>
             </div>
@@ -28,10 +28,16 @@
             <div class="form-group row">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Tanggal Jatuh Tempo</label>
                 <div class="col-lg-4">
+                    <div class="input-group">  
                     <input id="txtNameCard" type="number" class="form-control" name="haritempo" value="{{$pertanggungan->kasbon->haritempo}}" disabled>
+                    <span class="input-group-text">Hari</span>   
+                    </div>
                 </div>
                 <div class="col-lg-4">
+                    <div class="input-group">                                            
+                        <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
                     <input required parsley-type="text" class="form-control" type="date" id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo->format('Y-m-d')}}" disabled>
+                    </div>
                 </div>
             </div>
             <!--end form-group-->

@@ -35,9 +35,8 @@ class UnitController extends Controller
      */
     public function create()
     {
-        $units = Unit::all();
         $title = 'Input';
-        return view('units.create', compact('units', 'title'));
+        return view('units.create', compact('title'));
     }
 
     /**
@@ -49,13 +48,13 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:units'
         ]);
-        
-        $unit = Unit::create(['name' => $request->input('name')]);
 
-        return redirect()->route('units.index')
-            ->with('success', 'unit created successfully');
+        $input = $request->all();
+        Unit::create($input);
+
+        return redirect()->route('units.index')->with('success', 'unit created successfully');
     }
 
     /**
@@ -79,10 +78,9 @@ class UnitController extends Controller
     public function edit($id)
     {
         $unit = unit::find($id);
-        $units = Unit::all();
         $title = 'Edit';
 
-        return view('units.edit', compact('unit', 'title', 'units'));
+        return view('units.edit', compact('unit', 'title'));
     }
 
     /**
@@ -95,20 +93,13 @@ class UnitController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'roles' => 'required'
+            'name' => 'required|unique:units'
         ]);
 
         $input = $request->all();
-
         $unit = unit::find($id);
         $unit->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $unit->assignRole($request->input('roles'));
-
-        return redirect()->route('units.index')
-            ->with('success', 'unit updated successfully');
+        return redirect()->route('units.index')->with('success', 'unit updated successfully');
     }
 
     /**

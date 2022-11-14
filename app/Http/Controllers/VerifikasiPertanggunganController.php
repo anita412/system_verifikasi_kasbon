@@ -250,6 +250,6 @@ class VerifikasiPertanggunganController extends Controller
             $pertanggungan->verifikasipertanggungan->id_vkp = Auth::user()->id;
             $pertanggungan->verifikasipertanggungan->save();
         });
-        return redirect()->route('vkp.index')->with('success', 'User updated successfully');
+        return redirect()->route('vkp.index')->with('success', 'Pertanggungan updated successfully');
     }
 }

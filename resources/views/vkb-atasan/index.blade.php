@@ -71,20 +71,19 @@
                                     <th style="width:0%">Action</th>
                                 </tr>
                                 </thead>
-
-
                                 <tbody>
+                                   
                                     @foreach ($kasbon as $kasbon)
+                                     @if(isset($kasbon->verifikasikasbon->vkb_a_1))
                                 <tr>
                                     <td>{{$kasbon->nokasbon}}</td>
-                                    <td>{{$kasbon->tglmasuk->format('d/m/Y')}}</td>
+                                    <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>
                                     <td>{{$kasbon->jeniskasbon}}</td>
                                     <td>Rp. {{number_format($kasbon->total)}}</td>
                                     <td>{{$kasbon->noinvoice}}</td>
                                     <td>{{$kasbon->jenis->name}}</td>
                                    
                                     <td>
-                                        @if(isset($kasbon->verifikasikasbon->vkb_a_1))
                                         @if($kasbon->verifikasikasbon->vkb_a_1 == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Diproses</label>
                                         @elseif($kasbon->verifikasikasbon->vkb_a_1 == "Terverifikasi")
@@ -98,7 +97,7 @@
                                         @elseif($kasbon->verifikasikasbon->vkb_a_1 == "Revisi")
                                         <label class="badge rounded-pill bg-warning">Menunggu Revisi</label>
                                         @endif
-                                        @endif
+                                        
                                     </td>
                                    
                                     <td>
@@ -125,6 +124,7 @@
                                             @endif
                                         @endif
                                     </td>
+                                    @endif
                                     @endforeach 
                                 </tr>
                                 </tbody>
@@ -318,7 +318,7 @@ sendEvent = function(sel, step) {
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[0, 'desc']],
+       order: [[1, 'desc']],
        columnDefs: [
                {
                    "targets": [6],

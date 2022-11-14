@@ -46,29 +46,29 @@
            <table>
             <tbody>
                 <tr>
-                    <td  style="width: 100%" class="tm_border_top_0">Surat Pemberitahuan</td>
+                    <td style="width: 60%" class="tm_border_top_0">Surat Pemberitahuan</td>
                     <td class="tm_border_top_0">:</td>
-                    <td class="tm_border_top_0">III (Ketiga)</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">III (Ketiga)</td>
                 </tr>
                 <tr>
-                    <td  class="tm_border_top_0">Tanggal</td>
+                    <td style="width: 60%"  class="tm_border_top_0">Tanggal</td>
                     <td class="tm_border_top_0">:</td>
-                    <td class="tm_border_top_0">{{$kasbon->monitoringsp->tgl_sp1}}</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">{{$kasbon->monitoringsp->tgl_sp1}}</td>
                 </tr>
                 <tr>
-                    <td  class="tm_border_top_0">User kasbon</td>
+                    <td style="width: 60%"  class="tm_border_top_0">User kasbon</td>
                     <td class="tm_border_top_0">:</td>
-                    <td class="tm_border_top_0">{{$kasbon->user->name}}</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">{{$kasbon->user->name}}</td>
                 </tr>
                 <tr>
-                    <td  class="tm_border_top_0">Divisi</td>
+                    <td  style="width: 60%"  class="tm_border_top_0">Divisi</td>
                     <td class="tm_border_top_0">:</td>
-                    <td class="tm_border_top_0">{{$kasbon->user->unit->name}}</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">{{$kasbon->user->unit->name}}</td>
                 </tr>
                 <tr>
-                    <td  class="tm_border_top_0">Total Nilai Kasbon Jatuh Tempo</td>
+                    <td  style="width: 30%"  class="tm_border_top_0">Total Nilai Kasbon Jatuh Tempo</td>
                     <td class="tm_border_top_0">:</td>
-                    <td class="tm_border_top_0">Rp. {{$kasbon->total}}</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">Rp. {{number_format($kasbon->total)}}</td>
                 </tr>
             </tbody>
            </table>
@@ -95,7 +95,7 @@
                 <tr>
                   <td style="width: 15%;" class="tm_border_top tm_border_right">{{$kasbon->nokasbon}}</td>
                   <td style="width: 25%;" class="tm_border_top">{{$kasbon->formatkasbon}}</td>
-                  <td style="width: 15%;text-align: center" class="tm_border_left tm_border_right tm_border_top">Rp. {{$kasbon->total}}</td>
+                  <td style="width: 15%;text-align: center" class="tm_border_left tm_border_right tm_border_top">Rp. {{number_format($kasbon->total)}}</td>
                   <td style="width: 15%;" class="tm_border_top tm_border_right"></td>
                   <td style="width: 15%;r" class="tm_border_top ">{{$kasbon->tgltempo->format('Y-m-d')}} </td>
                   <td style="width: 5%;text-align: center"  class="tm_border_left tm_border_top">{{$kasbon->tgltempo->format('Y-m-d')}}</td>

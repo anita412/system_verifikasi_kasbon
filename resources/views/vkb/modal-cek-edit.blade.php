@@ -34,7 +34,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Kasbon</p> 
                                                </td>
@@ -117,7 +117,7 @@
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{$kasbon->iddpp}}</td>     
+                                           <td>Rp. {{number_format($kasbon->iddpp)}}</td>     
                                             </tr>  
                                             <tr>
                                                 <td>
@@ -126,21 +126,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{$kasbon->ppn}}</td>  
+                                                <td>Rp. {{number_format($kasbon->ppn)}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>({{$kasbon->pph->name}}) Rp. {{$kasbon->idpph}}</td>    
+                                               <td>({{$kasbon->pph->name}}) Rp. {{number_format($kasbon->idpph)}}</td>    
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$kasbon->total}}</td>                                                      
+                                           <td>Rp. {{number_format($kasbon->total)}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -149,7 +149,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                                <td>{{$kasbon->tgltempo->format('m/d/Y')}}</td>     
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">No Invoice</p> 
                                                </td>
@@ -202,7 +202,7 @@
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$kasbon->barang_datang->format('d-m-Y')}}</td>  
+                                               <td>{{$kasbon->barang_datang->format('m/d/Y')}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                                            </td>
@@ -763,7 +763,7 @@
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <label class="form-label">TICKET TRANSPORT</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ADA" {{ ($kasbon->kelengkapan->ddinas->dd_tickettransport=="ADA")? "checked" : "" }}>
@@ -801,7 +801,6 @@
                                                         ADA
                                                     </label>
                                                 </div>
-                                                </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="TIDAK" {{ ($kasbon->kelengkapan->ddinas->dd_boardingpass=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_boardingpass2">
@@ -809,7 +808,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <label class="form-label">NOTA PENGINAPAN</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan1" value="ADA" {{ ($kasbon->kelengkapan->ddinas->dd_notapenginapan=="ADA")? "checked" : "" }}>
@@ -839,78 +838,12 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            
                                         </div>
+                                </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div>
                     </div> <!-- end row --> 
-    
-
-                    {{-- <table style="margin-left:auto;margin-right:auto;">
-                        <tbody>
-                          <tr>
-                              <td class="tm_border_top_0 tm_border_bottom" style=""><b class="tm_primary_color">DOKUMEN VENDOR</b></td>
-                          </tr>
-                          <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">INVOICE :</label>
-                                <p>
-                                  Asli <input type="radio" name="contactMethod" id="contactMethodEmail" value="Email" required="">
-                                  Copy <input type="radio" name="contactMethod" id="contactMethodPhone" value="Phone">
-                                  - <input type="radio" name="contactMethod" id="stripMethodPhone" value="strip">
-                                </p>
-                              </td>
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">KWITANSI :</label>
-                                <p>
-                                  Asli <input type="radio" name="coMethod" id="coMethodEmail" value="Email" required="">
-                                  Copy <input type="radio" name="coMethod" id="coMethodPhone" value="Phone">
-                                  - <input type="radio" name="coMethod" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                              
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">PO VENDOR :</label>
-                                <p>
-                                  Asli <input type="radio" name="sdf" id="sdfEmail" value="Email" required="">
-                                  Copy <input type="radio" name="sdf" id="sdfPhone" value="Phone">
-                                  - <input type="radio" name="sdf" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="cc" id="ccEmail" value="Email" required="">
-                                  Copy <input type="radio" name="cc" id="ccPhone" value="Phone">
-                                  - <input type="radio" name="cc" id="stripMethodPhone" value="strip">
-                                </p>
-                              </td>
-                              <td style="width: 5%"></td>
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="cd" id="cdEmail" value="Email" required="">
-                                  Copy <input type="radio" name="cd" id="cdPhone" value="Phone">
-                                  - <input type="radio" name="cd" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                              
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="sdfs" id="sdfsEmail" value="Email" required="">
-                                  Copy <input type="radio" name="sdfs" id="sdfsPhone" value="Phone">
-                                  - <input type="radio" name="sdfs" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                           </tr>
-                          
-                      </table> --}}
-                </div>
-
                 <div class="modal-body step-3" data-step="2" >
                     <div class="row" style="margin-left:auto;margin-right:auto;">
                         <div class="col-md-6">
@@ -928,6 +861,14 @@
                             <div class="mt-3">
                                 <label class="form-label">Catatan</label>
                                <textarea class="form-control" name="catatan">{{$kasbon->kelengkapan->keterangan->catatan}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label>Kekurangan</label>
+                                @foreach ($kasbon->kelengkapan->keterangan->keterangan_detail as $details)
+                                <p><b>{{$loop->iteration}}. {{$details->kekurangan}}</b></p>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-12">
@@ -959,7 +900,6 @@
                                     <span class="fas fa-plus"></span> Add </a></k>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
                

@@ -33,7 +33,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Kasbon</p> 
                                                </td>
@@ -116,7 +116,7 @@
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{$kasbon->iddpp}}</td>     
+                                           <td>Rp. {{number_format($kasbon->iddpp)}}</td>     
                                             </tr>  
                                             <tr>
                                                 <td>
@@ -125,21 +125,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{$kasbon->ppn}}</td>  
+                                                <td>Rp. {{number_format($kasbon->idppn)}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>({{$kasbon->pph->name}}) Rp. {{$kasbon->idpph}}</td>    
+                                               <td>({{$kasbon->pph->name}}) Rp. {{number_format($kasbon->idpph)}}</td>    
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$kasbon->total}}</td>                                                      
+                                           <td>Rp. {{number_format($kasbon->total)}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -148,7 +148,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                                <td>{{$kasbon->tgltempo->format('m/d/Y')}}</td>     
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">No Invoice</p> 
                                                </td>
@@ -194,14 +194,14 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->harga_jual}}</td>
+                                                <td>Rp. {{number_format($kasbon->harga_jual)}}</td>
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$kasbon->barang_datang->format('d-m-Y')}}</td>  
+                                               <td>{{$kasbon->barang_datang->format('m/d/Y')}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                                            </td>
@@ -421,7 +421,7 @@
                         <div class="col-md-6">
                             <div class="">
                                 <label class="form-label">Catatan</label>
-                               <textarea class="form-control" name="keterangan" required>{{$kasbon->keterangankasbon->keterangan}}</textarea>
+                               <textarea class="form-control" name="keterangan" >{{$kasbon->keterangankasbon->keterangan}}</textarea>
                             </div>
                         </div>
                     </div>

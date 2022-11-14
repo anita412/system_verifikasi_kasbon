@@ -6,7 +6,7 @@
                 <tbody>
                 <tr>
                     <th style="width: 70%">Dokumen</th>
-                    <th>Quantity</th>
+                    <th>Nominal</th>
                     <th style="width: 0%" class="text-center"></th>
                 </tr>
                 

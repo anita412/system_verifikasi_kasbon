@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Kasbon {{$nonkasbon->np_nokasbon}}</h4>
+                    <h4 class="modal-title step-1" data-step="1">Non Kasbon {{$nonkasbon->np_nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,7 +33,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$nonkasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$nonkasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
                                                </td>
@@ -42,12 +42,12 @@
                                                </td>
                                                <td>{{$nonkasbon->jammasuk}}</td>    
                                                <td>
-                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
+                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$nonkasbon->jammasuk}}</td>                                                      
+                                           <td>{{$nonkasbon->tujuanpembayaran}}</td>                                                       
                                             </tr>
                                             <tr>
                                                 <td>
@@ -110,38 +110,29 @@
                                                    :
                                                </td>
                                                <td>{{$nonkasbon->noinvoice}}</td>  
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
-                                           </td>
-                                           <td>
-                                               :
-                                           </td>
-                                           <td>Rp. {{$nonkasbon->tujuanpembayaran}}</td>     
-                                            </tr>  
-                                                             
+                                                  
+                                            </tr>              
                                         </tbody>
                                     </table>
                                     <br>
                                 </div>
                             </div>
                         </div>
+                        <b> Catatan : {{$nonkasbon->keterangannonkasbon->keterangan}} </b>
                                 <div class="table-responsive shopping-cart">
                                     <table class="table  table-bordered table-sm t1">
                                         <tbody>
                                         <tr>
                                             <th style="width: 70%">Dokumen</th>
-                                            <th>Quantity</th>
-                                            <th style="width: 0%" class="text-center"></th>
+                                            <th>Nominal</th>
+                                            {{-- <th style="width: 0%" class="text-center"></th> --}}
                                         </tr>
                                         @foreach ($nonkasbon->dokumennk->dokumennkd as $item)
                                             
                                         
                                         <tr class="item">
                                             <td>{{$item->dokumen}}</td>
-                                            <td>{{$item->nominal}}</td>
-                                            <td class="text-end">
-                                                <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
-                                            </tr>
+                                            <td>Rp. {{number_format($item->nominal)}}</td>
                                             @endforeach
                                             </tbody>
                                             <tfoot>
@@ -149,10 +140,10 @@
                                                     <th class="text-center"><strong>TOTAL NOMINAL</strong></th>
                                                     <th>
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.  {{$nonkasbon->dokumennk->total}}</span>
+                                                            <span class="input-group-text">Rp. {{number_format($nonkasbon->dokumennk->total)}}</span>
                                                        </th>
                                                     </div>
-                                                    <th></th>
+                                                    {{-- <th></th> --}}
                                                 </tr>
                                             </tfoot>
                                     </table>

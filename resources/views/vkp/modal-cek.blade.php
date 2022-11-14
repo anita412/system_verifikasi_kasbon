@@ -30,7 +30,7 @@
                                 <td>
                                     :
                                 </td>
-                                <td>{{$pertanggungan->kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                <td>{{$pertanggungan->kasbon->tglmasuk->format('m/d/Y')}}</td>  
                                 <td>
                                     <p class=" align-middle mb-0 product-name">Kasbon</p> 
                                </td>
@@ -113,7 +113,7 @@
                            <td>
                                :
                            </td>
-                           <td>Rp. {{$pertanggungan->kasbon->iddpp}}</td>     
+                           <td>Rp. {{number_format($pertanggungan->kasbon->iddpp)}}</td>     
                             </tr>  
                             <tr>
                                 <td>
@@ -122,21 +122,21 @@
                                 <td>
                                     :
                                 </td>
-                                <td>Rp. {{$pertanggungan->kasbon->ppn}}</td>  
+                                <td>Rp. {{number_format($pertanggungan->kasbon->idppn)}}</td>  
                                 <td>
                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                </td>
                                <td>
                                    :
                                </td>
-                               <td>({{$pertanggungan->kasbon->pph->name}}) Rp. {{$pertanggungan->kasbon->idpph}}</td>    
+                               <td>({{$pertanggungan->kasbon->pph->name}}) Rp. {{number_format($pertanggungan->kasbon->idpph)}}</td>    
                                <td>
                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                            </td>
                            <td>
                                :
                            </td>
-                           <td>{{$pertanggungan->kasbon->total}}</td>                                                      
+                           <td>Rp. {{number_format($pertanggungan->kasbon->total)}}</td>                                                      
                             </tr>
                             <tr>
                                 <td>
@@ -145,7 +145,7 @@
                                 <td>
                                     :
                                 </td>
-                                <td>{{$pertanggungan->kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                <td>{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}</td>     
                                 <td>
                                     <p class=" align-middle mb-0 product-name">No Invoice</p> 
                                </td>
@@ -191,14 +191,14 @@
                                 <td>
                                     :
                                 </td>
-                                <td>{{$pertanggungan->kasbon->harga_jual}}</td>
+                                <td>Rp. {{number_format($pertanggungan->kasbon->harga_jual)}}</td>
                                 <td>
                                     <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
                                </td>
                                <td>
                                    :
                                </td>
-                               <td>{{$pertanggungan->kasbon->barang_datang->format('d-m-Y')}}</td>  
+                               <td>{{$pertanggungan->kasbon->barang_datang->format('m/d/Y')}}</td>  
                                <td>
                                 <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                            </td>
@@ -758,105 +758,75 @@
                                             <div class="col-md-2">
                                                 <label class="form-label">TICKET TRANSPORT</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport=="ASLI")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport=="ADA")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_tickettransport1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport=="COPY")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_tickettransport2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_tickettransport=="-")? "checked" : "" }}>
-                                                    <label class="form-check-label" for="dd_tickettransport2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">NOTA MAKAN</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan=="ASLI")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan=="ADA")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_notamakan1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan=="COPY")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_notamakan2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notamakan" id="dd_notamakan2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notamakan=="-")? "checked" : "" }}>
-                                                    <label class="form-check-label" for="dd_notamakan2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">BOARDING PASS</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass=="ASLI")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass=="ADA")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_boardingpass1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass=="COPY")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_boardingpass2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_boardingpass" id="dd_boardingpass2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_boardingpass=="-")? "checked" : "" }}>
-                                                    <label class="form-check-label" for="dd_boardingpass2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <label class="form-label">NOTA PENGINAPAN</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan=="ASLI")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan=="ADA")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_notapenginapan1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan=="COPY")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_notapenginapan2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_notapenginapan" id="dd_notapenginapan2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_notapenginapan=="-")? "checked" : "" }}>
-                                                    <label class="form-check-label" for="dd_notapenginapan2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="form-label">SPPD</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd=="ASLI")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd=="ADA")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_sppd1">
-                                                        ASLI
+                                                        ADA
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd=="COPY")? "checked" : "" }}>
+                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd=="TIDAK")? "checked" : "" }}>
                                                     <label class="form-check-label" for="dd_sppd2">
-                                                        COPY
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_sppd" id="dd_sppd2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_sppd=="-")? "checked" : "" }}>
-                                                    <label class="form-check-label" for="dd_sppd2">
-                                                        -
+                                                        TIDAK
                                                     </label>
                                                 </div>
                                             </div>

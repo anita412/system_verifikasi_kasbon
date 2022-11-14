@@ -125,7 +125,7 @@ class SPPDController extends Controller
             }
         });
 
-        return redirect()->route('sppd.index')->with('success', 'Non Kasbon created successfully.');
+        return redirect()->route('sppd.index')->with('success', 'SPPD created successfully.');
     }
 
     public function show($id)
@@ -136,5 +136,11 @@ class SPPDController extends Controller
         $detail = SPPDDetail::where('id_sppd', $sppd->id)->get();
         $title = 'SPPD | Show';
         return view('sppd.show', compact('title', 'sppd', 'detail', 'rate', 'kurs'));
+    }
+
+    public function destroy($id)
+    {
+        SPPD::find($id)->delete();
+        return redirect()->route('sppd.index')->with('success', 'SPPD deleted successfully');
     }
 }

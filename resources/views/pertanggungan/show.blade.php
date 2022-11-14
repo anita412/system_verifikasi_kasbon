@@ -41,7 +41,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="input-group">                                            
                                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                    <input class="form-control" name="tglmasuk"value="{{$pertanggungan->kasbon->tglmasuk->format('d-m-Y')}}" id="example-date-input" disabled>
+                                                    <input class="form-control" name="tglmasuk"value="{{$pertanggungan->kasbon->tglmasuk->format('m/d/Y')}}" id="example-date-input" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,12 +260,15 @@
                                                 <div class="form-group row POC">
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Tanggal Jatuh Tempo</label>
                                                     <div class="col-lg-4">
+                                                        <div class="input-group">                                            
                                                         <input id="txtNameCard"  class="form-control" name="haritempo" value="{{$pertanggungan->kasbon->haritempo}}" disabled>
+                                                        <span class="input-group-text">Hari</span>    
+                                                    </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="input-group">                                            
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input type="text" class="form-control"  id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo}}" disabled>    
+                                                        <input type="text" class="form-control"  id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}" disabled>    
                                                         </div>
                                                     </div>
                                                     </div><!--end form-group-->
@@ -296,7 +299,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="input-group">                                            
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input id="txtNameCard" name="barang_datang" type="date" class="form-control" value="{{$pertanggungan->kasbon->barang_datang}}" disabled>
+                                                        <input id="txtNameCard" name="barang_datang" class="form-control" value="{{$pertanggungan->kasbon->barang_datang->format('m/d/Y')}}" disabled>
                                                         </div>
                                                     </div>
                                                 </div><!--end form-group-->
@@ -331,7 +334,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input class="form-control" type="date" class="form-control"  name="idppn" value="{{$pertanggungan->tglbayarkeuser}}" disabled>
+                                                        <input class="form-control" class="form-control"  name="idppn" value="{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}" disabled>
                                                         </div>   
                                                     </div>
                                                     </div>
@@ -355,7 +358,7 @@
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
                                                                 <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                            <input class="form-control" type="date" class="form-control" value="{{$pertanggungan->tglptj}}" disabled>
+                                                            <input class="form-control" class="form-control" value="{{$pertanggungan->tglptj->format('m/d/Y')}}" disabled>
                                                             </div>  
                                                         </div>
                                                     </div><!--end form-group-->
@@ -378,7 +381,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">No VKB Selisih PTJ</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                {{-- <span class="input-group-text">Rp.</span> --}}
                                                             <input class="form-control" value="{{$pertanggungan->novkbselisihptj}}" disabled>
                                                             </div>
                                                         </div>

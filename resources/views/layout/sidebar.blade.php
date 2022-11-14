@@ -57,7 +57,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
                         @endcan
                         @can('nkb-atasan-list')
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan.index') }}"><i class="ti-control-record"></i>Verifikasi Atasan NonKasbon</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
                         @endcan
                     </ul> 
                 </li>
@@ -91,14 +91,29 @@
                     </ul> 
                 </li>
                 @endcan
+                @can('vkb-atasan-3-list')
+                <li>
+                    <a href="javascript: void(0);"> <i class="align-self-center menu-icon ti-check-box" ></i><span>Verifikasi Atasan - 3</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-3.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
+                        @can('vkp-atasan-3-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-3.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
+                        @endcan
+                        @can('nkb-atasan-3-list')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-3.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        @endcan
+                    </ul> 
+                </li>
+                @endcan
                 @can('sppd-list')
                 <li>
                     <a href="{{ route('sppd.index') }}"><i class="align-self-center ti-receipt"></i><span>SPPD</span></a>
                 </li>
-                @endcan
+             
                 <li>
                     <a href="{{ route('msp.index') }}"><i class="align-self-center ti-receipt"></i><span>Monitoring SP</span></a>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>

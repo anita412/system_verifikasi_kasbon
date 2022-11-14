@@ -19,7 +19,7 @@
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
             @slot('li_2') Forms @endslot
-            @slot('li_3') Entry Kasbon @endslot
+            @slot('li_3') Non Kasbon @endslot
             @slot('title') Entry @endslot
         @endcomponent
             <div class="row">

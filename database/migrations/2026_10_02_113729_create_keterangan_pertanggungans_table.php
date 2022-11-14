@@ -16,7 +16,7 @@ class CreateKeteranganPertanggungansTable extends Migration
         Schema::create('keterangan_pertanggungan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pertanggungan')->nullable();
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_pertanggungan')->references('id')->on('pertanggungans')->onDelete('cascade');

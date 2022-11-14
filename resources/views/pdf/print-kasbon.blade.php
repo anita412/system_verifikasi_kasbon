@@ -39,9 +39,9 @@
             <div class="tm_invoice_left">
               <p  style="font-size: 11px " ><b class="tm_primary_color" >
                 NAMA USER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{{$pertanggungan->kasbon->user->name}}<br>
-                NOMINAL KASBON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;Rp. {{$pertanggungan->kasbon->total}} <br>
-				NOMINAL REALISASI	&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->nilaiptj}}<br>
-                SELISIH REALISASI	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{$pertanggungan->selisihptj}}<br>
+                NOMINAL KASBON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;Rp. {{number_format($pertanggungan->kasbon->total)}} <br>
+				NOMINAL REALISASI	&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{number_format($pertanggungan->nilaiptj)}}<br>
+                SELISIH REALISASI	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; Rp. {{number_format($pertanggungan->selisihptj)}}<br>
 				{{$pertanggungan->kasbon->jeniskasbon}}
 				</b>
               </p>
@@ -245,9 +245,12 @@
             <div class="tm_grid_row tm_col_2">
               <div class=" tm_border_none_sm">
                 <ul class="tm_m0" style="font-size: 12px;">
-					<br><br><br>
+					<br>
+					<img src="data:image/png;base64,{{DNS2D::getBarcodePNG($pertanggungan->kasbon->user->name, 'QRCODE')}}" alt="barcode" />
+					<br><br>
 					<hr style="width: 30%;" class="tm_mb0">
 				<p>Staff Keuangan</p>
+				
                 </ul>
               </div>
               <div>

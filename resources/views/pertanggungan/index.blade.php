@@ -80,14 +80,14 @@
                                     @foreach ($pertanggungan as $pertanggungan)
                                     @if($pertanggungan->kasbon->id_user == Auth::user()->id)
                                 <tr>
-                                    <td hidden>{{$pertanggungan->updated_at->format('d/m/Y')}}</td>
+                                    <td hidden>{{$pertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
                                     <td>{{$pertanggungan->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
                                     <td>{{$pertanggungan->jeniskasbon}}</td>
                                     <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->nilaiptj}}</td>
-                                    <td>{{$pertanggungan->nilaiselisihptj}}</td>
-                                    <td>{{$pertanggungan->tgltempo}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
+                                    <td>{{$pertanggungan->tgltempo->format('m/d/Y')}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->status == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Dalam Proses</label>
@@ -229,7 +229,7 @@
        order: [[0, 'desc']],
        columnDefs: [
                {
-                   "targets": [8],
+                   "targets": [7],
                    "visible": true
                }
            ],
@@ -255,8 +255,8 @@
          var status = $(this).val();
          $('.status-dropdown').val(status)
          console.log(status)
-         //dataTable.column(8).search('\\s' + status + '\\s', true, false, true).draw();
-         $dTable.column(8).search(status).draw();
+         //dataTable.column(7).search('\\s' + status + '\\s', true, false, true).draw();
+         $dTable.column(7).search(status).draw();
        })  
    
       document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

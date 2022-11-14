@@ -80,12 +80,12 @@
                                 <tr>
                                     <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('d/m/Y')}}</td>
                                     <td>{{$pertanggungan->nokasbon}}</td>
-                                    <td>{{$pertanggungan->user}}</td>
+                                    <td>{{$pertanggungan->kasbon->user->name}}</td>
                                     <td>{{$pertanggungan->jeniskasbon}}</td>
                                     <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->tglbayarkeuser}}</td>
-                                    <td>{{$pertanggungan->nilaiptj}}</td>
-                                    <td>{{$pertanggungan->nilaiselisihptj}}</td>
+                                    <td>{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->vkp_a_2 == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Proses</label>

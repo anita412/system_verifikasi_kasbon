@@ -123,34 +123,35 @@ class VerifikasiKasbonAtasan2Controller extends Controller
                 $kasbon->verifikasikasbon->status = 'Revisi';
             } else {
                 $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb = $request->Input('status');
-                $kasbon->verifikasikasbon->status = $request->Input('status');
+                $kasbon->verifikasikasbon->vkb_a_3 = 'Dalam Proses';
+                // $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
+                // $kasbon->verifikasikasbon->vkb = $request->Input('status');
+                // $kasbon->verifikasikasbon->status = $request->Input('status');
             }
 
-            if ($request->Input('status') == 'Terverifikasi') {
-                MonitoringSP::insertGetId([
-                    'id_kasbon' => $id,
-                    'ptj' => 'Belum',
-                    'sp1' => 'Belum',
-                    'sp2' => 'Belum',
-                    'sp3' => 'Belum',
-                    'mts' => 'Belum',
-                    'pbsdm' => 'Belum',
-                    'ptj' => 'Belum',
-                    'tgl_sp1' => $kasbon->tgltempo->addDays(7),
-                    // 'tgl_sp2' => $kasbon->tgltempo->addDays(21),
-                    // 'tgl_sp3' => $kasbon->tgltempo->addDays(44),
-                    'created_at' => $now,
-                    'updated_at' => $now,
-                ]);
-            }
+            // if ($request->Input('status') == 'Terverifikasi') {
+            //     MonitoringSP::insertGetId([
+            //         'id_kasbon' => $id,
+            //         'ptj' => 'Belum',
+            //         'sp1' => 'Belum',
+            //         'sp2' => 'Belum',
+            //         'sp3' => 'Belum',
+            //         'mts' => 'Belum',
+            //         'pbsdm' => 'Belum',
+            //         'ptj' => 'Belum',
+            //         'tgl_sp1' => $kasbon->tgltempo->addDays(7),
+            //         'tgl_sp2' => $kasbon->tgltempo->addDays(21),
+            //         'tgl_sp3' => $kasbon->tgltempo->addDays(44),
+            //         'created_at' => $now,
+            //         'updated_at' => $now,
+            //     ]);
+            // }
 
             $kasbon->verifikasikasbon->id_vkb_a_2 = Auth::user()->id;
             $kasbon->verifikasikasbon->update();
         });
 
-        return redirect()->route('vkb-atasan-2.index')->with('success', 'User updated successfully');
+        return redirect()->route('vkb-atasan-2.index')->with('success', 'Kasbon updated successfully');
     }
 
     /**
@@ -269,8 +270,7 @@ class VerifikasiKasbonAtasan2Controller extends Controller
             $kasbon = Kasbon::find($idkasbon);
             if ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Terverifikasi') {
                 $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_1 = 'Terverifikasi';
-                $kasbon->verifikasikasbon->vkb = 'Terverifikasi';
+                $kasbon->verifikasikasbon->vkb_a_3 = 'Dalam Proses';
             } elseif ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Ditolak') {
                 $kasbon->verifikasikasbon->vkb_a_1 = 'Ditolak';
                 $kasbon->verifikasikasbon->vkb = 'Ditolak';

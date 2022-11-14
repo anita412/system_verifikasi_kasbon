@@ -19,8 +19,8 @@
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
             @slot('li_2') Forms @endslot
-            @slot('li_3') Entry Kasbon @endslot
-            @slot('title') Entry @endslot
+            @slot('li_3') Edit Kasbon @endslot
+            @slot('title') Edit @endslot
         @endcomponent
             <div class="row">
                 <div class="col-12">
@@ -42,7 +42,6 @@
                                 {{ csrf_field() }}
                                @include('kasbon.edit-1')
                                @include('kasbon.edit-2')
-                               @include('kasbon.edit-3')
                                {!! Form::close() !!}    
                         </div><!--end card-body-->
                     </div><!--end card-->

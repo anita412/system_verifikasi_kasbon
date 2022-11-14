@@ -4,17 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pertanggungan;
 use DB;
-use App\Http\Requests\StorePertanggunganRequest;
-use App\Http\Requests\UpdatePertanggunganRequest;
-use App\Models\Kasbon;
 use Carbon\Carbon;
-use App\Models\Dvendor;
-use App\Models\DCustomer;
-use App\Models\DDinas;
-use App\Models\DImpor;
-use App\Models\DPajak;
-use App\Models\Kelengkapan;
-use App\Models\Keterangan;
 use App\Models\Keterangan_detail;
 use App\Models\KeteranganPertanggungan;
 use Illuminate\Http\Request;
@@ -140,7 +130,8 @@ class VerifikasiAtasan2PertanggunganController extends Controller
 
             if ($pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status') == 'Terverifikasi') {
                 $pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status');
-                $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
+                $pertanggungan->verifikasipertanggungan->vkp_a_3 = 'Dalam Proses';
+                // $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
             } elseif ($pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status') == 'Ditolak') {
                 $pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status');
                 $pertanggungan->verifikasipertanggungan->status = $request->Input('status');

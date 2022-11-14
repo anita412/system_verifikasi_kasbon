@@ -10,7 +10,7 @@ class Pertanggungan extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['tglbayarkeuser', 'tglptj'];
+    protected $dates = ['tglbayarkeuser', 'tglptj', 'tgltempo'];
     use HasFactory;
 
     public function kasbon()

@@ -31,7 +31,7 @@
                         <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" value="id_pph" name="id_pph">
                             <option value="" disabled selected hidden>Pilih PPH</option>
                             @foreach ($pph as $pph)
-                            @if(old('pph', $kasbon->id_jenis) == $pph->id)
+                            @if(old('pph', $kasbon->id_pph) == $pph->id)
                             <option value="{{$pph->id}}" selected>{{$pph->name}}</option>
                             @else
                             <option  value="{{$pph->id}}" >{{$pph->name}}</option>
@@ -91,7 +91,7 @@
                 <div class="form-group row">
                     <label for="txtNameCard" class="col-lg-4 col-form-label">PO Vendor</label>
                     <div class="col-lg-8">
-                        <input required parsley id="txtNameCard" name="po_vendor" type="text" class="form-control input-v" data-parsley-minlength="17" value="{{$kasbon->po_vendor}}">
+                        <input required parsley name="po_vendor" type="text" class="form-control input-v" data-parsley-minlength="17" value="{{$kasbon->po_vendor}}">
                         {{-- <script>
                             var cleave = new Cleave('.input-v', {
                             prefix: 'POIMST',
@@ -133,7 +133,7 @@
                 <div class="form-group row POC">
                     <label for="txtNameCard" class="col-lg-4 col-form-label">Tanggal Jatuh Tempo</label>
                     <div class="col-lg-4">
-                        <input id="txtNameCard"  type="number" class="form-control" name="haritempo" value="{{$kasbon->haritempo}}">
+                        <input  type="number" class="form-control" name="haritempo" value="{{$kasbon->haritempo}}">
                     </div>
                     <div class="col-lg-4">
                         <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo->format('Y-m-d')}}">    
@@ -144,7 +144,7 @@
                     <div class="form-group row">
                         <label for="txtNameCard" class="col-lg-4 col-form-label">SPPH/KOI/LOI</label>
                         <div class="col-lg-8">
-                            <input required parsley id="txtNameCard" name="spph" type="text" class="form-control input-koi" data-parsley-minlength="20" value="{{$kasbon->spph}}">
+                            <input required parsley name="spph" type="text" class="form-control input-koi" data-parsley-minlength="20" value="{{$kasbon->spph}}">
                         </div>
                     </div><!--end form-group-->
                 </div><!--end col-->
@@ -154,7 +154,7 @@
                 <div class="form-group row">
                     <label for="txtNameCard" class="col-lg-4 col-form-label">No. Invoice</label>
                     <div class="col-lg-8">
-                        <input required parsley id="txtNameCard" name="noinvoice" type="text" class="form-control input-noi" data-parsley-minlength="10" value="{{$kasbon->noinvoice}}"> 
+                        <input required parsley name="noinvoice" type="text" class="form-control input-noi" data-parsley-minlength="10" value="{{$kasbon->noinvoice}}"> 
                     </div>
                 </div><!--end form-group-->
             </div><!--end col-->
@@ -172,7 +172,7 @@
                 <div class="form-group row">
                     <label for="txtNameCard" class="col-lg-4 col-form-label">Perkiraan Barang Datang</label>
                     <div class="col-lg-8">
-                        <input required parsley id="txtNameCard" name="barang_datang" type="date" class="form-control" required parsley value="{{$kasbon->barang_datang->format('Y-m-d')}}" disabled>
+                        <input required parsley name="barang_datang" class="form-control" type="date" value="{{$kasbon->barang_datang->format('Y-m-d')}}">
                     </div>
                 </div><!--end form-group-->
             </div><!--end col-->
@@ -181,7 +181,7 @@
         <div class="row">
             <div class="col-sm-12 text-end">
                 <a href="#" type="button" onclick="form1()" class="btn btn-danger px-4">Previous</a> 
-                <a href="#" type="button" onclick="form3()" class="btn btn-primary px-4">Next</a>      
+                <button  type="submit"  class="btn btn-primary px-4">Simpan</button>       
             </div>
         </div>
 </div>

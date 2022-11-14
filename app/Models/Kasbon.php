@@ -11,7 +11,7 @@ class Kasbon extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['tgltempo', 'tglmasuk', 'barang_datang'];
+    protected $dates = ['tgltempo', 'tglmasuk', 'barang_datang', 'tgl_kelengkapan'];
 
     public function kurs()
     {

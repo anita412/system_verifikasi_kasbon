@@ -30,7 +30,7 @@
             </div>
         </div><!--end form-group-->
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="form-group row POC">
             <label for="txtNameCard" class="col-lg-4 col-form-label">Jatuh Tempo</label>
             <div class="col-lg-8">
@@ -40,11 +40,11 @@
                 </div>
             </div>
             
-            {{-- <div class="col-lg-4">
+           <div class="col-lg-4">
                 <input required parsley-type="text" class="form-control"  type="date" value="{{$dueDate}}" id="example-date-input" name="tgltempo">    
-            </div> --}}
+            </div> 
             </div><!--end form-group-->
-        </div><!--end col-->
+        </div><!--end col-->  --}}
 </div>
 <div class="row">
     <div class="col-md-6">

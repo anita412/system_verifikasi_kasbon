@@ -48,7 +48,7 @@
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Nominal</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">Rp. {{$nonkasbon->dokumennk->total}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">Rp. {{number_format($nonkasbon->dokumennk->total)}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
                 <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color"></b></td>
@@ -56,7 +56,7 @@
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Tanggal Pengajuan</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->tglmasuk}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->tglmasuk->format('m/d/Y')}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Pukul</b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">: </b></td>
                 <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->jammasuk}}</b></td>
@@ -80,19 +80,19 @@
 					</tr>
                     <tr>
 					  <td style="width: 5%;" class="tm_border_top_0 tm_border_right "><b class="tm_primary_color">No</b></td>
-                      <td style="width: 100%;text-align: center" ><b class="tm_primary_color">DOKUMEN</b></td>
-                      <td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">NOMINAL</b></td>
+                      <td style="width: 70%;text-align: center" ><b class="tm_primary_color">DOKUMEN</b></td>
+                      <td style="width: 30%;text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">NOMINAL</b></td>
                     </tr>
                     @foreach ($detail as $details)
                     <tr>
                         <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color">{{$loop->iteration}}</b></td>
-                        <td style="width: 100%;text-align: center" class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$details->dokumen}}</b></td>
-                        <td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$details->nominal}}</b></td>
+                        <td style="width: 70%;text-align: center" class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$details->dokumen}}</b></td>
+                        <td style="width: 30%;text-align: center"  class="tm_border_left tm_border_right tm_border_top tm_gray_bg"><b class="tm_primary_color">Rp. {{number_format($details->nominal)}}</b></td>
                       </tr>
                       @endforeach
                     <tr><td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
 						<td class="tm_border_top_0  tm_border_right"  style="text-align: center" ><b class="tm_primary_color">TOTAL NOMINAL</b></td>
-                        <td class="tm_border_top_0  tm_border_right tm_gray_bg" style="text-align: center" ><b class="tm_primary_color">Rp. {{$nonkasbon->dokumennk->total}}</b></td>
+                        <td class="tm_border_top_0  tm_border_right tm_gray_bg" style="text-align: center" ><b class="tm_primary_color">Rp. {{number_format($nonkasbon->dokumennk->total)}}</b></td>
 					</tr>
                   </tbody>
         

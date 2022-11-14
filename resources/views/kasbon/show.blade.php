@@ -74,7 +74,7 @@
                                             <div class="col-lg-8">
                                                 <div class="input-group">                                            
                                                     <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                <input class="form-control" name="tglmasuk"  value="{{$kasbon->tglmasuk->format('d-m-Y')}}" id="example-date-input" disabled>
+                                                <input class="form-control" name="tglmasuk"  value="{{$kasbon->tglmasuk->format('m/d/Y')}}" id="example-date-input" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -298,7 +298,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="input-group">                                            
                                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                    <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo}}" disabled>    
+                                                    <input required parsley-type="text" class="form-control" id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo->format('m/d/Y')}}" disabled>    
                                                     </div>
                                                 </div>
                                                 </div><!--end form-group-->
@@ -329,7 +329,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="input-group">                                            
                                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                    <input required parsley id="txtNameCard" name="barang_datang" type="date" class="form-control" required parsley value="{{$kasbon->barang_datang}}" disabled>
+                                                    <input required parsley id="txtNameCard" name="barang_datang" class="form-control" required parsley value="{{$kasbon->barang_datang->format('m/d/Y')}}" disabled>
                                                     </div>
                                                 </div>
                                             </div><!--end form-group-->

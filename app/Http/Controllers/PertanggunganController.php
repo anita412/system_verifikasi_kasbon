@@ -52,8 +52,11 @@ class PertanggunganController extends Controller
     public function index()
     {
         $title = 'Pertanggungan';
-
-        $pertanggungan = Pertanggungan::all();
+        if (auth()->user()->role === 'Admin') {
+            $pertanggungan = Pertanggungan::all();
+        } else {
+            $pertanggungan = Pertanggungan::where('id_user', Auth::user()->id)->get();
+        }
         return view('pertanggungan.index', compact('pertanggungan', 'title'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

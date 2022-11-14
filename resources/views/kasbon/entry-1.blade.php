@@ -5,6 +5,7 @@
 }
 </style>
 <div class="row" id="form-entry-1">
+  
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
@@ -35,25 +36,25 @@
                 </div>
             </div><!--end form-group-->
         </div>
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="form-group row POC">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Jatuh Tempo</label>
                 <div class="col-lg-4">
                     <div class="input-group">
                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                        <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" value="{{$dueDate}}" name="tgltempo" disabled>    
+                        <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" value="{{$dueDate}}" name="tgltempo">    
                     </div>
                  </div>
                 <div class="col-lg-4" >
                 <div class="input-group" >
-                        <input type="number" class="form-control" name="haritempo" value="7" style="text-align: right" data-parsley-errors-messages-disabled disabled>
+                        <input type="number" class="form-control" name="haritempo" style="text-align: right" data-parsley-errors-messages-disabled >
                         <span class="input-group-text" id="basic-addon2">hari</span>
                     </div>
                 </div>
                 
             
                 </div><!--end form-group-->
-            </div><!--end col-->
+            </div><!--end col--> --}}
     </div>
     <div class="row">
     <div class="col-md-6">

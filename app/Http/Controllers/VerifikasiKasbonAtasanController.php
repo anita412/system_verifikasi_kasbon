@@ -138,7 +138,7 @@ class VerifikasiKasbonAtasanController extends Controller
             // }
 
         });
-        return redirect()->route('vkb-atasan.index')->with('success', 'User updated successfully');
+        return redirect()->route('vkb-atasan.index')->with('success', 'Kasbon updated successfully');
     }
 
     /**

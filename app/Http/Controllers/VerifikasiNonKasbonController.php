@@ -141,7 +141,7 @@ class VerifikasiNonKasbonController extends Controller
                 }
             }
         });
-        return redirect()->route('vnk.index')->with('success', 'User updated successfully');
+        return redirect()->route('vnk.index')->with('success', 'Non Kasbon updated successfully');
     }
 
     /**

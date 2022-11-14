@@ -29,7 +29,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$pertanggungan->kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$pertanggungan->kasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Kasbon</p> 
                                                </td>
@@ -105,14 +105,14 @@
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$pertanggungan->kasbon->formstkasbon}}</td>  
+                                               <td>{{$pertanggungan->kasbon->formatkasbon}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nilai/DPP</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{$pertanggungan->kasbon->iddpp}}</td>     
+                                           <td>Rp. {{number_format($pertanggungan->kasbon->iddpp)}}</td>     
                                             </tr>  
                                             <tr>
                                                 <td>
@@ -121,21 +121,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{$pertanggungan->kasbon->ppn}}</td>  
+                                                <td>Rp. {{number_format($pertanggungan->kasbon->ppn)}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>({{$pertanggungan->kasbon->pph->name}}) Rp. {{$pertanggungan->kasbon->idpph}}</td>    
+                                               <td>({{$pertanggungan->kasbon->pph->name}}) Rp. {{number_format($pertanggungan->kasbon->idpph)}}</td>    
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$pertanggungan->kasbon->total}}</td>                                                      
+                                           <td>Rp. {{number_format($pertanggungan->kasbon->total)}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -144,7 +144,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$pertanggungan->kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                                <td>{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}</td>     
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">No Invoice</p> 
                                                </td>
@@ -190,14 +190,14 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$pertanggungan->kasbon->harga_jual}}</td>
+                                                <td>Rp. {{number_format($pertanggungan->kasbon->harga_jual)}}</td>
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$pertanggungan->kasbon->barang_datang->format('d-m-Y')}}</td>  
+                                               <td>{{$pertanggungan->kasbon->barang_datang->format('m/d/Y')}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                                            </td>
@@ -221,7 +221,7 @@
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$pertanggungan->tglbayarkeuser->format('d-m-Y')}}</td>  
+                                               <td>{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nilai PTJ</p> 
                                            </td>
@@ -238,14 +238,14 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$pertanggungan->tglptj->format('d-m-Y')}}</td>
+                                                <td>{{$pertanggungan->tglptj->format('m/d/Y')}}</td>
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Selisih PTJ</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>Rp. {{$pertanggungan->selisihptj}}</td>  
+                                               <td>Rp. {{number_format($pertanggungan->selisihptj)}}</td>  
                                              
                                             </tr> 
                                         </tbody>
@@ -418,7 +418,7 @@
                                             <tr>
                                                 <td>{{$loop->iteration}}</b></td>
                                                 <td>{{$detail->kekurangan}}</b></td>
-                                                <td>{{$detail->tgl_kelengkapan}}</b></td>
+                                                <td>{{$detail->tgl_kelengkapan->format('m/d/Y')}}</b></td>
                                               </tr>
                                             @endforeach
                                         </tbody>

@@ -8,6 +8,7 @@ use App\Models\NonKasbon;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\KeteranganNonKasbon;
 use DB;
 
 class VerifikasiNonKasbonAtasan2Controller extends Controller
@@ -62,33 +63,39 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
             $nonkasbon = nonkasbon::find($id);
             $now = Carbon::now();
             if ($nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status') == 'Terverifikasi') {
-                $nonkasbon->verifikasinonkasbon->status = 'Terverifikasi';
-                $nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status');
+                $nonkasbon->verifikasinonkasbon->vnk_a_3 = 'Dalam Proses';
             } else {
                 $nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status');
             }
+
+            $idketerangan = $nonkasbon->keterangannonkasbon->id;
+            $keterangan = KeterangannonKasbon::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
+            ]);
+
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk_a_2' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id,
+                'id_vnk_a_2' => Auth::user()->id,
                 'updated_at' =>  $now
             ]);
 
-            $doknkID = DokumenNK::insertGetId([
-                'id_nonkasbon' => $nonkasbon->id,
-                'total' => $request->Input('total'),
-                'catatan' => $request->Input('catatan')
+            // $doknkID = DokumenNK::insertGetId([
+            //     'id_nonkasbon' => $nonkasbon->id,
+            //     'total' => $request->Input('total'),
+            //     'catatan' => $request->Input('catatan')
+            // ]);
 
-            ]);
-
-            foreach ($request->dokumen as $key => $dokumen) {
-                $data = new DokumenNKD();
-                $nominal = $request->input('nominal');
-                $data->id_dnk = $doknkID;
-                $data->dokumen = $dokumen;
-                $data->nominal = $nominal[$key];
-                $data->save();
-            }
+            // foreach ($request->dokumen as $key => $dokumen) {
+            //     $data = new DokumenNKD();
+            //     $nominal = $request->input('nominal');
+            //     $data->id_dnk = $doknkID;
+            //     $data->dokumen = $dokumen;
+            //     $data->nominal = $nominal[$key];
+            //     $data->save();
+            // }
         });
         return redirect()->route('vnk-atasan-2.index')->with('success', 'User updated successfully');
     }
@@ -99,39 +106,45 @@ class VerifikasiNonKasbonAtasan2Controller extends Controller
             $now = Carbon::now();
             $nonkasbon = nonkasbon::find($id);
             if ($nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status') == 'Terverifikasi') {
-                $nonkasbon->verifikasinonkasbon->status = $request->Input('status');
-                $nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status');
+                $nonkasbon->verifikasinonkasbon->vnk_a_3 = 'Dalam Proses';
             } else {
                 $nonkasbon->verifikasinonkasbon->vnk_a_2 = $request->Input('status');
             }
             $nonkasbon->verifikasinonkasbon->update([
                 'vnk_a_2' => $request->Input('status'),
                 'status' => $request->Input('status'),
-                'id_vnk' => Auth::user()->id,
+                'id_vnk_a_2' => Auth::user()->id,
                 'updated_at' =>  $now
             ]);
 
-            $iddnk = $nonkasbon->dokumennk->id;
-            $dnk = DokumenNK::find($iddnk);
-            $dnk->update([
-                'id_nonkasbon' => $nonkasbon->id,
-                'total' => $request->Input('total'),
-                'catatan' => $request->Input('catatan')
+            $idketerangan = $nonkasbon->keterangannonkasbon->id;
+            $keterangan = KeterangannonKasbon::find($idketerangan);
+            $keterangan->update([
+                'keterangan' => $request->Input('keterangan'),
+                'updated_at' => $now
             ]);
 
-            DokumenNKD::where('id_dnk', $iddnk)->delete();
-            $data = $request->all();
-            if ($request->dokumen) {
-                foreach ($data['dokumen'] as $item => $value) {
-                    $data2 = array(
-                        'id_dnk' =>  $iddnk,
-                        'dokumen' => $data['dokumen'][$item],
-                        'nominal' => $data['nominal'][$item],
-                    );
-                    DokumenNKD::create($data2);
-                }
-            }
+            // $iddnk = $nonkasbon->dokumennk->id;
+            // $dnk = DokumenNK::find($iddnk);
+            // $dnk->update([
+            //     'id_nonkasbon' => $nonkasbon->id,
+            //     'total' => $request->Input('total'),
+            //     'catatan' => $request->Input('catatan')
+            // ]);
+
+            // DokumenNKD::where('id_dnk', $iddnk)->delete();
+            // $data = $request->all();
+            // if ($request->dokumen) {
+            //     foreach ($data['dokumen'] as $item => $value) {
+            //         $data2 = array(
+            //             'id_dnk' =>  $iddnk,
+            //             'dokumen' => $data['dokumen'][$item],
+            //             'nominal' => $data['nominal'][$item],
+            //         );
+            //         DokumenNKD::create($data2);
+            //     }
+            // }
         });
-        return redirect()->route('vnk-atasan-2.index')->with('success', 'User updated successfully');
+        return redirect()->route('vnk-atasan-2.index')->with('success', 'Non Kasbon updated successfully');
     }
 }

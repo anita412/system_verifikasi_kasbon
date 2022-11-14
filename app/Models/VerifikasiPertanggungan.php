@@ -18,5 +18,6 @@ class VerifikasiPertanggungan extends Model
         return $this->belongsTo(User::class, 'id_vkp', 'id');
         return $this->belongsTo(User::class, 'id_vkp_a_1', 'id');
         return $this->belongsTo(User::class, 'id_vkp_a_2', 'id');
+        return $this->belongsTo(User::class, 'id_vkp_a_3', 'id');
     }
 }

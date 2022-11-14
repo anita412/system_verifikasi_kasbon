@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Kasbon {{$nonkasbon->np_nokasbon}}</h4>
+                    <h4 class="modal-title step-1" data-step="1">Non Kasbon {{$nonkasbon->np_nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,7 +33,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$nonkasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$nonkasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
                                                </td>
@@ -42,12 +42,12 @@
                                                </td>
                                                <td>{{$nonkasbon->jammasuk}}</td>    
                                                <td>
-                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
+                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$nonkasbon->jammasuk}}</td>                                                      
+                                           <td> {{$nonkasbon->tujuanpembayaran}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -110,22 +110,21 @@
                                                    :
                                                </td>
                                                <td>{{$nonkasbon->noinvoice}}</td>  
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
-                                           </td>
-                                           <td>
-                                               :
-                                           </td>
-                                           <td>Rp. {{$nonkasbon->tujuanpembayaran}}</td>     
+                                                 
                                             </tr>  
                                                              
                                         </tbody>
+                                       
                                     </table>
+
                                 </div><!--end re-table-->
                             </div>
                         </div>
+                        <b> Catatan : {{$nonkasbon->keterangannonkasbon->keterangan}} </b>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div><!--end modal-->

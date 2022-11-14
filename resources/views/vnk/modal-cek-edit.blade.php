@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Kasbon {{$nonkasbon->nokasbon}}</h4>
+                    <h4 class="modal-title step-1" data-step="1">Non Kasbon {{$nonkasbon->nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,7 +33,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$nonkasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$nonkasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
                                                </td>
@@ -42,12 +42,12 @@
                                                </td>
                                                <td>{{$nonkasbon->jammasuk}}</td>    
                                                <td>
-                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
+                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$nonkasbon->jammasuk}}</td>                                                      
+                                           <td>{{$nonkasbon->tujuanpembayaran}}</td>                                                        
                                             </tr>
                                             <tr>
                                                 <td>
@@ -110,23 +110,17 @@
                                                    :
                                                </td>
                                                <td>{{$nonkasbon->noinvoice}}</td>  
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
-                                           </td>
-                                           <td>
-                                               :
-                                           </td>
-                                           <td>Rp. {{$nonkasbon->tujuanpembayaran}}</td>     
-                                            </tr>  
-                                                             
+                                               
+                                            </tr>       
                                         </tbody>
                                     </table>
                                 </div><!--end re-table-->
                             </div>
                         </div>
                     </div>
+                    <b> Catatan : {{$nonkasbon->keterangannonkasbon->keterangan}} </b>
                 </div>
-                    {!! Form::model($nonkasbon, ['method' => 'PATCH','route' => ['vnk-atasan.update', $nonkasbon->id],'class' => 'form-parsley form-control']) !!}
+                    {!! Form::model($nonkasbon, ['method' => 'PATCH','route' => ['vnk.update', $nonkasbon->id],'class' => 'form-parsley form-control']) !!}
                 <input value="{{$nonkasbon->id}}" class="text-muted mb-0" name="id" hidden>
                                 {{ csrf_field() }}
                 <div class="modal-body step-2" data-step="3">
@@ -150,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="" >
+                 <div class="modal-footer">
                     <button type="button"  style = "display: flex; justify-content: flex-end" class="btn btn-danger step step-2" data-step="2" onclick="sendEvent('#demo-modal-3', 1)">Back</button>
                     <button type="button"  style = "display: flex; justify-content: flex-end" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-3', 2)">Next</button>
                     <button type="button"   style = "display: flex; justify-content: flex-end" class="btn btn-danger step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 2)">Back</button>

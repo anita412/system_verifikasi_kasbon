@@ -96,7 +96,7 @@
                                             @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
                                             <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
                                             @elseif($nonkasbon->verifikasinonkasbon->vnk == "Terverifikasi")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
                                             @elseif($nonkasbon->verifikasinonkasbon->vnk == "Ditolak")
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
                                             @elseif($nonkasbon->verifikasinonkasbon->vnk == "Revisi")

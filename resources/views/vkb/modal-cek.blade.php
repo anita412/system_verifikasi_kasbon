@@ -22,7 +22,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$kasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Kasbon</p> 
                                                </td>
@@ -105,7 +105,7 @@
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{$kasbon->iddpp}}</td>     
+                                           <td>Rp. {{number_format($kasbon->iddpp)}}</td>     
                                             </tr>  
                                             <tr>
                                                 <td>
@@ -114,21 +114,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{$kasbon->ppn}}</td>  
+                                                <td>Rp. {{number_format($kasbon->idppn)}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>({{$kasbon->pph->name}}) Rp. {{$kasbon->idpph}}</td>    
+                                               <td>({{$kasbon->pph->name}}) Rp. {{number_format($kasbon->idpph)}}</td>    
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>{{$kasbon->total}}</td>                                                      
+                                           <td>Rp. {{number_format($kasbon->total)}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -137,7 +137,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->tgltempo->format('d-m-Y')}}</td>     
+                                                <td>{{$kasbon->tgltempo->format('m/d/Y')}}</td>     
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">No Invoice</p> 
                                                </td>
@@ -183,14 +183,14 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->harga_jual}}</td>
+                                                <td>Rp. {{number_format($kasbon->harga_jual)}}</td>
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>{{$kasbon->barang_datang->format('d-m-Y')}}</td>  
+                                               <td>{{$kasbon->barang_datang->format('m/d/Y')}}</td>  
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                                            </td>
@@ -755,7 +755,7 @@
                                             <div class="col-md-2">
                                                 <label class="form-label">TICKET TRANSPORT</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ASLI" required>
+                                                    <input class="form-check-input" type="radio" name="dd_tickettransport" id="dd_tickettransport1" value="ADA" required>
                                                     <label class="form-check-label" for="dd_tickettransport1">
                                                         ADA
                                                     </label>
@@ -918,7 +918,7 @@
                                <textarea class="form-control" name="catatan"></textarea>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-8">
                             <div class="mb-3">
                                 <table class="table table-borderless mt-0">
                                     <thead>
@@ -927,17 +927,17 @@
                                         <th></th>
                                       </tr>
                                     </thead>
-                                   <qy > <tbody id="tbod">
+                                   <qy><tbody id="tbod">
                                       <tr>
                                         <td>
                                             <label class="mb-1">Kekurangan</label>
                                             <input type="text" name="kekurangan[]" id="kekurangan" class="form-control" required parsley>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <label class="mb-1">Tgl Kelengkapan</label>
                                             <input type="date" name="tgl_kelengkapan[]" id="" class="form-control" required>
-                                        </td>
-                                        <td><a href="javascript:;" class="btn btn-outline-danger btn-sm deleteRow mt-3"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>
+                                        </td> --}}
+                                        <td><a href="javascript:;" class="btn btn-outline-danger btn-sm deleteRow mt-4"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>
                                     </tr>
                                     </tbody> </qy>
                                   </table>
@@ -968,17 +968,15 @@
                 '<td>'+
                     '<label class="mb-1">Kekurangan</label>'+
                     '<input type="text" name="kekurangan[]" id="kekurangan" class="form-control" required parsley></td>'+
-                    '<td>'+
-                    '<label class="mb-1">Tgl Kelengkapan</label>'+
-                    '<input type="date" name="tgl_kelengkapan[]" id="" class="form-control" required></td>'+
+                    
                 '<td>'+  
-                    '<a href="javascript:;" class="btn btn-sm btn-outline-danger deleteRow mt-3"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>'+
+                    '<a href="javascript:;" class="btn btn-sm btn-outline-danger deleteRow mt-4"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>'+
             '</tr>';
         
             $('#tbod').append(tr);
         });
         
-        $('#tbod').on('click','.deleteRow', function(){
+        $('tbody').on('click','.deleteRow', function(){
             $(this).parent().parent().remove();
         });
         

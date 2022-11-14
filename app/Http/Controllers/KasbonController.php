@@ -93,9 +93,13 @@ class KasbonController extends Controller
     }
     public function index()
     {
+        if (auth()->user()->role === 'Admin') {
+            $kasbon = Kasbon::all();
+        } else {
+            $kasbon = Kasbon::where('id_user', Auth::user()->id)->get();
+        }
         $now = Carbon::now()->format('Y-m-d');
         $title = 'Kasbon';
-        $kasbon = Kasbon::latest()->paginate();
         return view('kasbon.index', compact('kasbon', 'title', 'now'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -128,7 +132,7 @@ class KasbonController extends Controller
             $terakhir = 'PPK/0/X/2022';
         } else {
             $ambil = Kasbon::all()->last();
-            $urut = (int)substr($ambil->nokasbon, -1) + 1;
+            $urut = (int)substr($ambil->nokasbon, 4) + 1;
             $nomer = 'PPK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
             $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
             $n0mer = 'D' . $uru_t;
@@ -169,24 +173,22 @@ class KasbonController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
+            $filter = new IntToRoman();
             $now = Carbon::now();
-            $thnBulan = $now->year . $now->month . $now->day;
+            $thnBulan = Carbon::now()->format('Y');
+            $bulan = Carbon::now()->format('m');
+            $result = $filter->filter($bulan);
             $cek = Kasbon::count();
             $terakhir = Kasbon::query()->latest('id')->first();
             if ($cek == 0) {
                 $urut = 100001;
-                $nomer = 'KSB' . $thnBulan . '-' . $urut;
-                $n0mer = 'D' . $urut;
+                $nomer = 'PPK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
+                $terakhir = 'PPK/0/X/2022';
             } else {
                 $ambil = Kasbon::all()->last();
-                $urut = (int)substr($ambil->nokasbon, -1) + 1;
-                $nomer = 'KSB' . $thnBulan . '-' . $urut;
-                $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
-                $n0mer = 'D' . $uru_t;
+                $urut = (int)substr($ambil->nokasbon, 4) + 1;
+                $nomer = 'PPK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
             }
-
-            $dueDate = now()->addDays(30);
-
             $kasbonID = Kasbon::insertGetId([
                 'tglmasuk' => $request->tglmasuk,
                 'jammasuk' => $request->jammasuk,
@@ -201,14 +203,14 @@ class KasbonController extends Controller
                 'id_kodekasbon' => $request->kodekasbon,
                 'uraianpengguna' => $request->uraianpengguna,
                 'iddpp' => $request->iddpp,
-                'idppn' => $request->idppn,
+                'idppn' => (11 / 100) * $request->iddpp,
                 'id_jenis' => $request->id_jenis,
                 'id_pph' => $request->id_pph,
                 'idpph' => $request->idpph,
-                'total' => $request->iddpp + $request->idppn + $request->idpph,
+                'total' => $request->iddpp + (11 / 100) * $request->iddpp - $request->idpph,
                 'namavendor' => $request->namavendor,
-                'haritempo' => $request->haritempo,
-                'tgltempo' => now()->addDays($request->haritempo),
+                'haritempo' => 7,
+                'tgltempo' => Carbon::parse($request->tglmasuk)->addDays(7),
                 'noinvoice' => $request->noinvoice,
                 'spph' => $request->spph,
                 'po_vendor' => $request->po_vendor,
@@ -300,14 +302,14 @@ class KasbonController extends Controller
             $kasbon->id_user = Auth::user()->id;
             $kasbon->uraianpengguna = $request->uraianpengguna;
             $kasbon->iddpp = $request->iddpp;
-            $kasbon->idppn = $request->idppn;
+            $kasbon->idppn = (11 / 100) * $request->iddpp;
             $kasbon->id_jenis = $request->id_jenis;
             $kasbon->id_pph = $request->id_pph;
             $kasbon->idpph = $request->idpph;
-            $kasbon->total = $request->iddpp + $request->idppn + $request->idpph;
+            $kasbon->total = $request->iddpp + (11 / 100) * $request->iddpp - $request->idpph;
             $kasbon->namavendor = $request->namavendor;
-            $kasbon->haritempo = $request->haritempo;
-            $kasbon->tgltempo = now()->addDays($request->haritempo);
+            $kasbon->haritempo = 7;
+            $kasbon->tgltempo = Carbon::parse($request->tglmasuk)->addDays(7);
             $kasbon->noinvoice = $request->noinvoice;
             $kasbon->spph = $request->spph;
             $kasbon->po_vendor = $request->po_vendor;

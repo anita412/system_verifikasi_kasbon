@@ -111,7 +111,7 @@
                     <img src="{{ (isset(Auth::user()->avatar) && Auth::user()->avatar != '')  ? asset(Auth::user()->avatar) : asset('/assets/images/users/user-1.jpg') }}" alt="profile-user" class="rounded-circle thumb-xs" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="/viewprofile"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('profile.index') }}"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
                     <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
                     <div class="dropdown-divider mb-0"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"

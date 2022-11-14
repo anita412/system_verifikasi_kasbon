@@ -11,7 +11,7 @@ class SPPD extends Model
     use HasFactory;
     public $table = "sppd";
     protected $guarded = [];
-
+    protected $dates = ['tglmasuk'];
     public function sppddetail()
     {
         return $this->hasMany(SPPDDetail::class, 'id_sppd', 'id');

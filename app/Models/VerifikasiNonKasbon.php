@@ -16,6 +16,7 @@ class VerifikasiNonKasbon extends Model
         return $this->belongsTo(User::class, 'id_vnk', 'id');
         return $this->belongsTo(User::class, 'id_vnk_a_1', 'id');
         return $this->belongsTo(User::class, 'id_vnk_a_2', 'id');
+        return $this->belongsTo(User::class, 'id_vnk_a_3', 'id');
     }
 
     public function nonkasbon()

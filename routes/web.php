@@ -11,14 +11,18 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\NonkasbonController;
 use App\Http\Controllers\VerifikasiKasbonController;
 use App\Http\Controllers\PertanggunganController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VerifikasiKasbonAtasanController;
 use App\Http\Controllers\VerifikasiKasbonAtasan2Controller;
+use App\Http\Controllers\VerifikasiKasbonAtasan3Controller;
 use App\Http\Controllers\VerifikasiPertanggunganController;
 use App\Http\Controllers\VerifikasiAtasanPertanggunganController;
 use App\Http\Controllers\VerifikasiAtasan2PertanggunganController;
+use App\Http\Controllers\VerifikasiAtasan3PertanggunganController;
 use App\Http\Controllers\VerifikasiNonKasbonController;
 use App\Http\Controllers\VerifikasiNonKasbonAtasanController;
 use App\Http\Controllers\VerifikasiNonKasbonAtasan2Controller;
+use App\Http\Controllers\VerifikasiNonKasbonAtasan3Controller;
 use App\Http\Controllers\MonitoringSpController;
 use App\Http\Controllers\PDFController;
 
@@ -51,14 +55,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('vnk', VerifikasiNonkasbonController::class);
     Route::resource('vnk-atasan', VerifikasiNonkasbonAtasanController::class);
     Route::resource('vnk-atasan-2', VerifikasiNonkasbonAtasan2Controller::class);
+    Route::resource('vnk-atasan-3', VerifikasiNonkasbonAtasan3Controller::class);
     Route::resource('vkb', VerifikasiKasbonController::class);
     Route::resource('vkb-atasan', VerifikasiKasbonAtasanController::class);
     Route::resource('vkb-atasan-2', VerifikasiKasbonAtasan2Controller::class);
+    Route::resource('vkb-atasan-3', VerifikasiKasbonAtasan3Controller::class);
     Route::resource('vkp', VerifikasiPertanggunganController::class);
     Route::resource('vkp-atasan', VerifikasiAtasanPertanggunganController::class);
     Route::resource('vkp-atasan-2', VerifikasiAtasan2PertanggunganController::class);
+    Route::resource('vkp-atasan-3', VerifikasiAtasan3PertanggunganController::class);
     Route::resource('pertanggungan', PertanggunganController::class);
     Route::resource('sppd', SPPDController::class);
+    Route::resource('profile', ProfileController::class);
 });
 
 Route::controller(KasbonController::class)->group(function () {
@@ -123,4 +131,5 @@ Route::controller(NonkasbonController::class)->group(function () {
 
 Route::controller(MonitoringSpController::class)->group(function () {
     Route::get('/msp/index', [MonitoringSpController::class, 'index'])->name('msp.index');
+    Route::post('/msp/update', [MonitoringSpController::class, 'update'])->name('msp.update');
 });

@@ -46,7 +46,7 @@
                                     <select class="select2 form-control status-dropdown" >
                                         <option value=""> All</option>
                                         <option value="Terverifikasi"> Terverifikasi</option>
-                                        <option value="Belum Proses"> Belum Proses</option>
+                                        <option value="Dalam Proses"> Dalam Proses</option>
                                         <option value="Revisi"> Revisi</option>
                                         <option value="Ditolak"> Ditolak</option>
                                     </select>
@@ -60,7 +60,7 @@
                             <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th hidden></th>
+                                    <th hidden>Status</th>
                                     <th>No Kasbon</th>
                                     <th>User</th>
                                     <th>Kasbon</th>
@@ -82,9 +82,9 @@
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
                                     <td>{{$pertanggungan->jeniskasbon}}</td>
                                     <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->tglbayarkeuser}}</td>
-                                    <td>{{$pertanggungan->nilaiptj}}</td>
-                                    <td>{{$pertanggungan->nilaiselisihptj}}</td>
+                                    <td>{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
+                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Proses</label>
@@ -92,30 +92,35 @@
                                         @if($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi" and $pertanggungan->verifikasipertanggungan->vkp_a_2 == "Terverifikasi")
                                         <label class="badge rounded-pill bg-success">Terverifikasi</label>
                                         @else
-                                        <label class="badge rounded-pill bg-success">Menunggu Verifikasi Atasan</label>
+                                        <label class="badge rounded-pill bg-success">Menunggu Verifikasi</label>
                                         @endif
                                         @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
                                         <label class="badge rounded-pill bg-danger">{{$pertanggungan->verifikasipertanggungan->vkp}}</label>
                                         @elseif($pertanggungan->verifikasipertanggungan->vkp == "Revisi")
                                         <label class="badge rounded-pill bg-warning">Menunggu Revisi</label>
-                                        
                                         @endif
                                     </td>
                                     <td>
                                         @if(isset($pertanggungan->verifikasipertanggungan->id_vkp))
                                         @include('vkp.modal-cek-edit')
                                         @include('vkp.modal-cek-lihat')
-                                            @if($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi")
-                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
+                                            @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
+                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi")
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
                                             @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
                                             @elseif($pertanggungan->verifikasipertanggungan->vkp == "Revisi")
                                             <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
                                             @endif
-                                            @else
-                                            @include('vkp.modal-cek')
+                                        @else
+                                        @include('vkp.modal-cek')
                                             @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>                                    
+                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Revisi")
+                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
                                             @endif
                                         @endif
                                     </td>

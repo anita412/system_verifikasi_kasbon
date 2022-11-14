@@ -16,7 +16,7 @@ class CreateKeteranganKasbonTable extends Migration
         Schema::create('keterangan_kasbon', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_kasbon')->nullable();
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kasbon')->references('id')->on('kasbons')->onDelete('cascade');

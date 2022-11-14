@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Kasbon {{$nonkasbon->nokasbon}}</h4>
+                    <h4 class="modal-title step-1" data-step="1">Non Kasbon {{$nonkasbon->nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -33,21 +33,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$nonkasbon->tglmasuk->format('d-m-Y')}}</td>  
+                                                <td>{{$nonkasbon->tglmasuk->format('m/d/Y')}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
                                                </td>
                                                <td>
-                                                   :
-                                               </td>
-                                               <td>{{$nonkasbon->jammasuk}}</td>    
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
-                                           </td>
+                                                :
+                                            </td>
+                                           <td>{{$nonkasbon->jammasuk}}</td>      
                                            <td>
-                                               :
-                                           </td>
-                                           <td>{{$nonkasbon->jammasuk}}</td>                                                      
+                                            <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
+                                       </td>
+                                       <td>
+                                           :
+                                       </td>
+                                       <td>{{$nonkasbon->tujuanpembayaran}}</td>                                                   
                                             </tr>
                                             <tr>
                                                 <td>
@@ -110,13 +110,7 @@
                                                    :
                                                </td>
                                                <td>{{$nonkasbon->noinvoice}}</td>  
-                                               <td>
-                                                <p class=" align-middle mb-0 product-name">Tujuan Pembayaran</p> 
-                                           </td>
-                                           <td>
-                                               :
-                                           </td>
-                                           <td>Rp. {{$nonkasbon->tujuanpembayaran}}</td>     
+                                                 
                                             </tr>  
                                                              
                                         </tbody>
@@ -126,7 +120,8 @@
                         </div>
                     </div>
                 </div>
-                    {!! Form::model($nonkasbon, ['method' => 'PATCH','route' => ['vnk-atasan.update', $nonkasbon->id],'class' => 'form-parsley form-control']) !!}
+                <form  action="{{ route('vnk-atasan.store', $nonkasbon->id) }}" method="post" class="form-parsley" >
+                   
                 <input value="{{$nonkasbon->id}}" class="text-muted mb-0" name="id" hidden>
                                 {{ csrf_field() }}
                 <div class="modal-body step-2" data-step="3">
@@ -145,7 +140,7 @@
                         <div class="col-md-6">
                             <div class="">
                                 <label class="form-label">Catatan</label>
-                               <textarea class="form-control" name="keterangan" required></textarea>
+                               <textarea class="form-control" name="keterangan" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -156,7 +151,7 @@
                     <button type="button" class="btn btn-danger step step-3" data-step="3" onclick="sendEvent('#demo-modal-3', 2)">Back</button>
                     <button type="submit" class="btn btn-primary step step-2" data-step="3" >Simpan</button>
                 </div>
-                {!! Form::close() !!} 
+                </form>
             </div>
         </div>
     </div><!--end modal-->

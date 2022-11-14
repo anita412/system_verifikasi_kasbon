@@ -54,20 +54,43 @@
                                     <th>Tanggal Masuk</th>
                                     <th>No SPPD</th>
                                     <th>Jumlah</th>
-                                    <th>Action</th>
+                                    <th style="width:10%">Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 @foreach ($sppd as $sppds)
                                 <tr>
-                                    <td>{{$sppds->tglmasuk}}</td>
+                                    <td>{{$sppds->tglmasuk->format('d/m/Y')}}</td>
                                     <td>{{$sppds->no_sppd}}</td>
-                                    <td>{{$sppds->jumlah}}</td>
+                                    <td>Rp. {{number_format($sppds->jumlah)}}</td>
                                     <td class="text-end"> 
                                         <a href="{{route('sppd.show',$sppds->id)}}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                                        <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger"><i class="mdi mdi-trash-can-outline"></i></button></td>
+                                        <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$sppds->id}}" data-action="{{ route('sppd.destroy', $sppds->id) }}"><i class="las la-trash font-16"></i></a>
                                 </tr>
+                                <div class="modal fade" id="exampleModalDanger_{{$sppds->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div><!--end modal-header-->
+                                            <div class="modal-body">
+                                                    <div class="col-lg-12" style="text-align: center;">
+                                                        <h4>Are You Sure Want To Delete ?</h4> 
+                                                    </div><!--end col-->                                                 
+                                            </div><!--end modal-body-->
+                                            <div class="modal-footer">  
+                                                <form action="{{ route('sppd.destroy',$sppds->id) }}" method="POST" style="display: inline">
+                                                
+                                                    @method('delete')
+                                                    {{ csrf_field() }}                                                  
+                                                    <button type="submit" class="btn btn-soft-danger btn-sm">Yes</button>
+                                                </form>  
+                                                <button type="button" class="btn btn-soft-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                            </div><!--end modal-footer-->
+                                        </div><!--end modal-content-->
+                                    </div><!--end modal-dialog-->
+                                </div><!--end modal-->
                                 @endforeach 
                                 </tbody>
                             </table>

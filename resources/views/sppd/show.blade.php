@@ -53,7 +53,7 @@
                 <div class="form-group row">
                     <label for="txtLastNameBilling" class="col-lg-4 col-form-label">Tanggal Masuk</label>
                         <div class="col-lg-4">
-                            <input class="form-control" name="tglmasuk" type="date" value="{{$sppd->tglmasuk}}" id="example-date-input">
+                            <input class="form-control" name="tglmasuk" type="date" value="{{$sppd->tglmasuk->format('Y-m-d')}}" id="example-date-input">
                         </div>
                 </div>
             </div>
@@ -107,28 +107,28 @@
                         <option  value="{{$rates->harga}}" >{{$rates->name}}</option>
                         @endif
                         @endforeach
-                    <td><input  name="lumpsum[]" class="lumpsum amount form-control" id="lumpsum" value="{{$details->uanglumpsum}}" readonly="readonly" /></td>
+                    <td><input  name="lumpsum[]" class="lumpsum amount form-control" id="lumpsum" value="Rp. {{number_format($details->uanglumpsum)}}" readonly="readonly" /></td>
                     <td class="text-end"><button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
                 </tr>
                     @endforeach
                 <tfoot>
                         <tr>
                             <th class="text-center"  colspan="11"><strong>JUMLAH</strong></th>
-                            <th><input id="netto" readonly="readonly" class="form-control"  name="total" type="text" value="{{$sppd->jumlah}}"></th>
+                            <th><input id="netto" readonly="readonly" class="form-control"  name="total" type="text" value="Rp. {{number_format($sppd->jumlah)}}"></th>
                             <th></th>
                         </tr>
                     </tbody>
                     </tfoot>
             </table>
-            <a class="btn btn-success btn-sm addRow">Add New Row</a>
+            {{-- <a class="btn btn-success btn-sm addRow">Add New Row</a> --}}
             <br />
 {{-- 
             <input type="submit" value="Submit">
             <input type="reset" value="Reset"> --}}
             <div class="row mt-3">
                 <div class="col-sm-12 text-end">
-                    <a href="#" type="button" onclick="form1()" class="btn btn-primary px-4">Previous</a>      
-                    <button type="submit" class="btn btn-primary px-4">Simpan</button>   
+                    <a href="{{route('sppd.index')}}" type="button" onclick="form1()" class="btn btn-danger px-4">Back</a>      
+                    {{-- <button type="submit" class="btn btn-primary px-4">Simpan</button>    --}}
                 </div>
             </div>
     </div>

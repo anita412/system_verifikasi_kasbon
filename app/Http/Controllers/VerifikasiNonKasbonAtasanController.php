@@ -51,12 +51,12 @@ class VerifikasiNonKasbonAtasanController extends Controller
         $now = Carbon::now();
         DB::transaction(function () use ($nonkasbon, $request, $id) {
             $now = Carbon::now();
-            foreach ($request->kekurangan as $key => $kekurangan) {
-                $data = new KeteranganNonKasbon();
-                $data->id_nonkasbon = $id;
-                $data->keterangan = $kekurangan;
-                $data->save();
-            }
+            // foreach ($request->kekurangan as $key => $kekurangan) {
+            //     $data = new KeteranganNonKasbon();
+            //     $data->id_nonkasbon = $id;
+            //     $data->keterangan = $kekurangan;
+            //     $data->save();
+            // }
 
             if ($nonkasbon->verifikasinonkasbon->vnk_a_1 = $request->Input('status') == 'Terverifikasi') {
                 $nonkasbon->verifikasinonkasbon->vnk_a_1 = $request->Input('status');
@@ -121,6 +121,6 @@ class VerifikasiNonKasbonAtasanController extends Controller
                 'updated_at' => $now
             ]);
         });
-        return redirect()->route('vnk-atasan.index')->with('success', 'User updated successfully');
+        return redirect()->route('vnk-atasan.index')->with('success', 'Non Kasbon updated successfully');
     }
 }
