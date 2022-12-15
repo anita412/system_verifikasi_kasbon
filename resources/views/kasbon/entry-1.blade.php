@@ -5,13 +5,12 @@
 }
 </style>
 <div class="row" id="form-entry-1">
-  
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtEmailAddressBilling" class="col-lg-4 col-form-label">No. Dokumen Sebelumnya</label>
                 <div class="col-lg-8">
-                    <input class="form-control" type="text" value="{{$terakhir->nokasbon}}" aria-label="Disabled input example" name="doksebelumnya" disabled readonly>
+                    <input class="form-control" type="text" value="{{$terakhir}}" aria-label="Disabled input example" name="doksebelumnya" disabled readonly>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -36,6 +35,14 @@
                 </div>
             </div><!--end form-group-->
         </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label for="txtLastNameShipping" class="col-lg-4 col-form-label">NIP</label>
+                <div class="col-lg-8">
+                    <input id="employee_search" type="text" class="form-control" name="nip" required>
+                </div>
+            </div><!--end form-group-->
+        </div><!--end col-->
         {{-- <div class="col-md-6">
             <div class="form-group row POC">
                 <label for="txtNameCard" class="col-lg-4 col-form-label">Jatuh Tempo</label>
@@ -73,7 +80,32 @@
             <div class="form-group row">
                 <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                 <div class="col-lg-8">
-                    <input required parsley-type="text" class="form-control" value="{{ Auth::user()->name }}" id="username" name="username" disabled>
+                    <input  class="form-control" id="employeename" name="user" disabled>
+                    <input  class="form-control" id="employeejabatan" name="jabatan" hidden>
+                </div>
+            </div><!--end form-group-->
+        </div><!--end col-->
+</div>
+<div class="row">
+     
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Kasbon</label>
+            <div class="col-lg-8">
+                <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="kodekasbon" required parsley>
+                    <option value="" disabled selected hidden>Pilih Kode Kasbon</option>
+                    @foreach ($kodekasbon as $kodekasbon)
+                    <option  value="{{$kodekasbon->id}}">{{$kodekasbon->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div><!--end form-group-->
+    </div><!--end col--> 
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label for="txtCompanyShipping" class="col-lg-4 col-form-label">Divisi</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" id='employeeunit' nama="id_unit" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -81,36 +113,17 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="txtLastNameShipping" class="col-lg-4 col-form-label">NIP</label>
+            <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Kasbon</label>
             <div class="col-lg-8">
-                <input class="form-control" type="text" value="{{ Auth::user()->nip }}" aria-label="Disabled input example" nama="nip" disabled readonly>
+                <select required parsley class="form-select" id="mySelect" aria-label="Floating label select example" name="id_jenis">
+                    <option value="" disabled selected hidden>Pilih Jenis Kasbon</option>
+                    @foreach ($jenis as $jeniss)
+                    <option  value="{{$jeniss->id}}">{{$jeniss->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div><!--end form-group-->
     </div><!--end col-->
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtCompanyShipping" class="col-lg-4 col-form-label">Unit</label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" value="{{ Auth::user()->unit->name }}" aria-label="Disabled input example" nama="id_unit" disabled readonly>
-                </div>
-            </div><!--end form-group-->
-        </div><!--end col-->
-</div>
-<div class="row">
-   
-    <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Kasbon</label>
-                <div class="col-lg-8">
-                    <select class="form-select"  id="floatingSelect" aria-label="Floating label select example" name="kodekasbon" required parsley>
-                        <option value="" disabled selected hidden>Pilih Kode Kasbon</option>
-                        @foreach ($kodekasbon as $kodekasbon)
-                        <option  value="{{$kodekasbon->id}}">{{$kodekasbon->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div><!--end form-group-->
-        </div><!--end col--> 
         <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtCityShipping" class="col-lg-4 col-form-label">Proyek</label>
@@ -123,47 +136,25 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
+                <label class="col-lg-4 col-form-label">Kurs</label>
                 <div class="col-lg-8">
-                    <select id="kags" class="select2 form-control" aria-label="Floating label select example" name="id_kurs" required parsley>
+                    <select name="id_kurs" id="Name" style="width: 100%"required>
                         <option value="" disabled selected hidden>Pilih Kurs</option>
                         @foreach ($kurs as $kurs)
-                        <option  value="{{$kurs->id}}">{{$kurs->code}} - {{$kurs->name}}</option>
+                        <option  value="{{$kurs->id}}"  data-name="{{$kurs->symbol}}" >{{$kurs->code}} - {{$kurs->name}}</option>
                         @endforeach
-                    </select>
-                    <script>
-                        $("#kags").select2({
-                          kags: true
-                        });
-                      </script>
+                      </select>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
-        <div class="col-md-6">
-            <div class="form-group row">
-                <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Kasbon</label>
-                <div class="col-lg-8">
-                    <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jenis">
-                        <option value="" disabled selected hidden>Pilih Kasbon</option>
-                        @foreach ($jenis as $jenis)
-                        <option  value="{{$jenis->id}}">{{$jenis->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div><!--end form-group-->
-        </div><!--end col-->
-    </div>
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
                 <label for="txtAddress1Billing" class="col-lg-4 col-form-label">Uraian Penggunaan</label>
                 <div class="col-lg-8">
-                    <textarea id="uraianpengguna" name="uraianpengguna" rows="4" class="form-control" required parsley></textarea>
+                    <textarea id="uraianpengguna" name="uraianpengguna" rows="4" class="form-control" data-parsley-maxlength="150"srequired></textarea>
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
-       
-        
     </div>
     <div class="row">
         <div class="col-sm-12 text-end">
@@ -173,12 +164,82 @@
     </div>
 
 <script>
+   $(document).ready(function(){
+        $('#idppn1').attr("hidden", "hidden");
+        $('#totalvls').attr("hidden", "hidden");
+        $('#iddpp1').attr("hidden", "hidden");
+        $('#idpph1').attr("hidden", "hidden");
+        $('#hkonversi').attr("hidden", "hidden");
+    
+   
+	$('#Name').select2();
+    $('#namavendor').select2();
+    $('#Name').change(function(){
+  	var val = $(this).val();
+    var valn = $(this).find(':selected').data("name");
+
+    var span = document.getElementById('myspan');
+    span.innerText = span.textContent = valn;
+
+    var span1 = document.getElementById('myspan1');
+    span1.innerText = span1.textContent = valn;
+
+    var span2 = document.getElementById('myspan2');
+    span2.innerText = span2.textContent = valn;
+
+    var span3 = document.getElementById('myspan3');
+    span3.innerText = span3.textContent = valn;
+
+    var span4 = document.getElementById('myspan4');
+    span4.innerText = span4.textContent = valn;
+    
+    if(val==42)
+    {
+        $('#idppn1').attr("hidden", "hidden"),
+        $('#totalvls').attr("hidden", "hidden"),
+        $('#iddpp1').attr("hidden", "hidden"),
+        $('#idpph1').attr("hidden", "hidden"),
+        $('#hkonversi').attr("hidden", "hidden"),
+
+        $('#idppn').removeAttr("hidden"),
+        $('#totalidr').removeAttr("hidden"),
+        $('#iddpp').removeAttr("hidden"),
+        $('#idpph').removeAttr("hidden");
+        $('#id_pph').removeAttr("disabled");
+    }else
+    {
+        $('#idppn').attr("hidden", "hidden"),
+        $('#totalidr').attr("hidden", "hidden"),
+        $('#iddpp').attr("hidden", "hidden"),
+        $('#idpph').attr("hidden", "hidden"),
+
+        document.getElementById("idppn1").value = 0,
+        document.getElementById("idpph1").value = 0,
+        $('#idppn1').removeAttr("hidden"),
+        $('#totalvls').removeAttr("hidden"),
+        $('#iddpp1').removeAttr("hidden"),
+        $('#idpph1').removeAttr("hidden"),
+        $('#hkonversi').removeAttr("hidden"),
+        $('#idppn1').attr("disabled", "disabled"),
+        $('#idpph1').attr("disabled", "disabled"),
+        $('#id_pph').attr("disabled", "disabled");
+     
+    }
+  })
+})
+</script>
+<script>
     $(document).ready(function () {
         $("#nopi").attr("disabled", "disabled"),
         $("#sjn").attr("disabled", "disabled"),
         $("#harga_jual").attr("disabled", "disabled");
+        $("#novkb").attr("disabled", "disabled");
+        // $("#idppn").attr("disabled", "disabled");
     toggleFields(); 
     $("#jeniskasbon").change(function () {
+        toggleFields();
+    });
+    $("#idppn").change(function () {
         toggleFields();
     });
 
@@ -188,14 +249,17 @@ function toggleFields() {
     if ($("#jeniskasbon").val() === "KASBON REALISASI")
         $("#nopi").removeAttr("disabled"),
         $("#harga_jual").removeAttr("disabled"),
+        $("#novkb").removeAttr("disabled"),
         $("#sjn").removeAttr("disabled");
     else
         $("#nopi").val(""),
         $("#sjn").val(""),
         $("#harga_jual").val(""),
+        $("#novkb").val(""),
         $("#nopi").attr("disabled", "disabled"),
         $("#sjn").attr("disabled", "disabled"),
-        $("#harga_jual").attr("disabled", "disabled");
+        $("#harga_jual").attr("disabled", "disabled"),
+        $("#novkb").attr("disabled", "disabled");
 }
 
 </script>

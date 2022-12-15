@@ -27,7 +27,7 @@ class CreateSPPDDetailsTable extends Migration
             $table->integer('hari')->nullable();
             $table->unsignedBigInteger('id_kurs')->nullable();
             $table->integer('id_rate')->nullable();
-            $table->float('uanglumpsum')->nullable();
+            $table->integer('uanglumpsum')->nullable();
             $table->timestamps();
 
             $table->foreign('id_sppd')->references('id')->on('sppd')->onDelete('cascade');

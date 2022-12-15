@@ -47,4 +47,8 @@ class Nonkasbon extends Model
     {
         return $this->hasOne(KeteranganNonKasbon::class, 'id_nonkasbon', 'id');
     }
+    public function pph()
+    {
+        return $this->belongsTo(Pph::class, 'id_pph', 'id');
+    }
 }

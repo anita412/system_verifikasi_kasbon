@@ -63,14 +63,20 @@
                             </div><!--end col-->
                             <div class="col-md-6">
                                 <div class="form-group row">
+                                    <label for="txtLastNameShipping" class="col-lg-4 col-form-label">NIP</label>
+                                    <div class="col-lg-8">
+                                        <input id="employee_search" type="text" class="form-control" name="nip" value="{{$nonkasbon->user->nip}}" required>
+                                    </div>
+                                </div><!--end form-group-->
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="form-group row">
                                     <label for="txtFirstNameShipping" class="col-lg-4 col-form-label" value="">User</label>
                                     <div class="col-lg-8">
                                         <input required parsley-type="text" class="form-control" value="{{$nonkasbon->user->name}}" id="username" name="username" disabled>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="txtCompanyShipping" class="col-lg-4 col-form-label">Unit</label>
@@ -79,9 +85,12 @@
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
+                        </div>
+                        <div class="row">
+                            
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode nonkasbon</label>
+                                    <label for="txtEmailAddressShipping" class="col-lg-4 col-form-label">Kode Nonkasbon</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" value="{{$nonkasbon->kodekasbon}}" aria-label="Disabled input example" id="kodekasbon" name="kodekasbon" disabled readonly>
                                     </div>
@@ -91,7 +100,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis nonkasbon</label>
+                                    <label for="txtCityShipping" class="col-lg-4 col-form-label">Jenis Nonkasbon</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" value="{{$nonkasbon->jenis}}" disabled readonly>
                                     </div>
@@ -101,7 +110,7 @@
                                 <div class="form-group row">
                                     <label for="txtStateProvinceShipping" class="col-lg-4 col-form-label">Kurs</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" type="text" value="{{$nonkasbon->kurs->name}}" disabled readonly>                                       
+                                        <input class="form-control" type="text" value="{{$nonkasbon->kurs->code}} - {{$nonkasbon->kurs->name}}" disabled readonly>                                       
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
@@ -131,10 +140,65 @@
                                 </div><!--end form-group-->
                             </div><!--end col-->
                             <div class="col-md-6">
+                                <div class="form-group row" >
+                                    <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai / DPP</label>
+                                    <div class="col-lg-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="myspan">{{$nonkasbon->kurs->symbol}}</span>
+                                        <input  class="form-control"value="{{number_format($nonkasbon->iddpp)}}" disabled/>
+                                        </div>
+                                    </div>
+                                </div><!--end form-group-->
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="txtNameCard" class="col-lg-4 col-form-label">PPH</label>
+                                    <div class="col-lg-4">
+                                            <input class="form-control" type="text" value="{{$nonkasbon->pph->name ?? '-'}}" aria-label="Disabled input example" disabled >
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="myspan2">{{$nonkasbon->kurs->symbol}}</span>
+                                        <input  class="form-control"  class="form-control"  value="{{number_format($nonkasbon->idpph)}}" disabled/>
+                                    </div>
+                                    </div>
+                                </div><!--end form-group-->
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="txtNameCard" class="col-lg-4 col-form-label">PPN</label>
+                                    <div class="col-lg-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="myspan1">{{$nonkasbon->kurs->symbol}}</span>
+                                            <input  class="form-control" id="idppn" class="form-control"   name="idppn" value="{{number_format($nonkasbon->idppn)}}" disabled />
+                                       </div>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="txtNameCard" class="col-lg-4 col-form-label">Nominal Kasbon</label>
+                                    <div class="col-lg-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="myspan3">{{$nonkasbon->kurs->symbol}}</span>
+                                            <input class="form-control" id="total" name="total" value="{{number_format($nonkasbon->total)}}" disabled/>
+                                        </div>
+                                    </div>
+                                </div><!--end form-group-->
+                            </div><!--end col-->
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Tujuan Pembayaran</label>
                                     <div class="col-lg-8">
                                         <input  required parsley type="text" class="form-control" name ="tujuanpembayaran" value="{{$nonkasbon->tujuanpembayaran}}" disabled>
+                                    </div>
+                                </div><!--end form-group-->
+                            </div><!--end col-->
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="txtNameCard" class="col-lg-4 col-form-label">Proyek</label>
+                                    <div class="col-lg-8">
+                                        <input  required parsley type="text" class="form-control" name ="tujuanpembayaran" value="{{$nonkasbon->proyek}}" disabled>
                                     </div>
                                 </div><!--end form-group-->
                             </div><!--end col-->
@@ -156,19 +220,6 @@
 <!-- </div>
 </div>
 </div> -->
-
-    <script>
-        function add_number() {
-            var first_number = parseFloat(document.getElementById("iddpp").value);
-            if (isNaN(first_number)) first_number = 0;
-            var second_number = parseFloat(document.getElementById("idppn").value);
-            if (isNaN(second_number)) second_number = 0;
-            var third_number = parseFloat(document.getElementById("idpph").value);
-            if (isNaN(third_number)) third_number = 0;
-            var result = first_number + second_number + third_number;
-            document.getElementById("total").value = result;
-        }
-    </script>
                
                              
 @endsection

@@ -34,12 +34,12 @@ class CreatePertanggungansTable extends Migration
             $table->integer('haritempo')->nullable();
             $table->string('novkbkasbon')->nullable();
             $table->string('tglbayarkeuser')->nullable();
-            $table->float('nilaiptj')->nullable();
+            $table->integer('nilaiptj')->nullable();
             $table->date('tglptj')->nullable();
-            $table->float('selisihptj')->nullable();
+            $table->integer('selisihptj')->nullable();
             $table->string('novkbselisihptj')->nullable();
             $table->string('nilaiselisihptj')->nullable();
-            $table->float('selisihptjakhir')->nullable();
+            $table->integer('selisihptjakhir')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
 

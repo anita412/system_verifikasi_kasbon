@@ -68,7 +68,7 @@
                 <tr>
                     <td  style="width: 30%"  class="tm_border_top_0">Total Nilai Kasbon Jatuh Tempo</td>
                     <td class="tm_border_top_0">:</td>
-                    <td  style="width: 50%"  class="tm_border_top_0">Rp. {{number_format($kasbon->total)}}</td>
+                    <td  style="width: 50%"  class="tm_border_top_0">{{$kasbon->kurs->symbol}} {{number_format($kasbon->total)}}</td>
                 </tr>
             </tbody>
            </table>
@@ -95,7 +95,7 @@
                 <tr>
                   <td style="width: 15%;" class="tm_border_top tm_border_right">{{$kasbon->nokasbon}}</td>
                   <td style="width: 25%;" class="tm_border_top">{{$kasbon->formatkasbon}}</td>
-                  <td style="width: 15%;text-align: center" class="tm_border_left tm_border_right tm_border_top">Rp. {{number_format($kasbon->total)}}</td>
+                  <td style="width: 15%;text-align: center" class="tm_border_left tm_border_right tm_border_top">{{$kasbon->kurs->symbol}} {{number_format($kasbon->total)}}</td>
                   <td style="width: 15%;" class="tm_border_top tm_border_right"></td>
                   <td style="width: 15%;r" class="tm_border_top ">{{$kasbon->tgltempo->format('Y-m-d')}} </td>
                   <td style="width: 5%;text-align: center"  class="tm_border_left tm_border_top">{{$kasbon->tgltempo->format('Y-m-d')}}</td>

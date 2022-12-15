@@ -36,34 +36,42 @@
                                 <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Username</th>
+                                    <th>Jabatan</th>
                                     <th>NIP</th>
                                     <th>Unit</th>
                                     <th>Role</th>
-                                    <th class="text-end">Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
-
-
                                 <tbody>
                                     @foreach ($user as $user)
                                     <tr>
                                         <td><i class="fas fa-user-circle fa-lg"></i> {{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->jabatan->name ?? '-'}}</td>
                                         <td>{{$user->nip}}</td>
                                         <td>{{$user->unit->name}}</td>
                                         <td> @if(!empty($user->getRoleNames()))
                                           @foreach($user->getRoleNames() as $v)
-                                          @if($v == "User")
+                                          @if($v == "USER")
                                           <span class="badge badge-soft-info">{{ $v }}</span>
-                                          @elseif($v == "Admin")
+                                          @elseif($v == "ADMIN")
                                           <span class="badge badge-soft-purple">{{ $v }}</span>
-                                          @elseif($v == "Verifikator")
+                                          @elseif($v == "VERIFIKATOR")
                                           <span class="badge badge-soft-warning">{{ $v }}</span>
-                                          @elseif($v == "Atasan Verifikator")
-                                          <span class="badge badge-soft-warning">{{ $v }}</span>
-                                          @elseif($v == "Atasan User")
-                                          <span class="badge badge-soft-warning">{{ $v }}</span>
+                                          @elseif($v == "ATASAN USER 1")
+                                          <span class="badge badge-soft-primary">{{ $v }}</span>
+                                          @elseif($v == "ATASAN USER 2")
+                                          <span class="badge badge-soft-primary">{{ $v }}</span>
+                                          @elseif($v == "ATASAN USER 3")
+                                          <span class="badge badge-soft-primary">{{ $v }}</span>
+                                          @elseif($v == "ATASAN VERIFIKATOR 1")
+                                          <span class="badge badge-soft-success">{{ $v }}</span>
+                                          @elseif($v == "ATASAN VERIFIKATOR 2")
+                                          <span class="badge badge-soft-success">{{ $v }}</span>
+                                          @elseif($v == "ATASAN VERIFIKATOR 3")
+                                          <span class="badge badge-soft-success">{{ $v }}</span>
+                                          @else
+                                          <span class="badge badge-soft-success">{{ $v }}</span>
                                           @endif
                                           @endforeach
                                         @endif</td>
@@ -97,8 +105,6 @@
                                     </div><!--end modal-->
                                     @endforeach
                                 </tbody>
-                            
-                           
                         </table>
                         </div>
                     </div>

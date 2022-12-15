@@ -19,7 +19,7 @@
   </div>
 @endif
 
-                            <div class="col-lg-6 mx-auto">
+                            <div class="col-lg-12 mx-auto">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Tambah User</h4>
@@ -43,7 +43,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-floating mb-3 col-lg-6">
+                                            <div class="form-floating mb-3 col-lg-4">
                                                 <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_unit">
                                                     <option value="" disabled selected hidden>Pilih Unit</option>
                                                     @foreach ($units as $units)
@@ -52,8 +52,17 @@
                                                 </select>
                                                 <label class="form-label">Unit</label>
                                             </div>
-                                            <div class="form-floating mb-3 col-lg-6">
-                                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-select','multiple')) !!}
+                                            <div class="form-floating mb-3 col-lg-4">
+                                                <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jabatan">
+                                                    <option value="" disabled selected hidden>Pilih Jabatan</option>
+                                                    @foreach ($jabatan as $jabatan)
+                                                    <option  value="{{$jabatan->id}}">{{$jabatan->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <label class="form-label">Jabatan</label>
+                                            </div>
+                                            <div class="form-floating mb-3 col-lg-4">
+                                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-select')) !!}
                                                     <label class="form-label" for="exampleFormControlSelect2">Role</label>
                                                 </div>
                                         </div>
@@ -75,7 +84,7 @@
                                             </div><!--end form-group-->
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="/list-user" class="btn btn-danger">Cancel</a>
+                                        <a href="{{ route('users.index') }}" class="btn btn-danger">Cancel</a>
             
                                         </div><!--end card-body-->
                                     </div><!--end card-->

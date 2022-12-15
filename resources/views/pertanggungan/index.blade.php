@@ -53,7 +53,7 @@
                                         <option value="Ditolak"> Ditolak</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2 text-end">
+                                <div class="col-sm-3 text-end">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span><input type="text" class="form-control pull-right datesearchbox"  id="datesearch" placeholder="Search by date range..">
                                     </div>
@@ -62,14 +62,12 @@
                             <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th hidden>Status</th>
+                                    <th hidden></th>
+                                    <th>Tanggal PTJ</th>
                                     <th>No Kasbon</th>
                                     <th>User</th>
-                                    <th>Kasbon</th>
-                                    <th>No VKB Kasbon</th>
                                     <th>Nilai PTJ</th>
-                                    <th>Selisih PTJ</th>
-                                    <th>Jatuh Tempo</th>
+                                    <th hidden>Jatuh Tempo</th>
                                     <th>Status</th>
                                     <th style="width:0%">Action</th>
                                 </tr>
@@ -78,16 +76,13 @@
 
                                 <tbody>
                                     @foreach ($pertanggungan as $pertanggungan)
-                                    @if($pertanggungan->kasbon->id_user == Auth::user()->id)
                                 <tr>
-                                    <td hidden>{{$pertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at}}</td>
+                                    <td>{{ $pertanggungan->tglptj ? $pertanggungan->tglptj->format('d/m/Y')  : '-' }}</td>
                                     <td>{{$pertanggungan->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
-                                    <td>{{$pertanggungan->jeniskasbon}}</td>
-                                    <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
-                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
-                                    <td>{{$pertanggungan->tgltempo->format('m/d/Y')}}</td>
+                                    <td>{{$pertanggungan->kasbon->kurs->symbol}} {{number_format($pertanggungan->nilaiptj)}}</td>
+                                    <td hidden>{{ $pertanggungan->tgltempo ? $pertanggungan->tgltempo->format('d/m/Y')  : '-' }}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->status == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Dalam Proses</label>
@@ -113,7 +108,6 @@
                                         <a href="{{ route('pertanggungan.show',$pertanggungan->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @endif
                                 </td>
-                                @endif
                                 </tr>
                                 <div class="modal fade" id="exampleModalDanger_{{$pertanggungan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -204,7 +198,7 @@
          //nama depan = 0
          //nama belakang = 1
          //tanggal terdaftar =2
-         var evalDate= parseDateValue(aData[0]);
+         var evalDate= parseDateValue(aData[1]);
            if ( ( isNaN( dateStart ) && isNaN( dateEnd ) ) ||
                 ( isNaN( dateStart ) && evalDate <= dateEnd ) ||
                 ( dateStart <= evalDate && isNaN( dateEnd ) ) ||
@@ -229,7 +223,7 @@
        order: [[0, 'desc']],
        columnDefs: [
                {
-                   "targets": [7],
+                   "targets": [6],
                    "visible": true
                }
            ],
@@ -256,7 +250,7 @@
          $('.status-dropdown').val(status)
          console.log(status)
          //dataTable.column(7).search('\\s' + status + '\\s', true, false, true).draw();
-         $dTable.column(7).search(status).draw();
+         $dTable.column(6).search(status).draw();
        })  
    
       document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

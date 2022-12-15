@@ -127,7 +127,7 @@
                                                 <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai / DPP</label>
                                                 <div class="col-lg-8">
                                                     <div class="input-group">
-                                                        <span class="input-group-text">Rp.</span>
+                                                        <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                     <input  id="iddpp" class="form-control"  name="iddpp" value="{{number_format($pertanggungan->kasbon->iddpp)}}" disabled>
                                                     </div>
                                                 </div>
@@ -138,7 +138,7 @@
                                                 <label for="txtNameCard" class="col-lg-4 col-form-label">PPN</label>
                                                 <div class="col-lg-8">
                                                     <div class="input-group">
-                                                        <span class="input-group-text">Rp.</span>
+                                                        <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                     <input class="form-control input-numera" id="idppn" class="form-control"  name="idppn" value="{{number_format($pertanggungan->kasbon->idppn)}}" disabled>
                                                     </div>   
                                                 </div>
@@ -154,7 +154,7 @@
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control input-numera"id="idpph" class="form-control"  name="idpph" value="{{number_format($pertanggungan->kasbon->idpph)}}" disabled>
                                                         </div>
                                                     </div>
@@ -165,7 +165,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Nominal Kasbon</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control input-numer" id="total" name="total" disabled value="{{number_format($pertanggungan->kasbon->total)}}">
                                                         </div>
                                                     </div>
@@ -186,7 +186,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Harga Jual Ke Customer</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control input-num" name="harga_jual" value="{{number_format($pertanggungan->kasbon->harga_jual)}}" disabled>
                                                         </div>
                                                     </div>
@@ -311,7 +311,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai Pertanggungjawaban</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control"class="form-control" value="{{number_format($pertanggungan->nilaiptj)}}" disabled>
                                                         </div>
                                                     </div>
@@ -335,7 +335,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Selisih Pertanggungjawaban</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control" type="date" class="form-control" value="{{number_format($pertanggungan->selisihptj)}}" disabled>
                                                         </div>  
                                                     </div>
@@ -346,7 +346,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">No VKB Selisih PTJ</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input class="form-control" value="{{$pertanggungan->novkbselisihptj}}" disabled>
                                                         </div>
                                                     </div>
@@ -357,7 +357,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai Selisih PTJ</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input  type="text" class="form-control" value="{{number_format($pertanggungan->nilaiselisihptj)}}" disabled>
                                                     </div>
                                                     </div>
@@ -368,7 +368,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Selisih PTJ Akhir</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$kasbon->kurs->symbol}}</span>
                                                         <input type="text" class="form-control" value="{{number_format($pertanggungan->selisihptjakhir)}}" disabled>
                                                         </div>
                                                     </div>

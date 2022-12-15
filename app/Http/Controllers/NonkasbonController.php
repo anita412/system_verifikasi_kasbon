@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nonkasbon;
-use App\Http\Requests\UpdateNonkasbonRequest;
+use App\Models\User;
 use App\Models\Kurs;
 use App\Models\NamaVendor;
 use App\Models\Jenis;
@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Str;
+use Romans\Filter\IntToRoman;
 use DateInterval;
 use DateTime;
 
@@ -28,16 +30,16 @@ class NonkasbonController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:nonkasbon-list|nonkasbon-create|nonkasbon-edit|nonkasbon-delete|nonkasbon-verifikasi', ['only' => ['index', 'show']]);
-        $this->middleware('permission:nonkasbon-create', ['only' => ['create', 'store', 'store1']]);
-        $this->middleware('permission:nonkasbon-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:nonkasbon-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:nonkasbon-verifikasi', ['only' => ['verifikasi']]);
+        $this->middleware('permission:nonkasbon', ['only' => ['index', 'show', 'create', 'store', 'store1', 'edit', 'update', 'destroy', 'verifikasi']]);
     }
     public function index()
     {
-        $title = 'Nonkasbon';
-        $nonkasbon = Nonkasbon::all();
+        $title = 'Non Kasbon';
+        if (Auth::user()->hasRole('ADMIN')  == 'ADMIN') {
+            $nonkasbon = Nonkasbon::all();
+        } else {
+            $nonkasbon = Nonkasbon::where('id_unit', Auth::user()->id_unit)->get();
+        }
         return view('nonkasbon.index', compact('nonkasbon', 'title'));
     }
 
@@ -56,24 +58,24 @@ class NonkasbonController extends Controller
         $namavendor = NamaVendor::all();
         $jenis = Jenis::all();
         $kodekasbon = KodeKasbon::all();
-        $now = Carbon::now();
-        $jamnow = Carbon::now()->format('H:i:s');;
-        $thnBulan = Carbon::now()->format('Y-m-d');
+        $now = Carbon::now('Asia/Jakarta');
+        $jamnow = Carbon::now()->setTimezone('Asia/Jakarta')->format('H:i:s');
+        $filter = new IntToRoman();
+        $thnBulan = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $result = $filter->filter($bulan);
         $cek = NonKasbon::count();
         $tglmasuk = Carbon::now()->format('Y-m-d');
         $terakhir = NonKasbon::query()->latest('id')->first();
         if ($cek == 0) {
-            $urut = 100001;
-            $nomer = 'NKB' . $thnBulan . '-' . $urut;
-            $n0mer = 'D' . $urut;
+            $urut = 0;
+            $nomer = 'NK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
         } else {
             $ambil = NonKasbon::all()->last();
-            $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'NKB' . $thnBulan . '-' . $urut;
-            $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
-            $n0mer = 'D' . $uru_t;
+            $urut = (int)substr($ambil->no_nonkasbon, 3) + 1;
+            $nomer = 'NK' . '/' . $urut . '/' . $result . '/' . $thnBulan;
         }
-        return view('nonkasbon.create', compact('title', 'nonkasbon', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'n0mer', 'kodekasbon', 'namavendor'));
+        return view('nonkasbon.create', compact('title', 'nonkasbon', 'nomer', 'terakhir', 'kurs', 'jenis', 'tglmasuk', 'pph', 'dueDate', 'jamnow', 'kodekasbon', 'namavendor'));
     }
 
     /**
@@ -94,51 +96,104 @@ class NonkasbonController extends Controller
         DB::transaction(function () use ($request) {
             $id = $request->id;
             $nonkasbon = Nonkasbon::find($id);
-
-            $now = Carbon::now();
+            $thn = Carbon::now()->format('y');
+            $bln = Carbon::now()->format('m');
+            $now = Carbon::now('Asia/Jakarta');
             $thnBulan = $now->year . $now->month . $now->day;
             $cek = NonKasbon::count();
 
             if ($cek == 0) {
-                $urut = 100001;
-                $nomer = 'NKB' . $thnBulan . '-' . $urut;
-                $terakhir = 'NKB20221013-0';
+                // $urut = 100001;
+                $nomer = 'NK' . '/' . 0 . '/' . $bln . '/' . $thn;
+                $terakhir = 'NK/0/11/22';
             } else {
                 $ambil = NonKasbon::all()->last();
-                $urut = (int)substr($ambil->no_nonkasbon, -1) + 1;
-                $nomer = 'NKB' . $thnBulan . '-' . $urut;
+                $urut = (int)substr($ambil->no_nonkasbon, 3) + 1;
+                $nomer = 'NK' . '/' . $urut . '/' . $bln . '/' . $thn;
                 $uru_t = (int)substr($ambil->no_nonkasbon, -1) + 1;
                 $terakhirt = NonKasbon::query()->latest('id')->first();
                 $terakhir = $terakhirt->no_nonkasbon;
             }
 
-            $dueDate = now()->addDays(30);
+            if ($request->id_kurs == 42) {
+                $iddpp = Str::replace(',', '', $request->iddpp);
+                $idppn = Str::replace(',', '', $request->iddpp);
+                $idpph = Str::replace(',', '', $request->idpph);
+                $total = Str::replace(',', '', $request->iddpp);
+                +Str::replace(',', '', $request->iddpp);
+                -Str::replace(',', '', $request->idpph);
+                $ktotal = $total;
+            } else {
+                $iddpp = Str::replace(',', '', $request->iddpp1);
+                $idppn = 0;
+                $idpph = 0;
+                $total =  Str::replace(',', '', $request->iddpp1);
+                $konversi =  Str::replace(',', '', $request->konversi);
+                $hkonversi = $total * $konversi;
+                $ktotal = Str::replace(',', '', $hkonversi);
+            }
+
+            $nip = $request->nip;
+            $user = User::where('nip', '=', $nip)->first();
+            $id_user = $user->id;
+            $name_user = $user->name;
+            $id_unit = $user->id_unit;
+
+            $vendor = DB::table('nama_vendor')->where('name', $request->namavendor)->first();
+            if ($vendor === null)
+                NamaVendor::insertGetId([
+                    'name' => $request->namavendor
+                ]);
 
             $nonkasbonID = NonKasbon::insertGetId([
                 'no_nonkasbon' => $nomer,
-                'id_user' => $request->id_user,
                 'tglmasuk' => $request->tglmasuk,
                 'jammasuk' => $request->jammasuk,
                 'doksebelumnya' => $terakhir,
-                'id_user' => Auth::user()->id,
-                'id_unit' => Auth::user()->id_unit,
+                'id_unit' => $id_unit,
+                'id_user' => $id_user,
                 'kodekasbon' => $request->kodekasbon,
                 'jenis' => $request->jenis,
-                'id_kurs' => $request->kurs,
+                'id_kurs' => $request->id_kurs,
+                'id_pph' => $request->id_pph,
                 'namavendor'  => $request->namavendor,
                 'noinvoice'  => $request->noinvoice,
                 'tujuanpembayaran' => $request->tujuanpembayaran,
+                'proyek' => $request->proyek,
+                'iddpp' => $iddpp,
+                'idppn' => $idppn,
+                'idpph' => $idpph,
+                'total' => $total,
+                'k_total' => $ktotal,
                 'created_at' => $now,
                 'updated_at' =>  $now
             ]);
 
-            VerifikasiNonKasbon::insertGetId([
-                'id_nonkasbon' => $nonkasbonID,
-                'vnk_a_1' => 'Dalam Proses',
-                'status' => 'Dalam Proses',
-                'created_at' => $now,
-                'updated_at' =>  $now
-            ]);
+            if (($ktotal < 10000000)) {
+                VerifikasinonKasbon::insertGetId([
+                    'id_nonkasbon' => $nonkasbonID,
+                    'vnk_a_1' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                ]);
+            } elseif (($ktotal > 10000000) && ($ktotal < 25000000)) {
+                VerifikasinonKasbon::insertGetId([
+                    'id_nonkasbon' => $nonkasbonID,
+                    'vnk_a_12' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                ]);
+            } elseif (($ktotal > 25000000) && ($ktotal < 100000000)) {
+                VerifikasinonKasbon::insertGetId([
+                    'id_nonkasbon' => $nonkasbonID,
+                    'vnk_a_12' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                ]);
+            } elseif ($ktotal > 100000000) {
+                VerifikasinonKasbon::insertGetId([
+                    'id_nonkasbon' => $nonkasbonID,
+                    'vnk_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                ]);
+            }
         });
 
         return redirect()->route('nonkasbon.index')
@@ -189,31 +244,87 @@ class NonkasbonController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         DB::transaction(function () use ($request, $id) {
             $jammasuk = Carbon::now()->format('H:i:s');;
             $tglmasuk = Carbon::now()->format('Y-m-d');
-            $now = Carbon::now();
+            $now = Carbon::now('Asia/Jakarta');
             $nonkasbon = Nonkasbon::find($id);
+            if ($request->id_kurs == 42) {
+                $iddpp = Str::replace(',', '', $request->iddpp);
+                $idppn = Str::replace(',', '', $request->iddpp);
+                $idpph = Str::replace(',', '', $request->idpph);
+                $total = Str::replace(',', '', $request->iddpp);
+                +Str::replace(',', '', $request->iddpp);
+                -Str::replace(',', '', $request->idpph);
+                $ktotal = $total;
+            } else {
+                $iddpp = Str::replace(',', '', $request->iddpp1);
+                $idppn = 0;
+                $idpph = 0;
+                $total =  Str::replace(',', '', $request->iddpp1);
+                $konversi =  Str::replace(',', '', $request->konversi);
+                $hkonversi = $total * $konversi;
+                $ktotal = Str::replace(',', '', $hkonversi);
+            }
+
+            $vendor = DB::table('nama_vendor')->where('name', $request->namavendor)->first();
+            if ($vendor === null)
+                NamaVendor::insertGetId([
+                    'name' => $request->namavendor
+                ]);
             $nonkasbon->update([
                 'tglmasuk' => $tglmasuk,
                 'jammasuk' => $jammasuk,
                 'kodekasbon' => $request->kodekasbon,
                 'jenis' => $request->jenis,
-                'id_kurs' => $request->kurs,
+                'id_kurs' => $request->id_kurs,
+                'id_pph' => $request->id_pph,
+                'iddpp' => $iddpp,
+                'idppn' => $idppn,
+                'idpph' => $idpph,
+                'total' => $total,
+                'k_total' => $ktotal,
                 'namavendor'  => $request->namavendor,
                 'noinvoice'  => $request->noinvoice,
                 'tujuanpembayaran' => $request->tujuanpembayaran,
+                'proyek' => $request->proyek,
                 'updated_at' =>  $now,
             ]);
 
 
             $idvnk = $nonkasbon->verifikasinonkasbon->id;
             $vnk = VerifikasinonKasbon::find($idvnk);
-            $vnk->update([
-                'vnk_a_1' => 'Dalam Proses',
-                'status' => 'Dalam Proses',
-                'updated_at' =>  $now
-            ]);
+            if (($ktotal < 10000000)) {
+                $vnk->update([
+                    'vnk_a_1' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($ktotal > 10000000) && ($ktotal < 25000000)) {
+                $vnk->update([
+                    'vnk_a_12' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($ktotal > 25000000) && ($ktotal < 100000000)) {
+                $vnk->update([
+                    'vnk_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif ($ktotal > 100000000) {
+                $vnk->update([
+                    'vnk_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            }
         });
         return redirect()->route('nonkasbon.index')->with('success', 'Non Kasbon updated successfully');
     }

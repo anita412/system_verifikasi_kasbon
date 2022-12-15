@@ -15,10 +15,7 @@ class UnitController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:unit-list|unit-create|unit-edit|unit-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:unit-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:unit-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:unit-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:unit', ['only' => ['index', 'store', 'create', 'store', 'edit', 'update', 'destroy']]);
     }
 
     public function index(Request $request)

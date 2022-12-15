@@ -28,8 +28,8 @@
                     <th rowspan="2">NIP</th>
                     <th rowspan="2">DEPARTEMEN</th>
                     <th rowspan="2">TUJUAN/INSTANSI</th>
-                    <th rowspan="2">NO. KONTRAK</th>
-                    <th rowspan="2">KASBON DINAS</th>
+                    <th rowspan="2">PROYEK</th>
+                    <th rowspan="2">KETERANGAN</th>
                     <th rowspan="2">TGL BERANGKAT</th>
                     <th rowspan="2">TGL PULANG</th>
                     <th  style="width: 5%" rowspan="2">HARI</th>
@@ -46,11 +46,12 @@
                     <td><input  class="form-control"  name="nip[]" required parsley /></td>
                     <td><input  class="form-control" name="departemen[]" required parsley/></td>
                     <td><input  class="form-control" name="tujuan[]" required parsley /></td>
-                    <td><input  class="form-control" name="nokontrak[]" required parsley/></td>
-                    <td><input  class="form-control" name="kasbondinas[]" required parsley /></td>
+                    <td><input  class="form-control" name="proyek[]" required parsley/></td>
+                    <td><input  class="form-control" name="keterangan[]" required parsley /></td>
                     <td><input type="date" class="amount form-control" id="startDate" name="startDate[]" required></td>
                     <td><input type="date" class="amount form-control" id="endDate" name="endDate[]" required></td>
-                    <td><input class="hari amount form-control" id="hari" name="hari[]"></td>
+                    {{-- <td><input class="hari amount form-control" id="hari" name="hari[]"></td> --}}
+                    <td><input class="hari form-control" name="hari[]"></td>
                     <td><select  class="form-control" name="kurs[]" required parsley > <option value="" disabled selected hidden></option>
                         @foreach ($kurs as $k)
                         <option  value="{{$k->id}}">{{$k->name}}</option>
@@ -80,8 +81,7 @@
             <input type="submit" value="Submit">
             <input type="reset" value="Reset"> --}}
             <div class="row mt-3">
-                <div class="col-sm-12 text-end">
-                    <a href="#" type="button" onclick="form1()" class="btn btn-primary px-4">Previous</a>      
+                <div class="col-sm-12 text-end">   
                     <button type="submit" class="btn btn-primary px-4">Simpan</button>   
                 </div>
             </div>

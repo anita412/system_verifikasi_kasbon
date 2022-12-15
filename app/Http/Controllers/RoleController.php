@@ -18,10 +18,7 @@ class RoleController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:role', ['only' => ['index', 'store', 'create', 'store', 'edit', 'update', 'destroy']]);
     }
 
     /**
@@ -32,7 +29,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         return view('roles.index', [
-            'roles' => Role::orderBy('id', 'DESC')->paginate(5),
+            'roles' => Role::orderBy('name', 'ASC')->paginate(),
             'permission' => Permission::get(),
             'title' => 'Index',
         ])->with('i', ($request->input('page', 1) - 1) * 5);

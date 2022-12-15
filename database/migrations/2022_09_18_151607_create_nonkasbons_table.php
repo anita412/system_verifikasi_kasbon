@@ -23,16 +23,24 @@ class CreateNonkasbonsTable extends Migration
             $table->unsignedBigInteger('id_unit')->nullable();
             $table->string('kodekasbon')->nullable();
             $table->string('jenis')->nullable();
-            $table->unsignedBigInteger('kurs')->nullable();
+            $table->unsignedBigInteger('id_kurs')->nullable();
             $table->string('namavendor')->nullable();
             $table->string('noinvoice')->nullable();
+            $table->bigInteger('iddpp')->nullable();
+            $table->bigInteger('idppn')->nullable();
+            $table->unsignedBigInteger('id_pph')->nullable();
+            $table->bigInteger('idpph')->nullable();
+            $table->bigInteger('total')->nullable();
+            $table->bigInteger('k_total')->nullable();
             $table->string('tujuanpembayaran')->nullable();
+            $table->string('proyek')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_unit')->references('id')->on('units')->onDelete('cascade');
+            $table->foreign('id_pph')->references('id')->on('pphs')->onDelete('cascade');
             // $table->foreign('id_kodekasbon')->references('id')->on('kode_kasbons')->onDelete('cascade');
-            $table->foreign('kurs')->references('id')->on('kurs')->onDelete('cascade');
+            $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
         });
     }
 

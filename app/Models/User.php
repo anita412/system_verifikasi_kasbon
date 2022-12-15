@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'nip',
         'id_unit',
+        'id_jabatan',
     ];
 
     /**
@@ -49,6 +50,11 @@ class User extends Authenticatable
     public function unit()
     {
         return $this->belongsTo(Unit::class, 'id_unit', 'id');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id');
     }
 
     public function kasbon()
@@ -76,15 +82,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_1', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_12', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_13', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_2', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_3', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkb_a_4', 'id');
     }
 
     public function verifikasi_pertanggungan()
     {
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_1', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_12', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_13', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_2', 'id');
         return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_3', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vkp_a_4', 'id');
+    }
+    public function verifikasi_nonkasbon()
+    {
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_1', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_12', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_13', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_2', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_3', 'id');
+        return $this->hasMany(VerifikasiKasbon::class, 'id_vnk_a_4', 'id');
     }
 }

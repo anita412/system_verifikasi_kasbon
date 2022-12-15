@@ -6,13 +6,13 @@
 <link href="{{ URL::asset('assets/plugins/huebee/huebee.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
-
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
 @endsection
 
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Verifikasi Kasbon @endslot
+            @slot('li_2') Monitoring SP @endslot
             @slot('li_3') List @endslot
             @slot('title') List Kasbon @endslot
         @endcomponent
@@ -65,7 +65,7 @@
                                     @foreach($kasbon as $kasbons)
                                         <tr>
                                             <td>{{ $kasbons->id }}</td>
-                                            <td>   <input class="update form-control" data-name="tglmasuk" ype="date" data-pk="{{ $kasbons->id }}" value="{{$kasbons->tglmasuk->format('Y-m-d')}}" >
+                                            <td>  <input class="update form-control" data-name="tglmasuk" data-type="date" data-pk="{{ $kasbons->id }}" value="{{$kasbons->tglmasuk->format('Y-m-d')}}" >
                                             </td>
                                         </tr>
                                     @endforeach
@@ -74,15 +74,15 @@
                             <table id="datatable2" class="table table-bordered mb-0 table-centered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr style="text-align: center">
-                        <th rowspan="2" >No Kasbon</th>
-                        <th rowspan="2">Tanggal Masuk</th>
+                        <th rowspan="2" style="width: 30px">No Kasbon</th>
+                        <th rowspan="2" style="width: 30px">Tanggal Masuk</th>
                         <th rowspan="2" >PTJ</th>
                         <th colspan="2" >SP 1</th>
                         <th colspan="2" >SP 2</th>
                         <th colspan="2" >SP 3</th>
                         <th colspan="2" >MT SP</th>
                         <th colspan="2" >PB SDM</th>
-                        <th rowspan="2" style="width:0%">Action</th>
+                        <th rowspan="2" >Action</th>
                                 </tr>
                                 <tr style="text-align: center">
                                     <th >Tgl</th>
@@ -98,63 +98,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($kasbon as $kasbon)
-                                    @if(isset($kasbon->monitoringsp->ptj))
+                                
                                 <tr>
-                                    <td>{{$kasbon->nokasbon}}</td>
-                                    <td>{{$kasbon->tglmasuk->format('d/m/Y')}}</td>
-                                    @if($kasbon->monitoringsp->ptj == 'Belum')
-                                    <td>{{$kasbon->monitoringsp->ptj}}</td>
-                                    @if($kasbon->monitoringsp->tgl_sp1 == $now)
-                                    <td>{{$kasbon->monitoringsp->tgl_sp1}}</td>
-                                    <td>Sudah</td>
-                                    @else
-                                    <td>{{$kasbon->monitoringsp->tgl_sp1 }}</td>
-                                    <td>{{$kasbon->monitoringsp->sp1}}</td>
+                                   
                                     @endif
-                                    @if($kasbon->monitoringsp->tgl_sp2 == $now)
-                                    <td>{{$kasbon->monitoringsp->tgl_sp2}}</td>
-                                    <td>Sudah</td>
-                                    @else
-                                    <td>{{$kasbon->monitoringsp->tgl_sp2}}</td>
-                                    <td>{{$kasbon->monitoringsp->sp2}}</td>
-                                    @endif
-                                    @if($kasbon->monitoringsp->tgl_sp3 == $now)
-                                    <td>{{$kasbon->monitoringsp->tgl_sp3}}</td>
-                                    <td>Sudah</td>
-                                    @else
-                                    <td>{{$kasbon->monitoringsp->tgl_sp3}}</td>
-                                    <td>{{$kasbon->monitoringsp->sp3}}</td>
-                                    @endif
-                                    @if($kasbon->monitoringsp->tgl_mts == $now)
-                                    <td>{{$kasbon->monitoringsp->tgl_mts}}</td>
-                                    <td>Sudah</td>
-                                    @else
-                                    <td>{{$kasbon->monitoringsp->tgl_mts}}</td>
-                                    <td>{{$kasbon->monitoringsp->mts}}</td>
-                                    @endif
-                                    @if($kasbon->monitoringsp->tgl_pbsdm == $now)
-                                    <td>{{$kasbon->monitoringsp->tgl_pbsdm}}</td>
-                                    <td>Sudah</td>
-                                    @else
-                                    <td>{{$kasbon->monitoringsp->tgl_pbsdm}}</td>
-                                    <td>{{$kasbon->monitoringsp->pbsdm}}</td>
-                                    @endif
-                                    @elseif($kasbon->monitoringsp->ptj == 'Sudah')
-                                    <td>{{$kasbon->monitoringsp->ptj}}</td>
-                                    <td>xxxx</td>
-                                    <td>CLOSE</td>
-                                    <td>xxxx</td>
-                                    <td>CLOSE</td>
-                                    <td>xxxx</td>
-                                    <td>CLOSE</td>
-                                    <td>xxxx</td>
-                                    <td>CLOSE</td>
-                                    <td>xxxx</td>
-                                    <td>CLOSE</td>
-                                    @endif
-                                    <td>
-                                        @include('msp.modal-cek-lihat')
+                                    <td  style="text-align:center;">
+                             
                                        
                                         <a data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$kasbon->id}}" class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         <input type="checkbox" id="singleCheckbox1" value="option1" aria-label="Single checkbox One">
@@ -186,8 +135,7 @@
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+
 <script type="text/javascript">
     $.fn.editable.defaults.mode = 'inline';
   
@@ -198,11 +146,12 @@
     }); 
   
     $('.update').editable({
-           url: "{{ route('msp.update') }}",
-           type: 'date',
-           pk: 1,
-           name: 'name',
-           title: 'Enter name'
+        format: 'yyyy-mm-dd',    
+        viewformat: 'dd/mm/yyyy',    
+        datepicker: {
+                firstDay: 1
+           }
+        
     });
 </script>
 <script>

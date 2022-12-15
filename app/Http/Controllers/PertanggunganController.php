@@ -5,16 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Carbon\Carbon;
 use App\Models\Pertanggungan;
-use App\Http\Requests\StorePertanggunganRequest;
-use App\Http\Requests\UpdatePertanggunganRequest;
+use Illuminate\Support\Str;
 use App\Models\Kasbon;
-use App\Models\Dvendor;
-use App\Models\DCustomer;
-use App\Models\DDinas;
-use App\Models\DImpor;
-use App\Models\DPajak;
-use App\Models\Kelengkapan;
-use App\Models\Keterangan;
 use App\Models\Keterangan_detail;
 use App\Models\KeteranganPertanggungan;
 use App\Models\VerifikasiPertanggungan;
@@ -32,11 +24,7 @@ class PertanggunganController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:pertanggungan-list|pertanggungan-create|pertanggungan-edit|pertanggungan-delete|pertanggungan-verifikasi|pertanggungan-insert', ['only' => ['index', 'show']]);
-        $this->middleware('permission:pertanggungan-create', ['only' => ['create', 'store', 'insert', 'storee']]);
-        $this->middleware('permission:pertanggungan-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:pertanggungan-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:pertanggungan-verifikasi', ['only' => ['verifikasi']]);
+        $this->middleware('permission:pertanggungan', ['only' => ['index', 'show', 'create', 'store', 'insert', 'storee', 'edit', 'update', 'destroy', 'verifikasi']]);
     }
 
     public function generatePDF($id)
@@ -45,17 +33,17 @@ class PertanggunganController extends Controller
         $kd = $pertanggungan->kasbon->kelengkapan->keterangan->id;
         $keterangan = Keterangan_detail::where('id_keterangan', $kd)->get();
         $detail = Keterangan_detail::where('id_keterangan', $kd)->get();
-        return view('pdf.print-kasbon', compact('pertanggungan', 'detail', 'keterangan'));
+        return view('pdf.print-pertanggungan', compact('pertanggungan', 'detail', 'keterangan'));
     }
 
 
     public function index()
     {
         $title = 'Pertanggungan';
-        if (auth()->user()->role === 'Admin') {
+        if (Auth::user()->hasRole('ADMIN')  == 'ADMIN') {
             $pertanggungan = Pertanggungan::all();
         } else {
-            $pertanggungan = Pertanggungan::where('id_user', Auth::user()->id)->get();
+            $pertanggungan = Pertanggungan::where('id_unit', Auth::user()->id_unit)->get();
         }
         return view('pertanggungan.index', compact('pertanggungan', 'title'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -86,13 +74,14 @@ class PertanggunganController extends Controller
 
             $id = $request->id;
             $kasbon = Kasbon::find($id);
-            $now = Carbon::now();
+            $now = Carbon::now('Asia/Jakarta');
+            $selisihptj = Str::replace(',', '', $request->nilaiptj) - Str::replace(',', '', $kasbon->total);
             $pertanggunganID = Pertanggungan::insertGetId([
                 'tglptj' => $request->tglptj,
                 'selisihptjakhir' => $request->selisihptjakhir,
-                'novkbselisihptj' => $request->novkbselisihptj,
-                'nilaiselisihptj' => $request->nilaiselisihptj,
-                'selisihptjakhir'  => $request->selisihptjakhir,
+                // 'novkbselisihptj' => $request->novkbselisihptj,
+                'nilaiselisihptj' => Str::replace(',', '', $request->nilaiselisihptj),
+                // 'selisihptjakhir'  => $request->selisihptjakhir,
                 'nokasbon' => $kasbon->nokasbon,
                 'id_user' => $kasbon->id_user,
                 'id_kasbon' => $kasbon->id,
@@ -110,38 +99,64 @@ class PertanggunganController extends Controller
                 'nominalkasbon'  => $kasbon->total,
                 'tgltempo'  => $kasbon->tgltempo,
                 'haritempo'  => $kasbon->haritempo,
-                'novkbkasbon'  => $kasbon->nopi,
-                'tglbayarkeuser'  => $request->tglbayarkeuser,
-                'nilaiptj'  => $request->nilaiptj,
-                'selisihptj'  => $request->nilaiptj - $kasbon->total,
+                'novkbkasbon'  => $request->novkbkasbon,
+                // 'tglbayarkeuser'  => $request->tglbayarkeuser,
+                'nilaiptj'  => Str::replace(',', '', $request->nilaiptj),
+                'selisihptj'  => Str::replace(',', '', $selisihptj),
                 'created_at' => $now,
                 'updated_at' => $now,
             ]);
 
-            $idmsp = $kasbon->monitoringsp->id;
-            $msp = MonitoringSP::find($idmsp);
-            $msp->update([
-                'ptj' => 'Sudah',
-                'sp1' => 'Close',
-                'sp2' => 'Close',
-                'sp3' => 'Close',
-                'mts' => 'Close',
-                'pbsdm' => 'Close',
-                'tgl_sp1' => $request->tgl_sp1,
-                'tgl_sp2' => $request->tgl_sp2,
-                'tgl_sp3' => $request->tgl_sp3,
-                'tgl_mts' => $request->tgl_mts,
-                'tgl_pbsdm' => $request->tgl_pbsdm,
-                'updated_at' => $now,
-            ]);
+            // $idmsp = $kasbon->monitoringsp->id;
+            // $msp = MonitoringSP::find($idmsp);
+            // $msp->update([
+            //     'ptj' => 'Sudah',
+            //     'sp1' => 'Close',
+            //     'sp2' => 'Close',
+            //     'sp3' => 'Close',
+            //     'mts' => 'Close',
+            //     'pbsdm' => 'Close',
+            //     'tgl_sp1' => $request->tgl_sp1,
+            //     'tgl_sp2' => $request->tgl_sp2,
+            //     'tgl_sp3' => $request->tgl_sp3,
+            //     'tgl_mts' => $request->tgl_mts,
+            //     'tgl_pbsdm' => $request->tgl_pbsdm,
+            //     'updated_at' => $now,
+            // ]);
 
-            VerifikasiPertanggungan::insertGetId([
-                'id_pertanggungan' => $pertanggunganID,
-                'vkp_a_1' => 'Dalam Proses',
-                'status' => 'Dalam Proses',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]);
+            if (($kasbon->k_total < 10000000)) {
+                VerifikasiPertanggungan::insertGetId([
+                    'id_pertanggungan' => $pertanggunganID,
+                    'vkp_a_1' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($kasbon->k_total > 10000000) && ($kasbon->k_total < 25000000)) {
+                VerifikasiPertanggungan::insertGetId([
+                    'id_pertanggungan' => $pertanggunganID,
+                    'vkp_a_12' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($kasbon->k_total > 25000000) && ($kasbon->k_total < 100000000)) {
+                VerifikasiPertanggungan::insertGetId([
+                    'id_pertanggungan' => $pertanggunganID,
+                    'vkp_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif ($kasbon->k_total > 100000000) {
+                VerifikasiPertanggungan::insertGetId([
+                    'id_pertanggungan' => $pertanggunganID,
+                    'vkp_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            }
         });
         return redirect()->route('pertanggungan.index')->with('success', 'Kasbon created successfully.');
     }
@@ -151,92 +166,7 @@ class PertanggunganController extends Controller
      * @param  \App\Http\Requests\StorePertanggunganRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function storee(Request $request)
-    {
-        $id = $request->id;
-        $pertanggungan = Pertanggungan::find($id);
 
-        DB::transaction(function () use ($pertanggungan, $request) {
-            $vendorID = Dvendor::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'dv_invoice' => $request->Input('dv_invoice'),
-                'dv_kwitansi' => $request->Input('dv_kwitansi'),
-                'dv_povendor' => $request->Input('dv_povendor'),
-                'dv_sjnvendor' => $request->Input('dv_sjnvendor'),
-                'dv_packcinglist' => $request->Input('dv_packinglist'),
-                'dv_testreport' => $request->Input('dv_testreport'),
-                'dv_bapp' => $request->Input('dv_bapp'),
-                'dv_lppb' => $request->Input('dv_lppb'),
-            ]);
-
-            $customerID = DCustomer::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'dc_memointernal' => $request->Input('dc_memointernal'),
-                'dc_spph' => $request->Input('dc_spph'),
-                'dc_ko' => $request->Input('dc_ko'),
-                'dc_loi' => $request->Input('dc_loi'),
-                'dc_invoicecustom' => $request->Input('dc_invoicecustom'),
-                'dc_sjncustom' => $request->Input('dc_sjncustom'),
-            ]);
-
-            $imporID = DImpor::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'di_pib' => $request->Input('di_pib'),
-                'di_bl' => $request->Input('di_bl'),
-                'di_com' => $request->Input('di_com'),
-                'di_coo' => $request->Input('di_coo'),
-                'di_invoicecustom' => $request->Input('di_invoicecustom'),
-                'di_sjncustom' => $request->Input('di_sjncustom'),
-            ]);
-
-            $pajakID = DPajak::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'dp_kesesuaianfaktur' => $request->Input('dp_kesesuaianfaktur'),
-                'dp_pajakpenghasilan' => $request->Input('dp_pajakpenghasilan'),
-                'dp_suratnonpkp' => $request->Input('dp_suratnonpkp'),
-            ]);
-
-            $dinasID = DDinas::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'dd_tickettransport' => $request->Input('dd_tickettransport'),
-                'dd_notamakan' => $request->Input('dd_notamakan'),
-                'dd_boardingpass' => $request->Input('dd_boardingpass'),
-                'dd_notapenginapan' => $request->Input('dd_notapenginapan'),
-                'dd_sppd' => $request->Input('dd_sppd'),
-            ]);
-
-            $keteranganID = Keterangan::insertGetId([
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'catatan' => $request->Input('catatan'),
-            ]);
-
-            foreach ($request->kekurangan as $key => $kekurangan) {
-                $data = new Keterangan_detail();
-                $tgl_kelengkapan = $request->input('tgl_kelengkapan');
-                $data->id_keterangan = $keteranganID;
-                $data->kekurangan = $kekurangan;
-                $data->tgl_kelengkapan = $tgl_kelengkapan[$key];
-                $data->save();
-            }
-
-            Kelengkapan::insertGetId([
-                'id_dv' => $vendorID,
-                'id_dc' => $customerID,
-                'nokasbon' => $pertanggungan->kasbon->nokasbon,
-                'id_kasbon' => $pertanggungan->kasbon->id,
-                'id_di' => $imporID,
-                'id_dp' => $pajakID,
-                'id_dd' => $dinasID,
-                'id_kt' => $keteranganID,
-                'status' =>  $request->Input('status')
-            ]);
-        });
-        $pertanggungan->status = $request->Input('status');
-        $pertanggungan->kasbon->status = $request->Input('status');
-        $pertanggungan->kasbon->id_verifikator_ptj = Auth::user()->id;
-        $pertanggungan->kasbon->save();
-        return redirect()->route('pertanggungan.index')->with('success', 'Kasbon updated successfully');
-    }
 
     /**
      * Display the specified resource.
@@ -288,9 +218,12 @@ class PertanggunganController extends Controller
     {
         $id = $request->id;
         $pertanggungan = Pertanggungan::find($id);
+        $selisihptj = Str::replace(',', '', $request->nilaiptj) - Str::replace(',', '', $pertanggungan->kasbon->total);
+        $nilaiptj = Str::replace(',', '', $request->nilaiptj);
 
-        DB::transaction(function () use ($request, $id, $pertanggungan) {
-            $now = Carbon::now();
+        DB::transaction(function () use ($request, $id, $pertanggungan, $selisihptj, $nilaiptj) {
+
+            $now = Carbon::now('Asia/Jakarta');
             $pertanggungan->tglptj = $request->tglptj;
             $pertanggungan->selisihptjakhir = $request->selisihptjakhir;
             $pertanggungan->novkbselisihptj = $request->novkbselisihptj;
@@ -313,20 +246,46 @@ class PertanggunganController extends Controller
             $pertanggungan->nominalkasbon  = $pertanggungan->kasbon->total;
             $pertanggungan->tgltempo  = $pertanggungan->kasbon->tgltempo;
             $pertanggungan->haritempo  = $pertanggungan->kasbon->haritempo;
-            $pertanggungan->novkbkasbon  = $pertanggungan->kasbon->nopi;
+            $pertanggungan->novkbkasbon  = $request->novkbkasbon;
             $pertanggungan->tglbayarkeuser  = $request->tglbayarkeuser;
-            $pertanggungan->nilaiptj  = $request->nilaiptj;
-            $pertanggungan->selisihptj  = $request->nilaiptj - $pertanggungan->kasbon->total;
+            $pertanggungan->nilaiptj  = $nilaiptj;
+            $pertanggungan->selisihptj  = $selisihptj;
             $pertanggungan->updated_at = $now;
 
-            $pertanggungan->update($request->all());
+            $pertanggungan->update();
 
             $idvkp = $pertanggungan->verifikasipertanggungan->id;
             $vkp = VerifikasiPertanggungan::find($idvkp);
-            $vkp->update([
-                'vkp_a_1' => 'Dalam Proses',
-                'status' => 'Dalam Proses',
-            ]);
+
+            if (($pertanggungan->kasbon->k_total < 10000000)) {
+                $vkp->update([
+                    'vkp_a_1' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($pertanggungan->kasbon->k_total > 10000000) && ($pertanggungan->kasbon->k_total < 25000000)) {
+                $vkp->update([
+                    'vkp_a_12' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif (($pertanggungan->kasbon->k_total > 25000000) && ($pertanggungan->kasbon->k_total < 100000000)) {
+                $vkp->update([
+                    'vkp_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            } elseif ($pertanggungan->kasbon->k_total > 100000000) {
+                $vkp->update([
+                    'vkp_a_13' => 'Dalam Proses',
+                    'status' => 'Dalam Proses',
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+            }
         });
         return redirect()->route('pertanggungan.index')
             ->with('success', 'Pertanggungan updated successfully');

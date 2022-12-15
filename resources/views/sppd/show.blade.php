@@ -67,14 +67,13 @@
                     <th rowspan="2">NIP</th>
                     <th rowspan="2">DEPARTEMEN</th>
                     <th rowspan="2">TUJUAN/INSTANSI</th>
-                    <th rowspan="2">NO. KONTRAK</th>
-                    <th rowspan="2">KASBON DINAS</th>
+                    <th rowspan="2">PROYEK</th>
+                    <th rowspan="2">KETERANGAN</th>
                     <th rowspan="2">TGL BERANGKAT</th>
                     <th rowspan="2">TGL PULANG</th>
                     <th  style="width: 5%" rowspan="2">HARI</th>
                     <th  style="width: 10%" colspan="2">NILAI SPPD</th>
                     <th style="width: 10%"rowspan="2">UANG LUMPSUM</th>
-                    <th rowspan="2" style="width: 0%" class="text-center"></th>
                 </tr>
                 <tr class="item" style="text-align:center;" >
                     <td style="width: 5%">KURS</td>
@@ -86,8 +85,8 @@
                     <td><input  class="form-control"  name="nip[]" value="{{$details->nip}}" required parsley /></td>
                     <td><input  class="form-control" name="departemen[]" value="{{$details->departemen}}" required parsley/></td>
                     <td><input  class="form-control" name="tujuan[]" value="{{$details->instansi}}" required parsley /></td>
-                    <td><input  class="form-control" name="nokontrak[]" value="{{$details->nokontrak}}" required parsley/></td>
-                    <td><input  class="form-control" name="kasbondinas[]" value="{{$details->kasbondinas}}" required parsley /></td>
+                    <td><input  class="form-control" name="proyek[]" value="{{$details->proyek}}" required parsley/></td>
+                    <td><input  class="form-control" name="keterangan[]" value="{{$details->keterangan}}" required parsley /></td>
                     <td><input type="date" class="amount form-control" value="{{$details->tglberangkat}}" id="startDate" name="startDate[]" required></td>
                     <td><input type="date" class="amount form-control" value="{{$details->tglpulang}}" id="endDate" name="endDate[]" required></td>
                     <td><input class="hari amount form-control" id="hari" name="hari[]" value="{{$details->hari}}"></td>
@@ -107,15 +106,15 @@
                         <option  value="{{$rates->harga}}" >{{$rates->name}}</option>
                         @endif
                         @endforeach
-                    <td><input  name="lumpsum[]" class="lumpsum amount form-control" id="lumpsum" value="Rp. {{number_format($details->uanglumpsum)}}" readonly="readonly" /></td>
-                    <td class="text-end"><button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
+                    <td><input  name="lumpsum[]" class="lumpsum amount form-control" id="lumpsum" value="{{$details->kurs->symbol}} {{number_format($details->uanglumpsum)}}" readonly="readonly" /></td>
+                   
                 </tr>
                     @endforeach
                 <tfoot>
                         <tr>
                             <th class="text-center"  colspan="11"><strong>JUMLAH</strong></th>
-                            <th><input id="netto" readonly="readonly" class="form-control"  name="total" type="text" value="Rp. {{number_format($sppd->jumlah)}}"></th>
-                            <th></th>
+                            <th><input id="netto" readonly="readonly" class="form-control"  name="total" type="text" value="{{$details->kurs->symbol}} {{number_format($sppd->jumlah)}}"></th>
+                           
                         </tr>
                     </tbody>
                     </tfoot>

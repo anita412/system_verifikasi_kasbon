@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="nokasbon">No. Kasbon</label>
+                <label  class="col-lg-4 col-form-label" name="nokasbon">No. Kasbon</label>
                 <div class="col-lg-8">
                     <input class="form-control" type="text" value="{{$kasbon->nokasbon}}" arial-label="Disable input example" disabled  readonly>
                 </div>
@@ -10,7 +10,7 @@
         </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="user">User</label>
+                <label  class="col-lg-4 col-form-label" name="user">User</label>
                 <div class="col-lg-8">
                     <input class="form-control" type="text" value="{{$kasbon->user->name}}" arial-label="Disable input example" disabled readonly>
                 </div>
@@ -20,29 +20,29 @@
             <div class="form-group row">
                 <label for="txtCompanyBilling" class="col-lg-4 col-form-label" name="id_kodekasbon">Kode Kasbon</label>
                 <div class="col-lg-8">
-                    <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control" value="{{$kasbon->kodekasbon->name}}" disabled >
+                    <input  type="text" class="form-control" value="{{$kasbon->kodekasbon->name}}" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="jeniskasbon">Jenis Kasbon</label>
+                <label  class="col-lg-4 col-form-label" name="jeniskasbon">Jenis Kasbon</label>
                 <div class="col-lg-8">
-                    <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control" value="{{$kasbon->jeniskasbon}}" disabled >
+                    <input  type="text" class="form-control" value="{{$kasbon->jeniskasbon}}" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="namavendor">Nama Vendor</label>
+                <label  class="col-lg-4 col-form-label" name="namavendor">Nama Vendor</label>
                 <div class="col-lg-8">
-                    <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control" value="{{$kasbon->namavendor}}" disabled >
+                    <input  type="text" class="form-control" value="{{$kasbon->namavendor}}" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
         <div class="col-md-6">
             <div class="form-group row">
-                <label for="txtFirstNameBilling" class="col-lg-4 col-form-label" name="nip">NIP</label>
+                <label  class="col-lg-4 col-form-label" name="nip">NIP</label>
                 <div class="col-lg-8">
                     <input class="form-control" type="text" value="{{$kasbon->nip}}" arial-label="Disable input example" disabled readonly>
                 </div>
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <label for="txtCompanyBilling" class="col-lg-4 col-form-label">Unit</label>
                 <div class="col-lg-8">
-                    <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control" value="{{$kasbon->unit->name}}" disabled >
+                    <input  type="text" class="form-control" value="{{$kasbon->unit->name}}" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->
@@ -84,7 +84,7 @@
             <div class="form-group row">
                 <label for="txtCompanyBilling" class="col-lg-4 col-form-label" name="noinvoice">No. Invoice</label>
                 <div class="col-lg-8">
-                    <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control" value="{{$kasbon->noinvoice}}" disabled >
+                    <input  type="text" class="form-control" value="{{$kasbon->noinvoice}}" disabled >
                 </div>
             </div><!--end form-group-->
         </div><!--end col-->

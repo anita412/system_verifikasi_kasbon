@@ -36,7 +36,7 @@ class Pphseeder extends Seeder
             ],
             [
                 'id' => '4',
-                'name' => 'PPH24',
+                'name' => 'PPH FINAL',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]

@@ -18,7 +18,7 @@ class CreateSPPDSTable extends Migration
             $table->string('no_sppd')->unique();
             $table->string('doksebelumnya')->nullable();
             $table->date('tglmasuk')->nullable();
-            $table->float('jumlah')->nullable();
+            $table->integer('jumlah')->nullable();
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@
 <link href="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @endsection
 
 
@@ -48,7 +49,7 @@
                 </div>
                 <p class="text-muted mb-0">
                 </p>
-            </div><!--end card-header-->
+            </div><!--end card-header -->
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-sm">
@@ -57,7 +58,7 @@
                             </a>
                         </div>
                         <div class="col-sm-2">
-                               <select class="select2 form-control status-dropdown" >
+                               <select class="select2 form-control status-dropdown"> 
                                     <option value=""> All</option>
                                     <option value="Terverifikasi"> Terverifikasi</option>
                                     <option value="Dalam Proses"> Dalam Proses</option>
@@ -65,22 +66,23 @@
                                     <option value="Ditolak"> Ditolak</option>
                                 </select>
                         </div>
-                        <div class="col-sm-2 text-end">
+                        <div class="col-sm-3 text-end">
                             <div class="input-group">
                                 <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span><input type="text" class="form-control pull-right datesearchbox"  id="datesearch" placeholder="Search by date range..">
                             </div>
                         </div>
                     </div><!--end row-->
-                <table id="datatable2" class="table dt-responsive nowrap" >
+                <table id="datatable2" class="table dt-responsive"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th>No Kasbon</th>
+                        <th hidden></th>
                         <th>Tanggal Masuk</th>
+                        <th>No Kasbon</th>
                         <th>Kasbon</th>
                         <th>Nominal Kasbon</th>
                         <th>Status</th>
-                        <th  style="text-align: center">Pemberitahuan</th>
-                        <th style="width:0%">Action</th>
+                        {{-- <th  style="text-align: center">Pemberitahuan</th> --}}
+                        <th>Action</th>
                         
                     </tr>
                     </thead>
@@ -88,8 +90,12 @@
                     <tbody>
                         @foreach ($kasbon as $kasbons)
                     <tr>
+                        <td hidden>{{$kasbons->verifikasikasbon->updated_at ?? ''}}</td>
+                        {{-- @if($kasbons->file)
+                        <td>{{ link_to_asset('storage/post-file/'.$kasbons->file, $kasbons->file) }}</td>
+                        @endif --}}
+                        <td>{{ $kasbons->tglmasuk ? $kasbons->tglmasuk->format('d/m/Y')  : '-' }}</td>
                         <td>{{$kasbons->nokasbon}}</td>
-                        <td>{{$kasbons->tglmasuk->format('m/d/Y')}}</td>
                         <td>{{$kasbons->jeniskasbon}}</td>
                         <td>{{$kasbons->kurs->symbol}} {{number_format($kasbons->total)}}</td>
                         <td>
@@ -105,39 +111,12 @@
                             @endif
                             @endif
                         </td>
-                         <td style="text-align: center">
-                            @if(isset($kasbons->monitoringsp->id))
-                                @if(isset($kasbons->pertanggungan->id))
-                                    Done
-                                @elseif($kasbons->tgltempo->format('Y-m-d') == $now)
-                                    <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
-                                @elseif($kasbons->monitoringsp->tgl_sp1 < $now && $kasbons->monitoringsp->tgl_sp2 > $now)
-                                    <a href="{{ route('kasbon.printsp1',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP1</a>
-                                @elseif($kasbons->monitoringsp->tgl_sp2 < $now && $kasbons->monitoringsp->tgl_sp3 > $now)
-                                    <a href="{{ route('kasbon.printsp2',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP2</a>
-                                @elseif($kasbons->monitoringsp->tgl_sp3 < $now)
-                                    <a href="{{ route('kasbon.printsp3',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" class="btn btn-danger btn-sm"></i>SP3</a>
-                                @elseif($kasbons->monitoringsp->tgl_mts == $now)
-                                    <label class="badge rounded-pill bg-danger">MTS</label>
-                                @elseif($kasbons->monitoringsp->tgl_pbsdm == $now)
-                                    <label class="badge rounded-pill bg-danger">PBSDM</label>
-                                @else
-                                    {{$kasbons->tgltempo->format('d/m/Y')}}
-                                @endif
-                            @else
-                                {{-- @if($kasbons->verifikasikasbon->status == "Terverifikasi")
-                                    @if($kasbons->tgltempo->format('Y-m-d') == $now)
-                                        <label class="badge rounded-pill bg-danger">Segera Ajukan Pertanggungan</label>
-                                    @endif
-                                @else
-                                    -
-                                @endif --}}
-                            @endif
-                    </td>
-                        <td class="text-end">
+                        
+                       <td class="text-end">
                             @if(isset($kasbons->verifikasikasbon->id))
                                 @if($kasbons->verifikasikasbon->status == "Dalam Proses")
-                                    <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                <a href="{{ route('vkb.printppk',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lembar PPK" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
+                                <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                 @elseif($kasbons->verifikasikasbon->status == "Revisi")
                                     <a href="{{ route('kasbon.edit',$kasbons->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
                                     <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
@@ -145,19 +124,31 @@
                                     <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                     <a type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalDanger_{{$kasbons->id}}" data-action="{{ route('kasbon.destroy', $kasbons->id) }}"><i class="las la-trash font-16"></i></a>
                                 @elseif($kasbons->verifikasikasbon->status == "Terverifikasi")
-                                    @if(isset($kasbons->verifikasikasbon->vkb_a_2))
+                                @if($kasbons->jeniskasbon == "KASBON RENCANA")
                                         @if(isset($kasbons->pertanggungan->id))
+                                        <a href="{{ route('vkb.printppk',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lembar PPk" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
                                             <a href="{{ route('pertanggungan.show',$kasbons->pertanggungan->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-information-outline"></i></a> 
                                             <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @else
+                                        <a href="{{ route('vkb.printppk',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lembar PPK" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
                                             <a href="{{ route('pertanggungan.insert',$kasbons->id) }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Ajukan Pertanggungan" class="btn btn-success btn-sm"><i class="mdi mdi-send"></i></a> 
                                             <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @endif
-                                    @endif
+                                @else
+                                @if(isset($kasbons->pertanggungan->id))
+                                <a href="{{ route('vkb.printppk',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lembar PPk" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
+                                    <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                @else
+                                <a href="{{ route('vkb.printppk',$kasbons->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lembar PPk" class="btn btn-danger btn-sm"><i class="mdi mdi-printer"></i></a>
+                                    <a href="{{ route('kasbon.show',$kasbons->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
+                                @endif
+                                @endif
                             @endif
                             @endif
+                             @if($kasbons->file)
+                            <a href="{{ 'storage/post-file/'.$kasbons->file }}"class="btn btn-sm"><i class="mdi mdi-file-document"></i></a>
+                             @endif
                         </td>
-                       
                     </tr>
                     <div class="modal fade" id="exampleModalDanger_{{$kasbons->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalDanger1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -193,21 +184,19 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Default Modal</h6>
+                    <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Pilih Tanggal</h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div><!--end modal-header-->
-                <form method="GET" action="{{route('kasbonexport')}}" target="_blank">
+                <form method="GET" action="{{route('kasbonexport')}}" >
                     {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="my-3">Start Date</label>
-                            <input type="date" name="tglawal" class="form-control" >
-                        </div><!--end col-->
-                        <div class="col-md-6">
-                            <label class="my-3">End Date</label>
-                            <input type="date" name="tglakhir" class="form-control">
-                        </div><!--end col-->
+                            From: <input type="text" name="reg_start_date" class="datepicker first" />
+                          </div>
+                          <div class="col-md-6">
+                            To: <input type="text" name="reg_end_date" class="datepicker second" />
+                          </div>
                     </div><!--end row-->                                       
                 </div><!--end modal-body-->
           
@@ -220,6 +209,7 @@
         </div><!--end modal-dialog-->
     </div><!--end modal-->
        
+    
 
 @endsection
 @section('script')
@@ -229,20 +219,31 @@
 <script src="{{ URL::asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.forms-advanced.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 <script src="assets/plugins/tippy/tippy.all.min.js"></script>
 <script src="assets/js/jquery.core.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"> 
- var start_date;
+$('.second').datepicker({
+    dateFormat: "yy/mm/dd" 
+});
+
+$(".first").datepicker({
+  dateFormat: "yy/mm/dd",
+  onSelect: function(date) {
+    var date1 = $('.first').datepicker('getDate');
+    var date = new Date(Date.parse(date1));
+    date.setDate(date.getDate() + 1);
+    var newDate = date.toDateString();
+    newDate = new Date(Date.parse(newDate));
+    $('.second').datepicker("option", "minDate", newDate);
+  }
+});
+
+   var start_date;
    var end_date;
    var DateFilterFunction = (function (oSettings, aData, iDataIndex) {
       var dateStart = parseDateValue(start_date);
@@ -273,10 +274,10 @@
     
   //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
    var $dTable = $('#datatable2').DataTable({
-    order: [[1, 'desc']],
+    order: [[0, 'desc']],
     columnDefs: [
             {
-                "targets": [4],
+                "targets": [5],
                 "visible": true
             }
         ],
@@ -303,7 +304,7 @@ $('.filter-checkbox').on('change', function(e){
       $('.status-dropdown').val(status)
       console.log(status)
       //dataTable.column(4).search('\\s' + status + '\\s', true, false, true).draw();
-      $dTable.column(4).search(status).draw();
+      $dTable.column(5).search(status).draw();
     })  
 
    document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

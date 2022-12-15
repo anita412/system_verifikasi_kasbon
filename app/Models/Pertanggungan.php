@@ -43,6 +43,6 @@ class Pertanggungan extends Model
 
     public function keterangan_pertanggungan()
     {
-        return $this->hasMany(KeteranganPertanggungan::class, 'id_pertanggungan', 'id');
+        return $this->hasone(KeteranganPertanggungan::class, 'id_pertanggungan', 'id');
     }
 }

@@ -19,19 +19,35 @@ class CreateVerifikasiNonKasbonsTable extends Migration
             $table->string('status')->nullable();
             $table->string('vnk_a_1')->nullable();
             $table->unsignedBigInteger('id_vnk_a_1')->nullable();
+            $table->dateTime('tgl_vnk_a_1')->nullable();
+            $table->string('vnk_a_12')->nullable();
+            $table->unsignedBigInteger('id_vnk_a_12')->nullable();
+            $table->dateTime('tgl_vnk_a_12')->nullable();
+            $table->string('vnk_a_13')->nullable();
+            $table->unsignedBigInteger('id_vnk_a_13')->nullable();
+            $table->dateTime('tgl_vnk_a_13')->nullable();
             $table->string('vnk')->nullable();
             $table->unsignedBigInteger('id_vnk')->nullable();
+            $table->dateTime('tgl_vnk')->nullable();
             $table->string('vnk_a_2')->nullable();
             $table->unsignedBigInteger('id_vnk_a_2')->nullable();
+            $table->dateTime('tgl_vnk_a_2')->nullable();
             $table->string('vnk_a_3')->nullable();
             $table->unsignedBigInteger('id_vnk_a_3')->nullable();
+            $table->dateTime('tgl_vnk_a_3')->nullable();
+            $table->string('vnk_a_4')->nullable();
+            $table->unsignedBigInteger('id_vnk_a_4')->nullable();
+            $table->dateTime('tgl_vnk_a_4')->nullable();
             $table->timestamps();
 
             $table->foreign('id_nonkasbon')->references('id')->on('nonkasbons')->onDelete('cascade');
             $table->foreign('id_vnk')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vnk_a_1')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_vnk_a_12')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_vnk_a_13')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vnk_a_2')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_vnk_a_3')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_vnk_a_4')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

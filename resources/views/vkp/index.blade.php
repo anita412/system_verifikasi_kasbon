@@ -8,6 +8,8 @@
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @endsection
 
     @section('content')
@@ -38,7 +40,7 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalDefault" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
                                     </a>
                                 </div>
@@ -46,7 +48,8 @@
                                     <select class="select2 form-control status-dropdown" >
                                         <option value=""> All</option>
                                         <option value="Terverifikasi"> Terverifikasi</option>
-                                        <option value="Dalam Proses"> Dalam Proses</option>
+                                        <option value="Menunggu Verifikasi Atasan">Menunggu Verifikasi Atasan</option>
+                                        <option value="Belum Proses"> Belum Proses</option>
                                         <option value="Revisi"> Revisi</option>
                                         <option value="Ditolak"> Ditolak</option>
                                     </select>
@@ -57,42 +60,37 @@
                                     </div>
                                 </div>
                             </div><!--end row-->
-                            <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable2" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
                                     <th hidden>Status</th>
+                                    <th>Tanggal PTJ</th>
                                     <th>No Kasbon</th>
                                     <th>User</th>
-                                    <th>Kasbon</th>
-                                    <th>No VKB Kasbon</th>
-                                    <th>Tgl Bayar ke User</th>
                                     <th>Nilai PTJ</th>
-                                    <th>Selisih PTJ</th>
                                     <th>Status</th>
-                                    <th style="width:0%">Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
 
 
                                 <tbody>
                                     @foreach ($pertanggungan as $pertanggungan)
+                                    @if(isset($pertanggungan->verifikasipertanggungan->vkp))
                                 <tr>
-                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('d/m/Y')}}</td>
-                                    <td>{{$pertanggungan->nokasbon}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
+                                    <td>{{ $pertanggungan->tglptj ? $pertanggungan->tglptj->format('d/m/Y')  : '-' }}</td>
+                                    <td>{{$pertanggungan->kasbon->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
-                                    <td>{{$pertanggungan->jeniskasbon}}</td>
-                                    <td>{{$pertanggungan->novkbkasbon}}</td>
-                                    <td>{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}</td>
-                                    <td>Rp. {{number_format($pertanggungan->nilaiptj)}}</td>
-                                    <td>Rp. {{number_format($pertanggungan->nilaiselisihptj)}}</td>
+                                    <td>{{$pertanggungan->kasbon->kurs->symbol}} {{number_format($pertanggungan->nilaiptj)}}</td>
                                     <td>
                                         @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Proses</label>
                                         @elseif($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi")
-                                        @if($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi" and $pertanggungan->verifikasipertanggungan->vkp_a_2 == "Terverifikasi")
+                                        @if($pertanggungan->verifikasipertanggungan->status == "Terverifikasi")
                                         <label class="badge rounded-pill bg-success">Terverifikasi</label>
                                         @else
-                                        <label class="badge rounded-pill bg-success">Menunggu Verifikasi</label>
+                                        <label class="badge rounded-pill bg-success">Menunggu Verifikasi Atasan</label>
                                         @endif
                                         @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
                                         <label class="badge rounded-pill bg-danger">{{$pertanggungan->verifikasipertanggungan->vkp}}</label>
@@ -102,28 +100,25 @@
                                     </td>
                                     <td>
                                         @if(isset($pertanggungan->verifikasipertanggungan->id_vkp))
-                                        @include('vkp.modal-cek-edit')
-                                        @include('vkp.modal-cek-lihat')
-                                            @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
-                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Terverifikasi")
-                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a>
-                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
-                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
-                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Revisi")
-                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Pertanggungan</a> 
-                                            @endif
-                                        @else
+                                        @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
+                                            @include('vkp.modal-cek')
+                                            <a href="{{ route('vkp.show_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanggungan"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
+                                            <a href="{{ route('vkp.kelengkapan_edit',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Verifikasi"><i class="mdi mdi-checkbox-marked-outline" style="font-size: 150%; "></i></a>
+                                            @else
+                                            <a href="{{ route('vkp.show_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanggungan"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
+                                            <a href="{{ route('vkp.kelengkapan_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
+                                           @endif
+                                    @else
+                                        @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
                                         @include('vkp.modal-cek')
-                                            @if($pertanggungan->verifikasipertanggungan->vkp == "Dalam Proses")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
-                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Ditolak")
-                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
-                                            @elseif($pertanggungan->verifikasipertanggungan->vkp == "Revisi")
-                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}"><i class="mdi mdi-send me-2"></i>Lihat Kasbon</a>
+                                            <a  href="{{ route('vkp.show_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanggungan"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
+                                            <a href="{{ route('vkp.kelengkapan_edit',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalcek_{{$pertanggungan->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Verifikasi"><i class="mdi mdi-checkbox-marked-outline" style="font-size: 150%; "></i></a>
                                             @endif
-                                        @endif
+                                    @endif
                                     </td>
+                                    @endif
                                     @endforeach
                                 </tr>
                                 </tbody>
@@ -155,7 +150,34 @@
                     </div><!--end modal-content-->
                 </div><!--end modal-dialog-->
             </div><!--end modal--> --}}
-
+            <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Pilih Tanggal</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div><!--end modal-header-->
+                        <form method="GET" action="{{route('pertanggunganexport')}}" >
+                            {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    From: <input type="text" name="reg_start_date" class="datepicker first" />
+                                  </div>
+                                  <div class="col-md-6">
+                                    To: <input type="text" name="reg_end_date" class="datepicker second" />
+                                  </div>
+                            </div><!--end row-->                                       
+                        </div><!--end modal-body-->
+                  
+                        <div class="modal-footer">                                                    
+                            <button type="submit" class="btn btn-soft-primary btn-sm">Download</button>
+                            <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        </div><!--end modal-footer-->
+                    </form>
+                    </div><!--end modal-content-->
+                </div><!--end modal-dialog-->
+            </div><!--end modal-->
 @endsection
 @section('script')
 <script src="{{ URL::asset('assets/js/jquery.core.js') }}"></script>
@@ -172,6 +194,7 @@
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     +function($) {
     'use strict';
@@ -308,6 +331,21 @@
     }
     </script>
 <script type="text/javascript"> 
+$('.second').datepicker({
+    dateFormat: "yy/mm/dd" 
+});
+
+$(".first").datepicker({
+  dateFormat: "yy/mm/dd",
+  onSelect: function(date) {
+    var date1 = $('.first').datepicker('getDate');
+    var date = new Date(Date.parse(date1));
+    date.setDate(date.getDate() + 1);
+    var newDate = date.toDateString();
+    newDate = new Date(Date.parse(newDate));
+    $('.second').datepicker("option", "minDate", newDate);
+  }
+});
     var start_date;
       var end_date;
       var DateFilterFunction = (function (oSettings, aData, iDataIndex) {
@@ -317,7 +355,7 @@
          //nama depan = 0
          //nama belakang = 1
          //tanggal terdaftar =2
-         var evalDate= parseDateValue(aData[0]);
+         var evalDate= parseDateValue(aData[1]);
            if ( ( isNaN( dateStart ) && isNaN( dateEnd ) ) ||
                 ( isNaN( dateStart ) && evalDate <= dateEnd ) ||
                 ( dateStart <= evalDate && isNaN( dateEnd ) ) ||
@@ -342,7 +380,7 @@
        order: [[0, 'desc']],
        columnDefs: [
                {
-                   "targets": [6],
+                   "targets": [5],
                    "visible": true
                }
            ],
@@ -369,7 +407,7 @@
          $('.status-dropdown').val(status)
          console.log(status)
          //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
-         $dTable.column(6).search(status).draw();
+         $dTable.column(5).search(status).draw();
        })  
    
       document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

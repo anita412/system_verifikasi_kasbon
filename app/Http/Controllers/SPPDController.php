@@ -15,10 +15,7 @@ class SPPDController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:sppd-list|sppd-create|sppd-edit|sppd-delete|sppd-verifikasi|sppd-insert', ['only' => ['index', 'show']]);
-        $this->middleware('permission:sppd-create', ['only' => ['create', 'store', 'insert', 'storee']]);
-        $this->middleware('permission:sppd-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:sppd-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:sppd', ['only' => ['index', 'show', 'create', 'store', 'insert', 'storee', 'edit', 'update', 'destroy']]);
     }
 
     public function index()
@@ -36,22 +33,22 @@ class SPPDController extends Controller
         $sppd = SPPD::all();
         $dueDate = now()->addDays(30)->format('Y-m-d');
         $kurs = Kurs::all();
-        $now = Carbon::now();
+        $now = Carbon::now('Asia/Jakarta');
         $jamnow = Carbon::now()->format('H:i:s');;
-        $thnBulan = Carbon::now()->format('Y-m-d');
+        $thn = Carbon::now()->format('y');
+        $bln = Carbon::now()->format('m');
         $cek = sppd::count();
         $tglmasuk = Carbon::now()->format('Y-m-d');
         $terakhir = sppd::query()->latest('id')->first();
         if ($cek == 0) {
-            $urut = 100001;
-            $nomer = 'SPPD' . $thnBulan . '-' . $urut;
-            $n0mer = 'D' . $urut;
+            $nomer = 'SPPDIMST' .  '/' . $bln  . $thn . '/' . 1;
+
             $terakhir = '0';
         } else {
             $ambil = sppd::all()->last();
-            $urut = (int)substr($ambil->nokasbon, -1) + 1;
-            $nomer = 'SPPD' . $thnBulan . '-' . $urut;
-            $uru_t = (int)substr($ambil->nokasbon, -1) + 1;
+            $urut = (int)substr($ambil->no_sppd, 14) + 1;
+            $nomer = 'SPPDIMST' .  '/' . $bln  . $thn . '/' . $urut;
+            $uru_t = (int)substr($ambil->no_sppd, -1) + 1;
             $n0mer = 'D' . $uru_t;
             $terakhir = $terakhir->no_sppd;
         }
@@ -65,21 +62,26 @@ class SPPDController extends Controller
 
             $dueDate = now()->addDays(30)->format('Y-m-d');
             $kurs = Kurs::all();
-            $now = Carbon::now();
-            $jamnow = Carbon::now()->format('H:i:s');;
+            $now = Carbon::now('Asia/Jakarta');
+            $jamnow = Carbon::now()->format('H:i:s');
+            $thn = Carbon::now()->format('y');
+            $bln = Carbon::now()->format('m');
             $thnBulan = Carbon::now()->format('Y-m-d');
             $cek = sppd::count();
             $tglmasuk = Carbon::now()->format('Y-m-d');
 
             if ($cek == 0) {
                 $urut = 100001;
-                $nomer = 'SPPD' . $thnBulan . '-' . $urut;
+                $nomer = 'SPPDIMST' .  '/' . $bln  . $thn . '/' . $urut;
                 $n0mer = 'D' . $urut;
                 $terakhir = '0';
             } else {
                 $ambil = sppd::all()->last();
-                $urut = (int)substr($ambil->no_sppd, -1) + 1;
-                $nomer = 'SPPD' . $thnBulan . '-' . $urut;
+                $urut = (int)substr(
+                    $ambil->no_sppd,
+                    14
+                ) + 1;
+                $nomer = 'SPPDIMST' .  '/' . $bln  . $thn . '/' . $urut;
                 $uru_t = (int)substr($ambil->no_sppd, -1) + 1;
                 $n0mer = 'D' . $uru_t;
                 $terakhir = $ambil->no_sppd;
@@ -100,8 +102,8 @@ class SPPDController extends Controller
                 $nip = $request->input('nip');
                 $departemen = $request->input('departemen');
                 $tujuan = $request->input('tujuan');
-                $nokontrak = $request->input('nokontrak');
-                $kasbondinas = $request->input('kasbondinas');
+                $proyek = $request->input('proyek');
+                $keterangan = $request->input('keterangan');
                 $tglberangkat = $request->input('startDate');
                 $tglpulang = $request->input('endDate');
                 $hari = $request->input('hari');
@@ -112,8 +114,8 @@ class SPPDController extends Controller
                 $data->nip = $nip[$key];
                 $data->departemen = $departemen[$key];
                 $data->instansi = $tujuan[$key];
-                $data->nokontrak = $nokontrak[$key];
-                $data->kasbondinas = $kasbondinas[$key];
+                $data->proyek = $proyek[$key];
+                $data->keterangan = $keterangan[$key];
                 $data->tglberangkat = $tglberangkat[$key];
                 $data->tglpulang = $tglpulang[$key];
                 $data->hari = $hari[$key];

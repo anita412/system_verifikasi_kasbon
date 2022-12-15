@@ -21,10 +21,9 @@
         <td>{{$kasbons->nokasbon}}</td>
         <td>{{$kasbons->tglmasuk->format('d/m/Y')}}</td>
         <td>{{$kasbons->jeniskasbon}}</td>
-        <td>Rp. {{number_format($kasbons->total)}}</td>
+        <td>{{$kasbon->kurs->symbol}} {{number_format($kasbons->total)}}</td>
         <td>{{$kasbons->noinvoice}}</td>
-        <td>{{$kasbons->jenis->name}}</td>
-       
+        <td>{{$kasbons->jenis->name}}</td>      
     </tr>
  
     @endforeach

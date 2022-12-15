@@ -18,28 +18,40 @@ class UnitSeeder extends Seeder
         DB::table('units')->insert([
             [
                 'id' => '1',
-                'name' => 'Pemasaran',
+                'name' => 'DIVISI KEUANGAN',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => '2',
-                'name' => 'Keuangan',
+                'name' => 'DIVISI PEMASARAN',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => '3',
-                'name' => 'SDM & Umum',
+                'name' => 'DIVISI PENGADAAN',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => '4',
-                'name' => 'Pengadaan',
+                'name' => 'DIVISI REALISASI PRODUK',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]
+            ],
+            [
+                'id' => '5',
+                'name' => 'DIVISI SDM & UMUM',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => '6',
+                'name' => 'TSG INFRASTRUCTURE PTE LTD',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
     }
 }

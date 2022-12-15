@@ -8,14 +8,16 @@
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @endsection
 
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Verifikasi Nonkasbon @endslot
+            @slot('li_2') Verifikasi Non Kasbon @endslot
             @slot('li_3') List @endslot
-            @slot('title') List Nonkasbon @endslot
+            @slot('title') List Non Kasbon @endslot
         @endcomponent
 
         @if (session()->has('success'))
@@ -28,43 +30,44 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" style="display: inline;">nonkasbon</h4>
+                            <h4 class="card-title" style="display: inline;">Non Kasbon</h4>
                             <p class="text-muted mb-0">
                             </p>
                         </div><!--end card-header-->
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalDefault" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
                                     </a>
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >
                                         <option value=""> All</option>
-                                        <option value="Terverifikasi"> Terverifikasi</option>
-                                        <option value="Belum Proses"> Belum Proses</option>
-                                        <option value="Revisi"> Revisi</option>
-                                        <option value="Ditolak"> Ditolak</option>
+                                        <option value="Terverifikasi">Terverifikasi</option>
+                                        <option value="Menunggu Verifikasi Atasan">Menunggu Verifikasi Atasan</option>
+                                        <option value="Belum Proses">Belum Proses</option>
+                                        <option value="Revisi">Revisi</option>
+                                        <option value="Ditolak">Ditolak</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2 text-end">
+                                <div class="col-sm-3 text-end">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span><input type="text" class="form-control pull-right datesearchbox"  id="datesearch" placeholder="Search by date range..">
                                     </div>
                                 </div>
                                 {{-- </div><!--end col--> --}}
                             </div><!--end row-->
-                            <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable2" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
                                     <th hidden></th>
                                     <th>Tanggal Masuk</th>
                                     <th>User</th>
-                                    <th>No nonkasbon</th>
-                                    <th>Tujuan Pembayaran</th>
+                                    <th>No Non Kasbon</th>
+                                    <th >Nominal Non Kasbon</th>
                                     <th>Status</th>
-                                    <th style="width: 0%">Action</th>
+                                    <th >Action</th>
                                 </tr>
                                 </thead>
 
@@ -73,11 +76,11 @@
                                 @if(isset($nonkasbon->verifikasinonkasbon->vnk))
                                 
                                 <tr>
-                                    <td hidden>{{$nonkasbon->created_at}}</td>
+                                    <td hidden>{{$nonkasbon->updated_at}}</td>
                                     <td>{{$nonkasbon->tglmasuk->format('d/m/Y')}}</td>
                                     <td>{{$nonkasbon->user->name}}</td>
                                     <td>{{$nonkasbon->no_nonkasbon}}</td>
-                                    <td>{{$nonkasbon->tujuanpembayaran}}</td>
+                                    <td>{{$nonkasbon->kurs->symbol}} {{number_format($nonkasbon->total)}}</td>
                                     <td>@if(isset($nonkasbon->verifikasinonkasbon->vnk))
                                    
                                     @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
@@ -87,33 +90,31 @@
                                         @elseif($nonkasbon->verifikasinonkasbon->vnk == "Ditolak")
                                             <label class="badge rounded-pill bg-danger">Ditolak</label>
                                         @elseif($nonkasbon->verifikasinonkasbon->vnk == "Terverifikasi")
-                                            <label class="badge rounded-pill bg-success">Menunggu Verifikasi</label>
+                                        @if($nonkasbon->verifikasinonkasbon->status == "Terverifikasi")
+                                        <label class="badge rounded-pill bg-success">Terverifikasi</label>
+                                        @else
+                                        <label class="badge rounded-pill bg-success">Menunggu Verifikasi Atasan</label>
+                                        @endif
                                         @endif</td>
                                     <td>
                                         @if(isset($nonkasbon->verifikasinonkasbon->id_vnk))
-                                        @include('vnk.modal-cek-edit')
-                                        @include('vnk.modal-cek-lihat')
-                                            @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Terverifikasi")
-                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Ditolak")
-                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalceklihat_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Revisi")
-                                            <a class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalcekedit_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
+                                        @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
+                                            @include('vnk.modal-cek')
+                                            <a href="{{ route('vnk.show',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Non Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i>
+                                            <a href="{{ route('vnk.kelengkapan_edit',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalcek_{{$nonkasbon->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Verifikasi"><i class="mdi mdi-checkbox-marked-outline" style="font-size: 150%; "></i></a>
+                                            @else
+                                            <a href="{{ route('vnk.show_v',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Non Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i>
+                                            <a href="{{ route('vnk.kelengkapan_v',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i>
                                             @endif
-                                        @else
+                                    @else
+                                        @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
                                         @include('vnk.modal-cek')
-                                            @if($nonkasbon->verifikasinonkasbon->vnk == "Dalam Proses")
-                                            <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalcek_{{$nonkasbon->id}}"><i class="mdi mdi-send me-2"></i>Lihat Non Kasbon</a>
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Terverifikasi")
-                                            <a href={{ route('vnk.cek_nonkasbon',$nonkasbon->id) }} class="btn btn-outline-success btn-sm"><i class="mdi mdi-send me-2"></i>Lihat nonkasbon</a> 
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Ditolak")
-                                            <a href={{ route('vnk.cek_nonkasbon',$nonkasbon->id) }} class="btn btn-outline-danger btn-sm"><i class="mdi mdi-send me-2"></i>Lihat nonkasbon</a> 
-                                            @elseif($nonkasbon->verifikasinonkasbon->vnk == "Revisi")
-                                            <a href={{ route('vnk.cek_nonkasbon',$nonkasbon->id) }} class="btn btn-outline-warning btn-sm"><i class="mdi mdi-send me-2"></i>Lihat nonkasbon</a> 
+                                            <a  href="{{ route('vnk.show',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Non Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i>
+                                            <a href="{{ route('vnk.kelengkapan',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modalcek_{{$nonkasbon->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Verifikasi"><i class="mdi mdi-checkbox-marked-outline" style="font-size: 150%; "></i></a>
                                             @endif
-                                        @endif
+                                    @endif
                                     </td>
                                     @endif
                                     @endif
@@ -125,7 +126,34 @@
                     </div>
                 </div> <!-- end col -->
             </div>
-           
+            <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Pilih Tanggal</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div><!--end modal-header-->
+                        <form method="GET" action="{{route('nonkasbonexport')}}" >
+                            {{ csrf_field() }}
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    From: <input type="text" name="reg_start_date" class="datepicker first" />
+                                  </div>
+                                  <div class="col-md-6">
+                                    To: <input type="text" name="reg_end_date" class="datepicker second" />
+                                  </div>
+                            </div><!--end row-->                                       
+                        </div><!--end modal-body-->
+                  
+                        <div class="modal-footer">                                                    
+                            <button type="submit" class="btn btn-soft-primary btn-sm">Download</button>
+                            <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        </div><!--end modal-footer-->
+                    </form>
+                    </div><!--end modal-content-->
+                </div><!--end modal-dialog-->
+            </div><!--end modal-->
          
 @endsection
 @section('script')
@@ -143,7 +171,24 @@
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    $('.second').datepicker({
+    dateFormat: "yy/mm/dd" 
+});
+
+$(".first").datepicker({
+  dateFormat: "yy/mm/dd",
+  onSelect: function(date) {
+    var date1 = $('.first').datepicker('getDate');
+    var date = new Date(Date.parse(date1));
+    date.setDate(date.getDate() + 1);
+    var newDate = date.toDateString();
+    newDate = new Date(Date.parse(newDate));
+    $('.second').datepicker("option", "minDate", newDate);
+  }
+});
+
     +function($) {
     'use strict';
 
@@ -313,7 +358,7 @@ sendEvent = function(sel, step) {
        order: [[0, 'desc']],
        columnDefs: [
                {
-                   "targets": [6],
+                   "targets": [5],
                    "visible": true
                }
            ],
@@ -340,7 +385,7 @@ sendEvent = function(sel, step) {
          $('.status-dropdown').val(status)
          console.log(status)
          //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
-         $dTable.column(6).search(status).draw();
+         $dTable.column(5).search(status).draw();
        })  
    
       document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";

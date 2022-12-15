@@ -3,6 +3,9 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/jquery-steps/jquery.steps.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/0.7.17/cleave.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -16,6 +19,13 @@
             @slot('li_3') Verifikasi @endslot
             @slot('title') Verifikasi @endslot
         @endcomponent
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        </style>
             <div class="row">
                 <div class="col-12">
                     @error('error')
@@ -161,4 +171,20 @@
             $('#6-form-entry').show();
         }
     </script>
+    <script>
+
+        new Cleave('.dollar', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        new Cleave('.dollar1', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        new Cleave('.dollarselisih', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        
+          </script>
 @endsection

@@ -159,7 +159,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai / DPP</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                         <input  id="iddpp" class="form-control"  name="iddpp" value="{{number_format($pertanggungan->kasbon->iddpp)}}" disabled>
                                                         </div>
                                                     </div>
@@ -170,7 +170,7 @@
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">PPN</label>
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
-                                                            <span class="input-group-text">Rp.</span>
+                                                            <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                         <input class="form-control input-numera" id="idppn" class="form-control"  name="idppn" value="{{number_format($pertanggungan->kasbon->idppn)}}" disabled>
                                                         </div>   
                                                     </div>
@@ -186,7 +186,7 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input class="form-control input-numera"id="idpph" class="form-control"  name="idpph" value="{{number_format($pertanggungan->kasbon->idpph)}}" disabled>
                                                             </div>
                                                         </div>
@@ -197,7 +197,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Nominal Kasbon</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input class="form-control input-numer" id="total" name="total" disabled value="{{number_format($pertanggungan->kasbon->total)}}">
                                                             </div>
                                                         </div>
@@ -218,7 +218,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Harga Jual Ke Customer</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input class="form-control input-num" name="harga_jual" value="{{number_format($pertanggungan->kasbon->harga_jual)}}" disabled>
                                                             </div>
                                                         </div>
@@ -259,16 +259,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row POC">
                                                     <label for="txtNameCard" class="col-lg-4 col-form-label">Tanggal Jatuh Tempo</label>
-                                                    <div class="col-lg-4">
-                                                        <div class="input-group">                                            
-                                                        <input id="txtNameCard"  class="form-control" name="haritempo" value="{{$pertanggungan->kasbon->haritempo}}" disabled>
-                                                        <span class="input-group-text">Hari</span>    
-                                                    </div>
-                                                    </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-8">
                                                         <div class="input-group">                                            
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input type="text" class="form-control"  id="example-date-input" name="tgltempo" value="{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}" disabled>    
+                                                        <input type="text" class="form-control"  id="example-date-input" name="tgltempo" value="{{ $pertanggungan->kasbon->tgltempo ? $pertanggungan->kasbon->tgltempo->format('m/d/Y')  : '-' }}" disabled>    
                                                         </div>
                                                     </div>
                                                     </div><!--end form-group-->
@@ -299,7 +293,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="input-group">                                            
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input id="txtNameCard" name="barang_datang" class="form-control" value="{{$pertanggungan->kasbon->barang_datang->format('m/d/Y')}}" disabled>
+                                                        <input id="txtNameCard" name="barang_datang" class="form-control" value="{{ $pertanggungan->kasbon->barang_datang ? $pertanggungan->kasbon->barang_datang->format('m/d/Y')  : '-' }}" disabled>
                                                         </div>
                                                     </div>
                                                 </div><!--end form-group-->
@@ -334,7 +328,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="input-group">
                                                             <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
-                                                        <input class="form-control" class="form-control"  name="idppn" value="{{$pertanggungan->tglbayarkeuser->format('m/d/Y')}}" disabled>
+                                                        <input class="form-control" class="form-control"  name="idppn" value="{{ $pertanggungan->tglbayarkeuser ? $pertanggungan->tglbayarkeuser->format('m/d/Y')  : '-' }}" disabled>
                                                         </div>   
                                                     </div>
                                                     </div>
@@ -346,7 +340,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai Pertanggungjawaban</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input class="form-control"class="form-control" value="{{number_format($pertanggungan->nilaiptj)}}" disabled>
                                                             </div>
                                                         </div>
@@ -370,7 +364,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Selisih Pertanggungjawaban</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input class="form-control"  class="form-control" value="{{number_format($pertanggungan->selisihptj)}}" disabled>
                                                             </div>  
                                                         </div>
@@ -381,7 +375,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">No VKB Selisih PTJ</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                {{-- <span class="input-group-text">Rp.</span> --}}
+                                                                {{-- <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span> --}}
                                                             <input class="form-control" value="{{$pertanggungan->novkbselisihptj}}" disabled>
                                                             </div>
                                                         </div>
@@ -392,7 +386,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Nilai Selisih PTJ</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input  type="text" class="form-control" value="{{number_format($pertanggungan->nilaiselisihptj)}}" disabled>
                                                         </div>
                                                         </div>
@@ -403,7 +397,7 @@
                                                         <label for="txtNameCard" class="col-lg-4 col-form-label">Selisih PTJ Akhir</label>
                                                         <div class="col-lg-8">
                                                             <div class="input-group">
-                                                                <span class="input-group-text">Rp.</span>
+                                                                <span class="input-group-text">{{$pertanggungan->kasbon->kurs->symbol}}</span>
                                                             <input type="text" class="form-control" value="{{number_format($pertanggungan->selisihptjakhir)}}" disabled>
                                                             </div>
                                                         </div>

@@ -10,210 +10,31 @@
         }
         
     </style>
+      
     <div class="modal fade bd-example-modal-lg multi-step" id="modalcekedit_{{$pertanggungan->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"  >
+     
+        <div class="modal-dialog modal-xl"  >
             <div class="modal-content" >
                 <div class="modal-header">
-                    <h4 class="modal-title step-1" data-step="1">Lihat Kasbon</h4>
+                    <h4 class="modal-title step-1" data-step="1">Lihat Kasbon {{$pertanggungan->kasbon->nokasbon}}</h4>
                     <h4 class="modal-title step-2" data-step="2">Verifikasi</h4>
                     <h4 class="modal-title step-3" data-step="3">Final Step</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body step-1" data-step="1" >
-                   
-                    <table class="table mb-0">
-                        <tbody>
-                            <tr>
-                                <td>
-                                     <p class=" align-middle mb-0 product-name">Tanggal Masuk</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->tglmasuk->format('m/d/Y')}}</td>  
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Kasbon</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->jeniskasbon}} </td>    
-                               <td>
-                                <p class=" align-middle mb-0 product-name">Jam Masuk</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->jammasuk}}</td>                                                      
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Dok Sebelumnya</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->doksebelumnya}}</td>     
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">User</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->user->name}}</td>   
-                               <td>
-                                <p class=" align-middle mb-0 product-name">NIP</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->user->nip}}</td>                                                      
-                            </tr>
-                            <tr>
-                                <td>
-                                     <p class=" align-middle mb-0 product-name">Kode Kasbon</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->kodekasbon->name}}</td>    
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Jenis Kasbon</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->jeniskasbon}}</td>   
-                               <td>
-                                <p class=" align-middle mb-0 product-name">Kurs</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->kurs->code}}</td>                                                       
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Proyek</p>
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->proyek}}</td>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Uraian</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->uraianpengguna}}</td>  
-                               <td>
-                                <p class=" align-middle mb-0 product-name">Nilai/DPP</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>Rp. {{number_format($pertanggungan->kasbon->iddpp)}}</td>     
-                            </tr>  
-                            <tr>
-                                <td>
-                                     <p class=" align-middle mb-0 product-name">PPN</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>Rp. {{number_format($pertanggungan->kasbon->idppn)}}</td>  
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">PPH</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>({{$pertanggungan->kasbon->pph->name}}) Rp. {{number_format($pertanggungan->kasbon->idpph)}}</td>    
-                               <td>
-                                <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>Rp. {{number_format($pertanggungan->kasbon->total)}}</td>                                                      
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Tgl JTT</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}</td>     
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">No Invoice</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->noinvoice}}</td>   
-                               <td>
-                                <p class=" align-middle mb-0 product-name">SPPH/KOI/LOI</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->spph}}</td>                                                      
-                            </tr>
-                            <tr>
-                                <td>
-                                     <p class=" align-middle mb-0 product-name">PO Vendor</p> 
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>{{$pertanggungan->kasbon->po_vendor}}</td>    
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">PO Customer</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->po_customer}}</td>   
-                               <td>
-                                <p class=" align-middle mb-0 product-name">SJN</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->sjn}}</td>                                                       
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Harga Jual</p>
-                                </td>
-                                <td>
-                                    :
-                                </td>
-                                <td>Rp. {{number_format($pertanggungan->kasbon->harga_jual)}}</td>
-                                <td>
-                                    <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
-                               </td>
-                               <td>
-                                   :
-                               </td>
-                               <td>{{$pertanggungan->kasbon->barang_datang->format('m/d/Y')}}</td>  
-                               <td>
-                                <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
-                           </td>
-                           <td>
-                               :
-                           </td>
-                           <td>{{$pertanggungan->kasbon->nopi}}</td>     
-                            </tr>                        
-                        </tbody>
-                    </table>
-                </div>
-
-                {!! Form::model($pertanggungan, ['method' => 'PATCH','route' => ['vkp.update', $pertanggungan->id],'class' => 'form-parsley form-control']) !!}
-                <input value="{{$pertanggungan->id}}" class="text-muted mb-0" name="id" hidden>
-                                {{ csrf_field() }}
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive shopping-cart">
+                                    
+                                </div><!--end re-table-->
+                                </div><!--end total-payment-->
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div><!--end col-->
+                    {!! Form::model($pertanggungan, ['method' => 'PATCH','route' => ['vkp.update', $pertanggungan->id],'class' => 'form-parsley']) !!}
+                    <input value="{{$pertanggungan->id}}" class="text-muted mb-0" name="id" hidden>
+                                    {{ csrf_field() }}
                 <div class="modal-body step-2" data-step="3">
                     <div class="row">
                         <div class="col-lg-12">
@@ -391,6 +212,48 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="dv_lppb" id="dv_lppb2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_lppb=="-")? "checked" : "" }}>
                                                         <label class="form-check-label" for="dv_lppb2">
+                                                            -
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label">KO</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_ko" id="dv_ko1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_ko=="ASLI")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_ko1">
+                                                            ASLI
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_ko" id="dv_ko2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_ko=="COPY")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_ko2">
+                                                            COPY
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_ko" id="dv_ko2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_ko=="-")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_ko2">
+                                                            -
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label">KO</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_spp" id="dv_spp1" value="ASLI" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_spp=="ASLI")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_spp1">
+                                                            ASLI
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_spp" id="dv_spp2" value="COPY" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_spp=="COPY")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_spp2">
+                                                            COPY
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="dv_spp" id="dv_spp2" value="-" {{ ($pertanggungan->kasbon->kelengkapan->dvendor->dv_spp=="-")? "checked" : "" }}>
+                                                        <label class="form-check-label" for="dv_spp2">
                                                             -
                                                         </label>
                                                     </div>
@@ -830,76 +693,27 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="col-md-2">
+                                                <label class="form-label">LAPORAN DINAS</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="dd_lapdinas" id="dd_lapdinas1" value="ADA" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_lapdinas=="ADA")? "checked" : "" }}>
+                                                    <label class="form-check-label" for="dd_lapdinas1">
+                                                        ADA
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="dd_lapdinas" id="dd_lapdinas2" value="TIDAK" {{ ($pertanggungan->kasbon->kelengkapan->ddinas->dd_lapdinas=="TIDAK")? "checked" : "" }}>
+                                                    <label class="form-check-label" for="dd_lapdinas2">
+                                                        TIDAK
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div>
                     </div> <!-- end row --> 
     
-
-                    {{-- <table style="margin-left:auto;margin-right:auto;">
-                        <tbody>
-                          <tr>
-                              <td class="tm_border_top_0 tm_border_bottom" style=""><b class="tm_primary_color">DOKUMEN VENDOR</b></td>
-                          </tr>
-                          <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">INVOICE :</label>
-                                <p>
-                                  Asli <input type="radio" name="contactMethod" id="contactMethodEmail" value="Email" required="">
-                                  Copy <input type="radio" name="contactMethod" id="contactMethodPhone" value="Phone">
-                                  - <input type="radio" name="contactMethod" id="stripMethodPhone" value="strip">
-                                </p>
-                              </td>
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">KWITANSI :</label>
-                                <p>
-                                  Asli <input type="radio" name="coMethod" id="coMethodEmail" value="Email" required="">
-                                  Copy <input type="radio" name="coMethod" id="coMethodPhone" value="Phone">
-                                  - <input type="radio" name="coMethod" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                              
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">PO VENDOR :</label>
-                                <p>
-                                  Asli <input type="radio" name="sdf" id="sdfEmail" value="Email" required="">
-                                  Copy <input type="radio" name="sdf" id="sdfPhone" value="Phone">
-                                  - <input type="radio" name="sdf" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                           </tr>
-                           <tr>
-                            <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="cc" id="ccEmail" value="Email" required="">
-                                  Copy <input type="radio" name="cc" id="ccPhone" value="Phone">
-                                  - <input type="radio" name="cc" id="stripMethodPhone" value="strip">
-                                </p>
-                              </td>
-                              <td style="width: 5%"></td>
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="cd" id="cdEmail" value="Email" required="">
-                                  Copy <input type="radio" name="cd" id="cdPhone" value="Phone">
-                                  - <input type="radio" name="cd" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                              
-                              <td  class="tm_border_top tm_border_right tm_gray_bg">  
-                                <label for="contactMethod">Preferred Contact Method *:</label>
-                                <p>
-                                  Asli <input type="radio" name="sdfs" id="sdfsEmail" value="Email" required="">
-                                  Copy <input type="radio" name="sdfs" id="sdfsPhone" value="Phone">
-                                  - <input type="radio" name="sdfs" id="strithodPhone" value="strip">
-                                </p>
-                              </td>
-                           </tr>
-                          
-                      </table> --}}
                 </div>
 
                 <div class="modal-body step-3" data-step="2" >
@@ -935,11 +749,11 @@
                                       <tr>
                                         <td>
                                             <label class="mb-1">Kekurangan</label>
-                                            <input type="text" name="kekurangan[]" id="kekurangan" class="form-control" value="{{$detail->kekurangan}}" required parsley>
+                                            <input type="text" name="kekurangan[]" id="kekurangan" class="form-control" value="{{$detail->kekurangan}}"  parsley>
                                         </td>
                                         <td>
                                             <label class="mb-1">Tgl Kelengkapan</label>
-                                            <input type="date" name="tgl_kelengkapan[]" id="" class="form-control" value="{{$detail->tgl_kelengkapan}}" required>
+                                            <input type="date" name="tgl_kelengkapan[]" id="" class="form-control" value="{{$detail->tgl_kelengkapan}}" >
                                         </td>
                                         <td><a href="javascript:;" class="btn btn-outline-danger btn-sm deleteRow mt-3"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>
                                     </tr>
@@ -972,10 +786,10 @@
             var tr = '<tr>'+
                 '<td>'+
                     '<label class="mb-1">Kekurangan</label>'+
-                    '<input type="text" name="kekurangan[]" id="kekurangan" class="form-control" required parsley></td>'+
+                    '<input type="text" name="kekurangan[]" id="kekurangan" class="form-control"  parsley></td>'+
                     '<td>'+
                     '<label class="mb-1">Tgl Kelengkapan</label>'+
-                    '<input type="date" name="tgl_kelengkapan[]" id="" class="form-control" required></td>'+
+                    '<input type="date" name="tgl_kelengkapan[]" id="" class="form-control" ></td>'+
                 '<td>'+  
                     '<a href="javascript:;" class="btn btn-sm btn-outline-danger deleteRow mt-3"> <span class="far fa-trash-alt me-1"></span>Delete</a></td>'+
             '</tr>';
@@ -988,3 +802,4 @@
         });
         
         </script>
+        

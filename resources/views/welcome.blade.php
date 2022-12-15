@@ -40,7 +40,7 @@
                                             <div class="form-group mb-2">
                                                 <label class="form-label" for="username">Username</label>
                                                 <div class="input-group">
-                                                    <input name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" placeholder="Enter email" autocomplete="email" autofocus>
+                                                    <input name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" placeholder="Enter username" autofocus>
                                                     @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

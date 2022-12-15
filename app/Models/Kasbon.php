@@ -30,6 +30,10 @@ class Kasbon extends Model
     {
         return $this->belongsTo(Pph::class, 'id_pph', 'id');
     }
+    // public function bank()
+    // {
+    //     return $this->belongsTo(Bank::class, 'id_bank', 'id');
+    // }
 
     public function user()
     {

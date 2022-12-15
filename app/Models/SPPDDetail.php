@@ -19,4 +19,8 @@ class SPPDDetail extends Model
     {
         return $this->belongsTo(Rate::class, 'id_rate', 'harga');
     }
+    public function kurs()
+    {
+        return $this->belongsTo(Kurs::class, 'id_kurs', 'id');
+    }
 }

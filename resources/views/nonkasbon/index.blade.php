@@ -3,21 +3,18 @@
 
 @section('css')
 <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/plugins/huebee/huebee.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot
-            @slot('li_2') Nonkasbon @endslot
+            @slot('li_2') Non Kasbon @endslot
             @slot('li_3') List @endslot
-            @slot('title') List Nonkasbon @endslot
+            @slot('title') List Non Kasbon @endslot
         @endcomponent
 
         @if (session()->has('success'))
@@ -53,19 +50,19 @@
                                         <option value="Ditolak"> Ditolak</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2 text-end">
+                                <div class="col-sm-3 text-end">
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="ti ti-calendar font-16"></i></span><input type="text" class="form-control pull-right datesearchbox"  id="datesearch" placeholder="Search by date range..">
                                     </div>
                                 </div>
                             </div><!--end row-->
-                            <table id="datatable2" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable2" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0;">
                                 <thead>
                                 <tr>
                                     <th>Tanggal Masuk</th>
+                                    <th>No Non Kasbon</th>
                                     <th>User</th>
-                                    <th>No Kasbon</th>
-                                    <th>Tujuan Pembayaran</th>
+                                    <th>Nominal Non Kasbon</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -73,13 +70,12 @@
 
                                 <tbody>
                                 @foreach ($nonkasbon as $nonkasbon)
-                                @if($nonkasbon->id_user == Auth::user()->id)
                                 @if(isset($nonkasbon->verifikasinonkasbon->status))
                                 <tr>
                                     <td>{{$nonkasbon->tglmasuk->format('d/m/Y')}}</td>
-                                    <td>{{$nonkasbon->user->name}}</td>
                                     <td>{{$nonkasbon->no_nonkasbon}}</td>
-                                    <td>{{$nonkasbon->tujuanpembayaran}}</td>
+                                    <td>{{$nonkasbon->user->name}}</td>
+                                    <td>{{$nonkasbon->kurs->symbol}} {{number_format($nonkasbon->total)}}</td>
                                     <td>
                                     @if($nonkasbon->verifikasinonkasbon->status == "Dalam Proses")
                                             <label class="badge rounded-pill bg-primary">Dalam Proses</label>
@@ -130,7 +126,6 @@
                                         </div><!--end modal-content-->
                                     </div><!--end modal-dialog-->
                                 </div><!--end modal-->
-                                @endif
                                 @endforeach
                                 </tbody>
                                 
@@ -142,29 +137,13 @@
 
 @endsection
 @section('script')
-<script src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/huebee/huebee.pkgd.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/jquery.forms-advanced.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/jquery.datatable.init.js') }}"></script>
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/jquery.forms-advanced.js') }}"></script>
 <script src="assets/plugins/tippy/tippy.all.min.js"></script>
-<script src="assets/js/jquery.core.js"></script>
 <script type="text/javascript"> 
  var start_date;
    var end_date;
@@ -194,16 +173,17 @@
   }    
 
   $( document ).ready(function() {
-    
+
   //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
    var $dTable = $('#datatable2').DataTable({
     order: [[0, 'desc']],
     columnDefs: [
-            {
-                "targets": [4],
-                "visible": true
-            }
-        ],
+               {
+                   "targets": [4],
+                   "visible": true
+               }
+           ],
+ 
     "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>"

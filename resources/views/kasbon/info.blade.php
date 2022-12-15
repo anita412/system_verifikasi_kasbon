@@ -305,7 +305,7 @@
                                                     <input id="txtNameCard"  type="number" class="form-control" name="haritempo">
                                                 </div> --}}
                                                 <div class="col-lg-8">
-                                                    <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{$kasbon->tgltempo}}">    
+                                                    <input required parsley-type="text" class="form-control"  type="date"  id="example-date-input" name="tgltempo" value="{{ $kasbon->tgltempo ? \Carbon\Carbon::parse($kasbon->tgltempo)->format('Y-m-d') : '' }}">    
                                                 </div>
                                                 </div><!--end form-group-->
                                             </div><!--end col-->
@@ -365,6 +365,42 @@
                                                         uppercase: true
                                                     });
                                                     </script> --}}
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div><!--end col-->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="txtNameCard" class="col-lg-4 col-form-label">Transfer Ke</label>
+                                                <div class="col-lg-8">
+                                                    <input required parsley id="transferke" name="transferke" type="text" required parsley class="form-control" value="{{$kasbon->transferke}}">
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div><!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="txtNameCard" class="col-lg-4 col-form-label">Bank</label>
+                                                <div class="col-lg-8">
+                                                    <input required parsley id="bank" name="bank" type="text" required parsley class="form-control" value="{{$kasbon->id_bank ?? ''}}">
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div><!--end col-->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="txtNameCard" class="col-lg-4 col-form-label">Nama Rekening</label>
+                                                <div class="col-lg-8">
+                                                    <input required parsley id="namarek" name="namarek" type="text" required parsley class="form-control" value="{{$kasbon->namarek}}">
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div><!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="txtNameCard" class="col-lg-4 col-form-label">Nomor Rekening</label>
+                                                <div class="col-lg-8">
+                                                    <input required parsley id="norek" name="norek" type="text" required parsley class="form-control" value="{{$kasbon->norek}}">
                                                 </div>
                                             </div><!--end form-group-->
                                         </div><!--end col-->

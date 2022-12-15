@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-floating mb-3 col-lg-6">
+                                            <div class="form-floating mb-3 col-lg-4">
                                                 <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_unit">
                                                     <option value="" disabled selected hidden>Pilih Unit</option>
                                                     @foreach ($units as $units)
@@ -57,13 +57,41 @@
                                                 </select>
                                                 <label class="form-label">Unit</label>
                                             </div>
-                                            <div class="form-floating mb-3 col-lg-6">
-                                                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-select','multiple')) !!}
+                                            <div class="form-floating mb-3 col-lg-4">
+                                                <select required parsley class="form-select" id="floatingSelect" aria-label="Floating label select example" name="id_jabatan">
+                                                    <option value="" disabled selected hidden>Pilih Jabatan</option>
+                                                    @foreach ($jabatan as $jabatan)
+                                                    @if(old('jabatan', $user->id_jabatan) == $jabatan->id)
+                                                    <option value="{{$jabatan->id}}" selected>{{$jabatan->name}}</option>
+                                                    @else
+                                                    <option  value="{{$jabatan->id}}" >{{$jabatan->name}}</option>
+                                                    @endif
+                                                    @endforeach
+                                                </select>
+                                                <label class="form-label">Jabatan</label>
+                                            </div>
+                                            <div class="form-floating mb-3 col-lg-4">
+                                                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-select')) !!}
                                                     <label class="form-label" for="exampleFormControlSelect2">Role</label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-floating mb-3 col-lg-6">
+                                                        <input type="password" id="pass2" class="form-control"
+                                                                    placeholder="Password" name="password" />
+                                                                    <label for="pass2">Password</label>
+                                                    </div>
+                                                    
+                                                        <div class="form-floating mb-3 col-lg-6">
+                                                            <input id="pss2" type="password" class="form-control"
+                                                                    data-parsley-equalto="#pass2"
+                                                                    placeholder="Re-Type Password" name="password_confirmation" />
+                                                                    <label for="pss2">Re-type Password</label>
+                                                        
+                                                    </div><!--end form-group-->
                                                 </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="/list-user" class="btn btn-danger">Cancel</a>
+                                        <a href="{{ route('users.index') }}" class="btn btn-danger">Cancel</a>
             
                                         </div><!--end card-body-->
                                     </div><!--end card-->

@@ -18,4 +18,8 @@ class Kurs extends Model
     {
         return $this->hasMany(Nonkasbon::class, 'id_kurs', 'id');
     }
+    public function sppd()
+    {
+        return $this->hasMany(SPPD::class, 'id_kurs', 'id');
+    }
 }

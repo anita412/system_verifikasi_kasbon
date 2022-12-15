@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SPPD extends Model
 {
     use HasFactory;
-    use HasFactory;
     public $table = "sppd";
     protected $guarded = [];
     protected $dates = ['tglmasuk'];

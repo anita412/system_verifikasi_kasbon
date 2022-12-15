@@ -27,6 +27,7 @@ class KasbonSeeder extends Seeder
                 'id_kurs' => $faker->numberBetween(1, 3),
                 'id_pph' => $faker->numberBetween(1, 3),
                 'id_unit' => $faker->numberBetween(1, 3),
+                'id_bank' => $faker->numberBetween(1, 3),
                 'nokasbon' => $faker->unique()->randomDigit,
                 'tglmasuk' => $faker->dateTimeThisMonth(),
                 'tgltempo' => $faker->dateTimeThisMonth(),

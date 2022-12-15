@@ -47,12 +47,12 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p class=" align-middle mb-0 product-name">Dok Sebelumnya</p> 
+                                                    <p class=" align-middle mb-0 product-name">No Kasbon</p> 
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>{{$kasbon->doksebelumnya}}</td>     
+                                                <td>{{$kasbon->nokasbon}}</td>     
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">User</p> 
                                                </td>
@@ -112,7 +112,7 @@
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{number_format($kasbon->iddpp)}}</td>     
+                                           <td>{{$kasbon->kurs->symbol}} {{number_format($kasbon->iddpp)}}</td>     
                                             </tr>  
                                             <tr>
                                                 <td>
@@ -121,21 +121,21 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{number_format($kasbon->ppn)}}</td>  
+                                                <td>{{$kasbon->kurs->symbol}} {{number_format($kasbon->ppn)}}</td>  
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">PPH</p> 
                                                </td>
                                                <td>
                                                    :
                                                </td>
-                                               <td>({{$kasbon->pph->name}}) Rp. {{number_format($kasbon->idpph)}}</td>    
+                                               <td>({{$kasbon->pph->name}}) {{$kasbon->kurs->symbol}} {{number_format($kasbon->idpph)}}</td>    
                                                <td>
                                                 <p class=" align-middle mb-0 product-name">Nominal Kasbon</p> 
                                            </td>
                                            <td>
                                                :
                                            </td>
-                                           <td>Rp. {{number_format($kasbon->total)}}</td>                                                      
+                                           <td>{{$kasbon->kurs->symbol}} {{number_format($kasbon->total)}}</td>                                                      
                                             </tr>
                                             <tr>
                                                 <td>
@@ -190,7 +190,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>Rp. {{number_format($kasbon->harga_jual)}}</td>
+                                                <td>{{$kasbon->kurs->symbol}} {{number_format($kasbon->harga_jual)}}</td>
                                                 <td>
                                                     <p class=" align-middle mb-0 product-name">Barang Dtg</p> 
                                                </td>
@@ -357,7 +357,7 @@
                                               <td style="width: 30%;" class="tm_border_top ">SJN CUSTOMER</td>
                                               <td style="width: 10%;text-align: center"  class="tm_border_left tm_border_right tm_border_top">{{$kasbon->kelengkapan->dcustomer->dc_sjncustom}}</td>
                                               <td style="width: 5%;" class="tm_border_top tm_border_right"><b class="tm_primary_color">6</b></td>
-                                              <td style="width: 30%;r" class="tm_border_top ">SURAT TUGAS DINAS</td>
+                                              <td style="width: 30%;r" class="tm_border_top ">LAPORAN DINAS</td>
                                               <td style="width: 10%;text-align: center"  class="tm_border_left tm_border_top"></td>
                                            </tr>
                                         </tbody>

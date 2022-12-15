@@ -23,6 +23,8 @@ class CreateDvendorsTable extends Migration
             $table->string('dv_testreport')->nullable();
             $table->string('dv_bapp')->nullable();
             $table->string('dv_lppb')->nullable();
+            $table->string('dv_ko')->nullable();
+            $table->string('dv_spp')->nullable();
             $table->timestamps();
         });
     }

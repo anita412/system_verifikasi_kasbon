@@ -13,4 +13,9 @@ class Pph extends Model
     {
         return $this->hasMany(Kasbon::class, 'id_pph', 'id');
     }
+
+    public function nonkasbon()
+    {
+        return $this->hasMany(Nonkasbon::class, 'id_pph', 'id');
+    }
 }

@@ -29,23 +29,32 @@ class CreateKasbonsTable extends Migration
             $table->unsignedBigInteger('id_kurs')->nullable();
             $table->string('proyek')->nullable();
             $table->text('uraianpengguna')->nullable();
-            $table->integer('iddpp')->nullable();
-            $table->integer('idppn')->nullable();
+            $table->bigInteger('iddpp')->nullable();
+            $table->bigInteger('idppn')->nullable();
             $table->unsignedBigInteger('id_pph')->nullable();
-            $table->integer('idpph')->nullable();
-            $table->integer('total')->nullable();
+            $table->bigInteger('idpph')->nullable();
+            $table->bigInteger('total')->nullable();
+            $table->bigInteger('k_iddpp')->nullable();
+            $table->bigInteger('k_total')->nullable();
             $table->string('namavendor')->nullable();
-            $table->integer('haritempo')->nullable();
+            $table->bigInteger('haritempo')->nullable();
             $table->date('tgltempo')->nullable();
             $table->string('noinvoice')->nullable();
             $table->string('spph')->nullable();
             $table->string('po_vendor')->nullable();
             $table->string('po_customer')->nullable();
             $table->string('sjn')->nullable();
-            $table->integer('harga_jual')->nullable();
+            $table->bigInteger('harga_jual')->nullable();
             $table->date('barang_datang')->nullable();
             $table->string('nopi')->nullable();
-            $table->string('formatkasbon')->nullable();
+            $table->string('novkb')->nullable();
+            $table->text('formatkasbon')->nullable();
+            $table->bigInteger('transferke')->nullable();
+            $table->string('id_bank')->nullable();
+            $table->string('namarek')->nullable();
+            $table->bigInteger('norek')->nullable();
+            $table->string('file')->nullable();
+
 
             $table->timestamps();
 
@@ -55,6 +64,7 @@ class CreateKasbonsTable extends Migration
             $table->foreign('id_jenis')->references('id')->on('jenis')->onDelete('cascade');
             $table->foreign('id_kurs')->references('id')->on('kurs')->onDelete('cascade');
             $table->foreign('id_pph')->references('id')->on('pphs')->onDelete('cascade');
+            // $table->foreign('id_bank')->references('id')->on('bank')->onDelete('cascade');
         });
     }
 

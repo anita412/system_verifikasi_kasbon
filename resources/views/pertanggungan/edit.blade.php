@@ -3,6 +3,9 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/jquery-steps/jquery.steps.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/0.7.17/cleave.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -16,17 +19,33 @@
             @slot('li_3') Verifikasi @endslot
             @slot('title') Verifikasi @endslot
         @endcomponent
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        </style>
             <div class="row">
                 <div class="col-sm-12">
+                    @if(isset($pertanggungan->keterangan_pertanggungan))
+                    <div class="alert alert-danger border-0" role="alert">
+                      @foreach ($detail as $detail)
+                      <strong>Catatan : </strong> {{$detail->keterangan ?? '-'}}
+                      @endforeach
+                      @endif
+                  </div>
+{{-- 
+                    @if(isset($pertanggungan->keterangan_pertanggungan))
                     <div class="card-body"> 
                         <div class="alert alert-danger mb-0" role="alert">
                             <h4 class="alert-heading font-18">Catatan :</h4>
                             @foreach ($detail as $detail)
                             <p>[{{$loop->iteration}}] {{$detail->keterangan}}</p>
                             @endforeach
-    
                         </div>                                     
                     </div><!--end card-body-->  
+                    @endif --}}
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
@@ -89,4 +108,20 @@
         }
        
     </script>
+     <script>
+
+        new Cleave('.dollar', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        new Cleave('.dollar1', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        new Cleave('.dollarselisih', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+        
+          </script>
 @endsection

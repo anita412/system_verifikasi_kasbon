@@ -20,6 +20,7 @@ class CreateDDinasTable extends Migration
             $table->string('dd_boardingpass')->nullable();
             $table->string('dd_notapenginapan')->nullable();
             $table->string('dd_sppd')->nullable();
+            $table->string('dd_lapdinas')->nullable();
             $table->timestamps();
         });
     }

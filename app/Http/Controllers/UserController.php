@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Unit;
+use App\Models\Jabatan;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
@@ -21,19 +22,23 @@ class UserController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user', ['only' => ['index', 'store', 'create', 'store', 'edit', 'update', 'destroy']]);
     }
 
-    public function index(Request $request)
+    // public function index(Request $request)
+    // {
+    //     return view('users.index', [
+    //         'user' => User::all(),
+    //         'title' => 'Index',
+    //     ]);
+    // }
+
+    public function index()
     {
-        return view('users.index', [
-            'user' => User::orderBy('id', 'DESC')->paginate(),
-            'unit' => Unit::all(),
-            'title' => 'Index',
-        ])->with('i', ($request->input('page', 1) - 1) * 5);
+
+        $user = User::all();
+        $title = 'User';
+        return view('users.index', compact('user', 'title'));
     }
 
     /**
@@ -44,9 +49,10 @@ class UserController extends Controller
     public function create()
     {
         $units = Unit::all();
+        $jabatan = Jabatan::all();
         $roles = Role::pluck('name', 'name')->all();
         $title = 'Input';
-        return view('users.create', compact('roles', 'units', 'title'));
+        return view('users.create', compact('roles', 'units', 'title', 'jabatan'));
     }
 
     /**
@@ -63,6 +69,7 @@ class UserController extends Controller
             'password' => 'required',
             'nip' => 'required',
             'id_unit' => 'required',
+            'id_jabatan' => 'required',
             'roles' => 'required'
         ]);
 
@@ -71,6 +78,7 @@ class UserController extends Controller
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
+
 
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
@@ -98,10 +106,11 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $units = Unit::all();
+        $jabatan = Jabatan::all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         $title = 'Edit';
 
-        return view('users.edit', compact('user', 'roles', 'userRole', 'title', 'units'));
+        return view('users.edit', compact('user', 'roles', 'userRole', 'title', 'units', 'jabatan'));
     }
 
     /**
@@ -116,11 +125,11 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
 
         $input = $request->all();
-
+        $input['password'] = Hash::make($input['password']);
         $user = User::find($id);
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();

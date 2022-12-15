@@ -48,7 +48,7 @@
               <tr>
                 <td style="width: 20%;text-align:left;"  class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color">Nominal</b></td>
                 <td style="width: 0%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">:</b></td>
-                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">Rp. {{number_format($nonkasbon->dokumennk->total)}}</b></td>
+                <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color">{{$nonkasbon->kurs->symbol}} {{number_format($nonkasbon->dokumennk->total)}}</b></td>
                 <td style="width: 10%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
                 <td style="width: 0%;text-align:left;"   class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0"><b class="tm_primary_color"></b></td>
                 <td style="width: 25%;text-align:left;" class="tm_border_top_0 tm_border_bottom_0 tm_border_right_0 tm_border_left_0" ><b class="tm_primary_color"></b></td>
@@ -87,12 +87,12 @@
                     <tr>
                         <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color">{{$loop->iteration}}</b></td>
                         <td style="width: 70%;text-align: center" class="tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$details->dokumen}}</b></td>
-                        <td style="width: 30%;text-align: center"  class="tm_border_left tm_border_right tm_border_top tm_gray_bg"><b class="tm_primary_color">Rp. {{number_format($details->nominal)}}</b></td>
+                        <td style="width: 30%;text-align: center"  class="tm_border_left tm_border_right tm_border_top tm_gray_bg"><b class="tm_primary_color">{{$nonkasbon->kurs->symbol}} {{number_format($details->nominal)}}</b></td>
                       </tr>
                       @endforeach
                     <tr><td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
-						<td class="tm_border_top_0  tm_border_right"  style="text-align: center" ><b class="tm_primary_color">TOTAL NOMINAL</b></td>
-                        <td class="tm_border_top_0  tm_border_right tm_gray_bg" style="text-align: center" ><b class="tm_primary_color">Rp. {{number_format($nonkasbon->dokumennk->total)}}</b></td>
+						<td class="tm_border_top  tm_border_right"  style="text-align: center" ><b class="tm_primary_color">TOTAL NOMINAL</b></td>
+                      <td class="tm_border_top tm_border_right tm_gray_bg" style="text-align: center" ><b class="tm_primary_color">{{$nonkasbon->kurs->symbol}} {{number_format($nonkasbon->dokumennk->total)}}</b></td>
 					</tr>
                   </tbody>
         
@@ -101,7 +101,7 @@
             </div>
           </div>
 		  <p class="tm_primary_color tm_mb1 tm_bold" style="font-size: 12px;">Catatan :</p>
-          <div class="tm_gray_bg tm_text_center tm_f18 tm_primary_color tm_grand_total">
+          <div class="tm_gray_bg tm_text_center tm_f18 tm_primary_color tm_grand_total tm_border_top tm_border_bottom tm_border_right tm_border_left">
           <p class="tm_m0" style="text-align: left;font-size:12px;"></p>
           </div>
 		  <div class="tm_mb0">
@@ -123,31 +123,31 @@
                     <td style="text-align: center"  class="tm_border_left tm_border_right_0 tm_border_top_0"><b class="tm_primary_color">TANDA TANGAN</b></td>
                   </tr>
                   <tr>
-                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px;height:50%" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">1</b></td>
+                      <td style="text-align: center;height:50px;height:50%" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">{{$nonkasbon->verifikasinonkasbon->id_vnkn->name ?? ''}}</b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">{{$nonkasbon->verifikasinonkasbon->id_vnkn->nip ?? ''}}</b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">VERIFIKATOR KEUANGAN</b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b><img src="data:image/png;base64,{{DNS2D::getBarcodePNG(($nonkasbon->verifikasinonkasbon->id_vnkn->name.''.$nonkasbon->verifikasinonkasbon->tgl_vnk) , 'QRCODE')}}" width="35" height="35"  alt="barcode" /></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">2</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">PJ KEPALA DEPARTEMEN KEUANGAN</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
                     </tr>
                     <tr>
-                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">3</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">KEPALA DIVISI KEUANGAN</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
                     </tr>
                     <tr>
-                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
+                      <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">4</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
-                    </tr>
-                    <tr>
-                      <td style="width: 5%;" class="tm_border_top tm_border_right "><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color"></b></td>
+                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">BENDAHARA</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b></td>
                     </tr>
                 </tbody>

@@ -13,7 +13,6 @@ class Unit extends Model
     {
         return $this->hasMany(User::class, 'id_unit', 'id');
     }
-
     public function kasbon()
     {
         return $this->hasMany(Kasbon::class, 'id_unit', 'id');

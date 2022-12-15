@@ -39,6 +39,18 @@ class JenisSeeder extends Seeder
                 'name' => 'OPR 4',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => '5',
+                'name' => 'PL',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'id' => '6',
+                'name' => 'EKSPOR IMPOR',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         ]);
     }
