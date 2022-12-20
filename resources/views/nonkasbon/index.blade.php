@@ -37,9 +37,9 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    {{-- <a href="#" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >
@@ -89,8 +89,14 @@
                                     </td>
                                     <td class="text-end">
                                         @if($nonkasbon->verifikasinonkasbon->status == "Dalam Proses")
-                                        <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
-                                        @elseif($nonkasbon->verifikasinonkasbon->status == "Revisi")
+                                        {{-- <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a> --}}
+                                        <a  href="{{ route('nonkasbon.show',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Non Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i>
+                                        <a href="{{ route('nonkasbon.edit',$nonkasbon->id) }}" ><i class="mdi mdi-square-edit-outline" style="font-size: 150%;"></i></a>
+                                        <a href="{{ route('vnk.kelengkapan',$nonkasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i>
+                                            @if(isset($nonkasbon->dokumennk))
+                                            <a href="{{ route('nonkasbon.generatePDF',$nonkasbon->id) }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Print" style="font-size: 150%; "><i class="mdi mdi-printer"></i></a>
+                                            @endif
+                                            @elseif($nonkasbon->verifikasinonkasbon->status == "Revisi")
                                         <a href="{{ route('nonkasbon.edit',$nonkasbon->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="{{ route('nonkasbon.show',$nonkasbon->id) }}"class="btn btn-primary btn-sm"><i class="mdi mdi-information-outline"></i></a>
                                         @elseif($nonkasbon->verifikasinonkasbon->status == "Ditolak")

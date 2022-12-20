@@ -120,14 +120,15 @@
                     <td style="text-align: center" ><b class="tm_primary_color">NAMA</b></td>
                     <td style="text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">NIP</b></td>
                     <td style="text-align: center"  class="tm_border_left tm_border_right tm_border_top_0"><b class="tm_primary_color">JABATAN</b></td>
-                    <td style="text-align: center"  class="tm_border_left tm_border_right_0 tm_border_top_0"><b class="tm_primary_color">TANDA TANGAN</b></td>
+                    <td style="text-align: center"  class="tm_border_left tm_border_right_0 tm_border_top_0 tm_border_bottom"><b class="tm_primary_color">TANDA TANGAN</b></td>
                   </tr>
                   <tr>
                       <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">1</b></td>
                       <td style="text-align: center;height:50px;height:50%" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">{{$nonkasbon->verifikasinonkasbon->id_vnkn->name ?? ''}}</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">{{$nonkasbon->verifikasinonkasbon->id_vnkn->nip ?? ''}}</b></td>
                       <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right tm_gray_bg"><b class="tm_primary_color">VERIFIKATOR KEUANGAN</b></td>
-                      <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b><img src="data:image/png;base64,{{DNS2D::getBarcodePNG(($nonkasbon->verifikasinonkasbon->id_vnkn->name.''.$nonkasbon->verifikasinonkasbon->tgl_vnk) , 'QRCODE')}}" width="35" height="35"  alt="barcode" /></td>
+                      {{-- <td style="text-align: center;height:50px" class="tm_border_top tm_border_left tm_border_right_0 tm_gray_bg"><b class="tm_primary_color"></b><img src="data:image/png;base64,{{DNS2D::getBarcodePNG(($nonkasbon->verifikasinonkasbon->id_vnkn->name.''.$nonkasbon->verifikasinonkasbon->tgl_vnk) , 'QRCODE')}}" width="35" height="35"  alt="barcode" /></td> --}}
+                      
                     </tr>
                     <tr>
                       <td style="width: 5%;text-align: center;" class="tm_border_top tm_border_right "><b class="tm_primary_color">2</b></td>

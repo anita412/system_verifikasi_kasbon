@@ -38,9 +38,9 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    {{-- <a href="#" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >
@@ -76,29 +76,29 @@
                                     @foreach ($pertanggungan as $pertanggungan)
                                     @if(isset($pertanggungan->verifikasipertanggungan->vkp_a_13))
                                 <tr>
-                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at}}</td>
                                     <td>{{ $pertanggungan->tglptj ? $pertanggungan->tglptj->format('d/m/Y')  : '-' }}</td>
                                     <td>{{$pertanggungan->kasbon->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
                                     <td>{{$pertanggungan->kasbon->kurs->symbol}} {{number_format($pertanggungan->nilaiptj)}}</td>
                                     <td>
-                                        @if($pertanggungan->verifikasipertanggungan->vkp_a_31 == "Dalam Proses")
+                                        @if($pertanggungan->verifikasipertanggungan->vkp_a_13 == "Dalam Proses")
                                         <label class="badge rounded-pill bg-primary">Belum Proses</label>
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_31 == "Terverifikasi")
+                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_13 == "Terverifikasi")
                                         @if($pertanggungan->verifikasipertanggungan->status == "Terverifikasi")
                                         <label class="badge rounded-pill bg-success">Terverifikasi</label>
                                         @else
                                         <label class="badge rounded-pill bg-success">Menunggu Verifikasi Atasan</label>
                                         @endif
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_31 == "Ditolak")
+                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_13 == "Ditolak")
                                         <label class="badge rounded-pill bg-danger">Ditolak</label>
-                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_31 == "Revisi")
+                                        @elseif($pertanggungan->verifikasipertanggungan->vkp_a_13 == "Revisi")
                                         <label class="badge rounded-pill bg-warning">Menunggu Revisi</label>
                                         @endif
                                     </td>
                                     <td>
                                         @if(isset($pertanggungan->verifikasipertanggungan->vkp_a_13))
-                                        @if($pertanggungan->verifikasipertanggungan->vkp_a_31 == "Dalam Proses")
+                                        @if($pertanggungan->verifikasipertanggungan->vkp_a_13 == "Dalam Proses")
                                             @include('vkp-atasan-user-3.modal-cek')
                                             <a href="{{ route('vkp-atasan-user-3.show_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanggungan"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
                                             <a href="{{ route('vkp-atasan-user-3.kelengkapan_v',$pertanggungan->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
@@ -325,7 +325,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[1, 'desc']],
+       order: [[0, 'desc']],
        columnDefs: [
                {
                    "targets": [5],

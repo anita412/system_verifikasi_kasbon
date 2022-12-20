@@ -109,6 +109,10 @@ Route::controller(KasbonController::class)->group(function () {
     Route::post('/kasbon/findUser', [KasbonController::class, 'findUser'])->name('kasbon.findUser');
 });
 
+Route::controller(NonkasbonController::class)->group(function () {
+    Route::post('/nonkasbon/findUser', [NonkasbonController::class, 'findUser'])->name('nonkasbon.findUser');
+});
+
 Route::controller(KasbonVerifikatorController::class)->group(function () {
     // Route::get('kasbonexport', [KasbonVerifikatorController::class, 'kasbonexport'])->name('kasbonexport');
     Route::get('/vkb/printppk/{kasbon}', [KasbonVerifikatorController::class, 'printppk'])->name('vkb.printppk');

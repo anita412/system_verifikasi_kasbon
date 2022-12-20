@@ -181,12 +181,14 @@
         $('#iddpp').removeAttr("hidden"),
         $('#idpph').removeAttr("hidden");
         $('#id_pph').removeAttr("disabled");
+        $('#k_konversi').removeAttr("required");
      }else
      {
         $('#idppn').attr("hidden", "hidden"),
         $('#totalidr').attr("hidden", "hidden"),
         $('#iddpp').attr("hidden", "hidden"),
         $('#idpph').attr("hidden", "hidden"),
+        $('#k_konversi').attr("required", "required"),
 
         document.getElementById("idppn1").value = 0,
         document.getElementById("idpph1").value = 0,

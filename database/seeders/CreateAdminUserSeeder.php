@@ -75,27 +75,14 @@ class CreateAdminUserSeeder extends Seeder
         $user = User::create(
             [
                 'name' => 'ABDULLAH MAJID AL FATAH',
-                // 'email' => 'KADEPSAR',
+                'email' => 'SUPERADMIN',
                 'password' => bcrypt('632100010Majid'),
-                'id_unit' => '2',
+                'id_unit' => '5',
                 'id_jabatan' => '32',
                 'nip' => '632100010',
             ]
         );
         $user->assignRole('1');
-
-        //divisi pemasaran
-        // $user = User::create(
-        //     [
-        //         'name' => 'ARYANI DEVIANA',
-        //         'email' => 'ADMSAR',
-        //         'password' => bcrypt('632100015Aryani'),
-        //         'id_unit' => '2',
-        //         'id_jabatan' => '4',
-        //         'nip' => '632100015',
-        //     ]
-        // );
-
 
         $user = User::create(
             [
@@ -200,7 +187,7 @@ class CreateAdminUserSeeder extends Seeder
                 'email' => 'KADIVPGD',
                 'password' => bcrypt('999700003Nurul'),
                 'id_unit' => '3',
-                'id_jabatan' => '27',
+                'id_jabatan' => '28',
                 'nip' => '999700003',
             ]
         );
@@ -367,7 +354,7 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'BADRIYATUL HIDAYAH',
                 'id_unit' => '1',
-                'id_jabatan' => '16',
+                'id_jabatan' => '32',
                 'nip' => '962100007',
             ]
         );
@@ -457,27 +444,105 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'YUSSI TRISTANTI',
                 'id_unit' => '1',
-                'id_jabatan' => '1',
-                'nip' => '961900003
-                ',
+                'id_jabatan' => '33',
+                'nip' => '961900003',
             ]
         );
 
         $user = User::create(
             [
                 'name' => 'ARDI ALVIANTO PRIHANDOYO',
-                'id_unit' => '2',
-                'id_jabatan' => '19',
+                'id_unit' => '5',
+                'id_jabatan' => '33',
                 'nip' => '961900002',
             ]
         );
-
         $user = User::create(
             [
-                'name' => 'FITROTUL ULA',
-                'id_unit' => '1',
-                'id_jabatan' => '32',
-                'nip' => '631900014',
+                'name' => 'WILDAN MUBARAK AL FARUQI',
+                'id_unit' => '5',
+                'id_jabatan' => '35',
+                'nip' => '961900001',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => "MOH. FAT'AK DIYA'UL HAQ",
+                'id_unit' => '4',
+                'id_jabatan' => '35',
+                'nip' => '962100006',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'JOKO SETYO UTOMO',
+                'id_unit' => '5',
+                'id_jabatan' => '33',
+                'nip' => '999200035',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'PONANG CATUR SUDIANA',
+                'id_unit' => '5',
+                'id_jabatan' => '33',
+                'nip' => '999500005',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SIRAN',
+                'id_unit' => '4',
+                'id_jabatan' => '35',
+                'nip' => '999800048',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SUKARYONO',
+                'id_unit' => '4',
+                'id_jabatan' => '33',
+                'nip' => '999800011',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'ANI PURWITANINGSIH',
+                'id_unit' => '3',
+                'id_jabatan' => '33',
+                'nip' => '999600029',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'WAWAN KRISTANTO',
+                'id_unit' => '3',
+                'id_jabatan' => '33',
+                'nip' => '999600025',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SATRIYO YUDI BASKORO',
+                'id_unit' => '3',
+                'id_jabatan' => '33',
+                'nip' => '999600025',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'KURNIAWAN JAUHARI',
+                'id_unit' => '4',
+                'id_jabatan' => '33',
+                'nip' => '961700003',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'KURNIAWAN JAUHARI',
+                'id_unit' => '4',
+                'id_jabatan' => '33',
+                'nip' => '961700003',
             ]
         );
         $user = User::create(
@@ -496,25 +561,6 @@ class CreateAdminUserSeeder extends Seeder
                 'nip' => '632100011',
             ]
         );
-        $user = User::create(
-            [
-                'name' => 'TENDHY ANDAR AGUSMA',
-                'id_unit' => '1',
-                'id_jabatan' => '32',
-                'nip' => '631800001',
-            ]
-        );
-        $user = User::create(
-            [
-                'name' => 'ARYANI DEVIANA',
-                'id_unit' => '2',
-                'id_jabatan' => '32',
-                'nip' => '632100015',
-            ]
-        );
-
-
-
         $user = User::create(
             [
                 'name' => 'ALDYLLA DWI NUR WIJAYANTI',
@@ -561,14 +607,6 @@ class CreateAdminUserSeeder extends Seeder
                 'id_unit' => '5',
                 'id_jabatan' => '32',
                 'nip' => '632100016',
-            ]
-        );
-        $user = User::create(
-            [
-                'name' => 'VRISCO DIKO SYAHPUTRA ANANTA',
-                'id_unit' => '5',
-                'id_jabatan' => '32',
-                'nip' => '631800015',
             ]
         );
         $user = User::create(
@@ -637,14 +675,6 @@ class CreateAdminUserSeeder extends Seeder
         );
         $user = User::create(
             [
-                'name' => 'NAIMATU SANIATI RODHIYA',
-                'id_unit' => '4',
-                'id_jabatan' => '32',
-                'nip' => '631800027',
-            ]
-        );
-        $user = User::create(
-            [
                 'name' => 'NOVIAWAN ROBY PRATAMA',
                 'id_unit' => '4',
                 'id_jabatan' => '32',
@@ -669,26 +699,10 @@ class CreateAdminUserSeeder extends Seeder
         );
         $user = User::create(
             [
-                'name' => 'RIZQY DEVTIANA PUTERI',
-                'id_unit' => '4',
-                'id_jabatan' => '32',
-                'nip' => '632000006',
-            ]
-        );
-        $user = User::create(
-            [
                 'name' => 'WIJIANTO',
                 'id_unit' => '4',
                 'id_jabatan' => '32',
                 'nip' => '631900001',
-            ]
-        );
-        $user = User::create(
-            [
-                'name' => 'YULI LESTARI',
-                'id_unit' => '4',
-                'id_jabatan' => '32',
-                'nip' => '632100012',
             ]
         );
         $user = User::create(
@@ -712,7 +726,7 @@ class CreateAdminUserSeeder extends Seeder
                 'name' => 'RIZKI ANANDA FIANTANA',
                 'id_unit' => '3',
                 'id_jabatan' => '32',
-                'nip' => '631900014',
+                'nip' => '632100018',
             ]
         );
         // $user = User::create(
@@ -727,8 +741,8 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'SEPTIAN WAHYUTAMA',
                 'id_unit' => '6',
-                'id_jabatan' => '32',
-                'nip' => '631900014',
+                'id_jabatan' => '33',
+                'nip' => '631900021',
             ]
         );
         $user = User::create(
@@ -791,13 +805,259 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'AGUS SARWOKO',
                 'id_unit' => '4',
-                'id_jabatan' => '32',
+                'id_jabatan' => '33',
                 'nip' => '981400003',
             ]
         );
+        $user = User::create(
+            [
+                'name' => 'MUHAMMAD RIDHO GUSTIANDRY',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '961900005',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'ROSSITA RETNAWATI',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '961900004',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SHARAH PUTRI NOER ASMARAWATI',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '961800007',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'ANDRI RINALDO SILALAHI',
+                'id_unit' => '2',
+                'id_jabatan' => '32',
+                'nip' => '961800001',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'BUDI DWI WAHANA',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '961600004',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'DIDIK MISGIYANTO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '961800006',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'KETUT ROKHYE LUMINTANG',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '961700002',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'DILIONO DIDIK SETYANTO',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '961800002',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'LASNO',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '999900085',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'MURYADI',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '999900044',
+            ]
+        );
 
-
-
+        $user = User::create(
+            [
+                'name' => 'DAVID YUDHA ARISKA',
+                'id_unit' => '2',
+                'id_jabatan' => '32',
+                'nip' => '991000005',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SEPTO TRI MARGONO',
+                'id_unit' => '2',
+                'id_jabatan' => '32',
+                'nip' => '991200030',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'MOCH. ABIB',
+                'id_unit' => '5',
+                'id_jabatan' => '32',
+                'nip' => '999800027',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'ANANG SLAMET RIYADI',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900079',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'DIDIK SISWANTO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '991700013',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'DJAKA POERNOMO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999600023',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'KUSNO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900103',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'MISRAN',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900099',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'NURANI FAJAR PRIA HARDI',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '991200025',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SRI WIBOWO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900066',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SUHARIOTO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900059',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SUKARNO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '990100003',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'TOTOK SUJIANTO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999800151',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'YATIRAN',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999900004',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'AISYA B. DIJI',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '991400017',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'BAMBANG SUMARSONO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999600039',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'BASUNI',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '999900064',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'DANIA YUSNI AFRIDA',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '991200011',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'KRISTYANTO',
+                'id_unit' => '3',
+                'id_jabatan' => '32',
+                'nip' => '990100002',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'SARPO',
+                'id_unit' => '4',
+                'id_jabatan' => '32',
+                'nip' => '999400080',
+            ]
+        );
+        $user = User::create(
+            [
+                'name' => 'ESHA ABRIYANTO TUTUKO',
+                'id_unit' => '1',
+                'id_jabatan' => '32',
+                'nip' => '631800011',
+            ]
+        );
 
         // $permissions = Permission::pluck('id', 'id')->all();
 

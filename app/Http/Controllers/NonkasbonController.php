@@ -38,9 +38,28 @@ class NonkasbonController extends Controller
         if (Auth::user()->hasRole('ADMIN')  == 'ADMIN') {
             $nonkasbon = Nonkasbon::all();
         } else {
-            $nonkasbon = Nonkasbon::where('id_unit', Auth::user()->id_unit)->get();
+            // $nonkasbon = Nonkasbon::where('id_unit', Auth::user()->id_unit)->get();
+            $nonkasbon = Nonkasbon::all();
         }
         return view('nonkasbon.index', compact('nonkasbon', 'title'));
+    }
+
+    public function findUser(Request $request)
+    {
+        $search = $request->search;
+
+        if ($search == '') {
+            $employees = User::orderby('nip', 'asc')->select('nip', 'id_unit', 'name')->limit(5)->get();
+        } else {
+            $employees = User::orderby('nip', 'asc')->select('nip', 'id_unit', 'name')->where('nip', 'like', '%' . $search . '%')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($employees as $employee) {
+            $response[] = array("label" => $employee->nip, "unit" => $employee->unit->name, "name" => $employee->name);
+        }
+
+        return response()->json($response);
     }
 
     /**

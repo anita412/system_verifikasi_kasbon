@@ -13,12 +13,12 @@
 
         <div class="card">
             <div class="card-body">                                                    
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSLbGIre2UybEEvsRoV0ZAHYYK4LiACS1pg5QBebRi_jCfN2KxPbuQj-Otdj_590Q1Zugf0FLHtpJFKJnmIVlS5yQQ9TU1A4IdcsJr0ZYsHZfaa4hPjwqvYNQqkbjKp03h-o4PUd4SCh1lSJqFB9q9_IZlJFPHD8FHStXZWHi7JzDJRersKQjT6x7PvA/s2400/6-2-1024x573%20(1).jpg" alt="" class="img-fluid">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSLbGIre2UybEEvsRoV0ZAHYYK4LiACS1pg5QBebRi_jCfN2KxPbuQj-Otdj_590Q1Zugf0FLHtpJFKJnmIVlS5yQQ9TU1A4IdcsJr0ZYsHZfaa4hPjwqvYNQqkbjKp03h-o4PUd4SCh1lSJqFB9q9_IZlJFPHD8FHStXZWHi7JzDJRersKQjT6x7PvA/s2400/6-2-1024x573%20(1).jpg" style="width:5000px;height:300px" class="img-fluid">
                 <div class="post-title mt-4">
                     <div class="row">
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-12" id="tblksb">
                 <div class="card">
                     <div class="card-header">
@@ -71,7 +71,7 @@
                         </div><!--end /div-->
                     </div><!--end card-body-->
                 </div><!--end card-->
-            </div> <!--end col-->
+            </div> <!--end col--> --}}
             
         </div>
 

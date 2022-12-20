@@ -744,17 +744,17 @@
                            <span class="fas fa-plus"></span> Tambah Kekurangan </a></k>
                 <div class="row ">
                     <div class="col-sm-12 text-end"> 
-                        <a href="#" type="button" onclick="form1()" class="btn btn-danger px-4">Back</a>  
+                        <a href="{{ route('vkp.index') }}" type="button"class="btn btn-danger px-4">Back</a>  
                         <button  type="submit"  class="btn btn-primary px-4">Simpan</button>      
                     </div>
                 </div>
               </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-sm-12 text-end">
                                 <a href="{{ route('vkp.index') }}" type="button" class="btn btn-danger px-4">Back</a>
                             </div>
-                        </div>
+                        </div> --}}
                 </div>
 
                 

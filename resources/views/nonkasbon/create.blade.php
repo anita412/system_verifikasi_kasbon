@@ -104,7 +104,7 @@
              source: function( request, response ) {
                 // Fetch data
                 $.ajax({
-                  url:"{{route('kasbon.findUser')}}",
+                  url:"{{route('nonkasbon.findUser')}}",
                   type: 'post',
                   dataType: "json",
                   data: {

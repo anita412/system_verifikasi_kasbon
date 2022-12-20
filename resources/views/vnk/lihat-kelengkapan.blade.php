@@ -51,7 +51,7 @@
                                             <td><input name="dokumen[]" class="form-control" value="{{$item->dokumen ?? ''}}" required parsley/></td></td>
                                             <td><input name="nominal[]" class="qnty amount form-control" value="{{$item->nominal ?? ''}}" required parsley /></td>
                                             <td class="text-end">
-                                                <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2 btn_remov" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
+                                                <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2 delete" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
                                             </tr>
                                             @endforeach
                                             <tfoot>
@@ -67,7 +67,8 @@
                                                     <td><input name="dokumen[]" class="form-control"  required parsley/></td></td>
                                                     <td><input name="nominal[]" class="qnty amount form-control"  required parsley /></td>
                                                     <td class="text-end">
-                                                        <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2 btn_remov" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td>
+                                                        {{-- <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2 btn_remove" onclick="rowElim(this);"><i class="dripicons-trash" aria-hidden="true"></i></button></td> --}}
+                                                        <button type="button" name="remove"  class="btn btn-sm btn-soft-danger btn-circle me-2 delete"><i class="dripicons-trash" aria-hidden="true"></i></button>
                                                     </tr>
                                                     <tfoot>
                                                         <tr>
@@ -88,12 +89,13 @@
                                     <br />
                 <div class="row ">
                     <div class="col-sm-12 text-end"> 
-                        <button  type="submit"  class="btn btn-primary px-4">Simpan</button>      
+                           
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-end">
-                        <a href="{{ route('vnk1.index') }}" type="button" class="btn btn-danger px-4">Back</a>
+                        <button  type="submit"  class="btn btn-primary px-4">Simpan</button>   
+                        <a href="{{ route('vnk.index') }}" type="button" class="btn btn-danger px-4">Back</a>
                     </div>
                 </div>
               </div>
@@ -140,6 +142,11 @@
         var button_id = $(this).attr("id");
         $('#row' + button_id + '').remove();
     });
+    
+    $(".delete").click(function() {
+    $(this).closest("tr").remove();
+    });
+
     // calculate everything
     $(document).on("keyup", ".amount", calcAll);
     //$(".amount").on("change", calcAll);

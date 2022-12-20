@@ -150,29 +150,22 @@ class KasbonVerifikatorController extends Controller
     {
         $kasbon = Kasbon::find($id);
         DB::transaction(function () use ($kasbon, $request, $id) {
-            if ($request->iddpp) {
+            if ($request->iddpp or $request->iddpp1) {
                 if ($kasbon->id_kurs == 42) {
                     $iddpp = Str::replace(',', '', $request->iddpp);
                     $idppn = Str::replace(',', '', $request->idppn);
                     $idpph = Str::replace(',', '', $request->idpph);
                     $total = Str::replace(',', '', $request->iddpp) + Str::replace(',', '', $request->idppn) - Str::replace(',', '', $request->idpph);
                     $ktotal = $total;
+                    $konversi =  0;
                 } else {
-                    if ($request->konversi) {
-                        $iddpp = Str::replace(',', '', $request->iddpp1);
-                        $idppn = 0;
-                        $idpph = 0;
-                        $total =  Str::replace(',', '', $request->iddpp1);
-                        $konversi =  Str::replace(',', '', $request->konversi);
-                        $hasilk = $total * $konversi;
-                        $ktotal = Str::replace(',', '', $hasilk);
-                    } else {
-                        $iddpp = Str::replace(',', '', $request->iddpp1);
-                        $idppn = 0;
-                        $idpph = 0;
-                        $total = $kasbon->total;
-                        $ktotal = $kasbon->k_total;
-                    }
+                    $iddpp = Str::replace(',', '', $request->iddpp1);
+                    $idppn = 0;
+                    $idpph = 0;
+                    $total =  Str::replace(',', '', $request->iddpp1);
+                    $konversi =  Str::replace(',', '', $request->konversi);
+                    $hasilk = $total * $konversi;
+                    $ktotal = Str::replace(',', '', $hasilk);
                 }
             }
             if ($request->tgltempo) {
@@ -183,6 +176,7 @@ class KasbonVerifikatorController extends Controller
                     'id_pph' => $request->id_pph,
                     'idpph' => Str::replace(',', '', $idpph),
                     'total' => Str::replace(',', '', $total),
+                    'konversi' => Str::replace(',', '', $konversi),
                     'k_iddpp' => $kasbon->iddpp,
                     'k_total' => $ktotal,
                 ]);
@@ -356,6 +350,7 @@ class KasbonVerifikatorController extends Controller
                     $idpph = Str::replace(',', '', $request->idpph);
                     $total = Str::replace(',', '', $request->iddpp) + Str::replace(',', '', $request->idppn) - Str::replace(',', '', $request->idpph);
                     $ktotal = $total;
+                    $konversi =  0;
                 } else {
                     if ($request->konversi) {
                         $iddpp = Str::replace(',', '', $request->iddpp1);
@@ -382,6 +377,7 @@ class KasbonVerifikatorController extends Controller
                     'id_pph' => $request->id_pph,
                     'idpph' => Str::replace(',', '', $idpph),
                     'total' => Str::replace(',', '', $total),
+                    'konversi' => Str::replace(',', '', $konversi),
                     'k_iddpp' => $kasbon->iddpp,
                     'k_total' => $ktotal,
                 ]);

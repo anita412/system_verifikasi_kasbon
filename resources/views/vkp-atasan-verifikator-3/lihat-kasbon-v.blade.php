@@ -170,7 +170,7 @@
                                         <td>
                                             :
                                         </td>
-                                        <td>{{$pertanggungan->kasbon->tgltempo->format('m/d/Y')}}</td>     
+                                        <td>{{ $pertanggungan->kasbon->tgltempo ? $pertanggungan->kasbon->tgltempo->format('m/d/Y')  : '-' }}</td>     
                                         <td>
                                             <p class=" align-middle mb-0 product-name">No. PI (FOCUS)</p> 
                                         </td>

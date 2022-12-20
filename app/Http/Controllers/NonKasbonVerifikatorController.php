@@ -31,7 +31,7 @@ class NonKasbonVerifikatorController extends Controller
         $nonkasbon = nonkasbon::all();
 
         $title = 'Non Kasbon';
-        return view('vnk.index', compact('nonkasbon', 'title', 'pph'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('nonkasbon.index', compact('nonkasbon', 'title', 'pph'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -118,7 +118,7 @@ class NonKasbonVerifikatorController extends Controller
                 }
             }
         });
-        return redirect()->route('vnk.index')->with('success', 'User updated successfully');
+        return redirect()->route('nonkasbon.index')->with('success', 'User updated successfully');
     }
 
     public function update(Request $request, $id)
@@ -228,7 +228,7 @@ class NonKasbonVerifikatorController extends Controller
                 }
             }
         });
-        return redirect()->route('vnk.index')->with('success', 'Non Kasbon updated successfully');
+        return redirect()->route('nonkasbon.index')->with('success', 'Non Kasbon updated successfully');
     }
 
     public function show($id)

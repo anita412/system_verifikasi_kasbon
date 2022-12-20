@@ -239,6 +239,7 @@ class KasbonController extends Controller
                 $idpph = Str::replace(',', '', $request->idpph);
                 $total = Str::replace(',', '', $request->iddpp) + Str::replace(',', '', $request->idppn) - Str::replace(',', '', $request->idpph);
                 $ktotal = $total;
+                $konversi = 0;
             } else {
                 $iddpp = Str::replace(',', '', $request->iddpp1);
                 $idppn = 0;
@@ -287,6 +288,7 @@ class KasbonController extends Controller
                 'id_pph' => $request->id_pph,
                 'idpph' => Str::replace(',', '', $idpph),
                 'total' => Str::replace(',', '', $total),
+                'konversi' => Str::replace(',', '', $konversi),
                 'k_total' => $ktotal,
                 'namavendor' => $request->namavendor,
                 'noinvoice' => $request->noinvoice,
@@ -527,6 +529,7 @@ class KasbonController extends Controller
             $kasbon->idpph = $idpph;
             $kasbon->total = $total;
             $kasbon->k_total = $ktotal;
+            $kasbon->konversi = $konversi;
             $kasbon->namavendor = $request->namavendor;
             $kasbon->noinvoice = $request->noinvoice;
             $kasbon->spph = $request->spph;

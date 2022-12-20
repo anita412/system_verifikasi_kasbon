@@ -123,15 +123,17 @@ class KasbonAtasanVerifikator3Controller extends Controller
 
             if ($kasbon->verifikasikasbon->vkb_a_4 = $request->Input('status') == 'Terverifikasi') {
                 $kasbon->verifikasikasbon->vkb_a_4 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
+                $kasbon->verifikasikasbon->vkb_a_13 = $request->Input('status');
+                // $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
+                // $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
                 $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
                 $kasbon->verifikasikasbon->vkb_a_3 = $request->Input('status');
                 $kasbon->verifikasikasbon->status = $request->Input('status');
             } elseif ($kasbon->verifikasikasbon->vkb_a_4 = $request->Input('status') == 'Ditolak') {
                 $kasbon->verifikasikasbon->vkb_a_4 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
-                $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
+                $kasbon->verifikasikasbon->vkb_a_13 = $request->Input('status');
+                // $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
+                // $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
                 $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
                 $kasbon->verifikasikasbon->vkb_a_3 = $request->Input('status');
                 $kasbon->verifikasikasbon->vkb = $request->Input('status');

@@ -220,12 +220,12 @@ class JabatanSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            // [
-            //     'id' => '35',
-            //     'name' => 'PLT KEPALA DIVISI',
-            //     'created_at' => Carbon::now(),
-            //     'updated_at' => Carbon::now(),
-            // ]
+            [
+                'id' => '35',
+                'name' => 'KEPALA BAGIAN',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
         ]);
     }
 }

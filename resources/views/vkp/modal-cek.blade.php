@@ -1,4 +1,4 @@
-{!! Form::model($pertanggungan, ['method' => 'PATCH','route' => ['vkp-atasan-verifikator-1.update', $pertanggungan->id],'class' => 'form-parsley','id' => 'myForm']) !!}
+{!! Form::model($pertanggungan, ['method' => 'PATCH','route' => ['vkp.update', $pertanggungan->id],'class' => 'form-parsley','id' => 'myForm']) !!}
 {{ csrf_field() }}
 <div class="modal fade bd-example-modal-lg multi-step" id="modalcek_{{$pertanggungan->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog"  >

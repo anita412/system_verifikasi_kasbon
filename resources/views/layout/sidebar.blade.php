@@ -36,7 +36,7 @@
                     <a href="{{ route('roles.index') }}"><i class="dripicons-briefcase align-self-center menu-icon"></i><span>Role</span></a>
                 </li>
                 @endcan
-                @can('kasbon')
+                {{-- @can('kasbon')
                 <li>
                     <a href="javascript: void(0);"> <i  class="align-self-center ti-receipt"></i><span>Kasbon</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -47,6 +47,21 @@
                         @endcan
                     </ul>
                 </li>
+                @endcan --}}
+                @can('kasbon')
+                <li>
+                    <a href="{{ route('kasbon.index') }}"> <i data-feather="file-text" class="align-self-center menu-icon"></i><span>Kasbon Rencana / Realisasi</span></a>
+                </li>
+                @endcan
+                @can('pertanggungan')
+                <li>
+                    <a href="{{ route('pertanggungan.index') }}"> <i data-feather="file-text" class="align-self-center menu-icon"></i><span>Pertanggungan</span></a>
+                </li>
+                @endcan
+                @can('nonkasbon')
+                <li>
+                    <a href="{{ route('nonkasbon.index') }}"> <i data-feather="file-text" class="align-self-center menu-icon"></i><span>Non Kasbon</span></a>
+                </li>
                 @endcan
                 @can('atasan-user-1')
                 <li>
@@ -54,7 +69,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-user-1.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-user-1.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-1.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-1.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -65,7 +80,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-user-2.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-user-2.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -76,7 +91,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-user-3.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-user-3.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-3.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-user-3.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -87,7 +102,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 <li>
@@ -95,7 +110,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('mkb.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('mkp.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('mnk.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('mnk.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -106,7 +121,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-verifikator-1.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-verifikator-1.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-1.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-1.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -117,7 +132,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-verifikator-2.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-verifikator-2.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-2.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan
@@ -127,7 +142,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkb-atasan-verifikator-3.index') }}"><i class="ti-control-record"></i>Kasbon Rencana / Realisasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('vkp-atasan-verifikator-3.index') }}"><i class="ti-control-record"></i>Pertanggungan</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-3.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li> 
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('vnk-atasan-verifikator-3.index') }}"><i class="ti-control-record"></i>NonKasbon</a></li>  --}}
                     </ul> 
                 </li>
                 @endcan

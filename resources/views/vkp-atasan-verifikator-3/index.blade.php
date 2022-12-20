@@ -38,9 +38,9 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    {{-- <a href="#" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >
@@ -76,7 +76,7 @@
                                     @foreach ($pertanggungan as $pertanggungan)
                                     @if(isset($pertanggungan->verifikasipertanggungan->vkp_a_4))
                                 <tr>
-                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at}}</td>
                                     <td>{{ $pertanggungan->tglptj ? $pertanggungan->tglptj->format('d/m/Y')  : '-' }}</td>
                                     <td>{{$pertanggungan->kasbon->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>
@@ -325,7 +325,7 @@
        
      //konfigurasi DataTable pada tabel dengan id example dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
       var $dTable = $('#datatable2').DataTable({
-       order: [[1, 'desc']],
+       order: [[0, 'desc']],
        columnDefs: [
                {
                    "targets": [5],

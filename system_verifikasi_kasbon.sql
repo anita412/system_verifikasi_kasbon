@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 08:24 AM
+-- Generation Time: Dec 20, 2022 at 03:43 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -93,6 +93,13 @@ CREATE TABLE `dokumen_nk` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `dokumen_nk`
+--
+
+INSERT INTO `dokumen_nk` (`id`, `id_nonkasbon`, `total`, `catatan`, `created_at`, `updated_at`) VALUES
+(1, 1, 200000.00, NULL, '2022-12-20 01:33:01', '2022-12-19 18:48:25');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +114,13 @@ CREATE TABLE `dokumen_nkd` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dokumen_nkd`
+--
+
+INSERT INTO `dokumen_nkd` (`id`, `id_dnk`, `dokumen`, `nominal`, `created_at`, `updated_at`) VALUES
+(7, 1, '123', 200000.00, '2022-12-19 18:48:25', '2022-12-19 18:48:25');
 
 -- --------------------------------------------------------
 
@@ -126,6 +140,21 @@ CREATE TABLE `d_customers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `d_customers`
+--
+
+INSERT INTO `d_customers` (`id`, `dc_memointernal`, `dc_spph`, `dc_ko`, `dc_loi`, `dc_invoicecustom`, `dc_sjncustom`, `created_at`, `updated_at`) VALUES
+(1, 'COPY', 'COPY', 'COPY', 'ASLI', 'ASLI', 'ASLI', NULL, NULL),
+(2, 'COPY', 'ASLI', 'COPY', 'COPY', 'ASLI', 'ASLI', NULL, NULL),
+(3, 'ASLI', 'COPY', 'COPY', 'COPY', 'ASLI', 'COPY', NULL, NULL),
+(4, 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', 'ASLI', NULL, NULL),
+(5, 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', NULL, NULL),
+(6, 'COPY', 'COPY', 'ASLI', 'COPY', 'COPY', 'ASLI', NULL, NULL),
+(7, 'COPY', 'COPY', 'ASLI', 'COPY', 'ASLI', 'ASLI', NULL, NULL),
+(8, '-', 'COPY', 'COPY', '-', 'COPY', 'ASLI', NULL, NULL),
+(9, 'COPY', 'COPY', 'ASLI', 'COPY', 'ASLI', 'ASLI', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +172,21 @@ CREATE TABLE `d_dinas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `d_dinas`
+--
+
+INSERT INTO `d_dinas` (`id`, `dd_tickettransport`, `dd_notamakan`, `dd_boardingpass`, `dd_notapenginapan`, `dd_sppd`, `dd_lapdinas`, `created_at`, `updated_at`) VALUES
+(1, 'ADA', 'TIDAK', 'ADA', 'TIDAK', 'ADA', 'TIDAK', NULL, NULL),
+(2, 'ADA', 'TIDAK', 'TIDAK', 'ADA', 'TIDAK', 'TIDAK', NULL, NULL),
+(3, 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', NULL, NULL),
+(4, 'TIDAK', 'TIDAK', 'ADA', 'ADA', 'ADA', 'ADA', NULL, NULL),
+(5, 'ADA', 'ADA', 'ADA', 'ADA', 'ADA', 'ADA', NULL, NULL),
+(6, 'ADA', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', NULL, NULL),
+(7, 'ADA', 'ADA', 'ADA', 'ADA', 'ADA', 'TIDAK', NULL, NULL),
+(8, 'ADA', 'TIDAK', 'TIDAK', 'TIDAK', 'ADA', 'TIDAK', NULL, NULL),
+(9, 'ADA', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', 'TIDAK', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -162,6 +206,21 @@ CREATE TABLE `d_impors` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `d_impors`
+--
+
+INSERT INTO `d_impors` (`id`, `di_pib`, `di_bl`, `di_com`, `di_coo`, `di_invoicecustom`, `di_sjncustom`, `created_at`, `updated_at`) VALUES
+(1, '-', 'ASLI', 'COPY', 'ASLI', 'COPY', 'ASLI', NULL, NULL),
+(2, 'ASLI', 'ASLI', 'COPY', 'ASLI', 'COPY', 'ASLI', NULL, NULL),
+(3, '-', '-', 'COPY', 'COPY', 'ASLI', 'COPY', NULL, NULL),
+(4, '-', '-', '-', '-', '-', '-', NULL, NULL),
+(5, 'ASLI', 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', NULL, NULL),
+(6, 'COPY', 'COPY', 'ASLI', 'COPY', 'COPY', 'COPY', NULL, NULL),
+(7, '-', 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', NULL, NULL),
+(8, 'COPY', 'COPY', 'COPY', 'ASLI', 'ASLI', '-', NULL, NULL),
+(9, 'ASLI', 'COPY', 'ASLI', 'COPY', 'COPY', '-', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +235,21 @@ CREATE TABLE `d_pajaks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `d_pajaks`
+--
+
+INSERT INTO `d_pajaks` (`id`, `dp_kesesuaianfaktur`, `dp_pajakpenghasilan`, `dp_suratnonpkp`, `created_at`, `updated_at`) VALUES
+(1, 'ASLI', 'COPY', 'ASLI', NULL, NULL),
+(2, 'ASLI', 'COPY', 'COPY', NULL, NULL),
+(3, 'COPY', '-', '-', NULL, NULL),
+(4, 'COPY', 'COPY', 'COPY', NULL, NULL),
+(5, 'ASLI', 'COPY', 'COPY', NULL, NULL),
+(6, 'ASLI', 'COPY', 'COPY', NULL, NULL),
+(7, 'ASLI', 'COPY', 'ASLI', NULL, NULL),
+(8, 'ASLI', 'COPY', 'COPY', NULL, NULL),
+(9, 'ASLI', 'COPY', 'COPY', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,6 +272,21 @@ CREATE TABLE `d_vendors` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `d_vendors`
+--
+
+INSERT INTO `d_vendors` (`id`, `dv_invoice`, `dv_kwitansi`, `dv_povendor`, `dv_sjnvendor`, `dv_packcinglist`, `dv_testreport`, `dv_bapp`, `dv_lppb`, `dv_ko`, `dv_spp`, `created_at`, `updated_at`) VALUES
+(1, 'ASLI', 'COPY', '-', 'COPY', 'COPY', '-', 'COPY', 'COPY', 'COPY', 'ASLI', NULL, NULL),
+(2, 'ASLI', '-', 'COPY', 'COPY', 'COPY', '-', 'ASLI', 'COPY', 'ASLI', 'ASLI', NULL, NULL),
+(3, 'ASLI', 'COPY', '-', 'COPY', 'COPY', '-', 'COPY', 'ASLI', 'COPY', 'ASLI', NULL, NULL),
+(4, 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', '-', 'COPY', 'ASLI', 'ASLI', 'ASLI', NULL, NULL),
+(5, 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', 'COPY', 'ASLI', 'COPY', 'COPY', '-', NULL, NULL),
+(6, 'ASLI', 'COPY', 'COPY', 'COPY', 'ASLI', 'COPY', 'COPY', 'COPY', 'ASLI', 'ASLI', NULL, NULL),
+(7, 'ASLI', 'COPY', 'COPY', 'ASLI', 'ASLI', '-', 'COPY', 'COPY', 'ASLI', 'ASLI', NULL, NULL),
+(8, 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', 'ASLI', NULL, NULL),
+(9, 'ASLI', 'COPY', 'COPY', 'COPY', 'COPY', '-', 'COPY', 'ASLI', 'ASLI', 'ASLI', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -233,40 +322,41 @@ CREATE TABLE `jabatan` (
 --
 
 INSERT INTO `jabatan` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'ADMIN AKUNTANSI', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(2, 'ADMIN EKSPEDISI', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(3, 'ADMIN KEUANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(4, 'ADMIN PEMASARAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(5, 'ADMIN PEMBELIAN KOMPONEN PENDUKUNG', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(6, 'ADMIN PEMBELIAN KOMPONEN UTAMA', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(7, 'ADMIN PENGENDALIAN KUALITAS & PURNA JUAL', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(8, 'ADMIN PERENCANAAN & PENGENDALIAN PENGADAAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(9, 'ADMIN PERGUDANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(10, 'ADMIN SDM', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(11, 'ADMIN UMUM', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(12, 'ADMIN TATA KELOLA & MANAJEMEN RESIKO', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(13, 'DIREKTUR KEUANGAN, SDM & MANAJEMEN RISIKO', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(14, 'DIREKTUR OPERASIONAL', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(15, 'DIREKTUR UTAMA', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(16, 'KEPALA DEPARTEMEN AKUNTANSI', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(17, 'KEPALA DEPARTEMEN EKSPEDISI & PERGUDANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(18, 'KEPALA DEPARTEMEN KEUANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(19, 'KEPALA DEPARTEMEN PEMASARAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(20, 'KEPALA DEPARTEMEN PEMBELIAN KOMPONEN PENDUKUNG', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(21, 'KEPALA DEPARTEMEN PEMBELIAN KOMPONEN UTAMA', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(22, 'KEPALA DEPARTEMEN PENGENDALIAN KUALITAS & PURNA JUAL', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(23, 'KEPALA DEPARTEMEN PERENCANAAN & PENGENDALIAN PENGADAAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(24, 'KEPALA DEPARTEMEN SDM & UMUM', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(25, 'KEPALA DEPARTEMEN TATA KELOLA & MANAJEMEN RESIKO', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(26, 'KEPALA DIVISI KEUANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(27, 'KEPALA DIVISI PEMASARAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(28, 'KEPALA DIVISI PENGADAAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(29, 'KEPALA DIVISI REALISASI PRODUK', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(30, 'KEPALA DIVISI SDM & UMUM', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(31, 'VERIFIKATOR', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(32, 'STAF', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(33, 'SPESIALIS MUDA', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(34, 'PLT KEPALA DEPARTEMEN', '2022-12-15 00:22:09', '2022-12-15 00:22:09');
+(1, 'ADMIN AKUNTANSI', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'ADMIN EKSPEDISI', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'ADMIN KEUANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'ADMIN PEMASARAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(5, 'ADMIN PEMBELIAN KOMPONEN PENDUKUNG', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(6, 'ADMIN PEMBELIAN KOMPONEN UTAMA', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(7, 'ADMIN PENGENDALIAN KUALITAS & PURNA JUAL', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(8, 'ADMIN PERENCANAAN & PENGENDALIAN PENGADAAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(9, 'ADMIN PERGUDANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(10, 'ADMIN SDM', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(11, 'ADMIN UMUM', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(12, 'ADMIN TATA KELOLA & MANAJEMEN RESIKO', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(13, 'DIREKTUR KEUANGAN, SDM & MANAJEMEN RISIKO', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(14, 'DIREKTUR OPERASIONAL', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(15, 'DIREKTUR UTAMA', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(16, 'KEPALA DEPARTEMEN AKUNTANSI', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(17, 'KEPALA DEPARTEMEN EKSPEDISI & PERGUDANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(18, 'KEPALA DEPARTEMEN KEUANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(19, 'KEPALA DEPARTEMEN PEMASARAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(20, 'KEPALA DEPARTEMEN PEMBELIAN KOMPONEN PENDUKUNG', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(21, 'KEPALA DEPARTEMEN PEMBELIAN KOMPONEN UTAMA', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(22, 'KEPALA DEPARTEMEN PENGENDALIAN KUALITAS & PURNA JUAL', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(23, 'KEPALA DEPARTEMEN PERENCANAAN & PENGENDALIAN PENGADAAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(24, 'KEPALA DEPARTEMEN SDM & UMUM', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(25, 'KEPALA DEPARTEMEN TATA KELOLA & MANAJEMEN RESIKO', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(26, 'KEPALA DIVISI KEUANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(27, 'KEPALA DIVISI PEMASARAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(28, 'KEPALA DIVISI PENGADAAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(29, 'KEPALA DIVISI REALISASI PRODUK', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(30, 'KEPALA DIVISI SDM & UMUM', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(31, 'VERIFIKATOR', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(32, 'STAF', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(33, 'SPESIALIS MUDA', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(34, 'PLT KEPALA DEPARTEMEN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(35, 'KEPALA BAGIAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -286,12 +376,12 @@ CREATE TABLE `jenis` (
 --
 
 INSERT INTO `jenis` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'OPR 1', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(2, 'OPR 2', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(3, 'OPR 3', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(4, 'OPR 4', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(5, 'PL', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(6, 'EKSPOR IMPOR', '2022-12-15 00:22:09', '2022-12-15 00:22:09');
+(1, 'OPR 1', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'OPR 2', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'OPR 3', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'OPR 4', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(5, 'PL', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(6, 'EKSPOR IMPOR', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -319,6 +409,7 @@ CREATE TABLE `kasbons` (
   `id_pph` bigint(20) UNSIGNED DEFAULT NULL,
   `idpph` bigint(20) DEFAULT NULL,
   `total` bigint(20) DEFAULT NULL,
+  `konversi` bigint(20) NOT NULL,
   `k_iddpp` bigint(20) DEFAULT NULL,
   `k_total` bigint(20) DEFAULT NULL,
   `namavendor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -347,17 +438,16 @@ CREATE TABLE `kasbons` (
 -- Dumping data for table `kasbons`
 --
 
-INSERT INTO `kasbons` (`id`, `nokasbon`, `tglmasuk`, `jammasuk`, `jeniskasbon`, `id_user`, `nip`, `id_unit`, `doksebelumnya`, `id_kodekasbon`, `id_jenis`, `id_kurs`, `proyek`, `uraianpengguna`, `iddpp`, `idppn`, `id_pph`, `idpph`, `total`, `k_iddpp`, `k_total`, `namavendor`, `haritempo`, `tgltempo`, `noinvoice`, `spph`, `po_vendor`, `po_customer`, `sjn`, `harga_jual`, `barang_datang`, `nopi`, `novkb`, `formatkasbon`, `transferke`, `id_bank`, `namarek`, `norek`, `file`, `created_at`, `updated_at`) VALUES
-(1, '5', '2022-12-14', NULL, NULL, 1, NULL, 1, NULL, 1, 2, 2, NULL, NULL, NULL, NULL, 3, NULL, 9, NULL, NULL, NULL, NULL, '2022-11-28', '5', NULL, NULL, NULL, NULL, NULL, '2022-12-10', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(2, '2', '2022-11-30', NULL, NULL, 1, NULL, 3, NULL, 1, 3, 2, NULL, NULL, NULL, NULL, 1, NULL, 5, NULL, NULL, NULL, NULL, '2022-11-27', '8', NULL, NULL, NULL, NULL, NULL, '2022-11-27', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(3, '6', '2022-12-14', NULL, NULL, 1, NULL, 2, NULL, 3, 2, 3, NULL, NULL, NULL, NULL, 3, NULL, 6, NULL, NULL, NULL, NULL, '2022-12-10', '0', NULL, NULL, NULL, NULL, NULL, '2022-11-29', NULL, NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL),
-(4, '3', '2022-12-09', NULL, NULL, 1, NULL, 1, NULL, 2, 3, 2, NULL, NULL, NULL, NULL, 2, NULL, 3, NULL, NULL, NULL, NULL, '2022-12-01', '4', NULL, NULL, NULL, NULL, NULL, '2022-12-14', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(5, '8', '2022-12-04', NULL, NULL, 1, NULL, 1, NULL, 1, 1, 2, NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, NULL, NULL, NULL, '2022-11-23', '8', NULL, NULL, NULL, NULL, NULL, '2022-11-30', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(6, '4', '2022-12-01', NULL, NULL, 1, NULL, 1, NULL, 1, 2, 1, NULL, NULL, NULL, NULL, 1, NULL, 5, NULL, NULL, NULL, NULL, '2022-12-07', '3', NULL, NULL, NULL, NULL, NULL, '2022-11-19', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(7, '7', '2022-12-06', NULL, NULL, 1, NULL, 1, NULL, 1, 2, 3, NULL, NULL, NULL, NULL, 2, NULL, 0, NULL, NULL, NULL, NULL, '2022-11-26', '4', NULL, NULL, NULL, NULL, NULL, '2022-12-11', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(8, '9', '2022-11-19', NULL, NULL, 1, NULL, 2, NULL, 2, 3, 3, NULL, NULL, NULL, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, '2022-12-11', '0', NULL, NULL, NULL, NULL, NULL, '2022-11-24', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL),
-(9, '0', '2022-11-30', NULL, NULL, 1, NULL, 2, NULL, 2, 2, 2, NULL, NULL, NULL, NULL, 3, NULL, 2, NULL, NULL, NULL, NULL, '2022-12-12', '0', NULL, NULL, NULL, NULL, NULL, '2022-12-09', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL),
-(10, '1', '2022-11-24', NULL, NULL, 1, NULL, 1, NULL, 2, 1, 1, NULL, NULL, NULL, NULL, 2, NULL, 5, NULL, NULL, NULL, NULL, '2022-11-20', '6', NULL, NULL, NULL, NULL, NULL, '2022-11-27', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `kasbons` (`id`, `nokasbon`, `tglmasuk`, `jammasuk`, `jeniskasbon`, `id_user`, `nip`, `id_unit`, `doksebelumnya`, `id_kodekasbon`, `id_jenis`, `id_kurs`, `proyek`, `uraianpengguna`, `iddpp`, `idppn`, `id_pph`, `idpph`, `total`, `konversi`, `k_iddpp`, `k_total`, `namavendor`, `haritempo`, `tgltempo`, `noinvoice`, `spph`, `po_vendor`, `po_customer`, `sjn`, `harga_jual`, `barang_datang`, `nopi`, `novkb`, `formatkasbon`, `transferke`, `id_bank`, `namarek`, `norek`, `file`, `created_at`, `updated_at`) VALUES
+(11, 'PPK/1/XII/2022', '2022-12-19', '21:07:41', 'KASBON RENCANA', 19, '991100045', 2, 'PPK/0/X/2022', 3, 5, 42, '-', '-', 5000000, 22000, 4, 200, 5021800, 0, NULL, 5021800, 'PT MAJU', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/1/XII/2022;KASBON RENCANA AN HARIESYA RANDI ARTANTO;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'HARIESYA RANDI ARTANTO', 1242543543, '1671458943lembar-ppk.pdf', '2022-12-19 14:09:03', '2022-12-19 14:09:03'),
+(12, 'PPK/2/XII/2022', '2022-12-19', '21:09:06', 'KASBON RENCANA', 89, '991000005', 2, 'PPK/1/XII/2022', 4, 6, 42, '-', '-', 13000000, 2999, 2, 2200, 13000799, 0, 12000000, 13000799, 'PT MAJU MUNDUR', NULL, '2022-12-08', '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/2/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'DAVID YUDHA ARISKA', 1234253, '1671459022PPK265IV22 KASBON RENCANA.pdf', '2022-12-19 14:10:22', '2022-12-19 07:49:18'),
+(13, 'PPK/3/XII/2022', '2022-12-19', '21:10:26', 'KASBON RENCANA', 1, '632100015', 2, 'PPK/2/XII/2022', 4, 5, 42, '-', '-', 26000000, 2336, 3, 2222, 26000114, 0, NULL, 26000114, 'PT MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/3/XII/2022;KASBON RENCANA AN ARYANI DEVIANA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'HARIESYA RANDI ARTANTO', 544654, '1671459115PPK265IV22 KASBON RENCANA.pdf', '2022-12-19 14:11:55', '2022-12-19 14:11:55'),
+(14, 'PPK/4/XII/2022', '2022-12-19', '21:11:59', 'KASBON RENCANA', 90, '991200030', 2, 'PPK/3/XII/2022', 3, 5, 42, '-', '-', 200000000, 5000, 4, 5000, 200000000, 0, 200000000, 200000000, 'PT MAJU MUNDUR', NULL, '2022-12-20', '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/4/XII/2022;KASBON RENCANA AN SEPTO TRI MARGONO;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'SEPTO TRI MARGONO', 454678, '1671459189Meeting 30 November 2022.pdf', '2022-12-19 14:13:09', '2022-12-19 07:41:05'),
+(15, 'PPK/5/XII/2022', '2022-12-19', '21:15:20', 'KASBON RENCANA', 1, '632100015', 2, 'PPK/4/XII/2022', 3, 5, 97, '-', '-', 200, 0, NULL, 0, 200, 12222, NULL, 2444400, 'PT MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/5/XII/2022;KASBON RENCANA AN ARYANI DEVIANA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'HARIESYA RANDI ARTANTO', 214356, '16714594121670207794PT. INKA MULTI SOLUSI TRADING.pdf', '2022-12-19 14:16:52', '2022-12-20 01:22:51'),
+(16, 'PPK/6/XII/2022', '2022-12-19', '21:17:48', 'KASBON RENCANA', 89, '991000005', 2, 'PPK/5/XII/2022', 4, 4, 97, '-', '-', 1605, 0, NULL, 0, 1605, 0, NULL, 24996270, 'PT MAJU MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/6/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', NULL, 'PT. BANK ICBC INDONESIA', 'DAVID YUDHA ARISKA', 23456789, '1671459538ppk-realisasi.pdf', '2022-12-19 14:18:58', '2022-12-19 14:18:58'),
+(17, 'PPK/7/XII/2022', '2022-12-19', '21:19:22', 'KASBON RENCANA', 82, '961800001', 2, 'PPK/6/XII/2022', 4, 5, 97, '-', '-', 65000, 0, NULL, 0, 65000, 15000, 65000, 975000000, 'PT MUNDUR', NULL, '2022-12-21', '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/7/XII/2022;KASBON RENCANA AN ANDRI RINALDO SILALAHI;-;-;-', NULL, 'PT. BANK MEGA, TBK', 'DAVID YUDHA ARISKA', 3245766, '1671459634IMST  Kasbon.pdf', '2022-12-19 14:20:34', '2022-12-19 07:58:50'),
+(18, 'PPK/8/XII/2022', '2022-12-19', '21:35:31', 'KASBON RENCANA', 19, '991100045', 2, 'PPK/7/XII/2022', 3, 5, 42, '-', '-', 2557658, 465, 4, 34356, 2523767, 0, NULL, 2523767, 'PT MUNDUR MAJU', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/8/XII/2022;KASBON RENCANA AN HARIESYA RANDI ARTANTO;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'DAVID YUDHA ARISKA', 43567786, '167146059644.pdf', '2022-12-19 14:36:36', '2022-12-19 14:37:06'),
+(19, 'PPK/9/XII/2022', '2022-12-20', '09:20:57', 'KASBON RENCANA', 89, '991000005', 2, 'PPK/8/XII/2022', 4, 5, 42, '-', '-', 200000000, 200, 1, 2333, 199997867, 0, NULL, 199997867, 'PT MAJU MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/9/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'ABCDEFG', 23425346756, '1671502966LUARAN PROGRAM MBKM (1).pdf', '2022-12-20 02:22:46', '2022-12-20 02:22:46');
 
 -- --------------------------------------------------------
 
@@ -380,6 +470,21 @@ CREATE TABLE `kelengkapans` (
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `kelengkapans`
+--
+
+INSERT INTO `kelengkapans` (`id`, `created_at`, `updated_at`, `id_kasbon`, `nokasbon`, `id_dv`, `id_dc`, `id_di`, `id_dp`, `id_dd`, `id_kt`, `status`) VALUES
+(1, NULL, NULL, 11, 'PPK/1/XII/2022', 1, 1, 1, 1, 1, 1, NULL),
+(2, NULL, NULL, 12, 'PPK/2/XII/2022', 2, 2, 2, 2, 2, 2, NULL),
+(3, NULL, NULL, 13, 'PPK/3/XII/2022', 3, 3, 3, 3, 3, 3, NULL),
+(4, NULL, NULL, 14, 'PPK/4/XII/2022', 4, 4, 4, 4, 4, 4, NULL),
+(5, NULL, NULL, 15, 'PPK/5/XII/2022', 5, 5, 5, 5, 5, 5, NULL),
+(6, NULL, NULL, 16, 'PPK/6/XII/2022', 6, 6, 6, 6, 6, 6, NULL),
+(7, NULL, NULL, 17, 'PPK/7/XII/2022', 7, 7, 7, 7, 7, 7, NULL),
+(8, NULL, NULL, 18, 'PPK/8/XII/2022', 8, 8, 8, 8, 8, 8, NULL),
+(9, NULL, NULL, 19, 'PPK/9/XII/2022', 9, 9, 9, 9, 9, 9, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -392,6 +497,21 @@ CREATE TABLE `keterangans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `keterangans`
+--
+
+INSERT INTO `keterangans` (`id`, `catatan`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, '2022-12-19 14:22:57'),
+(2, '-', NULL, '2022-12-19 15:04:12'),
+(3, NULL, NULL, NULL),
+(4, NULL, NULL, '2022-12-20 02:17:40'),
+(5, '-', NULL, '2022-12-20 01:23:20'),
+(6, '-', NULL, '2022-12-20 01:20:17'),
+(7, '-', NULL, '2022-12-20 01:20:13'),
+(8, NULL, NULL, '2022-12-20 02:13:08'),
+(9, NULL, NULL, '2022-12-20 02:38:04');
 
 -- --------------------------------------------------------
 
@@ -408,6 +528,14 @@ CREATE TABLE `keterangan_details` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `keterangan_details`
+--
+
+INSERT INTO `keterangan_details` (`id`, `id_keterangan`, `kekurangan`, `tgl_kelengkapan`, `created_at`, `updated_at`) VALUES
+(3, 5, 'kurang 1', '2022-12-22', '2022-12-19 18:23:11', '2022-12-19 18:23:11'),
+(4, 5, 'kurang 2', '2022-12-23', '2022-12-19 18:23:11', '2022-12-19 18:23:11');
+
 -- --------------------------------------------------------
 
 --
@@ -421,6 +549,18 @@ CREATE TABLE `keterangan_kasbon` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `keterangan_kasbon`
+--
+
+INSERT INTO `keterangan_kasbon` (`id`, `id_kasbon`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 16, NULL, '2022-12-19 14:23:12', '2022-12-19 14:23:12'),
+(2, 13, NULL, '2022-12-19 14:23:17', '2022-12-19 14:23:17'),
+(3, 12, NULL, '2022-12-19 14:23:21', '2022-12-19 14:23:21'),
+(4, 17, NULL, '2022-12-19 14:23:50', '2022-12-19 14:23:50'),
+(5, 14, NULL, '2022-12-19 14:23:54', '2022-12-19 14:23:54'),
+(6, 19, NULL, '2022-12-20 02:23:24', '2022-12-20 02:23:24');
 
 -- --------------------------------------------------------
 
@@ -450,6 +590,15 @@ CREATE TABLE `keterangan_pertanggungan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `keterangan_pertanggungan`
+--
+
+INSERT INTO `keterangan_pertanggungan` (`id`, `id_pertanggungan`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 1, '-', '2022-12-20 02:10:29', '2022-12-20 02:14:20'),
+(2, 2, '-', '2022-12-20 02:17:33', '2022-12-20 02:19:03'),
+(3, 3, '-', '2022-12-20 02:33:16', '2022-12-20 02:41:53');
+
 -- --------------------------------------------------------
 
 --
@@ -468,12 +617,12 @@ CREATE TABLE `kode_kasbons` (
 --
 
 INSERT INTO `kode_kasbons` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'D1', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(2, 'D2', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(3, 'D3', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(4, 'D4', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(5, 'D5', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(6, 'D6', '2022-12-15 00:22:12', '2022-12-15 00:22:12');
+(1, 'D1', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(2, 'D2', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(3, 'D3', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(4, 'D4', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(5, 'D5', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(6, 'D6', '2022-12-18 19:18:24', '2022-12-18 19:18:24');
 
 -- --------------------------------------------------------
 
@@ -761,10 +910,10 @@ CREATE TABLE `nama_vendor` (
 --
 
 INSERT INTO `nama_vendor` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'PT MAJU', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(2, 'PT MUNDUR', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(3, 'PT MAJU MUNDUR', '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(4, 'PT MUNDUR MAJU', '2022-12-15 00:22:12', '2022-12-15 00:22:12');
+(1, 'PT MAJU', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(2, 'PT MUNDUR', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(3, 'PT MAJU MUNDUR', '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(4, 'PT MUNDUR MAJU', '2022-12-18 19:18:24', '2022-12-18 19:18:24');
 
 -- --------------------------------------------------------
 
@@ -797,6 +946,14 @@ CREATE TABLE `nonkasbons` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `nonkasbons`
+--
+
+INSERT INTO `nonkasbons` (`id`, `no_nonkasbon`, `id_user`, `tglmasuk`, `jammasuk`, `doksebelumnya`, `id_unit`, `kodekasbon`, `jenis`, `id_kurs`, `namavendor`, `noinvoice`, `iddpp`, `idppn`, `id_pph`, `idpph`, `total`, `k_total`, `tujuanpembayaran`, `proyek`, `created_at`, `updated_at`) VALUES
+(1, 'NK/0/12/22', 64, '2022-12-20', '08:25:27', 'NK/0/11/22', 4, 'D3', 'PL', 42, 'PT MAJU', '-', 20000000, 20000000, 3, 22, 20000000, 20000000, '-', '-', '2022-12-20 01:25:49', '2022-12-20 01:25:49'),
+(2, 'NK/1/12/22', 70, '2022-12-20', '08:43:25', 'NK/0/12/22', 6, 'D2', 'OPR 3', 42, 'PT MAJU MUNDUR', '-', 22223454, 22223454, 3, 22, 22223454, 22223454, '-', '-', '2022-12-20 01:43:46', '2022-12-20 01:43:46');
+
 -- --------------------------------------------------------
 
 --
@@ -828,21 +985,21 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'role', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(2, 'user', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(3, 'unit', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(4, 'jabatan', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(5, 'kasbon', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(6, 'pertanggungan', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(7, 'sppd', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(8, 'nonkasbon', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(9, 'atasan-user-1', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(10, 'atasan-user-2', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(11, 'atasan-user-3', 'web', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(12, 'verifikator', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(13, 'atasan-verifikator-1', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(14, 'atasan-verifikator-2', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(15, 'atasan-verifikator-3', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10');
+(1, 'role', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'user', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'unit', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'jabatan', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(5, 'kasbon', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(6, 'pertanggungan', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(7, 'sppd', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(8, 'nonkasbon', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(9, 'atasan-user-1', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(10, 'atasan-user-2', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(11, 'atasan-user-3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(12, 'verifikator', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(13, 'atasan-verifikator-1', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(14, 'atasan-verifikator-2', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(15, 'atasan-verifikator-3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -900,6 +1057,15 @@ CREATE TABLE `pertanggungans` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pertanggungans`
+--
+
+INSERT INTO `pertanggungans` (`id`, `nokasbon`, `id_user`, `id_kasbon`, `id_kodekasbon`, `nip`, `id_unit`, `jeniskasbon`, `namavendor`, `noinvoice`, `proyek`, `po_vendor`, `po_customer`, `uraianpengguna`, `formatkasbon`, `nominalkasbon`, `tgltempo`, `haritempo`, `novkbkasbon`, `tglbayarkeuser`, `nilaiptj`, `tglptj`, `selisihptj`, `novkbselisihptj`, `nilaiselisihptj`, `selisihptjakhir`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'PPK/8/XII/2022', 19, 18, 3, '991100045', 2, 'KASBON RENCANA', 'PT MUNDUR MAJU', '-', '-', '-', '-', '-', 'PPK/8/XII/2022;KASBON RENCANA AN HARIESYA RANDI ARTANTO;-;-;-', '2523767', NULL, NULL, '-', NULL, 2523767, '2022-12-21', 0, NULL, '0', NULL, NULL, '2022-12-20 02:07:40', '2022-12-20 02:07:40'),
+(2, 'PPK/4/XII/2022', 90, 14, 3, '991200030', 2, 'KASBON RENCANA', 'PT MAJU MUNDUR', '-', '-', '-', '-', '-', 'PPK/4/XII/2022;KASBON RENCANA AN SEPTO TRI MARGONO;-;-;-', '200000000', '2022-12-20', NULL, '-', NULL, 200000000, '2022-12-21', 0, NULL, '200000000', NULL, NULL, '2022-12-20 02:16:03', '2022-12-20 02:16:03'),
+(3, 'PPK/9/XII/2022', 89, 19, 4, '991000005', 2, 'KASBON RENCANA', 'PT MAJU MUNDUR', '-', '-', '-', '-', '-', 'PPK/9/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', '199997867', NULL, NULL, '-', NULL, 199997867, '2022-12-21', 0, NULL, '1999999', NULL, NULL, '2022-12-20 02:28:12', '2022-12-20 02:28:12');
+
 -- --------------------------------------------------------
 
 --
@@ -918,10 +1084,10 @@ CREATE TABLE `pphs` (
 --
 
 INSERT INTO `pphs` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'PPH21', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(2, 'PPH22', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(3, 'PPH23', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(4, 'PPH FINAL', '2022-12-15 00:22:09', '2022-12-15 00:22:09');
+(1, 'PPH21', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'PPH22', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'PPH23', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'PPH FINAL', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -968,15 +1134,15 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'ADMIN', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(2, 'USER', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(3, 'ATASAN USER 1', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(4, 'ATASAN USER 2', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(5, 'ATASAN USER 3', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(6, 'VERIFIKATOR', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(7, 'ATASAN VERIFIKATOR 1', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(8, 'ATASAN VERIFIKATOR 2', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(9, 'ATASAN VERIFIKATOR 3', 'web', '2022-12-15 00:22:10', '2022-12-15 00:22:10');
+(1, 'ADMIN', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'USER', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'ATASAN USER 1', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'ATASAN USER 2', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(5, 'ATASAN USER 3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(6, 'VERIFIKATOR', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(7, 'ATASAN VERIFIKATOR 1', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(8, 'ATASAN VERIFIKATOR 2', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(9, 'ATASAN VERIFIKATOR 3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -1005,7 +1171,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (7, 1),
 (7, 6),
 (8, 1),
-(8, 2),
+(8, 6),
 (9, 1),
 (9, 3),
 (10, 1),
@@ -1092,12 +1258,12 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'DIVISI KEUANGAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(2, 'DIVISI PEMASARAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(3, 'DIVISI PENGADAAN', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(4, 'DIVISI REALISASI PRODUK', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(5, 'DIVISI SDM & UMUM', '2022-12-15 00:22:09', '2022-12-15 00:22:09'),
-(6, 'TSG INFRASTRUCTURE PTE LTD', '2022-12-15 00:22:09', '2022-12-15 00:22:09');
+(1, 'DIVISI KEUANGAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'DIVISI PEMASARAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(3, 'DIVISI PENGADAAN', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(4, 'DIVISI REALISASI PRODUK', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(5, 'DIVISI SDM & UMUM', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(6, 'TSG INFRASTRUCTURE PTE LTD', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
 
 -- --------------------------------------------------------
 
@@ -1124,80 +1290,115 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `nip`, `id_unit`, `id_jabatan`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ARYANI DEVIANA', 'ADMSAR', NULL, '$2y$10$Bw1XC6z4K4Nw5hWJp/lX8OJFDTjCu1PspLwrOnE6KWJrwTTR/inxS', '632100015', 2, 4, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(2, 'EMANUEL PASTIADI', 'KADEPSAR', NULL, '$2y$10$PV0Esq7n0LUSKUZHZOcrI.u4Iv0VgBtjyl7wA.gVeDAWsrkCtR3YK', '999500020', 2, 19, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(3, 'ABDULLAH MAJID AL FATAH', NULL, NULL, '$2y$10$ndUoCaYkNpSCpuRzU8L3fOatr0SPAZz6IC7N2sX9szXJ5xWUoN2oG', '632100010', 2, 32, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(4, 'EMANUEL PASTIADI', 'KADIVSAR', NULL, '$2y$10$9knR1G.Wl6t5IenHJb0vTe.HS4Cy7wYhfoXUk6zvOykxDntfIFtGO', '999500020', 2, 27, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(5, 'WAI WAHDAN', 'DIRUT01', NULL, '$2y$10$Jeh1P4kqY9WUBut7Q5v1NOfiIuNQC8ZrltatYlHsilcn9YDJMpJ3.', '999600019', 2, 15, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(6, 'RACHMA WAHYUNING CITRA', 'ADMKOMUT', NULL, '$2y$10$fnW3lc0CAWgfwDnn2U6aQ.6deBjFOjQUPyHVkm.yT5sRPX7UTF1ty', '632100020', 3, 6, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(7, 'GUNAWAN', 'KADEPKOMUT', NULL, '$2y$10$TCDlcnIiKel.gK5gsL9b0u9k3.6iEJy4WSWnz2A95Qq3uGoIZKyVe', '991700063', 3, 21, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(8, 'ADITRIE VIDYASWARI', 'ADMKOMPEN', NULL, '$2y$10$LcVwfEnuxEClxbcU0UXcsenIKHddmmx9eLrp4uT1zdM6aeF9.fQeG', '991900021', 3, 5, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(9, 'DEDDI WAHYUDI', 'KADEPKOMPEN', NULL, '$2y$10$aI1PTZGFiVTPChchP/ilgeW3EaVuxuP/1efS/SYvLDwpPyJblRpf.', '961800003', 3, 20, NULL, '2022-12-15 00:22:10', '2022-12-15 00:22:10'),
-(10, 'NUR TYAS ANGGRAENI', 'ADMRENDAL', NULL, '$2y$10$FoBtFA7s3vMcG/pjymCPVeSLV62i2Ex7vuOdlPxSnINoe02XQq4pG', '961600001', 3, 8, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(11, 'DODI', 'KADEPRENDAL', NULL, '$2y$10$PTVPkEEi3unvB9UBRFPY3uNcjc5gFy54tH6O/syLt/agNptEO0irK', '991600021', 3, 23, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(12, 'NURUL FADHILAH', 'KADIVPGD', NULL, '$2y$10$ImAz9ci8P/wwA5eTDyqUW.j8TC0m/v4JSZIvBex8fOKjoMrCoIYzS', '999700003', 3, 27, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(13, 'SANKI ARIS SUSANTO', 'DIROP01', NULL, '$2y$10$FwbwIZ0Ok095PtmT.gI61OcU8b2RAvf4nR8eOxi0MY3riHtCIg5Oy', '999600033', 3, 14, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(14, 'NAIMATU SANIATI RODHIYA', 'ADMINEXPED', NULL, '$2y$10$nDOG8aQT5BQlTYiFI101qeXmQyHGF4Oo1CXLwm0A9y5UAbGSfiKYa', '631800027', 4, 2, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(15, 'YULI LESTARI', 'ADMINWH', NULL, '$2y$10$My4jZPhLTOsy2CQUBu2wGORjFUXltHpYKFeMsjt0pY8joPe0cNHfG', '632100012', 4, 9, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(16, 'PAJAR BASUKI', 'KADEPEXWH', NULL, '$2y$10$4szAcbWOa3RISpR/G7yiguDtYd8srdKCddAMZB2hq9RiHlEucNW4e', '999800001', 4, 17, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(17, 'RIZQY DEVTIANA PUTERI', 'ADMINQC', NULL, '$2y$10$1YD9BvJIyOSzflkGR6Pgdu82iCEP6ue6zAVCe/itk0LwOSUa3H5A2', '632000006', 4, 7, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(18, 'MINARKO', 'KADEPQC', NULL, '$2y$10$5GhhmJ/SdNO69NUqPJi1leqfx6Jmze7LPBXVC3nSU/6bztWojFirm', '999200025', 4, 22, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(19, 'HARIESYA RANDI ARTANTO', 'KADIVREPRO', NULL, '$2y$10$y6ZT1eDwrGTURpciz52F9OPqaIMuBxIKXAzlkj90oxK9tHKiy1sUq', '991100045', 2, 29, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(20, 'UUS MUSYAROFAH', 'ADMKEU', NULL, '$2y$10$PRaOiG/UxmPiROXDGdmYIuV0zTFVHCjM/vJ9vusYN2hktr5DpOrny', '962100003', 1, 3, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(21, 'TENDHY ANDAR AGUSMA', 'VERIF01', NULL, '$2y$10$vuG5g3gRmviNzokfoGKjbu3zABXpPOjqIJDE0bMhRmhqaRYGPaHlO', '631800001', 1, 31, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(22, 'ZAHRIA ULFA', 'KADEPKEU', NULL, '$2y$10$VPbZXt.0PDSIq.dEVh2jceb9sFQdCCuWEptRGK/zsrjfwFXbyMh9y', '961800004', 1, 18, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(23, 'MAMIK APRILIANA', 'ADMAKT', NULL, '$2y$10$79YkfnmwOPmSl65KFhe58.DGtq/dBHgdlEQbnitwrn9C.u6puRZLG', '962100001', 1, 1, NULL, '2022-12-15 00:22:11', '2022-12-15 00:22:11'),
-(24, 'NUROCHIM', 'KADEPAKT', NULL, '$2y$10$vUsgqKGNVXWOUqsMRPXvJeyOCdiMEpvdP017ZKSZRuVkMpQqpgVFq', '999800180', 1, 16, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(25, 'NUROCHIM', 'KADIVKEU', NULL, '$2y$10$7fyoeu821TmZg8.kLpIh2uT58labNo4xXpgZ9aZ7QbYrQOuGANzwC', '999800180', 1, 26, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(26, 'BADRIYATUL HIDAYAH', NULL, NULL, NULL, '962100007', 1, 16, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(27, 'MUHAMMAD GUFRON FADLY', 'DIRKEU01', NULL, '$2y$10$OevMT9IpRKtO1greN7wx4.5Y2w05DVk3VCqVAgYHnfG6UvJlOVj/i', '991000013', 1, 13, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(28, 'VRISCO DIKO SYAHPUTRA ANANTA', 'ADMGA', NULL, '$2y$10$dS85M1BR5M6o8e2iNhqli.HWdIM2qPm2nJ/vdS4pI05X3ykuxDm56', '631800015', 5, 11, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(29, 'SRI ENDAH NUGRAHANI', 'KADEPHRGA', NULL, '$2y$10$6cEcKOfuuQOBRviGF8oe0u.IWAxSfzGwPnkxXa1lmsfO2pggsQquW', '999400008', 5, 24, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(30, 'RATNA PERMANASARI', 'ADMTKMR', NULL, '$2y$10$ZCBGEKPosHf19eWcJKIaKu3bGH9yvYfmByVvhPgBhlrifv5c7Muyy', '961600002', 5, 12, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(31, 'GODROEPT OKTABRYA SIAPUL HAMI HUTABARAT', 'KADEPTKMR', NULL, '$2y$10$VZCDLdwJ4pGdFtfGdS6ON..YHX.w8w91fECtNqOKwhARHHeE1Cor6', '999300005', 5, 25, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(32, 'SRI ENDAH NUGRAHANI', 'KADIVHRGA', NULL, '$2y$10$8o1P5hX0L0xc8NQXnIUjpOsMGFKkp52dfnbG1G8WdJevJljVS/jie', '999400008', 5, 30, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(33, 'HARMONI FILANTROPI', NULL, NULL, NULL, '991500002', 3, 8, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(34, 'YUSSI TRISTANTI', NULL, NULL, NULL, '961900003\n                ', 1, 1, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(35, 'ARDI ALVIANTO PRIHANDOYO', NULL, NULL, NULL, '961900002', 2, 19, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(36, 'FITROTUL ULA', NULL, NULL, NULL, '631900014', 1, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(37, 'KHOIRUL HUDA', NULL, NULL, NULL, '632000001', 1, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(38, 'MUHAMMAD TRY REYNALDHIE', NULL, NULL, NULL, '632100011', 1, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(39, 'TENDHY ANDAR AGUSMA', NULL, NULL, NULL, '631800001', 1, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(40, 'ARYANI DEVIANA', NULL, NULL, NULL, '632100015', 2, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(41, 'ALDYLLA DWI NUR WIJAYANTI', NULL, NULL, NULL, '632200001', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(42, 'BINGAR CAHYANING MARHAENAYU', NULL, NULL, NULL, '632100005', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(43, 'CITRA DEVI WAHYU ANGGRAINI', NULL, NULL, NULL, '632100001', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(44, 'MAULIDA NUR KURNIAWATI', NULL, NULL, NULL, '632100017', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(45, 'RAGIL IMAM UTOMO', NULL, NULL, NULL, '631800037', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(46, 'SULUH GUMELAR WINAHYU', NULL, NULL, NULL, '632100016', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(47, 'VRISCO DIKO SYAHPUTRA ANANTA', NULL, NULL, NULL, '631800015', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(48, 'YODA HENRY PRADANA', NULL, NULL, NULL, '632100006', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(49, 'ABDULLOH AFIF', NULL, NULL, NULL, '632000008', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(50, 'AMBARWARIH WIRATMOJO', NULL, NULL, NULL, '632100002', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(51, 'DES WAHYUDIN', NULL, NULL, NULL, '632100009', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(52, 'HASANUDIN', NULL, NULL, NULL, '632100013', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(53, 'I GUSTI BAGUS BAYU SAPUTRO', NULL, NULL, NULL, '631800025', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(54, 'IDA BAGUS MADE SURYA DHARMA', NULL, NULL, NULL, '632100014', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(55, 'MUFID RIZALIANI', NULL, NULL, NULL, '631800033', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(56, 'NAIMATU SANIATI RODHIYA', NULL, NULL, NULL, '631800027', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(57, 'NOVIAWAN ROBY PRATAMA', NULL, NULL, NULL, '632000005', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(58, 'PUNGKI DWI YUDATAMA', NULL, NULL, NULL, '631800032', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(59, 'RAYNALDI PRANATA', NULL, NULL, NULL, '632100003', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(60, 'RIZQY DEVTIANA PUTERI', NULL, NULL, NULL, '632000006', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(61, 'WIJIANTO', NULL, NULL, NULL, '631900001', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(62, 'YULI LESTARI', NULL, NULL, NULL, '632100012', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(63, 'ZENDY AGUS PRASETYA', NULL, NULL, NULL, '632100008', 3, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(64, 'PANJI HASTAWIRATA PUTRATAMA', NULL, NULL, NULL, '632100021', 3, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(65, 'RIZKI ANANDA FIANTANA', NULL, NULL, NULL, '631900014', 3, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(66, 'SEPTIAN WAHYUTAMA', NULL, NULL, NULL, '631900014', 6, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(67, 'CHRISTYAN NOFENDHI', NULL, NULL, NULL, '632200002', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(68, 'SUJARWO', NULL, NULL, NULL, '632200003', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(69, 'FEBRI DWINANDA HERNANTO', NULL, NULL, NULL, '632200004', 2, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(70, 'FITROTUL ULA', NULL, NULL, NULL, '631900014', 1, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(71, 'FITROTUS SHOLIHAH', NULL, NULL, NULL, '662100008', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(72, 'PRISCILLA WAHYU ARMAYANTI', NULL, NULL, NULL, '632200005', 3, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(73, 'GASELLA YAMANDA PUTRI WIBOWO', NULL, NULL, NULL, '632200006', 5, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12'),
-(74, 'AGUS SARWOKO', NULL, NULL, NULL, '981400003', 4, 32, NULL, '2022-12-15 00:22:12', '2022-12-15 00:22:12');
+(1, 'ARYANI DEVIANA', 'ADMSAR', NULL, '$2y$10$bQ.045F1WQqcC5/Y7fJ8IOpmPihBdFIZdtGqtGa1VLzZHFI/iKR2O', '632100015', 2, 4, NULL, '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(2, 'EMANUEL PASTIADI', 'KADEPSAR', NULL, '$2y$10$0FyUSJrzF2FO/xglrfXpXuzfdLONnbqB/Dkb1H9xVSnnPGo3ZnaOm', '999500020', 2, 19, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(3, 'ABDULLAH MAJID AL FATAH', 'SUPERADMIN', NULL, '$2y$10$lYOr1O/7SbLLME3rNZANE.HMJIhXxpnZ5yJRN217cd5oeI12JpNCe', '632100010', 5, 32, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(4, 'EMANUEL PASTIADI', 'KADIVSAR', NULL, '$2y$10$7TZOxqxc7JR/k4OVc0MnKexoSqtCsxDI/fmPkeJyCKj.f7gZxHE52', '999500020', 2, 27, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(5, 'WAI WAHDAN', 'DIRUT01', NULL, '$2y$10$Yfk9uhjGQVgG/GO6xberXO1pEWBGTtxQzgsV2k5atkFVEeFevaRge', '999600019', 2, 15, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(6, 'RACHMA WAHYUNING CITRA', 'ADMKOMUT', NULL, '$2y$10$pbxdBJAbsQ8IRNoWm7HSxOjK4a0I0cNWn8h.YzXBLztGIQAuPAWla', '632100020', 3, 6, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(7, 'GUNAWAN', 'KADEPKOMUT', NULL, '$2y$10$lfPnJcn/EfWze95yb/Ui0.QwvjxoAokgwprus7pFi0Ijz6CJLrOju', '991700063', 3, 21, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(8, 'ADITRIE VIDYASWARI', 'ADMKOMPEN', NULL, '$2y$10$bibOc1q9ic.exIsNzFVRh.6UgxUlUZ5z/UQEkaOBV15/XuE4/G4cu', '991900021', 3, 5, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(9, 'DEDDI WAHYUDI', 'KADEPKOMPEN', NULL, '$2y$10$IlSZHE.JSlNWFvmMCuezrevBCXMa6xmeJxoWUta/G/sF/r8K3MpLq', '961800003', 3, 20, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(10, 'NUR TYAS ANGGRAENI', 'ADMRENDAL', NULL, '$2y$10$wubwxeRhhf5ONvjFvw/91eS4/d66eYuVxTIwgK4vtKltsGMLkRMEW', '961600001', 3, 8, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(11, 'DODI', 'KADEPRENDAL', NULL, '$2y$10$fprTGdbt2vDi80HjeSL5yO.XLs6WF3.BrYjt69cRqli1cuN32C2Q.', '991600021', 3, 23, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(12, 'NURUL FADHILAH', 'KADIVPGD', NULL, '$2y$10$F0AgR1OXR4rUAxIdobDdoujfw3kyDFRvgp/oXhnI8tgm.dcSOhRl6', '999700003', 3, 28, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(13, 'SANKI ARIS SUSANTO', 'DIROP01', NULL, '$2y$10$FqahHfCBSF.yWhLxlWa/DuaTDtRV1lbPEQF0IK7oq6ic48JXOoER.', '999600033', 3, 14, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(14, 'NAIMATU SANIATI RODHIYA', 'ADMINEXPED', NULL, '$2y$10$Xi1JrJS6shjGi77GJAbXpecrSfYE7IZckknImeZGArhKJMvp9ePH6', '631800027', 4, 2, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(15, 'YULI LESTARI', 'ADMINWH', NULL, '$2y$10$azfEuXg.I3RO5D4OPqmxzO31HVrmz0hQruLzt4ZkCBv31EzEgnpE2', '632100012', 4, 9, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(16, 'PAJAR BASUKI', 'KADEPEXWH', NULL, '$2y$10$U.TANbx7.74wAwWIWJqY/O9LCByQowdNwcEj5ytQQBb3TqmI43cDy', '999800001', 4, 17, NULL, '2022-12-18 19:18:22', '2022-12-18 19:18:22'),
+(17, 'RIZQY DEVTIANA PUTERI', 'ADMINQC', NULL, '$2y$10$CapHRjiOD.YguCYqWHDRFOH0vN9GR0u84UNYzqmMBjMoVLC2az3.S', '632000006', 4, 7, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(18, 'MINARKO', 'KADEPQC', NULL, '$2y$10$kg8lOjUqz.lPgkcnFE5wuuZq5F8pVFooqk0DQy9jmxE2QkeGOKPoa', '999200025', 4, 22, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(19, 'HARIESYA RANDI ARTANTO', 'KADIVREPRO', NULL, '$2y$10$qhTi8vubHoXYO8iijNCLnelN2jwYEtrwroRIxdr4JtZ/P5X2x0Dxm', '991100045', 2, 29, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(20, 'UUS MUSYAROFAH', 'ADMKEU', NULL, '$2y$10$9f0g3izJce0rHZwGgANHPe/6T2nz8ZpbhpI319n4y3dPu5HQOgdoG', '962100003', 1, 3, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(21, 'TENDHY ANDAR AGUSMA', 'VERIF01', NULL, '$2y$10$8hXLihZUachcpbBaNpdMSu4ocbg1o2X9PMo0R5cXGRTZhDLf12T66', '631800001', 1, 31, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(22, 'ZAHRIA ULFA', 'KADEPKEU', NULL, '$2y$10$qkM2t7sle0M3vUz1BfOqr.AYrXHTlQiWQxOEhq6UfbFhtDOWug9My', '961800004', 1, 18, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(23, 'MAMIK APRILIANA', 'ADMAKT', NULL, '$2y$10$CO99H9/nCH6eReyPfyJuy.vU9ji0bWPmCl/DsvUX1Nb3EGcGa542G', '962100001', 1, 1, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(24, 'NUROCHIM', 'KADEPAKT', NULL, '$2y$10$lN2GGPmy54wpBMNRihL4SObcbb2VbbeLPzgCsKwZYJZF7pzBLrlyO', '999800180', 1, 16, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(25, 'NUROCHIM', 'KADIVKEU', NULL, '$2y$10$.Am4gecLwU6AvoJw3HkV7elNwuzjBV0eXiljBDdVlCxtbJpEuPxu6', '999800180', 1, 26, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(26, 'BADRIYATUL HIDAYAH', NULL, NULL, NULL, '962100007', 1, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(27, 'MUHAMMAD GUFRON FADLY', 'DIRKEU01', NULL, '$2y$10$M8sRasDYsguZp.Bj5DG5vOaPb4Dkke4W0d0BERUhokdKsyLSKBoCS', '991000013', 1, 13, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(28, 'VRISCO DIKO SYAHPUTRA ANANTA', 'ADMGA', NULL, '$2y$10$WeXFZer.u1rHohOTJPdJ9ennMtAgrYCodr1a86lhHEDRmp3.uI3DK', '631800015', 5, 11, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(29, 'SRI ENDAH NUGRAHANI', 'KADEPHRGA', NULL, '$2y$10$wTwslGcB4DpuphVSV.9xFOl0HW0AhbQs0nCba5bPeRUC8rKlFJtra', '999400008', 5, 24, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(30, 'RATNA PERMANASARI', 'ADMTKMR', NULL, '$2y$10$MBJk3XadwuBYCEU.DZc4NefgH0AqcKyNj3MnHti.Uu9KZUrWyuEjK', '961600002', 5, 12, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(31, 'GODROEPT OKTABRYA SIAPUL HAMI HUTABARAT', 'KADEPTKMR', NULL, '$2y$10$1eWGlJjWl/cZUBQRDBJ7rOZyeeX4aVheSJrTLJQBDO1X2PgM.6FDW', '999300005', 5, 25, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(32, 'SRI ENDAH NUGRAHANI', 'KADIVHRGA', NULL, '$2y$10$0JTKCYg41t1yrrW8glYJ.umx5XeZDAkhU7BvcjOEAttTUWLYfai8G', '999400008', 5, 30, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(33, 'HARMONI FILANTROPI', NULL, NULL, NULL, '991500002', 3, 8, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(34, 'YUSSI TRISTANTI', NULL, NULL, NULL, '961900003', 1, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(35, 'ARDI ALVIANTO PRIHANDOYO', NULL, NULL, NULL, '961900002', 5, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(36, 'WILDAN MUBARAK AL FARUQI', NULL, NULL, NULL, '961900001', 5, 35, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(37, 'MOH. FAT\'AK DIYA\'UL HAQ', NULL, NULL, NULL, '962100006', 4, 35, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(38, 'JOKO SETYO UTOMO', NULL, NULL, NULL, '999200035', 5, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(39, 'PONANG CATUR SUDIANA', NULL, NULL, NULL, '999500005', 5, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(40, 'SIRAN', NULL, NULL, NULL, '999800048', 4, 35, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(41, 'SUKARYONO', NULL, NULL, NULL, '999800011', 4, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(42, 'ANI PURWITANINGSIH', NULL, NULL, NULL, '999600029', 3, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(43, 'WAWAN KRISTANTO', NULL, NULL, NULL, '999600025', 3, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(44, 'SATRIYO YUDI BASKORO', NULL, NULL, NULL, '999600025', 3, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(45, 'KURNIAWAN JAUHARI', NULL, NULL, NULL, '961700003', 4, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(46, 'KURNIAWAN JAUHARI', NULL, NULL, NULL, '961700003', 4, 33, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(47, 'KHOIRUL HUDA', NULL, NULL, NULL, '632000001', 1, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(48, 'MUHAMMAD TRY REYNALDHIE', NULL, NULL, NULL, '632100011', 1, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(49, 'ALDYLLA DWI NUR WIJAYANTI', NULL, NULL, NULL, '632200001', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(50, 'BINGAR CAHYANING MARHAENAYU', NULL, NULL, NULL, '632100005', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(51, 'CITRA DEVI WAHYU ANGGRAINI', NULL, NULL, NULL, '632100001', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(52, 'MAULIDA NUR KURNIAWATI', NULL, NULL, NULL, '632100017', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(53, 'RAGIL IMAM UTOMO', NULL, NULL, NULL, '631800037', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(54, 'SULUH GUMELAR WINAHYU', NULL, NULL, NULL, '632100016', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(55, 'YODA HENRY PRADANA', NULL, NULL, NULL, '632100006', 5, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(56, 'ABDULLOH AFIF', NULL, NULL, NULL, '632000008', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(57, 'AMBARWARIH WIRATMOJO', NULL, NULL, NULL, '632100002', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(58, 'DES WAHYUDIN', NULL, NULL, NULL, '632100009', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(59, 'HASANUDIN', NULL, NULL, NULL, '632100013', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(60, 'I GUSTI BAGUS BAYU SAPUTRO', NULL, NULL, NULL, '631800025', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(61, 'IDA BAGUS MADE SURYA DHARMA', NULL, NULL, NULL, '632100014', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(62, 'MUFID RIZALIANI', NULL, NULL, NULL, '631800033', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(63, 'NOVIAWAN ROBY PRATAMA', NULL, NULL, NULL, '632000005', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(64, 'PUNGKI DWI YUDATAMA', NULL, NULL, NULL, '631800032', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(65, 'RAYNALDI PRANATA', NULL, NULL, NULL, '632100003', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(66, 'WIJIANTO', NULL, NULL, NULL, '631900001', 4, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(67, 'ZENDY AGUS PRASETYA', NULL, NULL, NULL, '632100008', 3, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(68, 'PANJI HASTAWIRATA PUTRATAMA', NULL, NULL, NULL, '632100021', 3, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(69, 'RIZKI ANANDA FIANTANA', NULL, NULL, NULL, '632100018', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(70, 'SEPTIAN WAHYUTAMA', NULL, NULL, NULL, '631900021', 6, 33, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(71, 'CHRISTYAN NOFENDHI', NULL, NULL, NULL, '632200002', 5, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(72, 'SUJARWO', NULL, NULL, NULL, '632200003', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(73, 'FEBRI DWINANDA HERNANTO', NULL, NULL, NULL, '632200004', 2, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(74, 'FITROTUL ULA', NULL, NULL, NULL, '631900014', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(75, 'FITROTUS SHOLIHAH', NULL, NULL, NULL, '662100008', 5, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(76, 'PRISCILLA WAHYU ARMAYANTI', NULL, NULL, NULL, '632200005', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(77, 'GASELLA YAMANDA PUTRI WIBOWO', NULL, NULL, NULL, '632200006', 5, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(78, 'AGUS SARWOKO', NULL, NULL, NULL, '981400003', 4, 33, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(79, 'MUHAMMAD RIDHO GUSTIANDRY', NULL, NULL, NULL, '961900005', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(80, 'ROSSITA RETNAWATI', NULL, NULL, NULL, '961900004', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(81, 'SHARAH PUTRI NOER ASMARAWATI', NULL, NULL, NULL, '961800007', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(82, 'ANDRI RINALDO SILALAHI', NULL, NULL, NULL, '961800001', 2, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(83, 'BUDI DWI WAHANA', NULL, NULL, NULL, '961600004', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(84, 'DIDIK MISGIYANTO', NULL, NULL, NULL, '961800006', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(85, 'KETUT ROKHYE LUMINTANG', NULL, NULL, NULL, '961700002', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(86, 'DILIONO DIDIK SETYANTO', NULL, NULL, NULL, '961800002', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(87, 'LASNO', NULL, NULL, NULL, '999900085', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(88, 'MURYADI', NULL, NULL, NULL, '999900044', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(89, 'DAVID YUDHA ARISKA', NULL, NULL, NULL, '991000005', 2, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(90, 'SEPTO TRI MARGONO', NULL, NULL, NULL, '991200030', 2, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(91, 'MOCH. ABIB', NULL, NULL, NULL, '999800027', 5, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(92, 'ANANG SLAMET RIYADI', NULL, NULL, NULL, '999900079', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(93, 'DIDIK SISWANTO', NULL, NULL, NULL, '991700013', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(94, 'DJAKA POERNOMO', NULL, NULL, NULL, '999600023', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(95, 'KUSNO', NULL, NULL, NULL, '999900103', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(96, 'MISRAN', NULL, NULL, NULL, '999900099', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(97, 'NURANI FAJAR PRIA HARDI', NULL, NULL, NULL, '991200025', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(98, 'SRI WIBOWO', NULL, NULL, NULL, '999900066', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(99, 'SUHARIOTO', NULL, NULL, NULL, '999900059', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(100, 'SUKARNO', NULL, NULL, NULL, '990100003', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(101, 'TOTOK SUJIANTO', NULL, NULL, NULL, '999800151', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(102, 'YATIRAN', NULL, NULL, NULL, '999900004', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(103, 'AISYA B. DIJI', NULL, NULL, NULL, '991400017', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(104, 'BAMBANG SUMARSONO', NULL, NULL, NULL, '999600039', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(105, 'BASUNI', NULL, NULL, NULL, '999900064', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(106, 'DANIA YUSNI AFRIDA', NULL, NULL, NULL, '991200011', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(107, 'KRISTYANTO', NULL, NULL, NULL, '990100002', 3, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(108, 'SARPO', NULL, NULL, NULL, '999400080', 4, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24'),
+(109, 'ESHA ABRIYANTO TUTUKO', NULL, NULL, NULL, '631800011', 1, 32, NULL, '2022-12-18 19:18:24', '2022-12-18 19:18:24');
 
 -- --------------------------------------------------------
 
@@ -1239,7 +1440,15 @@ CREATE TABLE `verifikasi_kasbons` (
 --
 
 INSERT INTO `verifikasi_kasbons` (`id`, `id_kasbon`, `status`, `vkb_a_1`, `id_vkb_a_1`, `tgl_vkb_a_1`, `vkb_a_12`, `id_vkb_a_12`, `tgl_vkb_a_12`, `vkb_a_13`, `id_vkb_a_13`, `tgl_vkb_a_13`, `vkb`, `id_vkb`, `tgl_vkb`, `vkb_a_2`, `id_vkb_a_2`, `tgl_vkb_a_2`, `vkb_a_3`, `id_vkb_a_3`, `tgl_vkb_a_3`, `vkb_a_4`, `id_vkb_a_4`, `tgl_vkb_a_4`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, 11, 'Ditolak', 'Ditolak', 2, '2022-12-19 21:22:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:09:03', '2022-12-19 14:22:57'),
+(3, 12, 'Terverifikasi', NULL, NULL, NULL, 'Terverifikasi', 4, '2022-12-19 21:37:31', NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-19 22:04:12', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:25:26', '2022-12-19 15:04:12'),
+(4, 13, 'Ditolak', NULL, NULL, NULL, 'Ditolak', 4, '2022-12-19 21:23:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:11:55', '2022-12-19 14:23:17'),
+(5, 14, 'Terverifikasi', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 5, '2022-12-19 21:37:39', 'Terverifikasi', 21, '2022-12-19 21:47:36', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:24:02', '2022-12-19 14:47:36'),
+(6, 15, 'Terverifikasi', 'Terverifikasi', 3, '2022-12-20 08:23:00', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-20 08:23:20', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-20 01:22:51', '2022-12-20 01:23:20'),
+(7, 16, 'Dalam Proses', NULL, NULL, NULL, 'Terverifikasi', 4, '2022-12-19 21:23:12', NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-20 08:20:17', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:18:58', '2022-12-20 01:20:17'),
+(8, 17, 'Terverifikasi', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 5, '2022-12-19 21:37:35', 'Terverifikasi', 21, '2022-12-20 08:20:13', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:33:09', '2022-12-20 01:20:13'),
+(9, 18, 'Terverifikasi', 'Terverifikasi', 2, '2022-12-19 21:37:25', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-19 22:04:16', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:37:06', '2022-12-19 15:04:16'),
+(10, 19, 'Terverifikasi', 'Terverifikasi', NULL, NULL, 'Terverifikasi', NULL, NULL, 'Terverifikasi', 5, '2022-12-20 09:23:24', 'Terverifikasi', 21, '2022-12-20 09:23:38', 'Terverifikasi', 24, '2022-12-20 09:24:19', 'Terverifikasi', 25, '2022-12-20 09:25:43', 'Terverifikasi', 27, '2022-12-20 09:26:58', '2022-12-20 02:22:46', '2022-12-20 02:26:58');
 
 -- --------------------------------------------------------
 
@@ -1276,6 +1485,14 @@ CREATE TABLE `verifikasi_non_kasbons` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `verifikasi_non_kasbons`
+--
+
+INSERT INTO `verifikasi_non_kasbons` (`id`, `id_nonkasbon`, `status`, `vnk_a_1`, `id_vnk_a_1`, `tgl_vnk_a_1`, `vnk_a_12`, `id_vnk_a_12`, `tgl_vnk_a_12`, `vnk_a_13`, `id_vnk_a_13`, `tgl_vnk_a_13`, `vnk`, `id_vnk`, `tgl_vnk`, `vnk_a_2`, `id_vnk_a_2`, `tgl_vnk_a_2`, `vnk_a_3`, `id_vnk_a_3`, `tgl_vnk_a_3`, `vnk_a_4`, `id_vnk_a_4`, `tgl_vnk_a_4`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Dalam Proses', NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 2, 'Dalam Proses', NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1310,6 +1527,15 @@ CREATE TABLE `verifikasi_pertanggungans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `verifikasi_pertanggungans`
+--
+
+INSERT INTO `verifikasi_pertanggungans` (`id`, `id_pertanggungan`, `status`, `vkp_a_1`, `id_vkp_a_1`, `tgl_vkp_a_1`, `vkp_a_12`, `id_vkp_a_12`, `tgl_vkp_a_12`, `vkp_a_13`, `id_vkp_a_13`, `tgl_vkp_a_13`, `vkp`, `id_vkp`, `tgl_vkp`, `vkp_a_2`, `id_vkp_a_2`, `tgl_vkp_a_2`, `vkp_a_3`, `id_vkp_a_3`, `tgl_vkp_a_3`, `vkp_a_4`, `id_vkp_a_4`, `tgl_vkp_a_4`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Terverifikasi', 'Terverifikasi', 2, '2022-12-20 09:10:29', 'Terverifikasi', NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-20 09:13:08', 'Terverifikasi', 24, '2022-12-20 09:14:20', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-20 02:07:40', '2022-12-20 02:14:20'),
+(2, 2, 'Terverifikasi', 'Terverifikasi', NULL, NULL, 'Terverifikasi', NULL, NULL, 'Terverifikasi', 5, '2022-12-20 09:17:33', 'Terverifikasi', 21, '2022-12-20 09:17:40', 'Terverifikasi', 24, '2022-12-20 09:17:54', 'Terverifikasi', 25, '2022-12-20 09:18:28', 'Terverifikasi', 27, '2022-12-20 09:19:03', '2022-12-20 02:16:03', '2022-12-20 02:19:03'),
+(3, 3, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 5, '2022-12-20 09:41:53', 'Dalam Proses', 21, '2022-12-20 09:38:04', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-20 02:28:12', '2022-12-20 02:41:53');
 
 --
 -- Indexes for dumped tables
@@ -1655,43 +1881,43 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `dokumen_nk`
 --
 ALTER TABLE `dokumen_nk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dokumen_nkd`
 --
 ALTER TABLE `dokumen_nkd`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `d_customers`
 --
 ALTER TABLE `d_customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `d_dinas`
 --
 ALTER TABLE `d_dinas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `d_impors`
 --
 ALTER TABLE `d_impors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `d_pajaks`
 --
 ALTER TABLE `d_pajaks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `d_vendors`
 --
 ALTER TABLE `d_vendors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1703,7 +1929,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `jenis`
@@ -1715,31 +1941,31 @@ ALTER TABLE `jenis`
 -- AUTO_INCREMENT for table `kasbons`
 --
 ALTER TABLE `kasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `kelengkapans`
 --
 ALTER TABLE `kelengkapans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `keterangans`
 --
 ALTER TABLE `keterangans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `keterangan_details`
 --
 ALTER TABLE `keterangan_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `keterangan_kasbon`
 --
 ALTER TABLE `keterangan_kasbon`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `keterangan_non_kasbons`
@@ -1751,7 +1977,7 @@ ALTER TABLE `keterangan_non_kasbons`
 -- AUTO_INCREMENT for table `keterangan_pertanggungan`
 --
 ALTER TABLE `keterangan_pertanggungan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kode_kasbons`
@@ -1787,7 +2013,7 @@ ALTER TABLE `nama_vendor`
 -- AUTO_INCREMENT for table `nonkasbons`
 --
 ALTER TABLE `nonkasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1805,7 +2031,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `pertanggungans`
 --
 ALTER TABLE `pertanggungans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pphs`
@@ -1853,25 +2079,25 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `verifikasi_kasbons`
 --
 ALTER TABLE `verifikasi_kasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `verifikasi_non_kasbons`
 --
 ALTER TABLE `verifikasi_non_kasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `verifikasi_pertanggungans`
 --
 ALTER TABLE `verifikasi_pertanggungans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

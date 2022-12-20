@@ -34,6 +34,7 @@ class CreateKasbonsTable extends Migration
             $table->unsignedBigInteger('id_pph')->nullable();
             $table->bigInteger('idpph')->nullable();
             $table->bigInteger('total')->nullable();
+            $table->bigInteger('konversi')->nullable();
             $table->bigInteger('k_iddpp')->nullable();
             $table->bigInteger('k_total')->nullable();
             $table->string('namavendor')->nullable();

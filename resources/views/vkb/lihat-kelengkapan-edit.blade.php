@@ -16,7 +16,6 @@
 <link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/plugins/timepicker/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
 @endsection
-
     @section('content')
         @component('components.breadcrumb')
             @slot('li_1') IMST @endslot

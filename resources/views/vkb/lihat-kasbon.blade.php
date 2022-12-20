@@ -92,7 +92,7 @@
                                         <td>
                                             :
                                         </td>
-                                        <td><input class="form-control" name="tgltempo" type="date" style="width: 50%" value="{{$kasbon->tgltempo->format('Y-m-d')}}" required></td>                                                         
+                                        <td><input class="form-control" name="tgltempo" type="date" style="width: 50%" value="{{ $kasbon->tgltempo ? $kasbon->tgltempo->format('Y-m-d')  : '-' }}" required></td>                                                         
                                     </tr>
                                     <tr>
                                         <td>
@@ -171,7 +171,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="input-group">
                                                         <span class="input-group-text">Rp. </span>
-                                                    <input class="form-control dollark" name="konversi" id="k_konversi" placeholder="konversi" onkeyup="add_number1()"/>
+                                                    <input class="form-control dollark" name="konversi" id="k_konversi" placeholder="konversi" onkeyup="add_number1()" value="{{($kasbon->konversi)}}"/>
                                                     </div>
                                                 </div>
                                             @endif
@@ -304,7 +304,7 @@
                                                 <br>
                                                 <div class="input-group">
                                                     <span class="input-group-text">Rp. </span>
-                                                <input class="form-control" id="ktotal" name="k_total" disabled/>
+                                                <input class="form-control" id="ktotal" name="k_total"  value="{{(number_format($kasbon->k_total))}}" disabled/>
                                                 </div>
                                             @endif
                                         </td> 

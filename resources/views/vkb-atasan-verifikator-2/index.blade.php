@@ -35,9 +35,9 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                    {{-- <a href="#" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >
@@ -96,15 +96,15 @@
                                     <td>
                                         @if(isset($kasbon->verifikasikasbon->vkb_a_3))
                                         @if($kasbon->verifikasikasbon->vkb_a_3 == "Dalam Proses")
-                                            @include('vkb-atasan-verifikator-3.modal-cek')
-                                            <a href="{{ route('vkb-atasan-verifikator-3.show_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
-                                            <a href="{{ route('vkb-atasan-verifikator-3.kelengkapan_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
-                                            <a href="{{ route('vkb-atasan-verifikator-3.dokumen',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lampiran"><i class="mdi mdi-file-pdf" style="font-size: 150%; "></i></a>
+                                            @include('vkb-atasan-verifikator-2.modal-cek')
+                                            <a href="{{ route('vkb-atasan-verifikator-2.show_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
+                                            <a href="{{ route('vkb-atasan-verifikator-2.kelengkapan_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
+                                            <a href="{{ route('vkb-atasan-verifikator-2.dokumen',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lampiran"><i class="mdi mdi-file-pdf" style="font-size: 150%; "></i></a>
                                             <a type="button" data-bs-toggle="modal" data-bs-target="#modalcek_{{$kasbon->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Verifikasi"><i class="mdi mdi-checkbox-marked-outline" style="font-size: 150%; "></i></a>
                                             @else
-                                            <a href="{{ route('vkb-atasan-verifikator-3.show_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
-                                            <a href="{{ route('vkb-atasan-verifikator-3.kelengkapan_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
-                                            <a href="{{ route('vkb-atasan-verifikator-3.dokumen',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lampiran"><i class="mdi mdi-file-pdf" style="font-size: 150%; "></i></a>
+                                            <a href="{{ route('vkb-atasan-verifikator-2.show_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Kasbon"><i class="mdi mdi-information-outline" style="font-size: 150%;"></i></a>
+                                            <a href="{{ route('vkb-atasan-verifikator-2.kelengkapan_v',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="List Kelengkapan"><i class="mdi mdi-file-document" style="font-size: 150%; "></i></a>
+                                            <a href="{{ route('vkb-atasan-verifikator-2.dokumen',$kasbon->id) }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Lampiran"><i class="mdi mdi-file-pdf" style="font-size: 150%; "></i></a>
                                             @endif
                                     @endif
                                     </td>

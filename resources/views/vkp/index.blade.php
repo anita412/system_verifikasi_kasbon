@@ -78,7 +78,7 @@
                                     @foreach ($pertanggungan as $pertanggungan)
                                     @if(isset($pertanggungan->verifikasipertanggungan->vkp))
                                 <tr>
-                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at->format('MM-dd-YYYY')}}</td>
+                                    <td hidden>{{$pertanggungan->verifikasipertanggungan->updated_at}}</td>
                                     <td>{{ $pertanggungan->tglptj ? $pertanggungan->tglptj->format('d/m/Y')  : '-' }}</td>
                                     <td>{{$pertanggungan->kasbon->nokasbon}}</td>
                                     <td>{{$pertanggungan->kasbon->user->name}}</td>

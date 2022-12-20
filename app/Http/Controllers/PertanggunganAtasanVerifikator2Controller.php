@@ -67,13 +67,15 @@ class PertanggunganAtasanVerifikator2Controller extends Controller
 
             if ($pertanggungan->kasbon->k_total > 2000000 && $pertanggungan->kasbon->k_total <= 100000000) {
                 if ($pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status') == 'Terverifikasi') {
-                    $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
+                    // $pertanggungan->verifikasipertanggungan->vkp_a_1 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_12 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_2 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
                 } elseif ($pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status') == 'Ditolak') {
+                    $pertanggungan->verifikasipertanggungan->vkp_a_12 = $request->Input('status');
+                    $pertanggungan->verifikasipertanggungan->vkp_a_13 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
                 } else {
@@ -85,6 +87,7 @@ class PertanggunganAtasanVerifikator2Controller extends Controller
                     $pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_4 = 'Dalam Proses';
                 } elseif ($pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status') == 'Ditolak') {
+                    $pertanggungan->verifikasipertanggungan->vkp_a_13 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->vkp_a_3 = $request->Input('status');
                     $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
                 } else {

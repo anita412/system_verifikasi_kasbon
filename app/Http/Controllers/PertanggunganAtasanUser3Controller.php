@@ -110,14 +110,15 @@ class PertanggunganAtasanUser3Controller extends Controller
                 $pertanggungan->verifikasipertanggungan->vkp_a_13 = $request->Input('status');
                 $pertanggungan->verifikasipertanggungan->status = $request->Input('status');
             }
-            $pertanggungan->verifikasipertanggungan->updated_at = $now;
+            // $pertanggungan->verifikasipertanggungan->updated_at = $now;
             $pertanggungan->verifikasipertanggungan->id_vkp_a_13 = Auth::user()->id;
             $pertanggungan->verifikasipertanggungan->save();
 
             $pertanggungan->verifikasipertanggungan->update([
                 'vkp_a_13' => $request->Input('status'),
                 'id_vkp_a_13' => Auth::user()->id,
-                'tgl_vkp_a_13' => $now
+                'tgl_vkp_a_13' => $now,
+                'updated_at' => $now
             ]);
 
             if (isset($pertanggungan->keterangan_pertanggungan->id)) {

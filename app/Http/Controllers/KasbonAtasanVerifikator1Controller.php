@@ -129,13 +129,13 @@ class KasbonAtasanVerifikator1Controller extends Controller
             $now = Carbon::now('Asia/Jakarta');
             $kasbon = Kasbon::find($id);
             $k_total = $kasbon->k_total;
-            if ($kasbon->k_total > 0 && $kasbon->k_total <= 20000000) {
+            if ($kasbon->k_total > 0 && $kasbon->k_total <= 10000000) {
                 if ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Terverifikasi') {
                     $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
+                    $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
                     $kasbon->verifikasikasbon->status = $request->Input('status');
                 } elseif ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Ditolak') {
                     $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
-                    $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
                     $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
                     $kasbon->verifikasikasbon->vkb = $request->Input('status');
                     $kasbon->verifikasikasbon->status = $request->Input('status');
@@ -150,6 +150,7 @@ class KasbonAtasanVerifikator1Controller extends Controller
                 } elseif ($kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status') == 'Ditolak') {
                     $kasbon->verifikasikasbon->vkb_a_2 = $request->Input('status');
                     $kasbon->verifikasikasbon->vkb_a_12 = $request->Input('status');
+                    $kasbon->verifikasikasbon->vkb_a_13 = $request->Input('status');
                     $kasbon->verifikasikasbon->vkb_a_1 = $request->Input('status');
                     $kasbon->verifikasikasbon->vkb = $request->Input('status');
                     $kasbon->verifikasikasbon->status = $request->Input('status');
