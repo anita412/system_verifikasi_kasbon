@@ -49,10 +49,10 @@ class SPPDController extends Controller
             $urut = (int)substr($ambil->no_sppd, 14) + 1;
             $nomer = 'SPPDIMST' .  '/' . $bln  . $thn . '/' . $urut;
             $uru_t = (int)substr($ambil->no_sppd, -1) + 1;
-            $n0mer = 'D' . $uru_t;
+         
             $terakhir = $terakhir->no_sppd;
         }
-        return view('sppd.create', compact('title', 'rate', 'nomer', 'terakhir', 'kurs', 'tglmasuk', 'dueDate', 'jamnow', 'n0mer', 'sppd'));
+        return view('sppd.create', compact('title', 'rate', 'nomer', 'terakhir', 'kurs', 'tglmasuk', 'dueDate', 'jamnow', 'sppd'));
     }
 
     public function store(Request $request)
@@ -144,5 +144,22 @@ class SPPDController extends Controller
     {
         SPPD::find($id)->delete();
         return redirect()->route('sppd.index')->with('success', 'SPPD deleted successfully');
+    }
+
+    public function sppdexport(Request $request)
+    {
+
+        $tglawal = $request->reg_start_date;
+        $tglakhir = $request->reg_end_date;
+
+        // if ($tglawal and $tglakhir) {
+        //     $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
+        // } else {
+        //     $kasbon = Kasbon::all();
+        // }
+
+        return Excel::download(new sppdExport($tglawal, $tglakhir), 'sppd.xlsx');
+        
+        // return view('kasbon.cetak', compact('kasbon'));
     }
 }

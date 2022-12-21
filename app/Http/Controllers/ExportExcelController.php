@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\KasbonExport;
-use App\Exports\NonKasbonExport;
-use App\Exports\PertanggunganExport;
 use App\Exports\SppdExport;
+use App\Exports\mkbExport;
+use App\Exports\mkpExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class ExportExcelController extends Controller
 {
-    public function kasbonexport(Request $request)
+    public function mkbexport(Request $request)
     {
 
         $tglawal = $request->reg_start_date;
@@ -23,11 +22,10 @@ class ExportExcelController extends Controller
         //     $kasbon = Kasbon::all();
         // }
 
-        return Excel::download(new KasbonExport($tglawal, $tglakhir), 'kasbon.xlsx');
+        return Excel::download(new mkbExport($tglawal, $tglakhir), 'mkb.xlsx');
         // return view('kasbon.cetak', compact('kasbon'));
     }
-
-    public function nonkasbonexport(Request $request)
+    public function mkpexport(Request $request)
     {
 
         $tglawal = $request->reg_start_date;
@@ -39,23 +37,8 @@ class ExportExcelController extends Controller
         //     $kasbon = Kasbon::all();
         // }
 
-        return Excel::download(new NonKasbonExport($tglawal, $tglakhir), 'nonkasbon.xlsx');
-        // return view('kasbon.cetak', compact('kasbon'));
-    }
-
-    public function pertanggunganexport(Request $request)
-    {
-
-        $tglawal = $request->reg_start_date;
-        $tglakhir = $request->reg_end_date;
-
-        // if ($tglawal and $tglakhir) {
-        //     $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
-        // } else {
-        //     $kasbon = Kasbon::all();
-        // }
-
-        return Excel::download(new PertanggunganExport($tglawal, $tglakhir), 'pertanggungan.xlsx');
+        return Excel::download(new mkpExport($tglawal, $tglakhir), 'mkp.xlsx');
+        
         // return view('kasbon.cetak', compact('kasbon'));
     }
 

@@ -180,34 +180,7 @@
         </div>
     </div> <!-- end col -->
 
-    <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Pilih Tanggal</h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div><!--end modal-header-->
-                <form method="GET" action="{{route('kasbonexport')}}" >
-                    {{ csrf_field() }}
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            From: <input type="text" name="reg_start_date" class="datepicker first" />
-                          </div>
-                          <div class="col-md-6">
-                            To: <input type="text" name="reg_end_date" class="datepicker second" />
-                          </div>
-                    </div><!--end row-->                                       
-                </div><!--end modal-body-->
-          
-                <div class="modal-footer">                                                    
-                    <button type="submit" class="btn btn-soft-primary btn-sm">Download</button>
-                    <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                </div><!--end modal-footer-->
-            </form>
-            </div><!--end modal-content-->
-        </div><!--end modal-dialog-->
-    </div><!--end modal-->
+    
        
     
 

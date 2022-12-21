@@ -41,9 +41,9 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    {{-- <a data-bs-toggle="modal" data-bs-target="#exampleModalDefault" class="btn btn-sm btn-outline-primary">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalDefault" class="btn btn-sm btn-outline-primary">
                                         <i data-feather="download" class="align-self-center icon-xs"></i>
-                                    </a> --}}
+                                    </a>
                                 </div>
                                 <div class="col-sm-2">
                                     <select class="select2 form-control status-dropdown" >

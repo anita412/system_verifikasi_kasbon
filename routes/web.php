@@ -72,7 +72,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('nonkasbon', NonkasbonController::class);
     Route::resource('mkb', MonitoringKasbonController::class);
     Route::resource('mkp', MonitoringPertanggunganController::class);
-    Route::resource('mnk', MonitoringNonKasbonController::class);
     Route::resource('vnk', NonkasbonVerifikatorController::class);
     Route::resource('vnk-atasan-user-1', NonKasbonAtasanUser1Controller::class);
     Route::resource('vnk-atasan-user-2', NonKasbonAtasanUser2Controller::class);
@@ -119,10 +118,9 @@ Route::controller(KasbonVerifikatorController::class)->group(function () {
 });
 
 Route::controller(ExportExcelController::class)->group(function () {
-    Route::get('kasbonexport', [ExportExcelController::class, 'kasbonexport'])->name('kasbonexport');
-    Route::get('nonkasbonexport', [ExportExcelController::class, 'nonkasbonexport'])->name('nonkasbonexport');
+    Route::get('mkbexport', [ExportExcelController::class, 'mkbexport'])->name('mkbexport');
+    Route::get('mkpexport', [ExportExcelController::class, 'mkpexport'])->name('mkpexport');
     Route::get('sppdexport', [ExportExcelController::class, 'sppdexport'])->name('sppdexport');
-    Route::get('pertanggunganexport', [ExportExcelController::class, 'pertanggunganexport'])->name('pertanggunganexport');
 });
 
 Route::controller(KasbonAtasanUser1Controller::class)->group(function () {

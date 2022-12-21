@@ -14,7 +14,9 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 
-class sppdExport implements FromQuery, WithColumnFormatting, WithMapping, WithHeadings, SkipsEmptyRows
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+
+class sppdExport implements FromQuery, WithColumnFormatting, WithMapping, WithHeadings, SkipsEmptyRows, ShouldAutoSize
 {
     /**
      * @return \Illuminate\Support\Collection

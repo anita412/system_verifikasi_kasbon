@@ -1,4 +1,3 @@
-
 <div class="row"  id="form-entry-1">
     <div class="row">
         <div class="col-md-5">
@@ -50,8 +49,8 @@
                     <td><input  class="form-control" name="keterangan[]" required parsley /></td>
                     <td><input type="date" class="amount form-control" id="startDate" name="startDate[]" required></td>
                     <td><input type="date" class="amount form-control" id="endDate" name="endDate[]" required></td>
-                    {{-- <td><input class="hari amount form-control" id="hari" name="hari[]"></td> --}}
-                    <td><input class="hari form-control" name="hari[]"></td>
+                    <td><input class="form-control" id="hari" name="hari[]"></td>
+                    {{-- <td><input class="hari form-control" name="hari[]"></td> --}}
                     <td><select  class="form-control" name="kurs[]" required parsley > <option value="" disabled selected hidden></option>
                         @foreach ($kurs as $k)
                         <option  value="{{$k->id}}">{{$k->name}}</option>
@@ -165,6 +164,3 @@ $(".item").each(function () {
 </script>
     
 </div>
-    
-                        
-

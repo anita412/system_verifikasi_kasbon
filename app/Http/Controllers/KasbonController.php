@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\KasbonExport;
+// use App\Exports\KasbonExport;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +42,7 @@ class KasbonController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:kasbon', ['only' => ['index', 'show', 'kasbonexport', 'create', 'store', 'store1', 'edit', 'update', 'destroy', 'verifikasi']]);
+        $this->middleware('permission:kasbon', ['only' => ['index', 'show', 'create', 'store', 'store1', 'edit', 'update', 'destroy', 'verifikasi']]);
     }
     /**
      * Display a listing of the resource.
@@ -658,19 +658,19 @@ class KasbonController extends Controller
             ->with('success', 'Kasbon deleted successfully');
     }
 
-    public function kasbonexport(Request $request)
-    {
+    // public function kasbonexport(Request $request)
+    // {
 
-        $tglawal = $request->reg_start_date;
-        $tglakhir = $request->reg_end_date;
+    //     $tglawal = $request->reg_start_date;
+    //     $tglakhir = $request->reg_end_date;
 
-        // if ($tglawal and $tglakhir) {
-        //     $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
-        // } else {
-        //     $kasbon = Kasbon::all();
-        // }
+    //     // if ($tglawal and $tglakhir) {
+    //     //     $kasbon = Kasbon::whereBetween('tglmasuk', [$tglawal, $tglakhir])->get();
+    //     // } else {
+    //     //     $kasbon = Kasbon::all();
+    //     // }
 
-        return Excel::download(new KasbonExport($tglawal, $tglakhir), 'kasbon.xlsx');
-        // return view('kasbon.cetak', compact('kasbon'));
-    }
+    //     return Excel::download(new KasbonExport($tglawal, $tglakhir), 'kasbon.xlsx');
+    //     // return view('kasbon.cetak', compact('kasbon'));
+    // }
 }

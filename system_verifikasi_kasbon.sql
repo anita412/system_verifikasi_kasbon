@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2022 at 03:43 AM
+-- Generation Time: Dec 21, 2022 at 01:37 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -87,7 +87,7 @@ INSERT INTO `bank` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `dokumen_nk` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_nonkasbon` bigint(20) UNSIGNED DEFAULT NULL,
-  `total` double(8,2) DEFAULT NULL,
+  `total` bigint(20) DEFAULT NULL,
   `catatan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -98,7 +98,8 @@ CREATE TABLE `dokumen_nk` (
 --
 
 INSERT INTO `dokumen_nk` (`id`, `id_nonkasbon`, `total`, `catatan`, `created_at`, `updated_at`) VALUES
-(1, 1, 200000.00, NULL, '2022-12-20 01:33:01', '2022-12-19 18:48:25');
+(1, 1, 200000, NULL, '2022-12-20 01:33:01', '2022-12-19 18:48:25'),
+(2, 18, 911119, NULL, '2022-12-20 19:07:25', '2022-12-20 19:07:25');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,7 @@ CREATE TABLE `dokumen_nkd` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_dnk` bigint(20) UNSIGNED DEFAULT NULL,
   `dokumen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nominal` double(8,2) DEFAULT NULL,
+  `nominal` bigint(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,7 +121,9 @@ CREATE TABLE `dokumen_nkd` (
 --
 
 INSERT INTO `dokumen_nkd` (`id`, `id_dnk`, `dokumen`, `nominal`, `created_at`, `updated_at`) VALUES
-(7, 1, '123', 200000.00, '2022-12-19 18:48:25', '2022-12-19 18:48:25');
+(7, 1, '123', 200000, '2022-12-19 18:48:25', '2022-12-19 18:48:25'),
+(8, 2, 'asfdfshdgj', 344554, '2022-12-20 12:07:25', '2022-12-20 12:07:25'),
+(9, 2, 'gfdhgj', 566565, '2022-12-20 12:07:25', '2022-12-20 12:07:25');
 
 -- --------------------------------------------------------
 
@@ -446,7 +449,7 @@ INSERT INTO `kasbons` (`id`, `nokasbon`, `tglmasuk`, `jammasuk`, `jeniskasbon`, 
 (15, 'PPK/5/XII/2022', '2022-12-19', '21:15:20', 'KASBON RENCANA', 1, '632100015', 2, 'PPK/4/XII/2022', 3, 5, 97, '-', '-', 200, 0, NULL, 0, 200, 12222, NULL, 2444400, 'PT MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/5/XII/2022;KASBON RENCANA AN ARYANI DEVIANA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'HARIESYA RANDI ARTANTO', 214356, '16714594121670207794PT. INKA MULTI SOLUSI TRADING.pdf', '2022-12-19 14:16:52', '2022-12-20 01:22:51'),
 (16, 'PPK/6/XII/2022', '2022-12-19', '21:17:48', 'KASBON RENCANA', 89, '991000005', 2, 'PPK/5/XII/2022', 4, 4, 97, '-', '-', 1605, 0, NULL, 0, 1605, 0, NULL, 24996270, 'PT MAJU MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/6/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', NULL, 'PT. BANK ICBC INDONESIA', 'DAVID YUDHA ARISKA', 23456789, '1671459538ppk-realisasi.pdf', '2022-12-19 14:18:58', '2022-12-19 14:18:58'),
 (17, 'PPK/7/XII/2022', '2022-12-19', '21:19:22', 'KASBON RENCANA', 82, '961800001', 2, 'PPK/6/XII/2022', 4, 5, 97, '-', '-', 65000, 0, NULL, 0, 65000, 15000, 65000, 975000000, 'PT MUNDUR', NULL, '2022-12-21', '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/7/XII/2022;KASBON RENCANA AN ANDRI RINALDO SILALAHI;-;-;-', NULL, 'PT. BANK MEGA, TBK', 'DAVID YUDHA ARISKA', 3245766, '1671459634IMST  Kasbon.pdf', '2022-12-19 14:20:34', '2022-12-19 07:58:50'),
-(18, 'PPK/8/XII/2022', '2022-12-19', '21:35:31', 'KASBON RENCANA', 19, '991100045', 2, 'PPK/7/XII/2022', 3, 5, 42, '-', '-', 2557658, 465, 4, 34356, 2523767, 0, NULL, 2523767, 'PT MUNDUR MAJU', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/8/XII/2022;KASBON RENCANA AN HARIESYA RANDI ARTANTO;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'DAVID YUDHA ARISKA', 43567786, '167146059644.pdf', '2022-12-19 14:36:36', '2022-12-19 14:37:06'),
+(18, 'PPK/8/XII/2022', '2022-12-19', '21:35:31', 'KASBON RENCANA', 19, '991100045', 2, 'PPK/7/XII/2022', 3, 5, 42, '-', '-', 2557658, 465, 4, 34356, 2523767, 0, 2557658, 2523767, 'PT MUNDUR MAJU', NULL, '2022-12-24', '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/8/XII/2022;KASBON RENCANA AN HARIESYA RANDI ARTANTO;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'DAVID YUDHA ARISKA', 43567786, '167146059644.pdf', '2022-12-19 14:36:36', '2022-12-20 05:03:17'),
 (19, 'PPK/9/XII/2022', '2022-12-20', '09:20:57', 'KASBON RENCANA', 89, '991000005', 2, 'PPK/8/XII/2022', 4, 5, 42, '-', '-', 200000000, 200, 1, 2333, 199997867, 0, NULL, 199997867, 'PT MAJU MUNDUR', NULL, NULL, '-', '-', '-', '-', NULL, NULL, NULL, NULL, NULL, 'PPK/9/XII/2022;KASBON RENCANA AN DAVID YUDHA ARISKA;-;-;-', NULL, 'PT. BANK BCA SYARIAH', 'ABCDEFG', 23425346756, '1671502966LUARAN PROGRAM MBKM (1).pdf', '2022-12-20 02:22:46', '2022-12-20 02:22:46');
 
 -- --------------------------------------------------------
@@ -510,7 +513,7 @@ INSERT INTO `keterangans` (`id`, `catatan`, `created_at`, `updated_at`) VALUES
 (5, '-', NULL, '2022-12-20 01:23:20'),
 (6, '-', NULL, '2022-12-20 01:20:17'),
 (7, '-', NULL, '2022-12-20 01:20:13'),
-(8, NULL, NULL, '2022-12-20 02:13:08'),
+(8, NULL, NULL, '2022-12-20 12:03:17'),
 (9, NULL, NULL, '2022-12-20 02:38:04');
 
 -- --------------------------------------------------------
@@ -575,6 +578,14 @@ CREATE TABLE `keterangan_non_kasbons` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `keterangan_non_kasbons`
+--
+
+INSERT INTO `keterangan_non_kasbons` (`id`, `id_nonkasbon`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 6, NULL, '2022-12-20 11:45:51', '2022-12-20 18:49:03'),
+(2, 18, NULL, '2022-12-20 12:13:15', '2022-12-20 19:13:27');
 
 -- --------------------------------------------------------
 
@@ -851,7 +862,6 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (3, 'App\\Models\\User', 11),
 (3, 'App\\Models\\User', 16),
 (3, 'App\\Models\\User', 18),
-(3, 'App\\Models\\User', 22),
 (3, 'App\\Models\\User', 29),
 (3, 'App\\Models\\User', 31),
 (4, 'App\\Models\\User', 4),
@@ -861,9 +871,10 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (5, 'App\\Models\\User', 5),
 (5, 'App\\Models\\User', 13),
 (6, 'App\\Models\\User', 21),
-(7, 'App\\Models\\User', 24),
-(8, 'App\\Models\\User', 25),
-(9, 'App\\Models\\User', 27);
+(10, 'App\\Models\\User', 22),
+(10, 'App\\Models\\User', 24),
+(11, 'App\\Models\\User', 25),
+(12, 'App\\Models\\User', 27);
 
 -- --------------------------------------------------------
 
@@ -952,7 +963,19 @@ CREATE TABLE `nonkasbons` (
 
 INSERT INTO `nonkasbons` (`id`, `no_nonkasbon`, `id_user`, `tglmasuk`, `jammasuk`, `doksebelumnya`, `id_unit`, `kodekasbon`, `jenis`, `id_kurs`, `namavendor`, `noinvoice`, `iddpp`, `idppn`, `id_pph`, `idpph`, `total`, `k_total`, `tujuanpembayaran`, `proyek`, `created_at`, `updated_at`) VALUES
 (1, 'NK/0/12/22', 64, '2022-12-20', '08:25:27', 'NK/0/11/22', 4, 'D3', 'PL', 42, 'PT MAJU', '-', 20000000, 20000000, 3, 22, 20000000, 20000000, '-', '-', '2022-12-20 01:25:49', '2022-12-20 01:25:49'),
-(2, 'NK/1/12/22', 70, '2022-12-20', '08:43:25', 'NK/0/12/22', 6, 'D2', 'OPR 3', 42, 'PT MAJU MUNDUR', '-', 22223454, 22223454, 3, 22, 22223454, 22223454, '-', '-', '2022-12-20 01:43:46', '2022-12-20 01:43:46');
+(2, 'NK/1/12/22', 70, '2022-12-20', '08:43:25', 'NK/0/12/22', 6, 'D2', 'OPR 3', 42, 'PT MAJU MUNDUR', '-', 22223454, 22223454, 3, 22, 22223454, 22223454, '-', '-', '2022-12-20 01:43:46', '2022-12-20 01:43:46'),
+(3, 'NK/2/12/22', 60, '2022-12-20', '19:08:53', 'NK/1/12/22', 4, 'D5', 'PL', 42, 'PT MAJU MUNDUR', '-', 20000000, 20000000, 3, 222, 20000000, 20000000, '-', '-', '2022-12-20 12:09:14', '2022-12-20 12:09:14'),
+(4, 'NK/3/12/22', 28, '2022-12-20', '01:13:28', 'NK/2/12/22', 5, 'D4', 'PL', 42, 'PT MAJU MUNDUR', '-', 2000000, 2000000, 3, 22, 2000000, 2000000, '-', '-', '2022-12-20 18:13:50', '2022-12-20 18:13:50'),
+(5, 'NK/4/12/22', 28, '2022-12-20', '01:22:56', 'NK/3/12/22', 5, 'D3', 'PL', 42, 'PT MUNDUR', '-', 2345666, 2345666, 2, 66, 2345666, 2345666, '-', '-', '2022-12-20 18:26:21', '2022-12-20 18:26:21'),
+(6, 'NK/5/12/22', 28, '2022-12-20', '01:22:56', 'NK/4/12/22', 5, 'D3', 'PL', 42, 'PT MUNDUR', '-', 2345666, 2345666, 2, 66, 2345666, 2345666, '-', '-', '2022-12-20 18:43:37', '2022-12-20 18:43:37'),
+(8, 'NK/6/12/22', 28, '2022-12-20', '01:50:14', 'NK/5/12/22', 5, 'D3', 'OPR 3', 42, 'PT MAJU MUNDUR', '-', 333333333, 333333333, 3, 33, 333333333, 333333333, '-', '-', '2022-12-20 18:53:53', '2022-12-20 18:53:53'),
+(9, 'NK/7/12/22', 28, '2022-12-20', '01:50:14', 'NK/6/12/22', 5, 'D3', 'OPR 3', 42, 'PT MAJU MUNDUR', '-', 333333333, 333333333, 3, 33, 333333333, 333333333, '-', '-', '2022-12-20 18:54:22', '2022-12-20 18:54:22'),
+(10, 'NK/8/12/22', 28, '2022-12-20', '01:54:25', 'NK/7/12/22', 5, 'D2', 'PL', 42, 'PT MUNDUR', '-', 55555, 55555, 3, 555, 55555, 55555, '-', '-', '2022-12-20 18:54:52', '2022-12-20 18:54:52'),
+(12, 'NK/9/12/22', 28, '2022-12-20', '01:54:25', 'NK/8/12/22', 5, 'D2', 'PL', 42, 'PT MUNDUR', '-', 55555, 55555, 3, 555, 55555, 55555, '-', '-', '2022-12-20 18:55:47', '2022-12-20 18:55:47'),
+(14, 'NK/10/12/22', 28, '2022-12-20', '01:54:25', 'NK/9/12/22', 5, 'D2', 'PL', 42, 'PT MUNDUR', '-', 55555, 55555, 3, 555, 55555, 55555, '-', '-', '2022-12-20 18:57:53', '2022-12-20 18:57:53'),
+(15, 'NK/11/12/22', 14, '2022-12-20', '02:00:37', 'NK/10/12/22', 4, 'D2', 'OPR 4', 42, 'PT MUNDUR', '-', 222222, 222222, 2, 2, 222222, 222222, '0', '-', '2022-12-20 19:01:10', '2022-12-20 19:01:10'),
+(16, 'NK/12/12/22', 14, '2022-12-20', '02:00:37', 'NK/11/12/22', 4, 'D2', 'OPR 4', 42, 'PT MUNDUR', '-', 222222, 222222, 2, 2, 222222, 222222, '0', '-', '2022-12-20 19:02:00', '2022-12-20 19:02:00'),
+(18, 'NK/13/12/22', 14, '2022-12-20', '02:00:37', 'NK/12/12/22', 4, 'D2', 'OPR 4', 42, 'PT MUNDUR', '-', 222222, 222222, 2, 2, 222222, 222222, '0', '-', '2022-12-20 19:06:05', '2022-12-20 19:06:05');
 
 -- --------------------------------------------------------
 
@@ -1142,7 +1165,10 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 (6, 'VERIFIKATOR', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
 (7, 'ATASAN VERIFIKATOR 1', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
 (8, 'ATASAN VERIFIKATOR 2', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
-(9, 'ATASAN VERIFIKATOR 3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21');
+(9, 'ATASAN VERIFIKATOR 3', 'web', '2022-12-18 19:18:21', '2022-12-18 19:18:21'),
+(10, 'ATASAN KEUANGAN 1', 'web', '2022-12-20 11:16:37', '2022-12-20 11:16:37'),
+(11, 'ATASAN KEUANGAN 2', 'web', '2022-12-20 11:16:46', '2022-12-20 11:16:46'),
+(12, 'ATASAN KEUANGAN 3', 'web', '2022-12-20 11:16:54', '2022-12-20 11:16:54');
 
 -- --------------------------------------------------------
 
@@ -1174,18 +1200,24 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (8, 6),
 (9, 1),
 (9, 3),
+(9, 10),
 (10, 1),
 (10, 4),
+(10, 11),
 (11, 1),
 (11, 5),
+(11, 12),
 (12, 1),
 (12, 6),
 (13, 1),
 (13, 7),
+(13, 10),
 (14, 1),
 (14, 8),
+(14, 11),
 (15, 1),
-(15, 9);
+(15, 9),
+(15, 12);
 
 -- --------------------------------------------------------
 
@@ -1311,12 +1343,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ni
 (19, 'HARIESYA RANDI ARTANTO', 'KADIVREPRO', NULL, '$2y$10$qhTi8vubHoXYO8iijNCLnelN2jwYEtrwroRIxdr4JtZ/P5X2x0Dxm', '991100045', 2, 29, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
 (20, 'UUS MUSYAROFAH', 'ADMKEU', NULL, '$2y$10$9f0g3izJce0rHZwGgANHPe/6T2nz8ZpbhpI319n4y3dPu5HQOgdoG', '962100003', 1, 3, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
 (21, 'TENDHY ANDAR AGUSMA', 'VERIF01', NULL, '$2y$10$8hXLihZUachcpbBaNpdMSu4ocbg1o2X9PMo0R5cXGRTZhDLf12T66', '631800001', 1, 31, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
-(22, 'ZAHRIA ULFA', 'KADEPKEU', NULL, '$2y$10$qkM2t7sle0M3vUz1BfOqr.AYrXHTlQiWQxOEhq6UfbFhtDOWug9My', '961800004', 1, 18, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(22, 'ZAHRIA ULFA', 'KADEPKEU', NULL, '$2y$10$XrRc.drcXK.QJlV5EqcA/OYXLGK72dDddqCD2QylZJDrGqwHkrMa2', '961800004', 1, 18, NULL, '2022-12-18 19:18:23', '2022-12-20 11:17:18'),
 (23, 'MAMIK APRILIANA', 'ADMAKT', NULL, '$2y$10$CO99H9/nCH6eReyPfyJuy.vU9ji0bWPmCl/DsvUX1Nb3EGcGa542G', '962100001', 1, 1, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
-(24, 'NUROCHIM', 'KADEPAKT', NULL, '$2y$10$lN2GGPmy54wpBMNRihL4SObcbb2VbbeLPzgCsKwZYJZF7pzBLrlyO', '999800180', 1, 16, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
-(25, 'NUROCHIM', 'KADIVKEU', NULL, '$2y$10$.Am4gecLwU6AvoJw3HkV7elNwuzjBV0eXiljBDdVlCxtbJpEuPxu6', '999800180', 1, 26, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(24, 'NUROCHIM', 'KADEPAKT', NULL, '$2y$10$Fu23pU/rAtT9b7Yu7YUNf.DR8v/7pzlCZJGL7pErS4yivBNiLuU0e', '999800180', 1, 16, NULL, '2022-12-18 19:18:23', '2022-12-20 11:17:38'),
+(25, 'NUROCHIM', 'KADIVKEU', NULL, '$2y$10$Xavm7/bZ0am5Uj7S74O3z.0IfcTEphoJv.D9gJBg6QVsRn6PPELdq', '999800180', 1, 26, NULL, '2022-12-18 19:18:23', '2022-12-20 11:17:57'),
 (26, 'BADRIYATUL HIDAYAH', NULL, NULL, NULL, '962100007', 1, 32, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
-(27, 'MUHAMMAD GUFRON FADLY', 'DIRKEU01', NULL, '$2y$10$M8sRasDYsguZp.Bj5DG5vOaPb4Dkke4W0d0BERUhokdKsyLSKBoCS', '991000013', 1, 13, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
+(27, 'MUHAMMAD GUFRON FADLY', 'DIRKEU01', NULL, '$2y$10$/DnIDXR2FVQwMyT0XSNfbem6oo4IU1EN36VRY0fcWoM0IvOzze.J6', '991000013', 1, 13, NULL, '2022-12-18 19:18:23', '2022-12-20 11:18:07'),
 (28, 'VRISCO DIKO SYAHPUTRA ANANTA', 'ADMGA', NULL, '$2y$10$WeXFZer.u1rHohOTJPdJ9ennMtAgrYCodr1a86lhHEDRmp3.uI3DK', '631800015', 5, 11, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
 (29, 'SRI ENDAH NUGRAHANI', 'KADEPHRGA', NULL, '$2y$10$wTwslGcB4DpuphVSV.9xFOl0HW0AhbQs0nCba5bPeRUC8rKlFJtra', '999400008', 5, 24, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
 (30, 'RATNA PERMANASARI', 'ADMTKMR', NULL, '$2y$10$MBJk3XadwuBYCEU.DZc4NefgH0AqcKyNj3MnHti.Uu9KZUrWyuEjK', '961600002', 5, 12, NULL, '2022-12-18 19:18:23', '2022-12-18 19:18:23'),
@@ -1447,7 +1479,7 @@ INSERT INTO `verifikasi_kasbons` (`id`, `id_kasbon`, `status`, `vkb_a_1`, `id_vk
 (6, 15, 'Terverifikasi', 'Terverifikasi', 3, '2022-12-20 08:23:00', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-20 08:23:20', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-20 01:22:51', '2022-12-20 01:23:20'),
 (7, 16, 'Dalam Proses', NULL, NULL, NULL, 'Terverifikasi', 4, '2022-12-19 21:23:12', NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-20 08:20:17', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:18:58', '2022-12-20 01:20:17'),
 (8, 17, 'Terverifikasi', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 5, '2022-12-19 21:37:35', 'Terverifikasi', 21, '2022-12-20 08:20:13', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:33:09', '2022-12-20 01:20:13'),
-(9, 18, 'Terverifikasi', 'Terverifikasi', 2, '2022-12-19 21:37:25', NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 21, '2022-12-19 22:04:16', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:37:06', '2022-12-19 15:04:16'),
+(9, 18, 'Terverifikasi', 'Terverifikasi', 2, '2022-12-19 21:37:25', NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, '2022-12-19 22:04:16', 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-19 14:37:06', '2022-12-19 15:04:16'),
 (10, 19, 'Terverifikasi', 'Terverifikasi', NULL, NULL, 'Terverifikasi', NULL, NULL, 'Terverifikasi', 5, '2022-12-20 09:23:24', 'Terverifikasi', 21, '2022-12-20 09:23:38', 'Terverifikasi', 24, '2022-12-20 09:24:19', 'Terverifikasi', 25, '2022-12-20 09:25:43', 'Terverifikasi', 27, '2022-12-20 09:26:58', '2022-12-20 02:22:46', '2022-12-20 02:26:58');
 
 -- --------------------------------------------------------
@@ -1491,7 +1523,19 @@ CREATE TABLE `verifikasi_non_kasbons` (
 
 INSERT INTO `verifikasi_non_kasbons` (`id`, `id_nonkasbon`, `status`, `vnk_a_1`, `id_vnk_a_1`, `tgl_vnk_a_1`, `vnk_a_12`, `id_vnk_a_12`, `tgl_vnk_a_12`, `vnk_a_13`, `id_vnk_a_13`, `tgl_vnk_a_13`, `vnk`, `id_vnk`, `tgl_vnk`, `vnk_a_2`, `id_vnk_a_2`, `tgl_vnk_a_2`, `vnk_a_3`, `id_vnk_a_3`, `tgl_vnk_a_3`, `vnk_a_4`, `id_vnk_a_4`, `tgl_vnk_a_4`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Dalam Proses', NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 2, 'Dalam Proses', NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, 2, 'Dalam Proses', NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 3, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 4, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 5, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 6, 'Terverifikasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 3, '2022-12-21 01:48:37', 'Terverifikasi', 3, '2022-12-21 01:49:03', NULL, NULL, NULL, NULL, '2022-12-20 18:49:03'),
+(8, 8, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 9, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 10, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 12, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 14, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 15, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 16, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 18, 'Dalam Proses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Terverifikasi', 3, '2022-12-21 02:13:15', 'Dalam Proses', 3, '2022-12-21 02:13:27', NULL, NULL, NULL, NULL, '2022-12-20 19:13:27');
 
 -- --------------------------------------------------------
 
@@ -1881,13 +1925,13 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `dokumen_nk`
 --
 ALTER TABLE `dokumen_nk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `dokumen_nkd`
 --
 ALTER TABLE `dokumen_nkd`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `d_customers`
@@ -1971,7 +2015,7 @@ ALTER TABLE `keterangan_kasbon`
 -- AUTO_INCREMENT for table `keterangan_non_kasbons`
 --
 ALTER TABLE `keterangan_non_kasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `keterangan_pertanggungan`
@@ -2013,7 +2057,7 @@ ALTER TABLE `nama_vendor`
 -- AUTO_INCREMENT for table `nonkasbons`
 --
 ALTER TABLE `nonkasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -2049,7 +2093,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sppd`
@@ -2091,7 +2135,7 @@ ALTER TABLE `verifikasi_kasbons`
 -- AUTO_INCREMENT for table `verifikasi_non_kasbons`
 --
 ALTER TABLE `verifikasi_non_kasbons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `verifikasi_pertanggungans`
